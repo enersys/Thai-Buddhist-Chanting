@@ -497,6 +497,7 @@
             z-index: 200;
             justify-content: center;
             align-items: center;
+            -webkit-backdrop-filter: blur(5px);
             backdrop-filter: blur(5px);
         }
 
@@ -1379,6 +1380,7 @@
 
         html {
             scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
         }
 
         body {
@@ -1387,6 +1389,7 @@
             color: var(--text);
             line-height: 1.9;
             min-height: 100vh;
+            -webkit-tap-highlight-color: transparent;
             position: relative;
             transition: background 0.5s ease, color 0.5s ease;
         }
@@ -1470,6 +1473,7 @@
         /* Navigation */
         .nav-container {
             background: rgba(255, 255, 255, 0.97);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             padding: 0.75rem 1rem;
             position: sticky;
@@ -1889,6 +1893,187 @@
         .credit-email:hover {
             background: rgba(255,255,255,0.25);
             transform: translateY(-2px);
+        }
+
+        /* Resume Reading Button */
+        .resume-btn {
+            position: fixed;
+            bottom: 6rem;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.75rem 1.5rem;
+            font-family: 'Mitr', sans-serif;
+            font-size: 0.9rem;
+            color: white;
+            background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-light) 100%);
+            border: none;
+            border-radius: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 99;
+            animation: slideUp 0.4s ease;
+            transition: all 0.2s ease;
+        }
+
+        .resume-btn:hover {
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+        }
+
+        .resume-btn:active,
+        .resume-btn.clicked {
+            transform: translateX(-50%) scale(0.95);
+        }
+
+        .resume-btn.hiding {
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Interactive Button Feedback */
+        .control-btn,
+        .theme-btn,
+        .mode-btn,
+        .nav-item a,
+        .timer-btn,
+        .timer-preset,
+        .wish-category,
+        .wish-generate-btn,
+        .wish-action-btn,
+        .settings-toggle {
+            transition: all 0.2s ease !important;
+        }
+
+        .control-btn:active,
+        .theme-btn:active,
+        .mode-btn:active,
+        .timer-btn:active,
+        .timer-preset:active,
+        .wish-generate-btn:active,
+        .wish-action-btn:active,
+        .settings-toggle:active {
+            transform: scale(0.92) !important;
+        }
+
+        .nav-item a:active {
+            transform: scale(0.95) !important;
+        }
+
+        /* Ripple effect for buttons */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            transform: scale(0);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .ripple:active::after {
+            animation: rippleEffect 0.4s ease-out;
+        }
+
+        @keyframes rippleEffect {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        /* Bookmark star animation */
+        .bookmark-btn {
+            transition: all 0.2s ease;
+        }
+
+        .bookmark-btn:active {
+            transform: scale(1.3);
+        }
+
+        .bookmark-btn.bookmarked {
+            animation: starPop 0.3s ease;
+        }
+
+        @keyframes starPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.4); }
+            100% { transform: scale(1); }
+        }
+
+        /* Wish category selection animation */
+        .wish-category {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .wish-category:active {
+            transform: scale(0.96) !important;
+        }
+
+        .wish-category.selected {
+            animation: selectPop 0.3s ease;
+        }
+
+        @keyframes selectPop {
+            0% { transform: scale(1); }
+            30% { transform: scale(0.95); }
+            60% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        /* Theme button selection */
+        .theme-btn.active {
+            animation: themePop 0.3s ease;
+        }
+
+        @keyframes themePop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            padding: 0.75rem 1.5rem;
+            background: rgba(0,0,0,0.85);
+            color: white;
+            font-family: 'Mitr', sans-serif;
+            font-size: 0.85rem;
+            border-radius: 2rem;
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
 
         /* Reading progress indicator */
@@ -3368,29 +3553,55 @@
         let isTimerRunning = false;
         
         // Create bell sound using Web Audio API
-        function playBell() {
-            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            
-            // Create multiple oscillators for rich bell sound
-            const frequencies = [523.25, 659.25, 783.99]; // C5, E5, G5
-            
-            frequencies.forEach((freq, i) => {
-                const oscillator = audioCtx.createOscillator();
-                const gainNode = audioCtx.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioCtx.destination);
-                
-                oscillator.frequency.value = freq;
-                oscillator.type = 'sine';
-                
-                gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2);
-                
-                oscillator.start(audioCtx.currentTime + i * 0.1);
-                oscillator.stop(audioCtx.currentTime + 2);
-            });
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            // Resume context if suspended (required for iOS)
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
         }
+        
+        function playBell() {
+            try {
+                const ctx = getAudioContext();
+                
+                // Create multiple oscillators for rich bell sound
+                const frequencies = [523.25, 659.25, 783.99]; // C5, E5, G5
+                
+                frequencies.forEach((freq, i) => {
+                    const oscillator = ctx.createOscillator();
+                    const gainNode = ctx.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(ctx.destination);
+                    
+                    oscillator.frequency.value = freq;
+                    oscillator.type = 'sine';
+                    
+                    gainNode.gain.setValueAtTime(0.3, ctx.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 2);
+                    
+                    oscillator.start(ctx.currentTime + i * 0.1);
+                    oscillator.stop(ctx.currentTime + 2);
+                });
+            } catch (e) {
+                console.log('Audio not supported');
+            }
+        }
+        
+        // Pre-initialize audio on first user interaction (iOS requirement)
+        document.addEventListener('touchstart', function initAudio() {
+            getAudioContext();
+            document.removeEventListener('touchstart', initAudio);
+        }, { once: true });
+        document.addEventListener('click', function initAudio() {
+            getAudioContext();
+            document.removeEventListener('click', initAudio);
+        }, { once: true });
         
         function updateTimerDisplay() {
             const mins = String(Math.floor(timerSeconds >= 0 ? timerMinutes : timerMinutes - 1)).padStart(2, '0');
@@ -3546,10 +3757,14 @@
                             bookmarks = bookmarks.filter(b => b !== sectionId);
                             bookmarkBtn.classList.remove('bookmarked');
                             bookmarkBtn.innerHTML = '☆';
+                            // Vibrate feedback
+                            if (navigator.vibrate) navigator.vibrate(10);
                         } else {
                             bookmarks.push(sectionId);
                             bookmarkBtn.classList.add('bookmarked');
                             bookmarkBtn.innerHTML = '★';
+                            // Vibrate feedback
+                            if (navigator.vibrate) navigator.vibrate([10, 50, 10]);
                         }
                         
                         localStorage.setItem('chantingBookmarks', JSON.stringify(bookmarks));
@@ -3673,6 +3888,19 @@
                 ttsBtn.style.display = 'none';
                 return;
             }
+            
+            // iOS Safari fix - need user interaction first
+            let speechReady = false;
+            const initSpeech = () => {
+                if (!speechReady) {
+                    const utterance = new SpeechSynthesisUtterance('');
+                    speechSynthesis.speak(utterance);
+                    speechSynthesis.cancel();
+                    speechReady = true;
+                }
+            };
+            document.addEventListener('touchstart', initSpeech, { once: true });
+            document.addEventListener('click', initSpeech, { once: true });
             
             // Collect all Pali texts
             allSections.forEach(section => {
@@ -3944,17 +4172,25 @@
             rootMargin: '0px 0px -30px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+        // Animate sections on scroll (with fallback)
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
 
-        allSections.forEach(section => {
-            observer.observe(section);
-        });
+            allSections.forEach(section => {
+                observer.observe(section);
+            });
+        } else {
+            // Fallback: show all sections immediately
+            allSections.forEach(section => {
+                section.classList.add('visible');
+            });
+        }
 
         // ==========================================
         // INITIALIZE ALL FEATURES
@@ -3969,31 +4205,66 @@
         initTTS();
         initWishGenerator();
         
-        // Show last read position
+        // Show resume reading button instead of auto-scrolling
         const lastRead = localStorage.getItem('chantingLastRead');
-        if (lastRead) {
+        if (lastRead && lastRead !== 'imina-sakkara') {
             const lastSection = document.getElementById(lastRead);
             if (lastSection) {
-                setTimeout(() => {
-                    lastSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 500);
+                showResumeButton(lastSection, lastRead);
             }
         }
         
-        // Save reading position periodically
+        // Save reading position periodically (with fallback for older browsers)
         let currentSection = '';
-        const positionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    currentSection = entry.target.id;
-                    localStorage.setItem('chantingLastRead', currentSection);
-                }
+        if ('IntersectionObserver' in window) {
+            const positionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        currentSection = entry.target.id;
+                        localStorage.setItem('chantingLastRead', currentSection);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            allSections.forEach(section => {
+                positionObserver.observe(section);
             });
-        }, { threshold: 0.5 });
+        }
         
-        allSections.forEach(section => {
-            positionObserver.observe(section);
-        });
+        // Resume reading button
+        function showResumeButton(section, sectionId) {
+            const sectionNames = {
+                'namo': 'บทนะโม',
+                'metta': 'บทแผ่เมตตา',
+                'itipiso': 'บทอิติปิโส',
+                'pahung': 'บทพาหุง',
+                'mahakruniko': 'บทมหาการุณิโก',
+                'bhavatu': 'บทภวตุ',
+                'chinabanchorn': 'บทชินบัญชร',
+                'imina-punna': 'บทกรวดน้ำ',
+                'wish-generator': 'สร้างคำอธิษฐาน'
+            };
+            
+            const btn = document.createElement('button');
+            btn.className = 'resume-btn';
+            btn.innerHTML = `📖 อ่านต่อจาก "${sectionNames[sectionId] || 'บทที่ค้างไว้'}"`;
+            btn.onclick = function() {
+                this.classList.add('clicked');
+                setTimeout(() => {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => this.remove(), 500);
+                }, 150);
+            };
+            document.body.appendChild(btn);
+            
+            // Auto hide after 10 seconds
+            setTimeout(() => {
+                if (btn.parentNode) {
+                    btn.classList.add('hiding');
+                    setTimeout(() => btn.remove(), 300);
+                }
+            }, 10000);
+        }
 
         // ==========================================
         // 11. WISH GENERATOR
@@ -4127,13 +4398,46 @@
             
             copyBtn.addEventListener('click', function() {
                 const textToCopy = resultText.innerText;
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    this.innerHTML = '<span>✅</span><span>คัดลอกแล้ว</span>';
-                    setTimeout(() => {
-                        this.innerHTML = '<span>📋</span><span>คัดลอก</span>';
-                    }, 2000);
-                });
+                
+                // Fallback for older browsers
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        this.innerHTML = '<span>✅</span><span>คัดลอกแล้ว</span>';
+                        if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
+                        setTimeout(() => {
+                            this.innerHTML = '<span>📋</span><span>คัดลอก</span>';
+                        }, 2000);
+                    }).catch(() => {
+                        fallbackCopy(textToCopy, this);
+                    });
+                } else {
+                    fallbackCopy(textToCopy, this);
+                }
             });
+            
+            // Fallback copy function for older browsers
+            function fallbackCopy(text, btn) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    btn.innerHTML = '<span>✅</span><span>คัดลอกแล้ว</span>';
+                    if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
+                    setTimeout(() => {
+                        btn.innerHTML = '<span>📋</span><span>คัดลอก</span>';
+                    }, 2000);
+                } catch (err) {
+                    btn.innerHTML = '<span>❌</span><span>ไม่สำเร็จ</span>';
+                    setTimeout(() => {
+                        btn.innerHTML = '<span>📋</span><span>คัดลอก</span>';
+                    }, 2000);
+                }
+                document.body.removeChild(textarea);
+            }
             
             newBtn.addEventListener('click', function() {
                 // Reset all
@@ -4149,6 +4453,82 @@
                 document.getElementById('wish-generator').scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         }
+
+        // ==========================================
+        // 12. INTERACTIVE HELPERS
+        // ==========================================
+        
+        // Toast notification function
+        function showToast(message, duration = 2000) {
+            // Remove existing toast
+            const existing = document.querySelector('.toast');
+            if (existing) existing.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            // Show toast
+            setTimeout(() => toast.classList.add('show'), 10);
+            
+            // Hide toast
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, duration);
+        }
+        
+        // Add ripple effect to all interactive elements
+        function addRippleEffect() {
+            const rippleElements = document.querySelectorAll('.control-btn, .theme-btn, .mode-btn, .timer-btn, .timer-preset, .wish-action-btn, .settings-toggle');
+            rippleElements.forEach(el => {
+                el.classList.add('ripple');
+            });
+        }
+        addRippleEffect();
+        
+        // Haptic feedback (vibration) for mobile
+        function vibrate(pattern = 10) {
+            if (navigator.vibrate) {
+                navigator.vibrate(pattern);
+            }
+        }
+        
+        // Add click feedback to theme buttons
+        themeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                vibrate(15);
+            });
+        });
+        
+        // Add click feedback to mode buttons
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                vibrate(15);
+            });
+        });
+        
+        // Add click feedback to wish categories
+        document.querySelectorAll('.wish-category').forEach(cat => {
+            cat.addEventListener('click', () => {
+                vibrate(10);
+            });
+        });
+        
+        // Add click feedback to control buttons  
+        document.querySelectorAll('.control-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                vibrate(10);
+            });
+        });
+        
+        // Add click feedback to nav items
+        document.querySelectorAll('.nav-item a').forEach(link => {
+            link.addEventListener('click', () => {
+                vibrate(10);
+            });
+        });
     </script>
 </body>
 </html>
