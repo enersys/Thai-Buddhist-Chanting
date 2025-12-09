@@ -462,6 +462,11 @@
             background: rgba(255,255,255,0.05);
         }
 
+        body.dark-mode .theme-label,
+        body.dark-mode .mode-label {
+            color: #e8e8e8;
+        }
+
         body.dark-mode .theme-selector,
         body.dark-mode .control-btn,
         body.dark-mode .font-controls,
@@ -662,7 +667,7 @@
             color: white;
         }
 
-        /* Auto-scroll indicator */
+        /* Auto-scroll indicator - clickable */
         .auto-scroll-indicator {
             position: fixed;
             top: 50%;
@@ -681,6 +686,17 @@
             display: flex;
             align-items: center;
             gap: 0.3rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .auto-scroll-indicator:hover {
+            background: var(--primary-light);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .auto-scroll-indicator:active {
+            transform: translateY(-50%) scale(0.95);
         }
 
         .auto-scroll-indicator.visible {
@@ -688,8 +704,16 @@
             visibility: visible;
         }
 
+        .auto-scroll-indicator.paused {
+            background: #e67e22;
+        }
+
         .auto-scroll-indicator .icon {
             animation: scrollAnim 1s ease-in-out infinite;
+        }
+
+        .auto-scroll-indicator.paused .icon {
+            animation: none;
         }
 
         @keyframes scrollAnim {
@@ -789,6 +813,308 @@
             z-index: 98;
             gap: 0.5rem;
             align-items: center;
+        }
+
+        /* ==================== */
+        /* WISH GENERATOR       */
+        /* ==================== */
+        
+        .wish-section {
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--primary-bg-warm) 100%);
+            border-radius: 1.5rem;
+            margin: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+        }
+
+        .wish-header {
+            background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-light) 100%);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .wish-header-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .wish-header-title {
+            font-family: 'Mitr', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .wish-header-subtitle {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .wish-body {
+            padding: 1.5rem;
+        }
+
+        .wish-instruction {
+            text-align: center;
+            font-family: 'Mitr', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-soft);
+            margin-bottom: 1rem;
+            transition: color 0.5s ease;
+        }
+
+        .wish-counter {
+            text-align: center;
+            font-family: 'Mitr', sans-serif;
+            font-size: 0.8rem;
+            color: var(--primary-main);
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background: var(--primary-mist);
+            border-radius: 2rem;
+            display: inline-block;
+            width: 100%;
+            transition: all 0.5s ease;
+        }
+
+        .wish-counter.limit-reached {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .wish-categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .wish-category {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.85rem 1rem;
+            background: white;
+            border: 2px solid var(--primary-mist);
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .wish-category:hover {
+            border-color: var(--primary-light);
+            background: var(--primary-bg);
+        }
+
+        .wish-category.selected {
+            border-color: var(--primary-main);
+            background: linear-gradient(135deg, var(--primary-pale) 0%, var(--primary-mist) 100%);
+        }
+
+        .wish-category.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .wish-category-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .wish-category-text {
+            font-family: 'Mitr', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text);
+            line-height: 1.3;
+            transition: color 0.5s ease;
+        }
+
+        .wish-category-name {
+            font-weight: 500;
+            display: block;
+        }
+
+        .wish-category-desc {
+            font-size: 0.7rem;
+            color: var(--text-soft);
+            transition: color 0.5s ease;
+        }
+
+        .wish-checkbox {
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid var(--primary-mist);
+            border-radius: 0.35rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            margin-left: auto;
+        }
+
+        .wish-category.selected .wish-checkbox {
+            background: var(--primary-main);
+            border-color: var(--primary-main);
+        }
+
+        .wish-category.selected .wish-checkbox::after {
+            content: '✓';
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .wish-generate-btn {
+            width: 100%;
+            padding: 1rem;
+            font-family: 'Mitr', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            color: white;
+            background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-light) 100%);
+            border: none;
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .wish-generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .wish-generate-btn:active {
+            transform: translateY(0);
+        }
+
+        .wish-generate-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .wish-result {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 1rem;
+            border: 2px solid var(--primary-mist);
+        }
+
+        .wish-result.visible {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .wish-result-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--primary-mist);
+        }
+
+        .wish-result-title {
+            font-family: 'Mitr', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--primary-main);
+            transition: color 0.5s ease;
+        }
+
+        .wish-result-text {
+            font-family: 'Sarabun', sans-serif;
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--text);
+            text-align: justify;
+            transition: color 0.5s ease;
+        }
+
+        .wish-result-text .highlight {
+            color: var(--primary-main);
+            font-weight: 500;
+        }
+
+        .wish-result-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--primary-mist);
+        }
+
+        .wish-action-btn {
+            flex: 1;
+            padding: 0.75rem;
+            font-family: 'Mitr', sans-serif;
+            font-size: 0.85rem;
+            border: 2px solid var(--primary-mist);
+            border-radius: 0.75rem;
+            background: white;
+            color: var(--primary-main);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        .wish-action-btn:hover {
+            background: var(--primary-bg);
+            border-color: var(--primary-light);
+        }
+
+        .wish-action-btn.primary {
+            background: var(--primary-main);
+            color: white;
+            border-color: var(--primary-main);
+        }
+
+        /* Dark mode for wish section */
+        body.dark-mode .wish-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        body.dark-mode .wish-category {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        body.dark-mode .wish-category:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        body.dark-mode .wish-category.selected {
+            background: rgba(255,255,255,0.2);
+        }
+
+        body.dark-mode .wish-category-text,
+        body.dark-mode .wish-category-desc {
+            color: #e8e8e8;
+        }
+
+        body.dark-mode .wish-result {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        body.dark-mode .wish-action-btn {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+            color: #e8e8e8;
         }
 
         .tts-controls.visible {
@@ -1656,8 +1982,8 @@
                 <!-- Scroll Speed Controls -->
                 <div class="scroll-controls" id="scrollControls">
                     <button class="font-btn" id="scrollPause" title="หยุด/เล่น">⏸</button>
-                    <input type="range" class="speed-slider" id="speedSlider" min="1" max="10" value="3">
-                    <span class="speed-label" id="speedLabel">3x</span>
+                    <input type="range" class="speed-slider" id="speedSlider" min="1" max="5" value="2">
+                    <span class="speed-label" id="speedLabel">ปกติ</span>
                 </div>
             </div>
 
@@ -2588,6 +2914,154 @@
             </div>
         </section>
 
+        <!-- Wish Generator Section -->
+        <section class="wish-section" id="wish-generator">
+            <div class="wish-header">
+                <span class="wish-header-icon">🙏</span>
+                <h2 class="wish-header-title">สร้างคำอธิษฐาน</h2>
+                <p class="wish-header-subtitle">เลือกหมวดที่ต้องการอธิษฐาน (ไม่เกิน 6 หมวด)</p>
+            </div>
+            
+            <div class="wish-body">
+                <p class="wish-instruction">กดเลือกหมวดที่ท่านปรารถนา แล้วกดสร้างคำอธิษฐาน</p>
+                
+                <div class="wish-counter" id="wishCounter">เลือกแล้ว 0 / 6 หมวด</div>
+                
+                <div class="wish-categories" id="wishCategories">
+                    <div class="wish-category" data-wish="parents">
+                        <span class="wish-category-icon">👨‍👩‍👧</span>
+                        <div class="wish-category-text">
+                            <span class="wish-category-name">พ่อแม่</span>
+                            <span class="wish-category-desc">สุขภาพ อายุยืน</span>
+                        </div>
+                        <div class="wish-checkbox"></div>
+                    </div>
+                    
+                    <div class="wish-category" data-wish="grandparents">
+                        <span class="wish-category-icon">👴👵</span>
+                        <div class="wish-category-text">
+                            <span class="wish-category-name">ปู่ย่าตายาย</span>
+                            <span class="wish-category-desc">บุญกุศล รำลึก</span>
+                        </div>
+                        <div class="wish-checkbox"></div>
+                    </div>
+                    
+                    <div class="wish-category" data-wish="relatives">
+                        <span class="wish-category-icon">👨‍👩‍👧‍👦</span>
+                        <div class="wish-category-text">
+                            <span class="wish-category-name">ญาติพี่น้อง</span>
+                            <span class="wish-category-desc">ความสามัคคี</span>
+                        </div>
+                        <div class="wish-checkbox"></div>
+                    </div>
+                    
+                    <div class="wish-category" data-wish="friends">
+                        <span class="wish-category-icon">🤝</span>
+                        <div class="wish-category-text">
+                            <span class="wish-category-name">เพื่อน</span>
+                            <span class="wish-category-desc">มิตรภาพ ความผูกพัน</span>
+                        </div>
+                        <div class="wish-checkbox"></div>
+                    </div>
+                    
+                    <div class="wish-category" data-wish="love">
+                        <span class="wish-category-icon">💕</span>
+                        <div class="wish-category-text">
+                            <span class="wish-category-name">ความรัก</span>
+                            <span class="wish-category-desc">คู่ครอง ครอบครัว</span>
+                        </div>
+                        <div class="wish-checkbox"></div>
+                    </div>
+                    
+                    <div class="wish-category" data-wish="wealth">
+                        <span class="wish-category-icon">💰</span>
+                        <div class="wish-category-text">
+                            <span class="wish-category-name">เงินทอง</span>
+                            <span class="wish-category-desc">โชคลาภ ความมั่งคั่ง</span>
+                        </div>
+                        <div class="wish-checkbox"></div>
+                    </div>
+                    
+                    <div class="wish-category" data-wish="happiness">
+                        <span class="wish-category-icon">😊</span>
+                        <div class="wish-category-text">
+                            <span class="wish-category-name">ความสุข</span>
+                            <span class="wish-category-desc">จิตใจ ความสงบ</span>
+                        </div>
+                        <div class="wish-checkbox"></div>
+                    </div>
+                    
+                    <div class="wish-category" data-wish="health">
+                        <span class="wish-category-icon">💪</span>
+                        <div class="wish-category-text">
+                            <span class="wish-category-name">สุขภาพ</span>
+                            <span class="wish-category-desc">ร่างกาย จิตใจ</span>
+                        </div>
+                        <div class="wish-checkbox"></div>
+                    </div>
+                    
+                    <div class="wish-category" data-wish="career">
+                        <span class="wish-category-icon">💼</span>
+                        <div class="wish-category-text">
+                            <span class="wish-category-name">การงาน</span>
+                            <span class="wish-category-desc">ความก้าวหน้า</span>
+                        </div>
+                        <div class="wish-checkbox"></div>
+                    </div>
+                    
+                    <div class="wish-category" data-wish="wisdom">
+                        <span class="wish-category-icon">🧠</span>
+                        <div class="wish-category-text">
+                            <span class="wish-category-name">สติปัญญา</span>
+                            <span class="wish-category-desc">ความรู้ ความเฉลียวฉลาด</span>
+                        </div>
+                        <div class="wish-checkbox"></div>
+                    </div>
+                    
+                    <div class="wish-category" data-wish="study">
+                        <span class="wish-category-icon">📚</span>
+                        <div class="wish-category-text">
+                            <span class="wish-category-name">การเรียน</span>
+                            <span class="wish-category-desc">สอบผ่าน ประสบความสำเร็จ</span>
+                        </div>
+                        <div class="wish-checkbox"></div>
+                    </div>
+                    
+                    <div class="wish-category" data-wish="protection">
+                        <span class="wish-category-icon">🛡️</span>
+                        <div class="wish-category-text">
+                            <span class="wish-category-name">คุ้มครอง</span>
+                            <span class="wish-category-desc">ปลอดภัย แคล้วคลาด</span>
+                        </div>
+                        <div class="wish-checkbox"></div>
+                    </div>
+                </div>
+                
+                <button class="wish-generate-btn" id="wishGenerateBtn" disabled>
+                    <span>✨</span>
+                    <span>สร้างคำอธิษฐาน</span>
+                </button>
+                
+                <div class="wish-result" id="wishResult">
+                    <div class="wish-result-header">
+                        <span>📿</span>
+                        <span class="wish-result-title">คำอธิษฐาน</span>
+                    </div>
+                    <div class="wish-result-text" id="wishResultText"></div>
+                    <div class="wish-result-actions">
+                        <button class="wish-action-btn" id="wishCopyBtn">
+                            <span>📋</span>
+                            <span>คัดลอก</span>
+                        </button>
+                        <button class="wish-action-btn" id="wishNewBtn">
+                            <span>🔄</span>
+                            <span>เลือกใหม่</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
@@ -2639,6 +3113,7 @@
 
             <div class="timer-buttons">
                 <button class="timer-btn secondary" id="timerCancel">ปิด</button>
+                <button class="timer-btn secondary" id="timerStop" style="display: none;">⏹ ยกเลิก</button>
                 <button class="timer-btn primary" id="timerStart">▶ เริ่มจับเวลา</button>
             </div>
         </div>
@@ -2729,7 +3204,7 @@
         });
 
         // ==========================================
-        // 3. AUTO SCROLL
+        // 3. AUTO SCROLL (5 ระดับความเร็ว)
         // ==========================================
         const autoScrollBtn = document.getElementById('autoScrollBtn');
         const scrollControls = document.getElementById('scrollControls');
@@ -2740,7 +3215,20 @@
         
         let isAutoScrolling = false;
         let autoScrollInterval = null;
-        let scrollSpeed = 3;
+        let scrollSpeed = 2; // Default: กลางๆ
+        
+        // 5 ระดับความเร็ว (pixels per frame)
+        const speedLevels = {
+            1: { speed: 1, label: 'ช้า' },
+            2: { speed: 2.5, label: 'ปกติ' },
+            3: { speed: 4, label: 'เร็ว' },
+            4: { speed: 7, label: 'เร็วมาก' },
+            5: { speed: 12, label: 'เร็วสุด' }
+        };
+        
+        function getScrollSpeed() {
+            return speedLevels[scrollSpeed].speed;
+        }
         
         function startAutoScroll() {
             isAutoScrolling = true;
@@ -2750,13 +3238,13 @@
             scrollPause.textContent = '⏸';
             
             autoScrollInterval = setInterval(() => {
-                window.scrollBy(0, scrollSpeed * 0.5);
+                window.scrollBy(0, getScrollSpeed());
                 
                 // Stop at bottom
                 if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 10) {
                     stopAutoScroll();
                 }
-            }, 50);
+            }, 30); // เร็วขึ้น: 30ms แทน 50ms
         }
         
         function stopAutoScroll() {
@@ -2764,6 +3252,9 @@
             autoScrollBtn.classList.remove('active');
             scrollControls.classList.remove('visible');
             autoScrollIndicator.classList.remove('visible');
+            autoScrollIndicator.classList.remove('paused');
+            autoScrollIndicator.querySelector('.icon').textContent = '▼';
+            autoScrollIndicator.querySelector('span:last-child').textContent = 'กำลังเลื่อน';
             if (autoScrollInterval) {
                 clearInterval(autoScrollInterval);
                 autoScrollInterval = null;
@@ -2775,16 +3266,20 @@
                 clearInterval(autoScrollInterval);
                 autoScrollInterval = null;
                 scrollPause.textContent = '▶';
-                autoScrollIndicator.classList.remove('visible');
+                autoScrollIndicator.classList.add('paused');
+                autoScrollIndicator.querySelector('.icon').textContent = '⏸';
+                autoScrollIndicator.querySelector('span:last-child').textContent = 'หยุดอยู่';
             } else {
                 autoScrollInterval = setInterval(() => {
-                    window.scrollBy(0, scrollSpeed * 0.5);
+                    window.scrollBy(0, getScrollSpeed());
                     if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 10) {
                         stopAutoScroll();
                     }
-                }, 50);
+                }, 30);
                 scrollPause.textContent = '⏸';
-                autoScrollIndicator.classList.add('visible');
+                autoScrollIndicator.classList.remove('paused');
+                autoScrollIndicator.querySelector('.icon').textContent = '▼';
+                autoScrollIndicator.querySelector('span:last-child').textContent = 'กำลังเลื่อน';
             }
         }
         
@@ -2798,10 +3293,16 @@
         
         scrollPause.addEventListener('click', pauseAutoScroll);
         
+        // กด indicator เพื่อ pause/resume
+        autoScrollIndicator.addEventListener('click', pauseAutoScroll);
+        
         speedSlider.addEventListener('input', () => {
             scrollSpeed = parseInt(speedSlider.value);
-            speedLabel.textContent = scrollSpeed + 'x';
+            speedLabel.textContent = speedLevels[scrollSpeed].label;
         });
+        
+        // Initialize speed label
+        speedLabel.textContent = speedLevels[scrollSpeed].label;
 
         // ==========================================
         // 4. MEDITATION TIMER + BELL
@@ -2811,6 +3312,7 @@
         const timerDisplay = document.getElementById('timerDisplay');
         const timerStart = document.getElementById('timerStart');
         const timerCancel = document.getElementById('timerCancel');
+        const timerStop = document.getElementById('timerStop');
         const timerPresets = document.querySelectorAll('.timer-preset');
         
         let timerMinutes = 15;
@@ -2853,21 +3355,17 @@
             timerModal.classList.add('visible');
         });
         
+        // ปิด popup แต่จับเวลาต่อ
         timerCancel.addEventListener('click', () => {
             timerModal.classList.remove('visible');
-            if (timerInterval) {
-                clearInterval(timerInterval);
-                timerInterval = null;
-            }
-            isTimerRunning = false;
-            timerStart.textContent = '▶ เริ่มจับเวลา';
-            timerMinutes = 15;
-            timerSeconds = 0;
-            updateTimerDisplay();
+            // ไม่หยุดจับเวลา - ปล่อยให้ทำงานต่อ
         });
         
         timerPresets.forEach(preset => {
             preset.addEventListener('click', function() {
+                // ถ้ากำลังจับเวลาอยู่ ไม่ให้เปลี่ยน
+                if (isTimerRunning) return;
+                
                 timerPresets.forEach(p => p.classList.remove('active'));
                 this.classList.add('active');
                 timerMinutes = parseInt(this.dataset.minutes);
@@ -2883,11 +3381,17 @@
                 timerInterval = null;
                 isTimerRunning = false;
                 timerStart.textContent = '▶ ดำเนินการต่อ';
+                timerStop.style.display = 'inline-block';
             } else {
                 // Start
+                if (timerMinutes === 0 && timerSeconds === 0) {
+                    // Reset ถ้าหมดเวลาแล้ว
+                    timerMinutes = parseInt(document.querySelector('.timer-preset.active').dataset.minutes);
+                }
                 playBell(); // Starting bell
                 isTimerRunning = true;
                 timerStart.textContent = '⏸ หยุดชั่วคราว';
+                timerStop.style.display = 'inline-block';
                 
                 timerInterval = setInterval(() => {
                     timerSeconds--;
@@ -2900,6 +3404,7 @@
                     if (timerMinutes < 0) {
                         // Time's up!
                         clearInterval(timerInterval);
+                        timerInterval = null;
                         playBell();
                         setTimeout(playBell, 1000);
                         setTimeout(playBell, 2000);
@@ -2907,6 +3412,7 @@
                         timerDisplay.textContent = 'สาธุ 🙏';
                         isTimerRunning = false;
                         timerStart.textContent = '▶ เริ่มใหม่';
+                        timerStop.style.display = 'none';
                         
                         // Vibrate if supported
                         if (navigator.vibrate) {
@@ -2914,7 +3420,7 @@
                         }
                         
                         setTimeout(() => {
-                            timerMinutes = 15;
+                            timerMinutes = parseInt(document.querySelector('.timer-preset.active').dataset.minutes);
                             timerSeconds = 0;
                             updateTimerDisplay();
                         }, 3000);
@@ -2925,6 +3431,20 @@
                     updateTimerDisplay();
                 }, 1000);
             }
+        });
+        
+        // ปุ่มยกเลิก/รีเซ็ต
+        timerStop.addEventListener('click', () => {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            isTimerRunning = false;
+            timerMinutes = parseInt(document.querySelector('.timer-preset.active').dataset.minutes);
+            timerSeconds = 0;
+            updateTimerDisplay();
+            timerStart.textContent = '▶ เริ่มจับเวลา';
+            timerStop.style.display = 'none';
         });
 
         // ==========================================
@@ -3255,10 +3775,13 @@
         // ==========================================
         function setDefaultTheme() {
             const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+            const dayNames = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'];
             const today = new Date().getDay();
             const todayTheme = days[today];
             const savedTheme = localStorage.getItem('chantingTheme');
-            const themeToUse = savedTheme || todayTheme;
+            
+            // ถ้าไม่มี savedTheme หรือ savedTheme เป็นค่าว่าง ให้ใช้สีวันนี้
+            const themeToUse = savedTheme ? savedTheme : todayTheme;
             
             body.setAttribute('data-theme', themeToUse);
             
@@ -3268,16 +3791,35 @@
                     btn.classList.add('active');
                 }
             });
+            
+            // อัพเดท label แสดงวันที่ใช้
+            const themeLabel = document.querySelector('.theme-label');
+            if (themeLabel) {
+                const themeIndex = days.indexOf(themeToUse);
+                if (!savedTheme) {
+                    themeLabel.textContent = `🎨 สีมงคลวัน${dayNames[themeIndex]} (วันนี้)`;
+                } else {
+                    themeLabel.textContent = `🎨 สีมงคลวัน${dayNames[themeIndex]}`;
+                }
+            }
         }
 
         themeButtons.forEach(btn => {
             btn.addEventListener('click', function() {
                 const theme = this.getAttribute('data-theme');
+                const dayName = this.getAttribute('data-day');
+                
                 body.setAttribute('data-theme', theme);
                 localStorage.setItem('chantingTheme', theme);
                 
                 themeButtons.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
+                
+                // อัพเดท label
+                const themeLabel = document.querySelector('.theme-label');
+                if (themeLabel) {
+                    themeLabel.textContent = `🎨 สีมงคลวัน${dayName}`;
+                }
                 
                 this.style.transform = 'scale(0.9)';
                 setTimeout(() => {
@@ -3378,6 +3920,7 @@
         initBookmarks();
         addReadingTime();
         initTTS();
+        initWishGenerator();
         
         // Show last read position
         const lastRead = localStorage.getItem('chantingLastRead');
@@ -3404,6 +3947,161 @@
         allSections.forEach(section => {
             positionObserver.observe(section);
         });
+
+        // ==========================================
+        // 11. WISH GENERATOR
+        // ==========================================
+        function initWishGenerator() {
+            const categories = document.querySelectorAll('.wish-category');
+            const counter = document.getElementById('wishCounter');
+            const generateBtn = document.getElementById('wishGenerateBtn');
+            const result = document.getElementById('wishResult');
+            const resultText = document.getElementById('wishResultText');
+            const copyBtn = document.getElementById('wishCopyBtn');
+            const newBtn = document.getElementById('wishNewBtn');
+            
+            let selected = [];
+            const maxSelection = 6;
+            
+            // Wish templates
+            const wishTemplates = {
+                parents: {
+                    name: 'บิดามารดา',
+                    wish: 'ขอให้<span class="highlight">บิดามารดา</span>ของข้าพเจ้า มีสุขภาพพลานามัยแข็งแรง อายุยืนยาว ปราศจากโรคภัยไข้เจ็บ มีความสุขกายสบายใจตลอดไป'
+                },
+                grandparents: {
+                    name: 'ปู่ย่าตายาย',
+                    wish: 'ขอให้บุญกุศลนี้ส่งผลถึง<span class="highlight">ปู่ย่าตายาย</span>และบรรพบุรุษทุกท่าน ขอให้ท่านได้รับผลบุญนี้ มีความสุขในสัมปรายภพ หากยังมีชีวิตอยู่ขอให้มีสุขภาพแข็งแรง'
+                },
+                relatives: {
+                    name: 'ญาติพี่น้อง',
+                    wish: 'ขอให้<span class="highlight">ญาติพี่น้อง</span>ทุกคน มีความสุขความเจริญ รักใคร่สามัคคีกัน ช่วยเหลือเกื้อกูลกัน ประสบแต่สิ่งดีงามตลอดไป'
+                },
+                friends: {
+                    name: 'มิตรสหาย',
+                    wish: 'ขอให้<span class="highlight">มิตรสหาย</span>ทั้งหลาย มีความสุขความเจริญ มิตรภาพของเรายั่งยืน ได้พบเจอแต่กัลยาณมิตร เกื้อกูลกันตลอดไป'
+                },
+                love: {
+                    name: 'ความรักและครอบครัว',
+                    wish: 'ขอให้<span class="highlight">ความรักและครอบครัว</span>ของข้าพเจ้า มีความสุขความอบอุ่น รักใคร่ปรองดอง เข้าใจซึ่งกันและกัน อยู่ร่วมกันอย่างมีความสุขตลอดไป'
+                },
+                wealth: {
+                    name: 'โชคลาภเงินทอง',
+                    wish: 'ขอให้ข้าพเจ้าประสบ<span class="highlight">โชคลาภเงินทอง</span> มีรายได้มั่นคง ทรัพย์สินเพิ่มพูน ไม่ขัดสนเรื่องการเงิน มีกินมีใช้อย่างไม่ขาดตกบกพร่อง'
+                },
+                happiness: {
+                    name: 'ความสุข',
+                    wish: 'ขอให้ข้าพเจ้ามี<span class="highlight">ความสุข</span>ทั้งกายและใจ จิตใจผ่องใส สงบเย็น ปราศจากความทุกข์โศกเศร้า มีความสุขในทุกๆ วัน'
+                },
+                health: {
+                    name: 'สุขภาพ',
+                    wish: 'ขอให้ข้าพเจ้ามี<span class="highlight">สุขภาพ</span>ร่างกายแข็งแรง ปราศจากโรคภัยไข้เจ็บทั้งปวง มีกำลังกายกำลังใจเข้มแข็ง อายุยืนยาว'
+                },
+                career: {
+                    name: 'การงาน',
+                    wish: 'ขอให้<span class="highlight">การงาน</span>ของข้าพเจ้าเจริญก้าวหน้า ประสบความสำเร็จ ได้รับการยอมรับนับถือ มีความมั่นคงในอาชีพ เจริญรุ่งเรืองยิ่งๆ ขึ้นไป'
+                },
+                wisdom: {
+                    name: 'สติปัญญา',
+                    wish: 'ขอให้ข้าพเจ้ามี<span class="highlight">สติปัญญา</span>เฉียบแหลม ความจำดี มีความคิดสร้างสรรค์ ตัดสินใจได้ถูกต้อง แก้ไขปัญหาได้อย่างชาญฉลาด'
+                },
+                study: {
+                    name: 'การศึกษา',
+                    wish: 'ขอให้<span class="highlight">การศึกษา</span>ของข้าพเจ้าประสบความสำเร็จ สอบผ่านทุกวิชา เรียนรู้ได้ดี จดจำได้แม่นยำ บรรลุเป้าหมายการศึกษาที่ตั้งไว้'
+                },
+                protection: {
+                    name: 'ความคุ้มครอง',
+                    wish: 'ขอให้ข้าพเจ้าได้รับ<span class="highlight">ความคุ้มครอง</span>จากสิ่งศักดิ์สิทธิ์ ปลอดภัยจากอันตรายทั้งปวง แคล้วคลาดจากภัยพิบัติ มีเทวดาคุ้มครองรักษา'
+                }
+            };
+            
+            function updateCounter() {
+                counter.textContent = `เลือกแล้ว ${selected.length} / ${maxSelection} หมวด`;
+                
+                if (selected.length >= maxSelection) {
+                    counter.classList.add('limit-reached');
+                } else {
+                    counter.classList.remove('limit-reached');
+                }
+                
+                generateBtn.disabled = selected.length === 0;
+                
+                // Update disabled state
+                categories.forEach(cat => {
+                    if (selected.length >= maxSelection && !cat.classList.contains('selected')) {
+                        cat.classList.add('disabled');
+                    } else {
+                        cat.classList.remove('disabled');
+                    }
+                });
+            }
+            
+            categories.forEach(cat => {
+                cat.addEventListener('click', function() {
+                    const wishType = this.dataset.wish;
+                    
+                    if (this.classList.contains('selected')) {
+                        // Deselect
+                        this.classList.remove('selected');
+                        selected = selected.filter(s => s !== wishType);
+                    } else if (selected.length < maxSelection) {
+                        // Select
+                        this.classList.add('selected');
+                        selected.push(wishType);
+                    }
+                    
+                    updateCounter();
+                });
+            });
+            
+            generateBtn.addEventListener('click', function() {
+                if (selected.length === 0) return;
+                
+                // Generate wish text
+                let wishText = '<p>ด้วยอานิสงส์แห่งการสวดมนต์ในครั้งนี้</p><p>';
+                
+                selected.forEach((type, index) => {
+                    wishText += wishTemplates[type].wish;
+                    if (index < selected.length - 1) {
+                        wishText += '</p><p>';
+                    }
+                });
+                
+                wishText += '</p><p>ขอให้สิ่งศักดิ์สิทธิ์ทั้งหลายในสากลโลก จงดลบันดาลให้สิ่งที่ข้าพเจ้าปรารถนา <span class="highlight">สำเร็จสมดังตั้งใจ</span> ทุกประการเทอญ</p><p style="text-align: center; margin-top: 1rem;"><strong>🙏 สาธุ สาธุ สาธุ 🙏</strong></p>';
+                
+                resultText.innerHTML = wishText;
+                result.classList.add('visible');
+                
+                // Scroll to result
+                setTimeout(() => {
+                    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            });
+            
+            copyBtn.addEventListener('click', function() {
+                const textToCopy = resultText.innerText;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    this.innerHTML = '<span>✅</span><span>คัดลอกแล้ว</span>';
+                    setTimeout(() => {
+                        this.innerHTML = '<span>📋</span><span>คัดลอก</span>';
+                    }, 2000);
+                });
+            });
+            
+            newBtn.addEventListener('click', function() {
+                // Reset all
+                selected = [];
+                categories.forEach(cat => {
+                    cat.classList.remove('selected');
+                    cat.classList.remove('disabled');
+                });
+                result.classList.remove('visible');
+                updateCounter();
+                
+                // Scroll to categories
+                document.getElementById('wish-generator').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
     </script>
 </body>
 </html>
