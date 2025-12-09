@@ -429,8 +429,9 @@
         body.dark-mode {
             --primary-bg: #1a1a2e;
             --primary-bg-warm: #16213e;
-            --text: #e8e8e8;
-            --text-soft: #b8b8b8;
+            --text: #f0f0f0;
+            --text-soft: #c8c8c8;
+            background: #0d0d1a;
         }
 
         body.dark-mode .chant-section {
@@ -438,31 +439,80 @@
             border-color: rgba(255,255,255,0.1);
         }
 
+        body.dark-mode .chant-title {
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode .chant-subtitle {
+            color: #d0d0d0;
+        }
+
         body.dark-mode .pali-container {
-            background: rgba(255,255,255,0.05);
-            border-color: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.15);
         }
 
         body.dark-mode .pali-container::before {
             background: #1f1f3a;
+            color: #ffd700;
+        }
+
+        body.dark-mode .pali-text {
+            color: #ffeaa7;
+        }
+
+        body.dark-mode .thai-text {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .translation-label {
+            color: #a0a0a0;
         }
 
         body.dark-mode .story-section {
-            background: rgba(255,255,255,0.03);
+            background: rgba(255,255,255,0.05);
+        }
+
+        body.dark-mode .story-title {
+            color: #ffd700;
+        }
+
+        body.dark-mode .story-text {
+            color: #d8d8d8;
         }
 
         body.dark-mode .benefits-section {
-            background: rgba(255,255,255,0.03);
-            border-color: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        body.dark-mode .benefits-title {
+            color: #98d8aa;
+        }
+
+        body.dark-mode .benefits-list li {
+            color: #d0d0d0;
+        }
+
+        body.dark-mode .benefits-list li::before {
+            color: #98d8aa;
         }
 
         body.dark-mode .nav-container {
-            background: rgba(26, 26, 46, 0.97);
+            background: rgba(26, 26, 46, 0.98);
+            border-bottom-color: rgba(255,255,255,0.1);
         }
 
         body.dark-mode .nav-item a {
-            color: var(--primary-mist);
+            color: #e0e0e0;
             border-color: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.08);
+        }
+
+        body.dark-mode .nav-item a:hover {
+            background: rgba(255,255,255,0.15);
+            color: #ffffff;
         }
 
         body.dark-mode .control-panel,
@@ -476,6 +526,19 @@
             color: #e8e8e8;
         }
 
+        body.dark-mode .wish-instruction,
+        body.dark-mode .wish-counter {
+            color: #d0d0d0;
+        }
+
+        body.dark-mode .wish-result-title {
+            color: #ffd700;
+        }
+
+        body.dark-mode .wish-result-text {
+            color: #e0e0e0;
+        }
+
         body.dark-mode .theme-selector,
         body.dark-mode .control-btn,
         body.dark-mode .font-controls,
@@ -485,13 +548,101 @@
         }
 
         body.dark-mode .control-btn {
-            color: #e8e8e8;
+            color: #f0f0f0;
+        }
+
+        body.dark-mode .control-btn:hover {
+            background: rgba(255,255,255,0.2);
         }
 
         body.dark-mode .mode-btn {
             background: rgba(255,255,255,0.1);
             border-color: rgba(255,255,255,0.2);
-            color: #e8e8e8;
+            color: #f0f0f0;
+        }
+
+        body.dark-mode .mode-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        body.dark-mode .reading-time {
+            color: #a0a0a0;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Dark mode for verse (ชินบัญชร) */
+        body.dark-mode .verse-group {
+            border-bottom-color: rgba(255,255,255,0.15);
+        }
+
+        body.dark-mode .verse-number {
+            color: #ffd700;
+        }
+
+        body.dark-mode .verse-text {
+            color: #f5f5dc;
+        }
+
+        body.dark-mode .ending-prayer {
+            background: rgba(255,255,255,0.08);
+        }
+
+        body.dark-mode .ending-prayer-text {
+            color: #ffeaa7;
+        }
+
+        body.dark-mode .ending-prayer-trans {
+            color: #d0d0d0;
+        }
+
+        body.dark-mode .translation-section {
+            background: rgba(255,255,255,0.05);
+        }
+
+        body.dark-mode .translation-title {
+            color: #98d8aa;
+        }
+
+        body.dark-mode .translation-text {
+            color: #d8d8d8;
+        }
+
+        body.dark-mode .footer {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        body.dark-mode .footer-text,
+        body.dark-mode .footer-blessing {
+            color: #d0d0d0;
+        }
+
+        body.dark-mode .credit-line {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .credit-contact {
+            color: #a0a0a0;
+        }
+
+        body.dark-mode .timer-modal .timer-content {
+            background: #1f1f3a;
+            color: #f0f0f0;
+        }
+
+        body.dark-mode .timer-display {
+            color: #ffd700;
+        }
+
+        body.dark-mode .timer-preset {
+            background: rgba(255,255,255,0.1);
+            color: #e0e0e0;
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        body.dark-mode .timer-preset:hover,
+        body.dark-mode .timer-preset.active {
+            background: rgba(255,255,255,0.2);
+            color: #ffffff;
         }
 
         /* Timer Modal */
@@ -1098,22 +1249,36 @@
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
         }
 
+        body.dark-mode .wish-header-subtitle {
+            color: rgba(255,255,255,0.9);
+        }
+
         body.dark-mode .wish-category {
             background: rgba(255,255,255,0.1);
             border-color: rgba(255,255,255,0.2);
         }
 
         body.dark-mode .wish-category:hover {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.18);
+            border-color: rgba(255,255,255,0.3);
         }
 
         body.dark-mode .wish-category.selected {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.25);
+            border-color: rgba(255,215,0,0.5);
         }
 
         body.dark-mode .wish-category-text,
+        body.dark-mode .wish-category-name {
+            color: #f0f0f0;
+        }
+
         body.dark-mode .wish-category-desc {
-            color: #e8e8e8;
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .wish-checkbox {
+            border-color: rgba(255,255,255,0.3);
         }
 
         body.dark-mode .wish-result {
@@ -1121,10 +1286,18 @@
             border-color: rgba(255,255,255,0.2);
         }
 
+        body.dark-mode .wish-result-text .highlight {
+            color: #ffd700;
+        }
+
         body.dark-mode .wish-action-btn {
             background: rgba(255,255,255,0.1);
             border-color: rgba(255,255,255,0.2);
-            color: #e8e8e8;
+            color: #f0f0f0;
+        }
+
+        body.dark-mode .wish-action-btn:hover {
+            background: rgba(255,255,255,0.2);
         }
 
         .tts-controls.visible {
