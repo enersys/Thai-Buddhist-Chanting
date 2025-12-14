@@ -21,6 +21,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="บทสวดมนต์">
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%232D5A3D' width='100' height='100' rx='20'/><text x='50' y='65' font-size='50' text-anchor='middle'>🙏</text></svg>">
+    <link rel="manifest" href="manifest.json">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -5608,8 +5609,179 @@
                 vibrate(10);
             });
         });
+
+        // ==========================================
+        // SERVICE WORKER REGISTRATION & AUTO UPDATE
+        // ==========================================
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async () => {
+                try {
+                    const registration = await navigator.serviceWorker.register('/sw.js');
+                    console.log('✅ Service Worker registered:', registration.scope);
+                    
+                    // Check for updates immediately
+                    registration.update();
+                    
+                    // Check for updates periodically (every 5 minutes)
+                    setInterval(() => {
+                        registration.update();
+                        console.log('🔄 Checking for updates...');
+                    }, 5 * 60 * 1000);
+                    
+                    // Handle updates
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        console.log('🆕 New Service Worker found');
+                        
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                // New version available
+                                console.log('📦 New version available!');
+                                showUpdateNotification();
+                            }
+                        });
+                    });
+                    
+                    // Listen for controller change (new SW activated)
+                    navigator.serviceWorker.addEventListener('controllerchange', () => {
+                        console.log('🔄 New Service Worker activated, reloading...');
+                        window.location.reload();
+                    });
+                    
+                } catch (error) {
+                    console.error('❌ Service Worker registration failed:', error);
+                }
+            });
+        }
         
+        // Show update notification
+        function showUpdateNotification() {
+            // Create update toast
+            const updateToast = document.createElement('div');
+            updateToast.className = 'update-toast';
+            updateToast.innerHTML = `
+                <div class="update-toast-content">
+                    <span class="update-icon">🔄</span>
+                    <div class="update-text">
+                        <strong>มีเวอร์ชันใหม่!</strong>
+                        <small>กดเพื่ออัพเดท</small>
+                    </div>
+                    <button class="update-btn" onclick="applyUpdate()">อัพเดท</button>
+                    <button class="update-dismiss" onclick="this.parentElement.parentElement.remove()">✕</button>
+                </div>
+            `;
+            document.body.appendChild(updateToast);
+            
+            // Auto-show animation
+            setTimeout(() => updateToast.classList.add('show'), 100);
+        }
+        
+        // Apply update
+        function applyUpdate() {
+            if (navigator.serviceWorker.controller) {
+                navigator.serviceWorker.controller.postMessage({ type: 'SKIP_WAITING' });
+            }
+            // Fallback: just reload
+            setTimeout(() => window.location.reload(true), 500);
+        }
+        
+        // Manual refresh function (can be called from console)
+        window.forceRefresh = async function() {
+            console.log('🗑️ Clearing caches...');
+            if ('caches' in window) {
+                const cacheNames = await caches.keys();
+                await Promise.all(cacheNames.map(name => caches.delete(name)));
+                console.log('✅ Caches cleared');
+            }
+            
+            if ('serviceWorker' in navigator) {
+                const registrations = await navigator.serviceWorker.getRegistrations();
+                await Promise.all(registrations.map(r => r.unregister()));
+                console.log('✅ Service Workers unregistered');
+            }
+            
+            console.log('🔄 Reloading...');
+            window.location.reload(true);
+        };
+        
+        console.log('💡 Tip: Run forceRefresh() in console to clear all caches');
  
     </script>
+
+    <!-- Update Toast Styles -->
+    <style>
+        .update-toast {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            transition: bottom 0.3s ease;
+        }
+        .update-toast.show {
+            bottom: 20px;
+        }
+        .update-toast-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--primary-deep), var(--primary-main));
+            color: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            font-family: 'Mitr', sans-serif;
+        }
+        .update-icon {
+            font-size: 1.5rem;
+        }
+        .update-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.3;
+        }
+        .update-text strong {
+            font-size: 0.95rem;
+        }
+        .update-text small {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+        .update-btn {
+            background: white;
+            color: var(--primary-deep);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-family: 'Mitr', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .update-btn:hover {
+            transform: scale(1.05);
+        }
+        .update-dismiss {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .update-dismiss:hover {
+            color: white;
+        }
+        @media (max-width: 480px) {
+            .update-toast {
+                left: 10px;
+                right: 10px;
+                transform: none;
+            }
+            .update-toast-content {
+                width: 100%;
+            }
+        }
+    </style>
 </body>
 </html>
