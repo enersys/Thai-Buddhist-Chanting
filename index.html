@@ -555,6 +555,159 @@
                 font-size: 1.1rem;
             }
         }
+        
+        /* Install Guide Modal */
+        .install-guide {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .install-guide.show {
+            opacity: 1;
+        }
+        
+        .install-guide-content {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            max-width: 340px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: guideSlideUp 0.3s ease;
+        }
+        
+        @keyframes guideSlideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .guide-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+        
+        .guide-icon {
+            font-size: 2rem;
+        }
+        
+        .guide-header h3 {
+            font-family: 'Mitr', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--primary-deep);
+            margin: 0;
+            flex: 1;
+        }
+        
+        .guide-close {
+            position: absolute;
+            top: -0.5rem;
+            right: -0.5rem;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #999;
+            cursor: pointer;
+            padding: 0.3rem;
+        }
+        
+        .guide-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            padding: 0.6rem;
+            background: var(--primary-bg);
+            border-radius: 12px;
+        }
+        
+        .step-num {
+            background: var(--primary-main);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .step span:last-child {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.4;
+        }
+        
+        .step strong {
+            color: var(--primary-main);
+        }
+        
+        .ios-share-icon {
+            display: inline-block;
+            transform: rotate(90deg);
+        }
+        
+        .guide-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-soft);
+            margin: 0;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--primary-mist);
+        }
+        
+        /* Dark mode for install guide */
+        .dark-mode .install-guide-content {
+            background: #1a1a1a;
+        }
+        
+        .dark-mode .guide-header h3 {
+            color: #eee;
+        }
+        
+        .dark-mode .step {
+            background: #2a2a2a;
+        }
+        
+        .dark-mode .step span:last-child {
+            color: #ddd;
+        }
+        
+        .dark-mode .guide-note {
+            color: #aaa;
+            border-top-color: #333;
+        }
 
         /* Scroll indicator */
         .scroll-indicator {
@@ -2922,8 +3075,8 @@
             <span class="share-text">บอกต่อบุญ</span>
         </button>
         
-        <!-- Hidden Install Button (shows when PWA installable) -->
-        <button id="heroInstallBtn" class="hero-install-btn" style="display: none;">
+        <!-- Install Button - always visible on left side -->
+        <button id="heroInstallBtn" class="hero-install-btn" title="เพิ่มไปยังหน้าจอหลัก">
             <span class="install-icon">📲</span>
             <span class="install-text">ติดตั้ง</span>
         </button>
@@ -4177,7 +4330,7 @@
             <p class="credit-line">จัดทำโดย <strong>ศุภเกศ วงศ์คำภู</strong></p>
             <p class="credit-contact">มีเนื้อหาหรือสิ่งใดให้ปรับปรุง สามารถติดต่อได้ที่</p>
             <a href="mailto:supaket@enersys.co.th" class="credit-email">📧 supaket@enersys.co.th</a>
-            <p class="credit-version">Version 1.4-20251215</p>
+            <p class="credit-version">Version 1.5-20251215</p>
         </div>
     </footer>
 
@@ -4601,14 +4754,23 @@
         const heroShareBtn = document.getElementById('heroShareBtn');
         let deferredPrompt;
         
+        // Check if already installed as PWA
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+        
+        // Hide install button if already installed
+        if (isStandalone) {
+            if (heroInstallBtn) heroInstallBtn.style.display = 'none';
+            if (installBtn) installBtn.style.display = 'none';
+        }
+        
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            installBtn.style.display = 'flex';
-            if (heroInstallBtn) heroInstallBtn.style.display = 'flex';
+            // Button is already visible, just store the prompt
         });
         
         async function installApp() {
+            // Check if native install prompt available (Android/Desktop Chrome)
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
@@ -4616,14 +4778,89 @@
                 trackEvent('pwa_install_choice', { outcome: outcome });
 
                 if (outcome === 'accepted') {
-                    installBtn.style.display = 'none';
+                    if (installBtn) installBtn.style.display = 'none';
                     if (heroInstallBtn) heroInstallBtn.style.display = 'none';
                 }
                 deferredPrompt = null;
+            } else {
+                // Show manual install guide (iOS Safari, etc.)
+                showInstallGuide();
             }
         }
+        
+        function showInstallGuide() {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            
+            let guideHTML = '';
+            
+            if (isIOS) {
+                guideHTML = `
+                    <div class="install-guide-content">
+                        <div class="guide-header">
+                            <span class="guide-icon">📲</span>
+                            <h3>เพิ่มไปยังหน้าจอหลัก</h3>
+                            <button class="guide-close" onclick="this.closest('.install-guide').remove()">✕</button>
+                        </div>
+                        <div class="guide-steps">
+                            <div class="step">
+                                <span class="step-num">1</span>
+                                <span>กดปุ่ม <strong>แชร์</strong> <span class="ios-share-icon">⬆️</span> ที่ด้านล่าง</span>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">2</span>
+                                <span>เลื่อนลงแล้วกด <strong>"เพิ่มไปยังหน้าจอโฮม"</strong></span>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">3</span>
+                                <span>กด <strong>"เพิ่ม"</strong> ที่มุมขวาบน</span>
+                            </div>
+                        </div>
+                        <p class="guide-note">🙏 แอปจะปรากฏบนหน้าจอหลักของคุณ</p>
+                    </div>
+                `;
+            } else {
+                guideHTML = `
+                    <div class="install-guide-content">
+                        <div class="guide-header">
+                            <span class="guide-icon">📲</span>
+                            <h3>ติดตั้งแอป</h3>
+                            <button class="guide-close" onclick="this.closest('.install-guide').remove()">✕</button>
+                        </div>
+                        <div class="guide-steps">
+                            <div class="step">
+                                <span class="step-num">1</span>
+                                <span>กดปุ่ม <strong>เมนู ⋮</strong> ที่มุมขวาบน</span>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">2</span>
+                                <span>เลือก <strong>"ติดตั้งแอป"</strong> หรือ <strong>"เพิ่มไปยังหน้าจอหลัก"</strong></span>
+                            </div>
+                        </div>
+                        <p class="guide-note">🙏 แอปจะปรากฏบนหน้าจอหลักของคุณ</p>
+                    </div>
+                `;
+            }
+            
+            // Create and show guide modal
+            const guideEl = document.createElement('div');
+            guideEl.className = 'install-guide';
+            guideEl.innerHTML = guideHTML;
+            document.body.appendChild(guideEl);
+            
+            // Animate in
+            setTimeout(() => guideEl.classList.add('show'), 10);
+            
+            // Track
+            trackEvent('install_guide_shown', { platform: isIOS ? 'ios' : 'other' });
+            
+            // Close on backdrop click
+            guideEl.addEventListener('click', (e) => {
+                if (e.target === guideEl) guideEl.remove();
+            });
+        }
 
-        installBtn.addEventListener('click', installApp);
+        if (installBtn) installBtn.addEventListener('click', installApp);
         if (heroInstallBtn) heroInstallBtn.addEventListener('click', installApp);
 
         // Share Functionality

@@ -2,7 +2,7 @@
 
 แอปพลิเคชันเว็บสำหรับสวดมนต์ทำวัตรเช้า-เย็น ออกแบบมาสำหรับใช้งานบนมือถือ รองรับการใช้งานแบบออฟไลน์
 
-![Preview](https://img.shields.io/badge/Version-1.0-green) ![License](https://img.shields.io/badge/License-MIT-blue) ![Thai](https://img.shields.io/badge/Language-Thai-orange)
+![Preview](https://img.shields.io/badge/Version-1.5-green) ![License](https://img.shields.io/badge/License-MIT-blue) ![Thai](https://img.shields.io/badge/Language-Thai-orange)
 
 ---
 
@@ -43,9 +43,13 @@
 | ⭐ **บุ๊คมาร์ค** | บันทึกบทโปรด |
 | 🔊 **อ่านออกเสียง** | Text-to-Speech |
 | 🖨️ **พิมพ์** | สำหรับเก็บไว้ |
-| 📱 **PWA** | ติดตั้งเป็นแอป |
+| 📱 **PWA** | ติดตั้งเป็นแอป พร้อม Auto-Update |
 | 👆 **ปัดซ้าย/ขวา** | เปลี่ยนบท |
 | 🙏 **สร้างคำอธิษฐาน** | เลือกหมวดที่ต้องการ |
+| 📲 **เพิ่มไปยังหน้าจอหลัก** | ปุ่มติดตั้งแสดงเสมอ |
+| 🙏 **บอกต่อบุญ** | แชร์ให้เพื่อน |
+| 🌿 **ลวดลายป่าหิมพานต์** | ลายใบโพธิ์ ดอกบัว ธรรมจักร |
+| 📊 **Google Analytics** | ติดตามการใช้งาน Web vs PWA |
 
 ### 🙏 ระบบสร้างคำอธิษฐาน
 
@@ -57,24 +61,37 @@
 - 🤝 เพื่อน
 - 💕 ความรัก
 - 💰 เงินทอง
+- 🎰 โชคลาภ
 - 😊 ความสุข
 - 💪 สุขภาพ
 - 💼 การงาน
 - 🧠 สติปัญญา
 - 📚 การเรียน
 - 🛡️ คุ้มครอง
+- 🐾 สัตว์เลี้ยง
 
 ---
 
 ## 🚀 วิธีใช้งาน
 
 ### เปิดผ่านเว็บ
-เข้าไปที่: **[https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/](https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/)**
+เข้าไปที่: **[https://enersys.github.io/Thai-Buddhist-Chanting/](https://enersys.github.io/Thai-Buddhist-Chanting/)**
 
 ### ติดตั้งเป็นแอป (PWA)
-1. เปิดเว็บไซต์ใน Chrome/Safari
-2. กดปุ่ม "📱 ติดตั้งแอป" หรือ
-3. กด ⋮ → "Add to Home Screen"
+
+#### iOS (Safari)
+1. เปิดเว็บไซต์ใน Safari
+2. กดปุ่ม 📲 ที่มุมล่างซ้าย
+3. ทำตามคำแนะนำ: กด Share ⬆️ → "เพิ่มไปยังหน้าจอโฮม"
+
+#### Android (Chrome)
+1. เปิดเว็บไซต์ใน Chrome
+2. กดปุ่ม 📲 ที่มุมล่างซ้าย หรือ
+3. กด ⋮ → "ติดตั้งแอป"
+
+#### Desktop
+1. เปิดเว็บไซต์ใน Chrome/Edge
+2. กดไอคอน 📲 ในแถบที่อยู่ หรือ กดปุ่มที่มุมล่างซ้าย
 
 ---
 
@@ -83,6 +100,8 @@
 ```
 /
 ├── index.html      # ไฟล์หลัก (รวม CSS + JS ทั้งหมด)
+├── sw.js           # Service Worker สำหรับ PWA & Auto-Update
+├── manifest.json   # Web App Manifest
 ├── README.md       # เอกสารนี้
 └── .nojekyll       # ปิด Jekyll processing
 ```
@@ -109,20 +128,35 @@
 | 💻 Desktop Chrome | ✅ |
 | 💻 Desktop Firefox | ✅ |
 | 💻 Desktop Safari | ✅ |
+| 💻 Microsoft Edge | ✅ |
 
 ---
 
 ## 🔧 เทคโนโลยีที่ใช้
 
 - **HTML5** - โครงสร้าง
-- **CSS3** - การออกแบบ (CSS Variables, Flexbox, Grid)
+- **CSS3** - การออกแบบ (CSS Variables, Flexbox, Grid, SVG Patterns)
 - **Vanilla JavaScript** - ฟังก์ชันการทำงาน
 - **Web APIs** - LocalStorage, Web Audio, Speech Synthesis, Intersection Observer
-- **PWA** - Progressive Web App
+- **PWA** - Progressive Web App พร้อม Service Worker
+- **Google Analytics 4** - ติดตามการใช้งาน
 
 ---
 
 ## 📝 เวอร์ชัน
+
+### v1.5 (15 ธันวาคม 2567)
+- เพิ่ม Service Worker & Auto-Update
+- เพิ่ม Web App Manifest
+- ปุ่ม "เพิ่มไปยังหน้าจอหลัก" แสดงเสมอ
+- เพิ่ม Install Guide สำหรับ iOS
+- แก้ปัญหา PWA ไม่ refresh เวอร์ชันใหม่
+
+### v1.4 (15 ธันวาคม 2567)
+- เพิ่มลายน้ำ (Watermark)
+- เพิ่มลวดลายป่าหิมพานต์ (ใบโพธิ์ ดอกบัว ธรรมจักร กนก)
+- เพิ่ม Google Analytics tracking สำหรับ Web vs PWA
+- ปรับปรุงปุ่ม Share และ Install
 
 ### v1.0 (ธันวาคม 2567)
 - เปิดตัวครั้งแรก
@@ -130,6 +164,28 @@
 - 7 ธีมสีประจำวัน
 - 10+ ฟีเจอร์พิเศษ
 - ระบบสร้างคำอธิษฐาน
+
+---
+
+## 🔄 การอัพเดทเวอร์ชัน (สำหรับ Developer)
+
+เมื่อต้องการ force refresh ให้ผู้ใช้ทุกคน:
+
+1. แก้ไข `CACHE_VERSION` ใน `sw.js`
+2. แก้ไข version ใน footer ของ `index.html`
+3. Commit และ Push
+
+```javascript
+// sw.js
+const CACHE_VERSION = 'v1.6.0';  // เปลี่ยนเลข version
+```
+
+### สำหรับผู้ใช้ที่ติด cache เก่า
+
+เปิด Developer Console (F12) แล้วพิมพ์:
+```javascript
+forceRefresh()
+```
 
 ---
 
