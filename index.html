@@ -141,6 +141,143 @@
             --text-soft: #503D60;
         }
 
+        /* ===========================================
+           HIMAPAN FOREST DECORATIVE BACKGROUND
+           ลวดลายป่าหิมพานต์ - ใบโพธิ์ ดอกบัว ธรรมชาติ
+           =========================================== */
+        
+        /* Floating Bodhi Leaves - ใบโพธิ์ลอย */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: 
+                /* ใบโพธิ์ - Bodhi leaves */
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath d='M50 5 C30 25 15 50 15 75 C15 95 30 115 50 115 C70 115 85 95 85 75 C85 50 70 25 50 5 Z M50 20 L50 100 M35 40 Q50 55 65 40 M30 60 Q50 80 70 60 M35 80 Q50 95 65 80' stroke='%232D5A3D' stroke-width='1.5' fill='none' opacity='0.6'/%3E%3C/svg%3E"),
+                /* ดอกบัว - Lotus */
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 60'%3E%3Cpath d='M40 50 Q30 35 40 20 Q50 35 40 50 M40 50 Q25 40 30 25 Q40 35 40 50 M40 50 Q55 40 50 25 Q40 35 40 50 M40 50 Q20 45 22 30 Q35 38 40 50 M40 50 Q60 45 58 30 Q45 38 40 50' stroke='%238B7355' stroke-width='1' fill='none' opacity='0.5'/%3E%3C/svg%3E"),
+                /* ลายเมฆ - Cloud pattern */
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40'%3E%3Cpath d='M0 30 Q25 15 50 25 Q75 35 100 20 Q125 5 150 25 Q175 40 200 30' stroke='%23A8C5B0' stroke-width='1.5' fill='none' opacity='0.4'/%3E%3C/svg%3E");
+            background-size: 180px 200px, 120px 100px, 300px 60px;
+            background-position: 0 0, 90px 150px, 0 50%;
+            animation: floatPattern 60s ease-in-out infinite;
+        }
+        
+        /* Secondary pattern layer - วงกลมธรรมจักร */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.02;
+            background-image: 
+                /* ธรรมจักร simplified */
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%238B7355' stroke-width='1' fill='none'/%3E%3Ccircle cx='50' cy='50' r='30' stroke='%238B7355' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='50' cy='50' r='8' stroke='%238B7355' stroke-width='1' fill='none'/%3E%3Cpath d='M50 10 L50 20 M50 80 L50 90 M10 50 L20 50 M80 50 L90 50 M21 21 L28 28 M72 72 L79 79 M21 79 L28 72 M72 28 L79 21' stroke='%238B7355' stroke-width='1'/%3E%3C/svg%3E"),
+                /* ลายกนก simplified */
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 80'%3E%3Cpath d='M30 10 Q45 25 40 45 Q35 60 30 70 Q25 60 20 45 Q15 25 30 10' stroke='%232D5A3D' stroke-width='0.8' fill='none'/%3E%3Cpath d='M30 25 Q38 30 35 40 M30 25 Q22 30 25 40' stroke='%232D5A3D' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+            background-size: 250px 250px, 100px 130px;
+            background-position: 50% 50%, 30px 80px;
+            animation: floatPattern2 80s ease-in-out infinite reverse;
+        }
+        
+        @keyframes floatPattern {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(10px, -15px) rotate(0.5deg); }
+            50% { transform: translate(-5px, 10px) rotate(-0.3deg); }
+            75% { transform: translate(8px, 5px) rotate(0.2deg); }
+        }
+        
+        @keyframes floatPattern2 {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(-8px, 12px); }
+            66% { transform: translate(12px, -8px); }
+        }
+        
+        /* Decorative corner elements - ลายมุม */
+        .main-content::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0 100 Q20 80 40 70 Q60 60 80 40 Q90 20 100 0' stroke='%238B7355' stroke-width='2' fill='none'/%3E%3Cpath d='M0 80 Q15 65 30 55 Q45 45 60 30 Q70 18 80 0' stroke='%232D5A3D' stroke-width='1.5' fill='none'/%3E%3Cpath d='M0 60 Q10 50 20 42 Q30 34 40 22 Q48 12 55 0' stroke='%238B7355' stroke-width='1' fill='none'/%3E%3Ccircle cx='20' cy='80' r='3' fill='%232D5A3D' opacity='0.5'/%3E%3Ccircle cx='35' cy='60' r='2' fill='%238B7355' opacity='0.4'/%3E%3Ccircle cx='50' cy='40' r='2.5' fill='%232D5A3D' opacity='0.3'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+        .main-content::after {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M100 0 Q80 20 70 40 Q60 60 40 80 Q20 90 0 100' stroke='%238B7355' stroke-width='2' fill='none'/%3E%3Cpath d='M100 20 Q85 35 75 45 Q65 55 50 70 Q38 80 20 100' stroke='%232D5A3D' stroke-width='1.5' fill='none'/%3E%3Cpath d='M100 40 Q90 50 82 58 Q74 66 62 78 Q52 88 45 100' stroke='%238B7355' stroke-width='1' fill='none'/%3E%3Ccircle cx='80' cy='20' r='3' fill='%232D5A3D' opacity='0.5'/%3E%3Ccircle cx='65' cy='40' r='2' fill='%238B7355' opacity='0.4'/%3E%3Ccircle cx='50' cy='60' r='2.5' fill='%232D5A3D' opacity='0.3'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+        /* Subtle lotus line dividers between sections */
+        .chant-section::after {
+            content: '❀';
+            display: block;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--primary-pale);
+            opacity: 0;
+            margin-top: -0.5rem;
+            padding-bottom: 0.5rem;
+            letter-spacing: 1rem;
+        }
+        
+        /* Dark mode adjustments for patterns */
+        .dark-mode body::before,
+        .dark-mode body::after {
+            opacity: 0.015;
+            filter: invert(1) hue-rotate(180deg);
+        }
+        
+        .dark-mode .main-content::before,
+        .dark-mode .main-content::after {
+            opacity: 0.02;
+            filter: invert(1) hue-rotate(180deg);
+        }
+        
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            body::before,
+            body::after {
+                animation: none;
+            }
+        }
+        
+        /* Hide decorations on very small screens for performance */
+        @media (max-width: 360px) {
+            body::before,
+            body::after,
+            .main-content::before,
+            .main-content::after {
+                display: none;
+            }
+        }
+
         /* Hero Cover Section */
         .hero-cover {
             position: relative;
@@ -208,6 +345,98 @@
             background: linear-gradient(90deg, transparent, var(--primary-mist), transparent);
             margin: 1rem auto 0;
             transition: background 0.5s ease;
+        }
+
+        /* Floating Share Button - positioned at bottom right of hero */
+        .hero-share-btn {
+            position: absolute;
+            bottom: 3rem;
+            right: 1rem;
+            background: linear-gradient(135deg, rgba(255,215,0,0.9) 0%, rgba(255,165,0,0.9) 100%);
+            border: none;
+            color: #5d4037;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-family: 'Mitr', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,165,0,0.4);
+            z-index: 10;
+        }
+
+        .hero-share-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255,165,0,0.5);
+        }
+
+        .hero-share-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .hero-share-btn .share-icon {
+            font-size: 1rem;
+        }
+        
+        .hero-share-btn .share-text {
+            font-size: 0.8rem;
+        }
+        
+        /* Floating Install Button - positioned at bottom left of hero */
+        .hero-install-btn {
+            position: absolute;
+            bottom: 3rem;
+            left: 1rem;
+            background: linear-gradient(135deg, rgba(76,175,80,0.9) 0%, rgba(56,142,60,0.9) 100%);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-family: 'Mitr', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76,175,80,0.4);
+            z-index: 10;
+        }
+
+        .hero-install-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(76,175,80,0.5);
+        }
+
+        .hero-install-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .hero-install-btn .install-icon {
+            font-size: 1rem;
+        }
+        
+        .hero-install-btn .install-text {
+            font-size: 0.8rem;
+        }
+        
+        /* Small screens - adjust button positions */
+        @media (max-width: 480px) {
+            .hero-share-btn,
+            .hero-install-btn {
+                bottom: 2rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .hero-share-btn .share-text,
+            .hero-install-btn .install-text {
+                font-size: 0.75rem;
+            }
         }
 
         /* Scroll indicator */
@@ -2390,6 +2619,18 @@
             <p class="hero-subtitle">ธรรมะจากสมัยพุทธกาล</p>
             <div class="hero-line"></div>
         </div>
+        
+        <!-- Floating Share Button at bottom -->
+        <button id="heroShareBtn" class="hero-share-btn" title="แชร์บทสวดมนต์ให้เพื่อน">
+            <span class="share-icon">🙏</span>
+            <span class="share-text">บอกต่อบุญ</span>
+        </button>
+        
+        <!-- Hidden Install Button (shows when PWA installable) -->
+        <button id="heroInstallBtn" class="hero-install-btn" style="display: none;">
+            <span class="install-icon">📲</span>
+            <span class="install-text">ติดตั้ง</span>
+        </button>
     </section>
 
     <!-- Theme Selector -->
@@ -3640,7 +3881,7 @@
             <p class="credit-line">จัดทำโดย <strong>ศุภเกศ วงศ์คำภู</strong></p>
             <p class="credit-contact">มีเนื้อหาหรือสิ่งใดให้ปรับปรุง สามารถติดต่อได้ที่</p>
             <a href="mailto:supaket@enersys.co.th" class="credit-email">📧 supaket@enersys.co.th</a>
-            <p class="credit-version">Version 1.1-20241215</p>
+            <p class="credit-version">Version 1.1-20251215</p>
         </div>
     </footer>
 
@@ -3761,6 +4002,7 @@
             if (currentFontSize > 70) {
                 currentFontSize -= 10;
                 updateFontSize();
+                trackEvent('font_size_change', { size: currentFontSize });
             }
         });
         
@@ -3768,6 +4010,7 @@
             if (currentFontSize < 150) {
                 currentFontSize += 10;
                 updateFontSize();
+                trackEvent('font_size_change', { size: currentFontSize });
             }
         });
 
@@ -3867,6 +4110,13 @@
         speedSlider.addEventListener('input', () => {
             scrollSpeed = parseInt(speedSlider.value);
             speedLabel.textContent = speedLevels[scrollSpeed].label;
+        });
+
+        speedSlider.addEventListener('change', () => {
+            trackEvent('scroll_speed_change', { 
+                speed_level: scrollSpeed,
+                speed_label: speedLevels[scrollSpeed].label
+            });
         });
         
         // Initialize speed label
@@ -3982,6 +4232,12 @@
                     // Reset ถ้าหมดเวลาแล้ว
                     timerMinutes = parseInt(document.querySelector('.timer-preset.active').dataset.minutes);
                 }
+                
+                // Track timer start
+                trackEvent('timer_start', { 
+                    duration_minutes: timerMinutes 
+                });
+
                 playBell(); // Starting bell
                 isTimerRunning = true;
                 timerStart.textContent = '⏸ หยุดชั่วคราว';
@@ -4042,27 +4298,62 @@
         });
 
         // ==========================================
-        // 5. PWA INSTALL
+        // 5. PWA INSTALL & SHARE
         // ==========================================
         const installBtn = document.getElementById('installBtn');
+        const heroInstallBtn = document.getElementById('heroInstallBtn');
+        const heroShareBtn = document.getElementById('heroShareBtn');
         let deferredPrompt;
         
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
             installBtn.style.display = 'flex';
+            if (heroInstallBtn) heroInstallBtn.style.display = 'flex';
         });
         
-        installBtn.addEventListener('click', async () => {
+        async function installApp() {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
+                
+                trackEvent('pwa_install_choice', { outcome: outcome });
+
                 if (outcome === 'accepted') {
                     installBtn.style.display = 'none';
+                    if (heroInstallBtn) heroInstallBtn.style.display = 'none';
                 }
                 deferredPrompt = null;
             }
-        });
+        }
+
+        installBtn.addEventListener('click', installApp);
+        if (heroInstallBtn) heroInstallBtn.addEventListener('click', installApp);
+
+        // Share Functionality
+        if (heroShareBtn) {
+            heroShareBtn.addEventListener('click', async () => {
+                const shareData = {
+                    title: 'บทสวดมนต์ ธรรมะจากพุทธกาล',
+                    text: 'รวมบทสวดมนต์สำคัญ พร้อมคำแปลและเรื่องราวจากพุทธประวัติ',
+                    url: window.location.href
+                };
+
+                try {
+                    if (navigator.share) {
+                        await navigator.share(shareData);
+                        trackEvent('share', { method: 'native' });
+                    } else {
+                        // Fallback to copy URL
+                        await navigator.clipboard.writeText(window.location.href);
+                        showToast('คัดลอกลิงก์แล้ว ✅');
+                        trackEvent('share', { method: 'copy_link' });
+                    }
+                } catch (err) {
+                    console.log('Error sharing:', err);
+                }
+            });
+        }
 
         // ==========================================
         // 6. BOOKMARKS
@@ -4099,6 +4390,13 @@
                             bookmarks.push(sectionId);
                             bookmarkBtn.classList.add('bookmarked');
                             bookmarkBtn.innerHTML = '★';
+                            
+                            // Track bookmark add
+                            trackEvent('bookmark_add', { 
+                                section_id: sectionId,
+                                section_name: section.querySelector('.chant-title')?.textContent || sectionId
+                            });
+
                             // Vibrate feedback
                             if (navigator.vibrate) navigator.vibrate([10, 50, 10]);
                         }
@@ -4727,6 +5025,12 @@
             generateBtn.addEventListener('click', function() {
                 if (selected.length === 0) return;
                 
+                // Track wish generation
+                trackEvent('wish_generated', { 
+                    categories: selected.join(','),
+                    count: selected.length 
+                });
+                
                 // Generate wish text with random templates
                 let wishText = '<p>ด้วยอานิสงส์แห่งการสวดมนต์ในครั้งนี้</p><p>';
                 
@@ -4751,6 +5055,11 @@
             
             copyBtn.addEventListener('click', function() {
                 const textToCopy = resultText.innerText;
+                
+                // Track copy action
+                trackEvent('wish_copied', { 
+                    categories: selected.join(',') 
+                });
                 
                 // Fallback for older browsers
                 if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -4817,6 +5126,75 @@
                 gtag('event', eventName, params);
             }
         }
+        
+        // ==========================================
+        // PWA vs Web Detection & Tracking
+        // ==========================================
+        function detectAppMode() {
+            // Check if running as installed PWA
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+            const isIOSStandalone = window.navigator.standalone === true;
+            const isPWA = isStandalone || isIOSStandalone;
+            
+            // Get additional context
+            const displayMode = isPWA ? 'standalone' : 'browser';
+            const installSource = isIOSStandalone ? 'ios_homescreen' : (isStandalone ? 'pwa_installed' : 'web_browser');
+            
+            return {
+                isPWA: isPWA,
+                displayMode: displayMode,
+                installSource: installSource,
+                isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent),
+                isAndroid: /Android/.test(navigator.userAgent),
+                isMobile: /Mobile|Android|iPhone|iPad/.test(navigator.userAgent)
+            };
+        }
+        
+        // Track app mode on page load
+        (function trackAppMode() {
+            const appMode = detectAppMode();
+            
+            // Send to GA4 as user property and event
+            if (typeof gtag !== 'undefined') {
+                // Set user properties for segmentation
+                gtag('set', 'user_properties', {
+                    app_mode: appMode.displayMode,
+                    install_source: appMode.installSource,
+                    device_type: appMode.isMobile ? 'mobile' : 'desktop',
+                    platform: appMode.isIOS ? 'ios' : (appMode.isAndroid ? 'android' : 'other')
+                });
+                
+                // Track page view with app mode
+                gtag('event', 'page_view_with_mode', {
+                    app_mode: appMode.displayMode,
+                    is_pwa: appMode.isPWA,
+                    install_source: appMode.installSource,
+                    device_type: appMode.isMobile ? 'mobile' : 'desktop'
+                });
+                
+                // Track session start with app mode (fires once per session)
+                if (!sessionStorage.getItem('session_tracked')) {
+                    gtag('event', 'session_start_mode', {
+                        app_mode: appMode.displayMode,
+                        is_pwa: appMode.isPWA,
+                        install_source: appMode.installSource
+                    });
+                    sessionStorage.setItem('session_tracked', 'true');
+                }
+            }
+            
+            // Log to console for debugging
+            console.log('📱 App Mode:', appMode.displayMode, '| PWA:', appMode.isPWA);
+        })();
+        
+        // Listen for display mode changes (e.g., user installs PWA mid-session)
+        window.matchMedia('(display-mode: standalone)').addEventListener('change', (e) => {
+            const newMode = e.matches ? 'standalone' : 'browser';
+            trackEvent('display_mode_change', {
+                new_mode: newMode,
+                from_mode: e.matches ? 'browser' : 'standalone'
+            });
+        });
         
         // Track page sections viewed
         if ('IntersectionObserver' in window) {
