@@ -279,8 +279,7 @@
         }
 
         /* ===========================================
-           WATERMARK - ลายน้ำ
-           ภาพป่าหิมพานต์ พระพุทธเจ้าแสดงธรรม อุบาสก/อุบาสิกา
+           WATERMARK - ลายน้ำ ป่าหิมพานต์
            =========================================== */
         .watermark {
             position: fixed;
@@ -288,9 +287,9 @@
             right: 0;
             z-index: 1;
             pointer-events: none;
-            opacity: 0.035;
-            width: 350px;
-            height: 280px;
+            opacity: 0.04;
+            width: 300px;
+            height: 240px;
             transition: opacity 0.3s ease;
         }
         
@@ -299,37 +298,16 @@
             height: 100%;
         }
         
-        /* Scenic watermark - ฉากป่าหิมพานต์ */
-        .watermark-scenic {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 200px;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.025;
-            background: linear-gradient(to top, var(--primary-mist) 0%, transparent 100%);
+        .watermark-icon {
+            display: none;
         }
         
         .watermark-text {
-            font-family: 'Mitr', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 400;
-            color: var(--primary-main);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            white-space: nowrap;
-            text-align: right;
-            writing-mode: horizontal-tb;
+            display: none;
         }
         
         .watermark-subtext {
-            font-family: 'Sarabun', sans-serif;
-            font-size: 0.55rem;
-            color: var(--primary-pale);
-            letter-spacing: 0.1em;
-            text-align: right;
+            display: none;
         }
         
         /* Alternative: Diagonal watermark across page */
@@ -351,7 +329,7 @@
             letter-spacing: 0.3em;
         }
         
-        /* Repeating watermark pattern across page - พุทธประวัติ */
+        /* Repeating watermark pattern - ป่าหิมพานต์ พระ อุบาสก */
         .watermark-pattern {
             position: fixed;
             top: 0;
@@ -360,9 +338,9 @@
             bottom: 0;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.015;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 250'%3E%3Cdefs%3E%3ClinearGradient id='forestGrad' x1='0%25' y1='100%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' style='stop-color:%232D5A3D;stop-opacity:0.8'/%3E%3Cstop offset='100%25' style='stop-color:%232D5A3D;stop-opacity:0.3'/%3E%3C/linearGradient%3E%3C/defs%3E%3C!-- ต้นไม้ป่าหิมพานต์ --%3E%3Cpath d='M30 250 L45 180 L35 185 L50 130 L40 135 L55 90 L45 95 L60 50 L75 95 L65 90 L80 135 L70 130 L85 185 L75 180 L90 250' fill='url(%23forestGrad)'/%3E%3Cpath d='M100 250 L115 190 L105 195 L120 150 L110 155 L125 110 L140 155 L130 150 L145 195 L135 190 L150 250' fill='url(%23forestGrad)'/%3E%3Cpath d='M400 250 L415 185 L405 190 L420 140 L410 145 L425 95 L435 100 L450 145 L440 140 L455 190 L445 185 L460 250' fill='url(%23forestGrad)'/%3E%3C!-- ภูเขาหิมพานต์ --%3E%3Cpath d='M0 250 Q125 150 250 200 Q375 150 500 250' fill='none' stroke='%232D5A3D' stroke-width='1' opacity='0.4'/%3E%3C!-- พระพุทธเจ้าประทับนั่ง --%3E%3Ccircle cx='250' cy='140' r='15' fill='%232D5A3D' opacity='0.6'/%3E%3Cpath d='M235 155 Q250 165 265 155 L265 190 Q250 200 235 190 Z' fill='%232D5A3D' opacity='0.5'/%3E%3C!-- รัศมี --%3E%3Ccircle cx='250' cy='140' r='25' fill='none' stroke='%232D5A3D' stroke-width='0.5' opacity='0.3'/%3E%3Ccircle cx='250' cy='140' r='35' fill='none' stroke='%232D5A3D' stroke-width='0.3' opacity='0.2'/%3E%3C!-- อุบาสก (ซ้าย) --%3E%3Ccircle cx='180' cy='180' r='8' fill='%232D5A3D' opacity='0.4'/%3E%3Cpath d='M172 188 L188 188 L185 210 L175 210 Z' fill='%232D5A3D' opacity='0.35'/%3E%3C!-- อุบาสิกา (ขวา) --%3E%3Ccircle cx='320' cy='180' r='8' fill='%232D5A3D' opacity='0.4'/%3E%3Cpath d='M312 188 L328 188 L325 210 L315 210 Z' fill='%232D5A3D' opacity='0.35'/%3E%3C!-- ดอกบัว --%3E%3Cellipse cx='250' cy='210' rx='20' ry='8' fill='%232D5A3D' opacity='0.3'/%3E%3Cpath d='M245 210 Q250 195 255 210' fill='%232D5A3D' opacity='0.25'/%3E%3C!-- ข้อความ --%3E%3Ctext x='250' y='240' font-family='sans-serif' font-size='8' fill='%232D5A3D' text-anchor='middle' opacity='0.5'%3Eธรรมะจากพุทธกาล ❀ ป่าหิมพานต์%3C/text%3E%3C/svg%3E");
-            background-size: 500px 250px;
+            opacity: 0.018;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 220'%3E%3Cdefs%3E%3ClinearGradient id='fg' x1='0%25' y1='100%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' style='stop-color:%232D5A3D;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%232D5A3D;stop-opacity:0.3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0 180 Q100 100 200 140 Q300 80 400 150 L400 220 L0 220 Z' fill='%232D5A3D' opacity='0.15'/%3E%3Cpath d='M30 220 L45 170 L40 175 L55 130 L48 135 L60 100 L72 135 L65 130 L75 175 L70 170 L85 220' fill='url(%23fg)' opacity='0.4'/%3E%3Cpath d='M320 220 L335 175 L330 180 L345 140 L338 145 L350 115 L362 145 L355 140 L365 180 L360 175 L375 220' fill='url(%23fg)' opacity='0.4'/%3E%3Ccircle cx='200' cy='100' r='12' fill='%232D5A3D' opacity='0.5'/%3E%3Cpath d='M188 112 Q200 120 212 112 L212 145 Q200 155 188 145 Z' fill='%232D5A3D' opacity='0.45'/%3E%3Ccircle cx='200' cy='100' r='18' fill='none' stroke='%232D5A3D' stroke-width='0.8' opacity='0.25'/%3E%3Ccircle cx='200' cy='100' r='26' fill='none' stroke='%232D5A3D' stroke-width='0.4' opacity='0.15'/%3E%3Ccircle cx='140' cy='150' r='8' fill='%232D5A3D' opacity='0.4'/%3E%3Cpath d='M132 158 L148 158 L146 180 L134 180 Z' fill='%232D5A3D' opacity='0.35'/%3E%3Ccircle cx='260' cy='150' r='8' fill='%232D5A3D' opacity='0.4'/%3E%3Cpath d='M252 158 L268 158 L266 180 L254 180 Z' fill='%232D5A3D' opacity='0.35'/%3E%3Cellipse cx='200' cy='165' rx='18' ry='6' fill='%232D5A3D' opacity='0.2'/%3E%3Ctext x='200' y='210' font-family='sans-serif' font-size='9' fill='%232D5A3D' text-anchor='middle' opacity='0.4'%3Eธรรมะจากพุทธกาล%3C/text%3E%3C/svg%3E");
+            background-size: 400px 220px;
             background-repeat: repeat;
         }
         
@@ -486,7 +464,7 @@
             transition: background 0.5s ease;
         }
 
-        /* Floating Share Button - small icon style at bottom right */
+        /* Floating Share Button - small circular icon */
         .hero-share-btn {
             position: absolute;
             bottom: 4.5rem;
@@ -494,8 +472,8 @@
             background: linear-gradient(135deg, rgba(255,215,0,0.85) 0%, rgba(255,165,0,0.85) 100%);
             border: none;
             color: #5d4037;
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             font-family: 'Mitr', sans-serif;
             cursor: pointer;
@@ -517,14 +495,14 @@
         }
         
         .hero-share-btn .share-icon {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
         
         .hero-share-btn .share-text {
             display: none;
         }
         
-        /* Floating Install Button - small icon style at bottom left */
+        /* Floating Install Button - small circular icon */
         .hero-install-btn {
             position: absolute;
             bottom: 4.5rem;
@@ -532,8 +510,8 @@
             background: linear-gradient(135deg, rgba(76,175,80,0.85) 0%, rgba(56,142,60,0.85) 100%);
             border: none;
             color: white;
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             font-family: 'Mitr', sans-serif;
             cursor: pointer;
@@ -555,25 +533,25 @@
         }
         
         .hero-install-btn .install-icon {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
         
         .hero-install-btn .install-text {
             display: none;
         }
         
-        /* Small screens - adjust button positions */
+        /* Small screens */
         @media (max-width: 480px) {
             .hero-share-btn,
             .hero-install-btn {
-                width: 38px;
-                height: 38px;
+                width: 40px;
+                height: 40px;
                 bottom: 4rem;
             }
             
             .hero-share-btn .share-icon,
             .hero-install-btn .install-icon {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
         }
 
@@ -2742,76 +2720,44 @@
     </style>
 </head>
 <body>
-    <!-- Watermark Elements - ฉากป่าหิมพานต์ พระพุทธเจ้าแสดงธรรม -->
+    <!-- Watermark - ป่าหิมพานต์ พระ อุบาสก/อุบาสิกา -->
     <div class="watermark">
-        <svg class="watermark-scene" viewBox="0 0 350 280" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="forestGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-                    <stop offset="0%" style="stop-color:#2D5A3D;stop-opacity:1"/>
-                    <stop offset="100%" style="stop-color:#2D5A3D;stop-opacity:0.4"/>
-                </linearGradient>
-                <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" style="stop-color:#2D5A3D;stop-opacity:0.1"/>
-                    <stop offset="100%" style="stop-color:#2D5A3D;stop-opacity:0.3"/>
-                </linearGradient>
-            </defs>
-            
-            <!-- ท้องฟ้าป่าหิมพานต์ -->
-            <rect x="0" y="0" width="350" height="280" fill="url(#skyGrad)" opacity="0.3"/>
-            
+        <svg class="watermark-scene" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg">
             <!-- ภูเขาหิมพานต์ -->
-            <path d="M0 200 Q50 120 100 160 Q150 100 200 140 Q250 80 300 130 Q350 100 350 200 Z" fill="#2D5A3D" opacity="0.15"/>
-            <path d="M0 220 Q80 160 160 190 Q240 150 350 200 L350 280 L0 280 Z" fill="#2D5A3D" opacity="0.2"/>
+            <path d="M0 160 Q75 80 150 120 Q225 60 300 130 L300 240 L0 240 Z" fill="#2D5A3D" opacity="0.12"/>
             
-            <!-- ต้นโพธิ์ใหญ่ (กลาง) -->
-            <path d="M175 280 L175 180" stroke="#2D5A3D" stroke-width="8" opacity="0.5"/>
-            <ellipse cx="175" cy="140" rx="60" ry="50" fill="#2D5A3D" opacity="0.3"/>
-            <ellipse cx="145" cy="150" rx="30" ry="25" fill="#2D5A3D" opacity="0.25"/>
-            <ellipse cx="205" cy="150" rx="30" ry="25" fill="#2D5A3D" opacity="0.25"/>
-            <ellipse cx="175" cy="110" rx="25" ry="20" fill="#2D5A3D" opacity="0.2"/>
+            <!-- ต้นโพธิ์กลาง -->
+            <path d="M150 240 L150 160" stroke="#2D5A3D" stroke-width="6" opacity="0.4"/>
+            <ellipse cx="150" cy="120" rx="45" ry="40" fill="#2D5A3D" opacity="0.25"/>
+            <ellipse cx="120" cy="130" rx="22" ry="18" fill="#2D5A3D" opacity="0.2"/>
+            <ellipse cx="180" cy="130" rx="22" ry="18" fill="#2D5A3D" opacity="0.2"/>
             
             <!-- ต้นไม้ซ้าย -->
-            <path d="M40 280 L50 220 L45 225 L55 180 L48 185 L60 140 L72 185 L65 180 L75 225 L70 220 L80 280" fill="url(#forestGrad)" opacity="0.4"/>
+            <path d="M25 240 L35 190 L30 195 L42 155 L35 160 L48 125 L60 160 L53 155 L65 195 L58 190 L70 240" fill="#2D5A3D" opacity="0.35"/>
             
             <!-- ต้นไม้ขวา -->
-            <path d="M270 280 L280 230 L275 235 L285 195 L278 200 L290 160 L302 200 L295 195 L305 235 L300 230 L310 280" fill="url(#forestGrad)" opacity="0.4"/>
+            <path d="M230 240 L240 195 L235 200 L248 165 L242 170 L255 140 L268 170 L262 165 L275 200 L268 195 L280 240" fill="#2D5A3D" opacity="0.35"/>
             
-            <!-- ดอกบัวในสระ -->
-            <ellipse cx="175" cy="260" rx="50" ry="12" fill="#2D5A3D" opacity="0.15"/>
-            <path d="M165 260 Q170 245 175 260 Q180 245 185 260" fill="#2D5A3D" opacity="0.25"/>
-            <path d="M155 262 Q162 250 170 262" fill="#2D5A3D" opacity="0.2"/>
-            <path d="M180 262 Q188 250 195 262" fill="#2D5A3D" opacity="0.2"/>
-            
-            <!-- พระพุทธเจ้าประทับนั่งแสดงธรรม -->
-            <circle cx="175" cy="185" r="12" fill="#2D5A3D" opacity="0.6"/>
-            <path d="M163 197 Q175 205 187 197 L187 225 Q175 235 163 225 Z" fill="#2D5A3D" opacity="0.5"/>
+            <!-- พระพุทธเจ้าแสดงธรรม -->
+            <circle cx="150" cy="155" r="10" fill="#2D5A3D" opacity="0.5"/>
+            <path d="M140 165 Q150 172 160 165 L160 190 Q150 198 140 190 Z" fill="#2D5A3D" opacity="0.45"/>
             <!-- รัศมี -->
-            <circle cx="175" cy="185" r="18" fill="none" stroke="#2D5A3D" stroke-width="0.8" opacity="0.3"/>
-            <circle cx="175" cy="185" r="25" fill="none" stroke="#2D5A3D" stroke-width="0.5" opacity="0.2"/>
-            <circle cx="175" cy="185" r="32" fill="none" stroke="#2D5A3D" stroke-width="0.3" opacity="0.1"/>
+            <circle cx="150" cy="155" r="16" fill="none" stroke="#2D5A3D" stroke-width="0.6" opacity="0.25"/>
+            <circle cx="150" cy="155" r="24" fill="none" stroke="#2D5A3D" stroke-width="0.4" opacity="0.15"/>
             
-            <!-- อุบาสก (ซ้าย) นั่งฟังธรรม -->
-            <circle cx="100" cy="220" r="8" fill="#2D5A3D" opacity="0.45"/>
-            <path d="M92 228 L108 228 L106 250 L94 250 Z" fill="#2D5A3D" opacity="0.4"/>
+            <!-- อุบาสก ซ้าย -->
+            <circle cx="90" cy="185" r="7" fill="#2D5A3D" opacity="0.4"/>
+            <path d="M83 192 L97 192 L95 212 L85 212 Z" fill="#2D5A3D" opacity="0.35"/>
             
-            <!-- อุบาสก 2 (ซ้ายหน้า) -->
-            <circle cx="120" cy="235" r="7" fill="#2D5A3D" opacity="0.4"/>
-            <path d="M113 242 L127 242 L125 260 L115 260 Z" fill="#2D5A3D" opacity="0.35"/>
+            <!-- อุบาสิกา ขวา -->
+            <circle cx="210" cy="185" r="7" fill="#2D5A3D" opacity="0.4"/>
+            <path d="M203 192 L217 192 L215 212 L205 212 Z" fill="#2D5A3D" opacity="0.35"/>
             
-            <!-- อุบาสิกา (ขวา) นั่งฟังธรรม -->
-            <circle cx="250" cy="220" r="8" fill="#2D5A3D" opacity="0.45"/>
-            <path d="M242 228 L258 228 L256 250 L244 250 Z" fill="#2D5A3D" opacity="0.4"/>
-            
-            <!-- อุบาสิกา 2 (ขวาหน้า) -->
-            <circle cx="230" cy="235" r="7" fill="#2D5A3D" opacity="0.4"/>
-            <path d="M223 242 L237 242 L235 260 L225 260 Z" fill="#2D5A3D" opacity="0.35"/>
-            
-            <!-- นกในป่า -->
-            <path d="M60 100 Q65 95 70 100 Q65 98 60 100" fill="#2D5A3D" opacity="0.3"/>
-            <path d="M280 85 Q285 80 290 85 Q285 83 280 85" fill="#2D5A3D" opacity="0.3"/>
+            <!-- ดอกบัว -->
+            <ellipse cx="150" cy="210" rx="15" ry="5" fill="#2D5A3D" opacity="0.15"/>
             
             <!-- ข้อความ -->
-            <text x="175" y="275" font-family="sans-serif" font-size="7" fill="#2D5A3D" text-anchor="middle" opacity="0.4">ธรรมะจากพุทธกาล ❀ ป่าหิมพานต์</text>
+            <text x="150" y="235" font-family="sans-serif" font-size="7" fill="#2D5A3D" text-anchor="middle" opacity="0.35">ธรรมะจากพุทธกาล</text>
         </svg>
     </div>
     <div class="watermark-pattern"></div>
@@ -4092,7 +4038,7 @@
         <div class="footer-credit">
             <p class="credit-line">จัดทำโดย <strong>ศุภเกศ วงศ์คำภู</strong></p>
             <p class="credit-contact">มีเนื้อหาหรือสิ่งใดให้ปรับปรุง สามารถติดต่อได้ที่</p>
-            <a href="/cdn-cgi/l/email-protection#aad9dfdacbc1cfdeeacfc4cfd8d9d3d984c9c584dec2" class="credit-email">📧 <span class="__cf_email__" data-cfemail="b4c7c1c4d5dfd1c0f4d1dad1c6c7cdc79ad7db9ac0dc">[email&#160;protected]</span></a>
+            <a href="/cdn-cgi/l/email-protection#780b0d0819131d0c381d161d0a0b010b561b17560c10" class="credit-email">📧 <span class="__cf_email__" data-cfemail="93e0e6e3f2f8f6e7d3f6fdf6e1e0eae0bdf0fcbde7fb">[email&#160;protected]</span></a>
             <p class="credit-version">Version 1.2-20251215</p>
         </div>
     </footer>
@@ -5527,3 +5473,6 @@
         });
         
  
+    </script>
+</body>
+</html>
