@@ -278,6 +278,134 @@
             }
         }
 
+        /* ===========================================
+           WATERMARK - ลายน้ำ
+           แสดงข้อความบาง ๆ ที่มุมล่างขวา
+           =========================================== */
+        .watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.06;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .watermark-icon {
+            font-size: 2.5rem;
+            line-height: 1;
+            filter: grayscale(0.3);
+        }
+        
+        .watermark-text {
+            font-family: 'Mitr', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--primary-main);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            text-align: right;
+            writing-mode: horizontal-tb;
+        }
+        
+        .watermark-subtext {
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.55rem;
+            color: var(--primary-pale);
+            letter-spacing: 0.1em;
+            text-align: right;
+        }
+        
+        /* Alternative: Diagonal watermark across page */
+        .watermark-diagonal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.015;
+            font-family: 'Mitr', sans-serif;
+            font-size: 8rem;
+            font-weight: 600;
+            color: var(--primary-main);
+            white-space: nowrap;
+            text-align: center;
+            user-select: none;
+            letter-spacing: 0.3em;
+        }
+        
+        /* Repeating watermark pattern across page */
+        .watermark-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.012;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Ctext x='200' y='100' font-family='sans-serif' font-size='14' fill='%232D5A3D' text-anchor='middle' transform='rotate(-25 200 100)'%3Eบทสวดมนต์ ❀ ธรรมะจากพุทธกาล%3C/text%3E%3C/svg%3E");
+            background-size: 400px 200px;
+            background-repeat: repeat;
+        }
+        
+        /* Dark mode adjustments */
+        .dark-mode .watermark {
+            opacity: 0.04;
+        }
+        
+        .dark-mode .watermark-text,
+        .dark-mode .watermark-subtext {
+            color: var(--primary-mist);
+        }
+        
+        .dark-mode .watermark-diagonal {
+            opacity: 0.01;
+            color: var(--primary-mist);
+        }
+        
+        .dark-mode .watermark-pattern {
+            opacity: 0.008;
+            filter: invert(1) hue-rotate(180deg);
+        }
+        
+        /* Hide watermark on small screens */
+        @media (max-width: 480px) {
+            .watermark {
+                bottom: 15px;
+                right: 15px;
+                opacity: 0.04;
+            }
+            .watermark-icon {
+                font-size: 2rem;
+            }
+            .watermark-text {
+                font-size: 0.6rem;
+            }
+            .watermark-subtext {
+                display: none;
+            }
+            .watermark-diagonal {
+                font-size: 4rem;
+            }
+        }
+        
+        /* Hide when printing */
+        @media print {
+            .watermark,
+            .watermark-diagonal,
+            .watermark-pattern {
+                display: none;
+            }
+        }
+
         /* Hero Cover Section */
         .hero-cover {
             position: relative;
@@ -2604,6 +2732,14 @@
     </style>
 </head>
 <body>
+    <!-- Watermark Elements -->
+    <div class="watermark">
+        <div class="watermark-icon">🙏</div>
+        <div class="watermark-text">บทสวดมนต์</div>
+        <div class="watermark-subtext">ธรรมะจากพุทธกาล</div>
+    </div>
+    <div class="watermark-pattern"></div>
+    
     <!-- Progress bar -->
     <div class="progress-bar" id="progressBar"></div>
 
