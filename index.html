@@ -287,9 +287,9 @@
             right: 0;
             z-index: 1;
             pointer-events: none;
-            opacity: 0.04;
-            width: 300px;
-            height: 240px;
+            opacity: 0.4;
+            width: 420px;
+            height: 340px;
             transition: opacity 0.3s ease;
         }
         
@@ -338,7 +338,7 @@
             bottom: 0;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.018;
+            opacity: 0.15;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 220'%3E%3Cdefs%3E%3ClinearGradient id='fg' x1='0%25' y1='100%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' style='stop-color:%232D5A3D;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%232D5A3D;stop-opacity:0.3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0 180 Q100 100 200 140 Q300 80 400 150 L400 220 L0 220 Z' fill='%232D5A3D' opacity='0.15'/%3E%3Cpath d='M30 220 L45 170 L40 175 L55 130 L48 135 L60 100 L72 135 L65 130 L75 175 L70 170 L85 220' fill='url(%23fg)' opacity='0.4'/%3E%3Cpath d='M320 220 L335 175 L330 180 L345 140 L338 145 L350 115 L362 145 L355 140 L365 180 L360 175 L375 220' fill='url(%23fg)' opacity='0.4'/%3E%3Ccircle cx='200' cy='100' r='12' fill='%232D5A3D' opacity='0.5'/%3E%3Cpath d='M188 112 Q200 120 212 112 L212 145 Q200 155 188 145 Z' fill='%232D5A3D' opacity='0.45'/%3E%3Ccircle cx='200' cy='100' r='18' fill='none' stroke='%232D5A3D' stroke-width='0.8' opacity='0.25'/%3E%3Ccircle cx='200' cy='100' r='26' fill='none' stroke='%232D5A3D' stroke-width='0.4' opacity='0.15'/%3E%3Ccircle cx='140' cy='150' r='8' fill='%232D5A3D' opacity='0.4'/%3E%3Cpath d='M132 158 L148 158 L146 180 L134 180 Z' fill='%232D5A3D' opacity='0.35'/%3E%3Ccircle cx='260' cy='150' r='8' fill='%232D5A3D' opacity='0.4'/%3E%3Cpath d='M252 158 L268 158 L266 180 L254 180 Z' fill='%232D5A3D' opacity='0.35'/%3E%3Cellipse cx='200' cy='165' rx='18' ry='6' fill='%232D5A3D' opacity='0.2'/%3E%3Ctext x='200' y='210' font-family='sans-serif' font-size='9' fill='%232D5A3D' text-anchor='middle' opacity='0.4'%3Eธรรมะจากพุทธกาล%3C/text%3E%3C/svg%3E");
             background-size: 400px 220px;
             background-repeat: repeat;
@@ -346,7 +346,7 @@
         
         /* Dark mode adjustments */
         .dark-mode .watermark {
-            opacity: 0.025;
+            opacity: 0.25;
             filter: invert(1) hue-rotate(180deg);
         }
         
@@ -361,7 +361,7 @@
         }
         
         .dark-mode .watermark-pattern {
-            opacity: 0.012;
+            opacity: 0.1;
             filter: invert(1) hue-rotate(180deg);
         }
         
@@ -370,7 +370,7 @@
             .watermark {
                 bottom: 15px;
                 right: 15px;
-                opacity: 0.04;
+                opacity: 0.3;
             }
             .watermark-icon {
                 font-size: 2rem;
@@ -942,6 +942,7 @@
 
         body.dark-mode .translation-section {
             background: rgba(255,255,255,0.05);
+            border-top: none;
         }
 
         body.dark-mode .translation-title {
@@ -2722,42 +2723,178 @@
 <body>
     <!-- Watermark - ป่าหิมพานต์ พระ อุบาสก/อุบาสิกา -->
     <div class="watermark">
-        <svg class="watermark-scene" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg">
-            <!-- ภูเขาหิมพานต์ -->
-            <path d="M0 160 Q75 80 150 120 Q225 60 300 130 L300 240 L0 240 Z" fill="#2D5A3D" opacity="0.12"/>
+        <svg class="watermark-scene" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- Gradient สำหรับท้องฟ้า -->
+                <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#2D5A3D;stop-opacity:0.08"/>
+                    <stop offset="100%" style="stop-color:#2D5A3D;stop-opacity:0.2"/>
+                </linearGradient>
+                <!-- Gradient สำหรับต้นโพธิ์ -->
+                <radialGradient id="treeGrad" cx="50%" cy="30%" r="70%">
+                    <stop offset="0%" style="stop-color:#2D5A3D;stop-opacity:0.5"/>
+                    <stop offset="100%" style="stop-color:#2D5A3D;stop-opacity:0.25"/>
+                </radialGradient>
+                <!-- รัศมีพระพุทธเจ้า -->
+                <radialGradient id="auraGrad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style="stop-color:#DAA520;stop-opacity:0.4"/>
+                    <stop offset="70%" style="stop-color:#DAA520;stop-opacity:0.1"/>
+                    <stop offset="100%" style="stop-color:#DAA520;stop-opacity:0"/>
+                </radialGradient>
+            </defs>
             
-            <!-- ต้นโพธิ์กลาง -->
-            <path d="M150 240 L150 160" stroke="#2D5A3D" stroke-width="6" opacity="0.4"/>
-            <ellipse cx="150" cy="120" rx="45" ry="40" fill="#2D5A3D" opacity="0.25"/>
-            <ellipse cx="120" cy="130" rx="22" ry="18" fill="#2D5A3D" opacity="0.2"/>
-            <ellipse cx="180" cy="130" rx="22" ry="18" fill="#2D5A3D" opacity="0.2"/>
+            <!-- พื้นหลัง/ท้องฟ้า -->
+            <rect x="0" y="0" width="400" height="320" fill="url(#skyGrad)"/>
             
-            <!-- ต้นไม้ซ้าย -->
-            <path d="M25 240 L35 190 L30 195 L42 155 L35 160 L48 125 L60 160 L53 155 L65 195 L58 190 L70 240" fill="#2D5A3D" opacity="0.35"/>
+            <!-- ภูเขาไกล -->
+            <path d="M0 120 Q50 80 100 100 Q150 60 200 90 Q250 50 300 80 Q350 60 400 100 L400 160 L0 160 Z" fill="#2D5A3D" opacity="0.15"/>
             
-            <!-- ต้นไม้ขวา -->
-            <path d="M230 240 L240 195 L235 200 L248 165 L242 170 L255 140 L268 170 L262 165 L275 200 L268 195 L280 240" fill="#2D5A3D" opacity="0.35"/>
+            <!-- ป่าไม้ด้านหลัง -->
+            <ellipse cx="50" cy="140" rx="30" ry="25" fill="#2D5A3D" opacity="0.2"/>
+            <ellipse cx="350" cy="135" rx="35" ry="28" fill="#2D5A3D" opacity="0.2"/>
+            <ellipse cx="100" cy="150" rx="25" ry="20" fill="#2D5A3D" opacity="0.18"/>
+            <ellipse cx="300" cy="148" rx="28" ry="22" fill="#2D5A3D" opacity="0.18"/>
             
-            <!-- พระพุทธเจ้าแสดงธรรม -->
-            <circle cx="150" cy="155" r="10" fill="#2D5A3D" opacity="0.5"/>
-            <path d="M140 165 Q150 172 160 165 L160 190 Q150 198 140 190 Z" fill="#2D5A3D" opacity="0.45"/>
-            <!-- รัศมี -->
-            <circle cx="150" cy="155" r="16" fill="none" stroke="#2D5A3D" stroke-width="0.6" opacity="0.25"/>
-            <circle cx="150" cy="155" r="24" fill="none" stroke="#2D5A3D" stroke-width="0.4" opacity="0.15"/>
+            <!-- พื้นดิน/ลานธรรม -->
+            <ellipse cx="200" cy="290" rx="180" ry="40" fill="#2D5A3D" opacity="0.12"/>
             
-            <!-- อุบาสก ซ้าย -->
-            <circle cx="90" cy="185" r="7" fill="#2D5A3D" opacity="0.4"/>
-            <path d="M83 192 L97 192 L95 212 L85 212 Z" fill="#2D5A3D" opacity="0.35"/>
+            <!-- ═══════════════════════════════════════ -->
+            <!-- ต้นพระศรีมหาโพธิ์ - ใหญ่โตสง่างาม -->
+            <!-- ═══════════════════════════════════════ -->
             
-            <!-- อุบาสิกา ขวา -->
-            <circle cx="210" cy="185" r="7" fill="#2D5A3D" opacity="0.4"/>
-            <path d="M203 192 L217 192 L215 212 L205 212 Z" fill="#2D5A3D" opacity="0.35"/>
+            <!-- ลำต้นโพธิ์ -->
+            <path d="M195 280 Q192 240 190 200 Q188 180 200 160 Q212 180 210 200 Q208 240 205 280 Z" fill="#2D5A3D" opacity="0.5"/>
+            <!-- รากโพธิ์ -->
+            <path d="M190 275 Q170 285 160 290" stroke="#2D5A3D" stroke-width="3" fill="none" opacity="0.35"/>
+            <path d="M210 275 Q230 285 240 290" stroke="#2D5A3D" stroke-width="3" fill="none" opacity="0.35"/>
             
-            <!-- ดอกบัว -->
-            <ellipse cx="150" cy="210" rx="15" ry="5" fill="#2D5A3D" opacity="0.15"/>
+            <!-- พุ่มใบโพธิ์ - หลายชั้น -->
+            <ellipse cx="200" cy="110" rx="75" ry="55" fill="url(#treeGrad)"/>
+            <ellipse cx="160" cy="130" rx="35" ry="28" fill="#2D5A3D" opacity="0.35"/>
+            <ellipse cx="240" cy="130" rx="35" ry="28" fill="#2D5A3D" opacity="0.35"/>
+            <ellipse cx="200" cy="80" rx="45" ry="35" fill="#2D5A3D" opacity="0.4"/>
+            <ellipse cx="175" cy="100" rx="25" ry="20" fill="#2D5A3D" opacity="0.3"/>
+            <ellipse cx="225" cy="100" rx="25" ry="20" fill="#2D5A3D" opacity="0.3"/>
+            <!-- ใบโพธิ์เล็กๆ ประดับ -->
+            <ellipse cx="145" cy="115" rx="15" ry="12" fill="#2D5A3D" opacity="0.25"/>
+            <ellipse cx="255" cy="115" rx="15" ry="12" fill="#2D5A3D" opacity="0.25"/>
+            
+            <!-- ═══════════════════════════════════════ -->
+            <!-- พระพุทธเจ้าประทับนั่งแสดงธรรม -->
+            <!-- ═══════════════════════════════════════ -->
+            
+            <!-- รัศมี/ประภามณฑล -->
+            <circle cx="200" cy="195" r="45" fill="url(#auraGrad)"/>
+            <circle cx="200" cy="195" r="35" fill="none" stroke="#DAA520" stroke-width="0.5" opacity="0.3"/>
+            <circle cx="200" cy="195" r="42" fill="none" stroke="#DAA520" stroke-width="0.3" opacity="0.2"/>
+            
+            <!-- อาสนะ/บัลลังก์ -->
+            <ellipse cx="200" cy="248" rx="28" ry="8" fill="#2D5A3D" opacity="0.4"/>
+            <path d="M172 248 L175 238 L225 238 L228 248 Z" fill="#2D5A3D" opacity="0.35"/>
+            
+            <!-- พระวรกาย -->
+            <!-- พระเศียร -->
+            <ellipse cx="200" cy="182" rx="11" ry="13" fill="#2D5A3D" opacity="0.6"/>
+            <!-- พระรัศมี (เปลวเหนือพระเศียร) -->
+            <path d="M200 168 Q203 160 200 152 Q197 160 200 168" fill="#DAA520" opacity="0.4"/>
+            <!-- พระกรรณ (หู) -->
+            <ellipse cx="188" cy="185" rx="2" ry="5" fill="#2D5A3D" opacity="0.5"/>
+            <ellipse cx="212" cy="185" rx="2" ry="5" fill="#2D5A3D" opacity="0.5"/>
+            <!-- พระอังสา (บ่า/ไหล่) -->
+            <path d="M185 195 Q200 192 215 195" stroke="#2D5A3D" stroke-width="2" fill="none" opacity="0.5"/>
+            <!-- จีวร/พระวรกาย -->
+            <path d="M182 198 Q175 210 178 238 L222 238 Q225 210 218 198 Q200 205 182 198" fill="#2D5A3D" opacity="0.5"/>
+            <!-- พระหัตถ์ขวา (ปางแสดงธรรม) ยกขึ้น -->
+            <path d="M218 200 Q235 195 238 185 Q240 182 237 180" stroke="#2D5A3D" stroke-width="2.5" fill="none" opacity="0.5"/>
+            <circle cx="237" cy="178" r="4" fill="#2D5A3D" opacity="0.5"/>
+            <!-- พระหัตถ์ซ้าย วางบนตัก -->
+            <path d="M182 200 Q175 215 180 225" stroke="#2D5A3D" stroke-width="2.5" fill="none" opacity="0.5"/>
+            
+            <!-- ═══════════════════════════════════════ -->
+            <!-- พระสงฆ์สาวก - ด้านซ้าย -->
+            <!-- ═══════════════════════════════════════ -->
+            
+            <!-- พระสงฆ์องค์ที่ 1 (ใกล้) -->
+            <ellipse cx="95" cy="245" rx="10" ry="6" fill="#2D5A3D" opacity="0.35"/>
+            <circle cx="95" cy="222" r="8" fill="#2D5A3D" opacity="0.45"/>
+            <path d="M87 230 Q85 245 88 258 L102 258 Q105 245 103 230 Q95 235 87 230" fill="#2D5A3D" opacity="0.4"/>
+            <!-- ศีรษะโล้น -->
+            
+            <!-- พระสงฆ์องค์ที่ 2 (ไกลกว่า) -->
+            <ellipse cx="65" cy="238" rx="8" ry="5" fill="#2D5A3D" opacity="0.3"/>
+            <circle cx="65" cy="218" r="6" fill="#2D5A3D" opacity="0.38"/>
+            <path d="M59 224 Q57 235 59 248 L71 248 Q73 235 71 224 Q65 228 59 224" fill="#2D5A3D" opacity="0.32"/>
+            
+            <!-- พระสงฆ์องค์ที่ 3 (ไกลสุด) -->
+            <circle cx="45" cy="225" r="5" fill="#2D5A3D" opacity="0.3"/>
+            <path d="M40 230 Q39 238 40 245 L50 245 Q51 238 50 230 Q45 232 40 230" fill="#2D5A3D" opacity="0.25"/>
+            
+            <!-- ═══════════════════════════════════════ -->
+            <!-- พระสงฆ์สาวก - ด้านขวา -->
+            <!-- ═══════════════════════════════════════ -->
+            
+            <!-- พระสงฆ์องค์ที่ 1 (ใกล้) -->
+            <ellipse cx="305" cy="245" rx="10" ry="6" fill="#2D5A3D" opacity="0.35"/>
+            <circle cx="305" cy="222" r="8" fill="#2D5A3D" opacity="0.45"/>
+            <path d="M297 230 Q295 245 298 258 L312 258 Q315 245 313 230 Q305 235 297 230" fill="#2D5A3D" opacity="0.4"/>
+            
+            <!-- พระสงฆ์องค์ที่ 2 -->
+            <ellipse cx="335" cy="238" rx="8" ry="5" fill="#2D5A3D" opacity="0.3"/>
+            <circle cx="335" cy="218" r="6" fill="#2D5A3D" opacity="0.38"/>
+            <path d="M329 224 Q327 235 329 248 L341 248 Q343 235 341 224 Q335 228 329 224" fill="#2D5A3D" opacity="0.32"/>
+            
+            <!-- พระสงฆ์องค์ที่ 3 -->
+            <circle cx="355" cy="225" r="5" fill="#2D5A3D" opacity="0.3"/>
+            <path d="M350 230 Q349 238 350 245 L360 245 Q361 238 360 230 Q355 232 350 230" fill="#2D5A3D" opacity="0.25"/>
+            
+            <!-- ═══════════════════════════════════════ -->
+            <!-- อุบาสก - ด้านซ้าย (นุ่งขาวห่มขาว) -->
+            <!-- ═══════════════════════════════════════ -->
+            
+            <!-- อุบาสกคนที่ 1 -->
+            <circle cx="120" cy="262" r="7" fill="#2D5A3D" opacity="0.4"/>
+            <!-- ผมมวย -->
+            <ellipse cx="120" cy="258" rx="5" ry="3" fill="#2D5A3D" opacity="0.45"/>
+            <path d="M113 269 Q110 282 113 295 L127 295 Q130 282 127 269 Q120 273 113 269" fill="#2D5A3D" opacity="0.35"/>
+            <!-- มือพนม -->
+            <path d="M117 278 L120 272 L123 278" stroke="#2D5A3D" stroke-width="1.5" fill="none" opacity="0.4"/>
+            
+            <!-- อุบาสกคนที่ 2 -->
+            <circle cx="140" cy="270" r="6" fill="#2D5A3D" opacity="0.35"/>
+            <ellipse cx="140" cy="267" rx="4" ry="2.5" fill="#2D5A3D" opacity="0.4"/>
+            <path d="M134 276 Q132 286 134 298 L146 298 Q148 286 146 276 Q140 279 134 276" fill="#2D5A3D" opacity="0.3"/>
+            
+            <!-- ═══════════════════════════════════════ -->
+            <!-- อุบาสิกา - ด้านขวา (นุ่งขาวห่มขาว) -->
+            <!-- ═══════════════════════════════════════ -->
+            
+            <!-- อุบาสิกาคนที่ 1 -->
+            <circle cx="280" cy="262" r="7" fill="#2D5A3D" opacity="0.4"/>
+            <!-- ผมเกล้ามวย -->
+            <ellipse cx="280" cy="256" rx="6" ry="4" fill="#2D5A3D" opacity="0.42"/>
+            <path d="M273 269 Q270 282 273 295 L287 295 Q290 282 287 269 Q280 273 273 269" fill="#2D5A3D" opacity="0.35"/>
+            <!-- มือพนม -->
+            <path d="M277 278 L280 272 L283 278" stroke="#2D5A3D" stroke-width="1.5" fill="none" opacity="0.4"/>
+            
+            <!-- อุบาสิกาคนที่ 2 -->
+            <circle cx="260" cy="270" r="6" fill="#2D5A3D" opacity="0.35"/>
+            <ellipse cx="260" cy="266" rx="5" ry="3" fill="#2D5A3D" opacity="0.38"/>
+            <path d="M254 276 Q252 286 254 298 L266 298 Q268 286 266 276 Q260 279 254 276" fill="#2D5A3D" opacity="0.3"/>
+            
+            <!-- ═══════════════════════════════════════ -->
+            <!-- ดอกบัว ด้านหน้า -->
+            <!-- ═══════════════════════════════════════ -->
+            <ellipse cx="200" cy="305" rx="25" ry="8" fill="#2D5A3D" opacity="0.15"/>
+            <!-- กลีบบัว -->
+            <path d="M190 302 Q192 295 200 292 Q208 295 210 302" stroke="#2D5A3D" stroke-width="1" fill="none" opacity="0.25"/>
+            <path d="M185 305 Q190 298 200 295 Q210 298 215 305" stroke="#2D5A3D" stroke-width="0.8" fill="none" opacity="0.2"/>
+            
+            <!-- นกบินในท้องฟ้า -->
+            <path d="M80 70 Q85 65 90 70 Q95 65 100 70" stroke="#2D5A3D" stroke-width="1" fill="none" opacity="0.2"/>
+            <path d="M320 55 Q325 50 330 55 Q335 50 340 55" stroke="#2D5A3D" stroke-width="1" fill="none" opacity="0.2"/>
             
             <!-- ข้อความ -->
-            <text x="150" y="235" font-family="sans-serif" font-size="7" fill="#2D5A3D" text-anchor="middle" opacity="0.35">ธรรมะจากพุทธกาล</text>
+            <text x="200" y="315" font-family="serif" font-size="8" fill="#2D5A3D" text-anchor="middle" opacity="0.4">~ พุทธกาล ~</text>
         </svg>
     </div>
     <div class="watermark-pattern"></div>
@@ -4038,7 +4175,7 @@
         <div class="footer-credit">
             <p class="credit-line">จัดทำโดย <strong>ศุภเกศ วงศ์คำภู</strong></p>
             <p class="credit-contact">มีเนื้อหาหรือสิ่งใดให้ปรับปรุง สามารถติดต่อได้ที่</p>
-            <a href="/cdn-cgi/l/email-protection#780b0d0819131d0c381d161d0a0b010b561b17560c10" class="credit-email">📧 <span class="__cf_email__" data-cfemail="93e0e6e3f2f8f6e7d3f6fdf6e1e0eae0bdf0fcbde7fb">[email&#160;protected]</span></a>
+            <a href="mailto:supaket@enersys.co.th" class="credit-email">📧 supaket@enersys.co.th</a>
             <p class="credit-version">Version 1.2-20251215</p>
         </div>
     </footer>
