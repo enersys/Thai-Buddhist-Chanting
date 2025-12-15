@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Brief History of Time - สรุปหนังสือ by Tomz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Sarabun:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--gold:#ffd700;--blue:#00bfff;--pink:#ff1493;--orange:#ff6b35;--space:#0a0a1a}
+        body{background:var(--space);font-family:'Sarabun',sans-serif;color:#e0e0e0;overflow-x:hidden;line-height:1.8}
+        #starsCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+        .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;z-index:1}
+        .hero-eyebrow{font-family:'Cormorant Garamond',serif;font-size:1.2rem;letter-spacing:8px;text-transform:uppercase;color:var(--blue);margin-bottom:1rem;animation:fadeIn 1s ease forwards .5s;opacity:0}
+        .hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,10vw,6rem);font-weight:900;background:linear-gradient(135deg,var(--gold),var(--orange),var(--pink),var(--blue));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1rem;animation:gradientShift 8s ease infinite,fadeIn 1s ease forwards;line-height:1.1}
+        @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .hero-subtitle{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-style:italic;color:#888;margin-bottom:2rem;animation:fadeIn 1s ease forwards 1s;opacity:0}
+        .hero-author{display:flex;align-items:center;gap:1rem;animation:fadeIn 1s ease forwards 1.5s;opacity:0}
+        .author-avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--orange));display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+        .author-info{text-align:left}
+        .author-name{font-size:1.3rem;color:var(--gold);font-weight:600}
+        .author-title{font-size:.9rem;color:#888}
+        .hero-intro{max-width:700px;margin-top:3rem;font-size:1.1rem;color:#888;animation:fadeIn 1s ease forwards 2s;opacity:0}
+        .scroll-indicator{position:absolute;bottom:2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:bounce 2s infinite}
+        @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+        .scroll-text{font-size:.8rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+        .scroll-indicator svg{width:30px;height:30px;fill:var(--gold)}
+        .prologue{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:8rem 2rem;text-align:center}
+        .prologue-icon{font-size:4rem;margin-bottom:2rem}
+        .prologue-title{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--gold);margin-bottom:2rem}
+        .prologue-text{font-family:'Cormorant Garamond',serif;font-size:1.4rem;line-height:2;color:#e0e0e0}
+        .prologue-text p{margin-bottom:1.5rem}
+        .highlight{color:var(--blue);font-weight:600}
+        .highlight-gold{color:var(--gold);font-weight:600}
+        .highlight-pink{color:var(--pink);font-weight:600}
+        .chapter-section{position:relative;z-index:1;padding:6rem 2rem;border-top:1px solid rgba(255,215,0,.1)}
+        .chapter-section:nth-child(even){background:rgba(0,191,255,.02)}
+        .chapter-header{text-align:center;margin-bottom:4rem}
+        .chapter-label{font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:5px;text-transform:uppercase;color:var(--blue);margin-bottom:1rem}
+        .chapter-main-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);color:var(--gold);margin-bottom:1rem}
+        .chapter-tagline{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:#888}
+        .chapter-content-wrapper{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+        .chapter-content-wrapper.reverse{direction:rtl}
+        .chapter-content-wrapper.reverse>*{direction:ltr}
+        .chapter-visual{position:relative}
+        .chapter-visual canvas{width:100%;max-width:500px;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+        .visual-caption{text-align:center;margin-top:1rem;font-size:.9rem;color:#888;font-style:italic}
+        .chapter-story{padding:2rem}
+        .story-opening{font-family:'Playfair Display',serif;font-size:4rem;float:left;line-height:1;margin-right:.5rem;color:var(--gold)}
+        .story-text{font-size:1.15rem;line-height:2;color:#e0e0e0;margin-bottom:1.5rem}
+        .insight-box{background:linear-gradient(135deg,rgba(255,215,0,.1),rgba(0,191,255,.1));border-left:4px solid var(--gold);padding:1.5rem 2rem;margin:2rem 0;border-radius:0 15px 15px 0;position:relative}
+        .insight-box::before{content:'💡';position:absolute;top:-15px;left:15px;font-size:1.5rem;background:var(--space);padding:0 .5rem}
+        .insight-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:2px}
+        .insight-text{font-size:1.05rem;color:#e0e0e0;line-height:1.8}
+        .fun-fact{background:rgba(255,20,147,.1);border:1px solid rgba(255,20,147,.3);padding:1.5rem;border-radius:15px;margin:2rem 0}
+        .fun-fact-title{color:var(--pink);font-weight:700;margin-bottom:.5rem}
+        .analogy-box{background:rgba(0,191,255,.1);border:1px dashed rgba(0,191,255,.5);padding:1.5rem;border-radius:15px;margin:2rem 0}
+        .analogy-title{color:var(--blue);font-weight:700;margin-bottom:.5rem}
+        .scientists-section{position:relative;z-index:1;padding:6rem 2rem;background:linear-gradient(135deg,rgba(255,215,0,.03),rgba(0,191,255,.03))}
+        .scientists-title{font-family:'Playfair Display',serif;font-size:2.5rem;text-align:center;color:var(--gold);margin-bottom:4rem}
+        .scientists-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+        .scientist-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,215,0,.2);border-radius:20px;padding:2rem;text-align:center;transition:transform .3s,box-shadow .3s}
+        .scientist-card:hover{transform:translateY(-10px);box-shadow:0 20px 40px rgba(255,215,0,.1)}
+        .scientist-icon{font-size:3rem;margin-bottom:1rem}
+        .scientist-name{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);margin-bottom:.5rem}
+        .scientist-era{font-size:.9rem;color:var(--blue);margin-bottom:1rem}
+        .scientist-contribution{font-size:1rem;color:#888;line-height:1.7}
+        .timeline-section{position:relative;z-index:1;padding:6rem 2rem}
+        .timeline-title{font-family:'Playfair Display',serif;font-size:2.5rem;text-align:center;color:var(--gold);margin-bottom:1rem}
+        .timeline-subtitle{text-align:center;color:#888;margin-bottom:4rem;font-size:1.1rem}
+        .timeline{max-width:1000px;margin:0 auto;position:relative}
+        .timeline-line{position:absolute;left:50%;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--gold),var(--blue),var(--pink),var(--orange));transform:translateX(-50%)}
+        .timeline-item{display:flex;margin-bottom:4rem;position:relative}
+        .timeline-item:nth-child(odd){flex-direction:row;padding-right:calc(50% + 40px);text-align:right}
+        .timeline-item:nth-child(even){flex-direction:row-reverse;padding-left:calc(50% + 40px);text-align:left}
+        .timeline-content{background:rgba(255,255,255,.03);border:1px solid rgba(255,215,0,.2);padding:1.5rem 2rem;border-radius:15px}
+        .timeline-dot{position:absolute;left:50%;transform:translateX(-50%);width:20px;height:20px;background:var(--gold);border-radius:50%;box-shadow:0 0 30px rgba(255,215,0,.5);z-index:2}
+        .timeline-time{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold);margin-bottom:.5rem}
+        .timeline-event{font-size:1.1rem;color:#e0e0e0;margin-bottom:.5rem}
+        .timeline-detail{font-size:.95rem;color:#888}
+        .quote-section{position:relative;z-index:1;padding:8rem 2rem;background:linear-gradient(135deg,rgba(255,215,0,.05),rgba(0,191,255,.05));text-align:center}
+        .quote-marks{font-family:'Playfair Display',serif;font-size:8rem;color:rgba(255,215,0,.2);line-height:.5}
+        .quote-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,4vw,2.5rem);font-style:italic;color:#e0e0e0;max-width:900px;margin:2rem auto;line-height:1.8}
+        .quote-author{margin-top:2rem;color:var(--gold);font-size:1.3rem;font-weight:600}
+        .quote-context{color:#888;font-size:1rem;margin-top:.5rem}
+        .conclusion{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:6rem 2rem;text-align:center}
+        .conclusion-title{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--gold);margin-bottom:2rem}
+        .conclusion-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;line-height:2;color:#e0e0e0;margin-bottom:1.5rem}
+        .takeaways{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-top:4rem}
+        .takeaway-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,215,0,.2);border-radius:20px;padding:2rem;text-align:left}
+        .takeaway-icon{font-size:2.5rem;margin-bottom:1rem}
+        .takeaway-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--gold);margin-bottom:.5rem}
+        .takeaway-text{font-size:1rem;color:#888;line-height:1.7}
+        .footer{position:relative;z-index:1;text-align:center;padding:4rem 2rem;border-top:1px solid rgba(255,215,0,.1)}
+        .footer-credit{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold);margin-bottom:1rem}
+        .footer-credit span{background:linear-gradient(135deg,var(--gold),var(--orange),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:900}
+        .footer-source{color:#888;font-size:1rem;margin-bottom:.5rem}
+        .footer-stats{display:flex;justify-content:center;gap:3rem;margin-top:2rem;flex-wrap:wrap}
+        .stat-item{text-align:center}
+        .stat-number{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold)}
+        .stat-label{font-size:.9rem;color:#888}
+        .tomz-logo{display:inline-flex;align-items:center;gap:.5rem;margin-top:2rem;padding:1rem 2rem;background:linear-gradient(135deg,rgba(255,215,0,.1),rgba(0,191,255,.1));border-radius:50px;border:1px solid rgba(255,215,0,.3)}
+        .footer-note{margin-top:2rem;font-size:.9rem;color:#888;opacity:.7;font-style:italic}
+        @media(max-width:900px){.chapter-content-wrapper,.chapter-content-wrapper.reverse{grid-template-columns:1fr;direction:ltr}.timeline-line{left:20px}.timeline-item:nth-child(odd),.timeline-item:nth-child(even){flex-direction:row;padding-left:60px;padding-right:0;text-align:left}.timeline-dot{left:20px}}
+    </style>
+</head>
+<body>
+    <canvas id="starsCanvas"></canvas>
+    <section class="hero">
+        <div class="hero-eyebrow">สรุปหนังสือระดับตำนาน</div>
+        <h1 class="hero-title">A Brief History<br>of Time</h1>
+        <div class="hero-subtitle">การเดินทางข้ามกาลเวลา สู่ความลับของจักรวาล</div>
+        <div class="hero-author">
+            <div class="author-avatar">🧠</div>
+            <div class="author-info">
+                <div class="author-name">Stephen Hawking</div>
+                <div class="author-title">นักฟิสิกส์ทฤษฎีผู้ยิ่งใหญ่ที่สุดแห่งยุค</div>
+            </div>
+        </div>
+        <p class="hero-intro">หนังสือที่ขายดีกว่า 25 ล้านเล่มทั่วโลก แปลมากกว่า 40 ภาษา<br>ทำให้คนธรรมดาเข้าใจความลึกลับของจักรวาลได้เป็นครั้งแรก</p>
+        <div class="scroll-indicator">
+            <span class="scroll-text">เริ่มการเดินทาง</span>
+            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </div>
+    </section>
+
+    <section class="prologue">
+        <div class="prologue-icon">🐢</div>
+        <h2 class="prologue-title">เต่าและจักรวาล</h2>
+        <div class="prologue-text">
+            <p>Hawking เปิดเรื่องด้วยเกร็ดเล็กๆ ที่ชวนให้คิด...</p>
+            <p>มีนักวิทยาศาสตร์คนหนึ่งบรรยายเรื่องจักรวาล เมื่อจบการบรรยาย <span class="highlight-gold">หญิงชราคนหนึ่ง</span>ลุกขึ้นแล้วพูดว่า "ที่คุณพูดมาทั้งหมดนั้นเป็นเรื่องไร้สาระ! โลกแบนและวางอยู่บนหลังเต่ายักษ์ต่างหาก!"</p>
+            <p>นักวิทยาศาสตร์ยิ้มแล้วถามว่า "แล้วเต่าตัวนั้นยืนอยู่บนอะไรล่ะครับ?"</p>
+            <p>หญิงชราตอบอย่างมั่นใจว่า <span class="highlight-pink">"คุณฉลาดมากนะหนุ่มน้อย แต่มันก็เป็นเต่าซ้อนกันลงไปเรื่อยๆ จนสุดนั่นแหละ!"</span></p>
+            <p>เรื่องนี้สะท้อนให้เห็นว่า มนุษย์พยายามหาคำตอบว่า <span class="highlight">จักรวาลมาจากไหน และมันทำงานอย่างไร</span> มาตั้งแต่โบราณ แต่ตอนนี้ วิทยาศาสตร์สามารถตอบคำถามเหล่านั้นได้แล้ว...</p>
+        </div>
+    </section>
+
+    <section class="chapter-section">
+        <div class="chapter-header">
+            <div class="chapter-label">บทที่ 1</div>
+            <h2 class="chapter-main-title">🌌 Big Bang — กำเนิดทุกสิ่ง</h2>
+            <p class="chapter-tagline">"ก่อนที่จะมี 'ก่อน' ก็มี Big Bang"</p>
+        </div>
+        <div class="chapter-content-wrapper">
+            <div class="chapter-visual">
+                <canvas id="bigbangCanvas" width="500" height="500"></canvas>
+                <p class="visual-caption">จักรวาลระเบิดจากจุดเดียวเมื่อ 13.8 พันล้านปีก่อน</p>
+            </div>
+            <div class="chapter-story">
+                <p class="story-text"><span class="story-opening">ล</span>องจินตนาการว่าคุณสามารถย้อนเวลากลับไปได้... คุณจะเห็นกาแล็กซีทั้งหลายเคลื่อนที่เข้าหากัน ดาวฤกษ์รวมตัว จักรวาลหดเล็กลงเรื่อยๆ จนในที่สุด ทุกอย่างถูกบีบอัดอยู่ใน <span class="highlight-gold">จุดเดียวที่เล็กกว่าอะตอม</span></p>
+                <p class="story-text">จุดนั้นเรียกว่า <span class="highlight">"Singularity"</span> หรือภาวะเอกฐาน มีความหนาแน่นและอุณหภูมิสูงเป็นอนันต์ กฎฟิสิกส์ทั้งหมดที่เรารู้จักใช้ไม่ได้ ณ จุดนั้น</p>
+                <p class="story-text">แล้วเมื่อ <span class="highlight-pink">13.8 พันล้านปีก่อน</span> มันระเบิดออก! ไม่ใช่ระเบิดในอวกาศ แต่เป็นการระเบิดที่สร้างอวกาศและเวลาขึ้นมาพร้อมกัน</p>
+                <div class="insight-box">
+                    <div class="insight-title">ความเข้าใจผิดที่พบบ่อย</div>
+                    <p class="insight-text">Big Bang ไม่ได้ระเบิด "ที่ไหนสักแห่ง" ในอวกาศ เพราะก่อน Big Bang ไม่มีอวกาศให้ระเบิด! มันคือการกำเนิดของอวกาศและเวลาพร้อมกัน ดังนั้นคำถามว่า "Big Bang เกิดที่ไหน?" จึงไม่มีความหมาย</p>
+                </div>
+                <div class="fun-fact">
+                    <div class="fun-fact-title">🎯 รู้หรือไม่?</div>
+                    <p>ในช่วงเสี้ยววินาทีแรกหลัง Big Bang จักรวาลขยายตัวเร็วกว่าแสง! สิ่งนี้ไม่ขัดกับทฤษฎีสัมพัทธภาพ เพราะเป็นอวกาศเองที่ขยาย ไม่ใช่วัตถุเคลื่อนที่ผ่านอวกาศ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter-section">
+        <div class="chapter-header">
+            <div class="chapter-label">บทที่ 2</div>
+            <h2 class="chapter-main-title">🕸️ Space-Time — ผ้าใบแห่งจักรวาล</h2>
+            <p class="chapter-tagline">"อวกาศและเวลาไม่ได้แยกจากกัน แต่ถักทอเป็นหนึ่งเดียว"</p>
+        </div>
+        <div class="chapter-content-wrapper reverse">
+            <div class="chapter-visual">
+                <canvas id="spacetimeCanvas" width="500" height="500"></canvas>
+                <p class="visual-caption">มวลทำให้ Space-Time โค้งงอ สร้างแรงโน้มถ่วง</p>
+            </div>
+            <div class="chapter-story">
+                <p class="story-text"><span class="story-opening">ก</span>่อน Einstein มนุษย์เชื่อว่าอวกาศเป็นเหมือน "เวที" ที่ว่างเปล่า และเวลาไหลผ่านไปอย่างสม่ำเสมอเหมือนกันทุกที่</p>
+                <p class="story-text">แต่ Einstein พิสูจน์ว่าความเชื่อนั้นผิด! ในปี 1905 เขาเสนอ <span class="highlight">ทฤษฎีสัมพัทธภาพพิเศษ</span> ที่บอกว่าเวลาไม่ได้เท่ากันสำหรับทุกคน</p>
+                <div class="analogy-box">
+                    <div class="analogy-title">🎯 เปรียบเทียบให้เข้าใจ</div>
+                    <p>ลองนึกภาพผ้าใบยืดหยุ่นที่ขึงตึง เมื่อคุณวางลูกโบว์ลิ่งลงไป ผ้าใบจะบุ๋มลง ถ้าคุณกลิ้งลูกหินเล็กๆ ผ่านไป มันจะโค้งเข้าหาลูกโบว์ลิ่ง นี่คือวิธีที่แรงโน้มถ่วงทำงาน!</p>
+                </div>
+                <div class="insight-box">
+                    <div class="insight-title">ผลลัพธ์ที่น่าทึ่ง</div>
+                    <p class="insight-text">ใกล้วัตถุที่มีมวลมาก เวลาจะเดินช้าลง! นักบินอวกาศบน ISS แก่ช้ากว่าคนบนโลกเล็กน้อย และนาฬิกา GPS ต้องปรับแก้ผลของสัมพัทธภาพทุกวัน</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter-section">
+        <div class="chapter-header">
+            <div class="chapter-label">บทที่ 3</div>
+            <h2 class="chapter-main-title">🕳️ Black Holes — สัตว์ประหลาดแห่งจักรวาล</h2>
+            <p class="chapter-tagline">"แม้แต่แสงก็หนีไม่พ้น"</p>
+        </div>
+        <div class="chapter-content-wrapper">
+            <div class="chapter-visual">
+                <canvas id="blackholeCanvas" width="500" height="500"></canvas>
+                <p class="visual-caption">หลุมดำกลืนกินทุกสิ่ง แม้แต่แสง</p>
+            </div>
+            <div class="chapter-story">
+                <p class="story-text"><span class="story-opening">ห</span>ลุมดำคือหนึ่งในสิ่งที่ประหลาดที่สุดในจักรวาล เกิดจากดาวฤกษ์ขนาดใหญ่ที่ยุบตัวลงเมื่อหมดเชื้อเพลิง</p>
+                <p class="story-text">รอบๆ หลุมดำมีขอบเขตเรียกว่า <span class="highlight">"Event Horizon"</span> หรือขอบฟ้าเหตุการณ์ เมื่อผ่านขอบนี้ไปแล้ว <span class="highlight-pink">ไม่มีอะไรหนีออกมาได้</span></p>
+                <div class="insight-box">
+                    <div class="insight-title">การค้นพบของ Hawking</div>
+                    <p class="insight-text">Hawking ค้นพบว่าหลุมดำไม่ได้ดำสนิท! มันปล่อยรังสีออกมาอย่างช้าๆ เรียกว่า <span class="highlight-gold">"Hawking Radiation"</span> ซึ่งหมายความว่าในที่สุด หลุมดำจะระเหยหายไป</p>
+                </div>
+                <div class="fun-fact">
+                    <div class="fun-fact-title">🎯 น่าทึ่ง!</div>
+                    <p>ถ้าคุณตกลงไปในหลุมดำ จากมุมมองของคนข้างนอก คุณจะดูเหมือนหยุดนิ่งอยู่ที่ Event Horizon ตลอดไป! แต่จากมุมมองของคุณเอง คุณจะผ่านเข้าไปภายในไม่กี่วินาที</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter-section">
+        <div class="chapter-header">
+            <div class="chapter-label">บทที่ 4</div>
+            <h2 class="chapter-main-title">⚛️ Quantum Mechanics — โลกที่ไม่แน่นอน</h2>
+            <p class="chapter-tagline">"พระเจ้าเล่นลูกเต๋า" — หรือเปล่า?</p>
+        </div>
+        <div class="chapter-content-wrapper reverse">
+            <div class="chapter-visual">
+                <canvas id="quantumCanvas" width="500" height="500"></canvas>
+                <p class="visual-caption">อนุภาคอยู่ได้หลายที่พร้อมกัน จนกว่าจะถูกสังเกต</p>
+            </div>
+            <div class="chapter-story">
+                <p class="story-text"><span class="story-opening">เ</span>มื่อเราซูมเข้าไปในระดับอะตอม กฎฟิสิกส์ที่คุ้นเคยใช้ไม่ได้อีกต่อไป! อนุภาคสามารถอยู่ได้ <span class="highlight-pink">หลายที่พร้อมกัน</span> จนกว่าจะถูกสังเกต</p>
+                <p class="story-text">Werner Heisenberg ค้นพบ <span class="highlight">หลักความไม่แน่นอน</span> — เราไม่มีทางรู้ตำแหน่งและความเร็วของอนุภาคได้พร้อมกันอย่างแม่นยำ</p>
+                <div class="analogy-box">
+                    <div class="analogy-title">🎯 เปรียบเทียบให้เข้าใจ</div>
+                    <p>เหมือนการถ่ายรูปคนวิ่ง — ถ้าต้องการภาพชัด จะไม่เห็นการเคลื่อนไหว ถ้าต้องการเห็นการเคลื่อนไหว ภาพจะเบลอ ในควอนตัม นี่เป็นธรรมชาติพื้นฐานของความจริง!</p>
+                </div>
+                <p class="story-text">Einstein บอกว่า <span class="highlight-gold">"พระเจ้าไม่เล่นลูกเต๋ากับจักรวาล"</span> แต่ Hawking ตอบว่า "ไม่เพียงแต่พระเจ้าเล่นลูกเต๋า แต่บางทียังโยนมันไปที่ที่มองไม่เห็นด้วย!"</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter-section">
+        <div class="chapter-header">
+            <div class="chapter-label">บทที่ 5</div>
+            <h2 class="chapter-main-title">⏰ Arrow of Time — ลูกศรแห่งเวลา</h2>
+            <p class="chapter-tagline">"ทำไมเราถึงจำอดีตได้ แต่ไม่ใช่อนาคต?"</p>
+        </div>
+        <div class="chapter-content-wrapper">
+            <div class="chapter-visual">
+                <canvas id="timeCanvas" width="500" height="500"></canvas>
+                <p class="visual-caption">สามลูกศรแห่งเวลาชี้ไปทิศทางเดียวกัน</p>
+            </div>
+            <div class="chapter-story">
+                <p class="story-text"><span class="story-opening">ท</span>ำไมเวลาถึงไหลไปข้างหน้าเท่านั้น? ทำไมเราเห็นแก้วแตกกระจาย แต่ไม่เห็นเศษแก้วรวมตัวกลับเป็นแก้ว?</p>
+                <div class="insight-box">
+                    <div class="insight-title">สามลูกศรแห่งเวลา</div>
+                    <p class="insight-text">
+                        <strong style="color:var(--gold)">1. Thermodynamic Arrow:</strong> ความไม่เป็นระเบียบเพิ่มขึ้นเสมอ<br><br>
+                        <strong style="color:var(--blue)">2. Psychological Arrow:</strong> เราจำอดีตได้ ไม่ใช่อนาคต<br><br>
+                        <strong style="color:var(--pink)">3. Cosmological Arrow:</strong> จักรวาลขยายตัว ไม่หดตัว
+                    </p>
+                </div>
+                <p class="story-text">Hawking อธิบายว่าลูกศรทั้งสามชี้ไปทิศทางเดียวกันไม่ใช่เรื่องบังเอิญ <span class="highlight">สิ่งมีชีวิตอย่างเราสามารถดำรงอยู่ได้</span> ก็เพราะว่าลูกศรเหล่านี้ชี้ไปทางเดียวกัน</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter-section">
+        <div class="chapter-header">
+            <div class="chapter-label">บทที่ 6</div>
+            <h2 class="chapter-main-title">🔮 Theory of Everything — ความฝันสูงสุด</h2>
+            <p class="chapter-tagline">"เมื่อเราเข้าใจจักรวาลทั้งหมด เราจะรู้จักความคิดของพระเจ้า"</p>
+        </div>
+        <div class="chapter-content-wrapper reverse">
+            <div class="chapter-visual">
+                <canvas id="unifiedCanvas" width="500" height="500"></canvas>
+                <p class="visual-caption">การรวมทฤษฎีสัมพัทธภาพและควอนตัม</p>
+            </div>
+            <div class="chapter-story">
+                <p class="story-text"><span class="story-opening">ค</span>วามฝันใหญ่ที่สุดของนักฟิสิกส์คือการค้นหา <span class="highlight-gold">"Theory of Everything"</span> — ทฤษฎีเดียวที่อธิบายทุกสิ่งในจักรวาล</p>
+                <div class="insight-box">
+                    <div class="insight-title">ความขัดแย้งใหญ่</div>
+                    <p class="insight-text">
+                        <strong style="color:var(--gold)">ทฤษฎีสัมพัทธภาพ</strong> อธิบายสิ่งใหญ่ๆ ได้ดี — ดาว กาแล็กซี หลุมดำ<br><br>
+                        <strong style="color:var(--blue)">กลศาสตร์ควอนตัม</strong> อธิบายอนุภาคเล็กๆ ได้แม่นยำ<br><br>
+                        แต่เมื่อลองรวมกัน สมการจะให้คำตอบเป็นอนันต์!
+                    </p>
+                </div>
+                <p class="story-text">Hawking เชื่อว่าวันหนึ่งเราจะค้นพบทฤษฎีนี้ นั่นจะเป็น <span class="highlight-pink">"ชัยชนะสูงสุดของเหตุผลมนุษย์"</span></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter-section">
+        <div class="chapter-header">
+            <div class="chapter-label">บทที่ 7</div>
+            <h2 class="chapter-main-title">🌀 Wormholes — ทางลัดข้ามจักรวาล</h2>
+            <p class="chapter-tagline">"ถ้าการเดินทางข้ามเวลาเป็นไปได้ นักท่องเวลาจากอนาคตอยู่ไหน?"</p>
+        </div>
+        <div class="chapter-content-wrapper">
+            <div class="chapter-visual">
+                <canvas id="wormholeCanvas" width="500" height="500"></canvas>
+                <p class="visual-caption">Wormhole เชื่อมต่อจุดห่างไกลใน Space-Time</p>
+            </div>
+            <div class="chapter-story">
+                <p class="story-text"><span class="story-opening">ท</span>ฤษฎีสัมพัทธภาพเปิดโอกาสให้มี <span class="highlight">"Wormholes"</span> — ทางลัดที่เชื่อมต่อจุดห่างไกลในอวกาศหรือเวลา!</p>
+                <div class="insight-box">
+                    <div class="insight-title">ปัญหาของการเดินทางข้ามเวลา</div>
+                    <p class="insight-text">Hawking ตั้งคำถาม: <span class="highlight-pink">"ถ้าการเดินทางข้ามเวลาเป็นไปได้ ทำไมเราไม่เห็นนักท่องเวลาจากอนาคต?"</span></p>
+                </div>
+                <div class="fun-fact">
+                    <div class="fun-fact-title">🎯 Grandfather Paradox</div>
+                    <p>ถ้าคุณย้อนเวลาไปฆ่าปู่ก่อนที่เขาจะมีลูก คุณจะไม่เกิด แต่ถ้าคุณไม่เกิด ใครจะย้อนเวลาไปฆ่าเขา?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="scientists-section">
+        <h2 class="scientists-title">🔬 ยักษ์ใหญ่แห่งวงการฟิสิกส์</h2>
+        <div class="scientists-grid">
+            <div class="scientist-card">
+                <div class="scientist-icon">🍎</div>
+                <h3 class="scientist-name">Isaac Newton</h3>
+                <p class="scientist-era">1643 - 1727</p>
+                <p class="scientist-contribution">ค้นพบกฎแรงโน้มถ่วงและกฎการเคลื่อนที่</p>
+            </div>
+            <div class="scientist-card">
+                <div class="scientist-icon">💡</div>
+                <h3 class="scientist-name">Albert Einstein</h3>
+                <p class="scientist-era">1879 - 1955</p>
+                <p class="scientist-contribution">ปฏิวัติฟิสิกส์ด้วยทฤษฎีสัมพัทธภาพ</p>
+            </div>
+            <div class="scientist-card">
+                <div class="scientist-icon">🔭</div>
+                <h3 class="scientist-name">Edwin Hubble</h3>
+                <p class="scientist-era">1889 - 1953</p>
+                <p class="scientist-contribution">ค้นพบว่าจักรวาลกำลังขยายตัว</p>
+            </div>
+            <div class="scientist-card">
+                <div class="scientist-icon">⚛️</div>
+                <h3 class="scientist-name">Werner Heisenberg</h3>
+                <p class="scientist-era">1901 - 1976</p>
+                <p class="scientist-contribution">ค้นพบหลักความไม่แน่นอน</p>
+            </div>
+            <div class="scientist-card">
+                <div class="scientist-icon">🧠</div>
+                <h3 class="scientist-name">Stephen Hawking</h3>
+                <p class="scientist-era">1942 - 2018</p>
+                <p class="scientist-contribution">ค้นพบว่าหลุมดำปล่อยรังสี</p>
+            </div>
+            <div class="scientist-card">
+                <div class="scientist-icon">🌌</div>
+                <h3 class="scientist-name">Roger Penrose</h3>
+                <p class="scientist-era">1931 - ปัจจุบัน</p>
+                <p class="scientist-contribution">Nobel Prize 2020</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+        <h2 class="timeline-title">🕐 ไทม์ไลน์จักรวาล</h2>
+        <p class="timeline-subtitle">จากความว่างเปล่า สู่ความมหัศจรรย์ที่เราเห็นทุกวันนี้</p>
+        <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-item"><div class="timeline-content"><div class="timeline-time">0 วินาที</div><div class="timeline-event">Big Bang 💥</div><div class="timeline-detail">จักรวาลเริ่มต้นจาก Singularity</div></div><div class="timeline-dot"></div></div>
+            <div class="timeline-item"><div class="timeline-content"><div class="timeline-time">3 นาที</div><div class="timeline-event">นิวเคลียสแรก 🔵</div><div class="timeline-detail">ไฮโดรเจนและฮีเลียมก่อตัว</div></div><div class="timeline-dot"></div></div>
+            <div class="timeline-item"><div class="timeline-content"><div class="timeline-time">380,000 ปี</div><div class="timeline-event">แสงแรก 🌅</div><div class="timeline-detail">อะตอมก่อตัว แสงเดินทางได้อิสระ</div></div><div class="timeline-dot"></div></div>
+            <div class="timeline-item"><div class="timeline-content"><div class="timeline-time">200 ล้านปี</div><div class="timeline-event">ดาวดวงแรก ⭐</div><div class="timeline-detail">แก๊สรวมตัวจุดปฏิกิริยานิวเคลียร์</div></div><div class="timeline-dot"></div></div>
+            <div class="timeline-item"><div class="timeline-content"><div class="timeline-time">9.2 พันล้านปี</div><div class="timeline-event">ระบบสุริยะ 🌍</div><div class="timeline-detail">ดวงอาทิตย์และโลกก่อตัว</div></div><div class="timeline-dot"></div></div>
+            <div class="timeline-item"><div class="timeline-content"><div class="timeline-time">13.8 พันล้านปี</div><div class="timeline-event">ปัจจุบัน 👁️</div><div class="timeline-detail">มนุษย์ตั้งคำถามว่า "เราอยู่ที่ไหน?"</div></div><div class="timeline-dot"></div></div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <div class="quote-marks">"</div>
+        <blockquote class="quote-text">หากเราค้นพบทฤษฎีที่สมบูรณ์ มันจะเป็นชัยชนะสูงสุดของเหตุผลมนุษย์ เพราะเมื่อนั้น เราจะรู้จักความคิดของพระเจ้า</blockquote>
+        <div class="quote-author">— Stephen Hawking</div>
+        <div class="quote-context">A Brief History of Time, 1988</div>
+    </section>
+
+    <section class="conclusion">
+        <h2 class="conclusion-title">✨ สิ่งที่หนังสือเล่มนี้มอบให้</h2>
+        <p class="conclusion-text">"A Brief History of Time" ไม่ใช่แค่หนังสือวิทยาศาสตร์ มันคือการเดินทางที่เปลี่ยนมุมมองต่อจักรวาลและตัวเอง</p>
+        <div class="takeaways">
+            <div class="takeaway-card"><div class="takeaway-icon">🌌</div><h3 class="takeaway-title">จักรวาลมีจุดเริ่มต้น</h3><p class="takeaway-text">Big Bang เกิดขึ้นเมื่อ 13.8 พันล้านปีก่อน และจักรวาลยังขยายตัวอยู่</p></div>
+            <div class="takeaway-card"><div class="takeaway-icon">⏱️</div><h3 class="takeaway-title">เวลาไม่สัมบูรณ์</h3><p class="takeaway-text">เวลาไหลไม่เท่ากันสำหรับทุกคน ขึ้นอยู่กับความเร็วและแรงโน้มถ่วง</p></div>
+            <div class="takeaway-card"><div class="takeaway-icon">🔮</div><h3 class="takeaway-title">ความไม่แน่นอนเป็นธรรมชาติ</h3><p class="takeaway-text">ในระดับพื้นฐาน ความน่าจะเป็นคือธรรมชาติของความจริง</p></div>
+            <div class="takeaway-card"><div class="takeaway-icon">🧩</div><h3 class="takeaway-title">ยังมีอีกมากที่ไม่รู้</h3><p class="takeaway-text">Theory of Everything ยังรอการค้นพบ</p></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-credit">Created with ❤️ by <span>Tomz</span></div>
+        <p class="footer-source">สรุปจากหนังสือ "A Brief History of Time" โดย Stephen Hawking (1988)</p>
+        <div class="footer-stats">
+            <div class="stat-item"><div class="stat-number">25M+</div><div class="stat-label">เล่มที่ขายได้</div></div>
+            <div class="stat-item"><div class="stat-number">40+</div><div class="stat-label">ภาษาที่แปล</div></div>
+            <div class="stat-item"><div class="stat-number">237</div><div class="stat-label">สัปดาห์ใน Bestseller</div></div>
+        </div>
+        <div class="tomz-logo"><span>🚀</span><span>Enersys Co., Ltd.</span></div>
+        <p class="footer-note">"Look up at the stars and not down at your feet." — Stephen Hawking</p>
+    </footer>
+
+    <script>
+        // Stars
+        const starsCanvas=document.getElementById('starsCanvas'),starsCtx=starsCanvas.getContext('2d');
+        function resizeStars(){starsCanvas.width=window.innerWidth;starsCanvas.height=document.body.scrollHeight}
+        resizeStars();window.addEventListener('resize',resizeStars);
+        const stars=[];for(let i=0;i<500;i++)stars.push({x:Math.random()*starsCanvas.width,y:Math.random()*starsCanvas.height,r:Math.random()*2,o:Math.random(),s:Math.random()*.02+.005});
+        function drawStars(){starsCtx.clearRect(0,0,starsCanvas.width,starsCanvas.height);stars.forEach(s=>{s.o+=s.s;if(s.o>1||s.o<.2)s.s=-s.s;starsCtx.beginPath();starsCtx.arc(s.x,s.y,s.r,0,Math.PI*2);starsCtx.fillStyle=`rgba(255,255,255,${s.o})`;starsCtx.fill()});requestAnimationFrame(drawStars)}drawStars();
+
+        // Big Bang
+        const bbC=document.getElementById('bigbangCanvas'),bbX=bbC.getContext('2d');let bbP=[],bbT=0;
+        function initBB(){bbP=[];for(let i=0;i<200;i++){const a=Math.random()*Math.PI*2,sp=Math.random()*4+.5;bbP.push({x:250,y:250,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,r:Math.random()*4+1,h:Math.random()*60+20,l:1})}}initBB();
+        function animBB(){bbX.fillStyle='rgba(10,10,26,.08)';bbX.fillRect(0,0,500,500);bbT++;if(bbT>250){bbT=0;initBB()}
+        const cs=Math.max(50-bbT*.2,5),g=bbX.createRadialGradient(250,250,0,250,250,cs);g.addColorStop(0,'rgba(255,255,255,.9)');g.addColorStop(.3,'rgba(255,215,0,.7)');g.addColorStop(1,'rgba(255,107,53,0)');bbX.beginPath();bbX.arc(250,250,cs,0,Math.PI*2);bbX.fillStyle=g;bbX.fill();
+        bbP.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vx*=.995;p.vy*=.995;p.l-=.003;if(p.l>0){bbX.beginPath();bbX.arc(p.x,p.y,p.r*p.l,0,Math.PI*2);bbX.fillStyle=`hsla(${p.h},100%,60%,${p.l})`;bbX.fill()}});requestAnimationFrame(animBB)}animBB();
+
+        // Space-Time
+        const stC=document.getElementById('spacetimeCanvas'),stX=stC.getContext('2d');let wT=0;
+        function animST(){stX.fillStyle='#0a0a1a';stX.fillRect(0,0,500,500);wT+=.015;const mX=250+Math.sin(wT)*40,mY=250+Math.cos(wT*.7)*30;
+        stX.strokeStyle='rgba(0,191,255,.3)';stX.lineWidth=1;
+        for(let y=0;y<=500;y+=25){stX.beginPath();for(let x=0;x<=500;x+=5){const dx=x-mX,dy=y-mY,d=Math.sqrt(dx*dx+dy*dy),w=d<180?Math.pow((180-d)/180,2)*40:0,wY=y+(dy/(d||1))*w;if(x===0)stX.moveTo(x,wY);else stX.lineTo(x,wY)}stX.stroke()}
+        for(let x=0;x<=500;x+=25){stX.beginPath();for(let y=0;y<=500;y+=5){const dx=x-mX,dy=y-mY,d=Math.sqrt(dx*dx+dy*dy),w=d<180?Math.pow((180-d)/180,2)*40:0,wX=x+(dx/(d||1))*w;if(y===0)stX.moveTo(wX,y);else stX.lineTo(wX,y)}stX.stroke()}
+        const sg=stX.createRadialGradient(mX,mY,0,mX,mY,40);sg.addColorStop(0,'#fff');sg.addColorStop(.2,'#ffd700');sg.addColorStop(.6,'#ff6b35');sg.addColorStop(1,'rgba(255,107,53,0)');stX.beginPath();stX.arc(mX,mY,40,0,Math.PI*2);stX.fillStyle=sg;stX.fill();
+        const pA=wT*2,pD=120,pX=mX+Math.cos(pA)*pD,pY=mY+Math.sin(pA)*pD*.4;stX.beginPath();stX.arc(pX,pY,8,0,Math.PI*2);stX.fillStyle='#00bfff';stX.fill();requestAnimationFrame(animST)}animST();
+
+        // Black Hole
+        const bhC=document.getElementById('blackholeCanvas'),bhX=bhC.getContext('2d');let bhT=0,bhP=[];
+        for(let i=0;i<150;i++)bhP.push({a:Math.random()*Math.PI*2,r:Math.random()*150+60,sp:Math.random()*.02+.01,sz:Math.random()*3+1,h:Math.random()*60+10});
+        function animBH(){bhX.fillStyle='rgba(10,10,26,.15)';bhX.fillRect(0,0,500,500);bhT+=.02;
+        bhP.forEach(p=>{p.a+=p.sp*(200/p.r);p.r-=.1;if(p.r<50)p.r=200;const x=250+Math.cos(p.a)*p.r,y=250+Math.sin(p.a)*p.r*.35,b=(200-p.r)/150;bhX.beginPath();bhX.arc(x,y,p.sz,0,Math.PI*2);bhX.fillStyle=`hsla(${p.h+b*30},100%,${50+b*30}%,${.5+b*.5})`;bhX.fill()});
+        const bg=bhX.createRadialGradient(250,250,0,250,250,55);bg.addColorStop(0,'#000');bg.addColorStop(.7,'#000');bg.addColorStop(.9,'rgba(255,0,100,.5)');bg.addColorStop(1,'rgba(255,0,100,0)');bhX.beginPath();bhX.arc(250,250,50,0,Math.PI*2);bhX.fillStyle=bg;bhX.fill();
+        for(let i=0;i<5;i++){const a=bhT*2+i*Math.PI*.4,d=55+Math.sin(bhT*3+i)*5,x=250+Math.cos(a)*d,y=250+Math.sin(a)*d;bhX.beginPath();bhX.arc(x,y,2,0,Math.PI*2);bhX.fillStyle=`rgba(255,255,255,${.5+Math.sin(bhT*5+i)*.3})`;bhX.fill()}requestAnimationFrame(animBH)}animBH();
+
+        // Quantum
+        const qC=document.getElementById('quantumCanvas'),qX=qC.getContext('2d');let qT=0;
+        function animQ(){qX.fillStyle='rgba(10,10,26,.1)';qX.fillRect(0,0,500,500);qT+=.03;
+        for(let w=0;w<3;w++){qX.strokeStyle=`hsla(${180+w*40},80%,60%,.5)`;qX.lineWidth=2;qX.beginPath();for(let x=0;x<500;x+=2){const y=250+Math.sin(x*.02+qT+w*1.5)*60*Math.sin(x*.008+w)*Math.cos(qT*.5);if(x===0)qX.moveTo(x,y);else qX.lineTo(x,y)}qX.stroke()}
+        for(let i=0;i<5;i++){const cX=100+i*80,cY=250+Math.sin(qT*2+i*.5)*30;for(let j=0;j<15;j++){const a=Math.random()*Math.PI*2,d=Math.random()*40,x=cX+Math.cos(a)*d,y=cY+Math.sin(a)*d;qX.beginPath();qX.arc(x,y,2.5,0,Math.PI*2);qX.fillStyle=`hsla(${200+i*20},100%,60%,${.3+Math.random()*.4})`;qX.fill()}}requestAnimationFrame(animQ)}animQ();
+
+        // Time Arrow
+        const tC=document.getElementById('timeCanvas'),tX=tC.getContext('2d');let tT=0;
+        function animT(){tX.fillStyle='#0a0a1a';tX.fillRect(0,0,500,500);tT+=.02;
+        [{y:120,c:'#ffd700',l:'Thermodynamic'},{y:250,c:'#00bfff',l:'Psychological'},{y:380,c:'#ff1493',l:'Cosmological'}].forEach((ar,i)=>{const p=(Math.sin(tT*1.5-i*.5)+1)/2,len=150+p*200,g=tX.createLinearGradient(50,ar.y,50+len,ar.y);g.addColorStop(0,'transparent');g.addColorStop(.2,ar.c+'33');g.addColorStop(1,ar.c);tX.strokeStyle=g;tX.lineWidth=6;tX.lineCap='round';tX.beginPath();tX.moveTo(50,ar.y);tX.lineTo(50+len,ar.y);tX.stroke();tX.fillStyle=ar.c;tX.beginPath();tX.moveTo(50+len+25,ar.y);tX.lineTo(50+len,ar.y-12);tX.lineTo(50+len,ar.y+12);tX.closePath();tX.fill();for(let j=0;j<8;j++){const px=50+(len*j/8)+Math.random()*10,py=ar.y+Math.sin(px*.05+tT*4)*8;tX.beginPath();tX.arc(px,py,3,0,Math.PI*2);tX.fill()}tX.fillStyle='#888';tX.font='14px Sarabun';tX.fillText('🔥 '+ar.l,50,ar.y+35)});tX.fillStyle='rgba(255,255,255,.2)';tX.font='bold 24px Playfair Display';tX.fillText('→ FUTURE',350,480);requestAnimationFrame(animT)}animT();
+
+        // Unified
+        const uC=document.getElementById('unifiedCanvas'),uX=uC.getContext('2d');let uT=0;
+        function animU(){uX.fillStyle='rgba(10,10,26,.08)';uX.fillRect(0,0,500,500);uT+=.015;const sep=100*Math.cos(uT),grX=250-sep,qmX=250+sep;
+        const grG=uX.createRadialGradient(grX,250,0,grX,250,70);grG.addColorStop(0,'rgba(255,215,0,.9)');grG.addColorStop(.5,'rgba(255,215,0,.4)');grG.addColorStop(1,'rgba(255,215,0,0)');uX.beginPath();uX.arc(grX,250,70,0,Math.PI*2);uX.fillStyle=grG;uX.fill();
+        const qmG=uX.createRadialGradient(qmX,250,0,qmX,250,70);qmG.addColorStop(0,'rgba(0,191,255,.9)');qmG.addColorStop(.5,'rgba(0,191,255,.4)');qmG.addColorStop(1,'rgba(0,191,255,0)');uX.beginPath();uX.arc(qmX,250,70,0,Math.PI*2);uX.fillStyle=qmG;uX.fill();
+        for(let i=0;i<40;i++){const t=i/40,x=grX+(qmX-grX)*t,y=250+Math.sin(t*Math.PI*5+uT*4)*40*Math.sin(t*Math.PI);uX.beginPath();uX.arc(x,y,3,0,Math.PI*2);uX.fillStyle=`hsl(${40+t*160},100%,60%)`;uX.fill()}
+        uX.fillStyle='#ffd700';uX.font='14px Sarabun';uX.textAlign='center';uX.fillText('สัมพัทธภาพ',grX,340);uX.fillStyle='#00bfff';uX.fillText('ควอนตัม',qmX,340);
+        if(Math.abs(sep)<30){const op=1-Math.abs(sep)/30;uX.fillStyle=`rgba(255,255,255,${op})`;uX.font='bold 60px Playfair Display';uX.fillText('?',250,270)}uX.textAlign='left';requestAnimationFrame(animU)}animU();
+
+        // Wormhole
+        const whC=document.getElementById('wormholeCanvas'),whX=whC.getContext('2d');let whT=0;
+        function animWH(){whX.fillStyle='rgba(10,10,26,.1)';whX.fillRect(0,0,500,500);whT+=.02;
+        for(let r=0;r<8;r++){const rad=30+r*12+Math.sin(whT*2+r*.5)*5;whX.beginPath();whX.arc(120,250,rad,0,Math.PI*2);whX.strokeStyle=`hsla(${280+r*10},80%,60%,${.5-r*.05})`;whX.lineWidth=2;whX.stroke();whX.beginPath();whX.arc(380,250,rad,0,Math.PI*2);whX.strokeStyle=`hsla(${200+r*10},80%,60%,${.5-r*.05})`;whX.stroke()}
+        whX.strokeStyle='rgba(255,255,255,.2)';whX.lineWidth=1;for(let i=0;i<20;i++){whX.beginPath();whX.moveTo(120,250-30+Math.sin(whT+i*.3)*5);whX.bezierCurveTo(200,250-60+Math.sin(whT*1.5+i*.3)*20,300,250+60+Math.cos(whT*1.5+i*.3)*20,380,250-30+Math.sin(whT+i*.3+Math.PI)*5);whX.stroke();whX.beginPath();whX.moveTo(120,250+30+Math.sin(whT+i*.3)*5);whX.bezierCurveTo(200,250+60+Math.sin(whT*1.5+i*.3)*20,300,250-60+Math.cos(whT*1.5+i*.3)*20,380,250+30+Math.sin(whT+i*.3+Math.PI)*5);whX.stroke()}
+        for(let i=0;i<10;i++){const t=((whT*.3+i*.1)%1),x=120+(380-120)*t,yO=Math.sin(t*Math.PI)*40*Math.sin(whT*2+i),y=250+yO;whX.beginPath();whX.arc(x,y,4,0,Math.PI*2);whX.fillStyle=`hsl(${t*80+200},100%,70%)`;whX.fill()}
+        whX.fillStyle='#888';whX.font='12px Sarabun';whX.textAlign='center';whX.fillText('Point A',120,380);whX.fillText('Point B',380,380);whX.fillText('ทางลัดข้าม Space-Time',250,450);whX.textAlign='left';requestAnimationFrame(animWH)}animWH();
+    </script>
+</body>
+</html>
