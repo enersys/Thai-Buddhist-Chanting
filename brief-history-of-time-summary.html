@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Brief History of Time - สรุปหนังสือ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a1a;
+            min-height: 100vh;
+            font-family: 'Sarabun', sans-serif;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffd700, #ff6b35, #ff1493, #00bfff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3)); }
+            to { filter: drop-shadow(0 0 40px rgba(255, 107, 53, 0.5)); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-author {
+            font-size: 1.2rem;
+            color: #ffd700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        .scroll-indicator svg {
+            width: 40px;
+            height: 40px;
+            fill: #ffd700;
+            opacity: 0.7;
+        }
+
+        .chapters-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .chapter {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 8rem;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .chapter:nth-child(even) {
+            direction: rtl;
+        }
+
+        .chapter:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chapter-visual {
+            position: relative;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chapter-visual canvas {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 191, 255, 0.2);
+        }
+
+        .chapter-content {
+            padding: 2rem;
+        }
+
+        .chapter-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: rgba(255, 215, 0, 0.1);
+            line-height: 1;
+            margin-bottom: -2rem;
+        }
+
+        .chapter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .chapter-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #ffd700, transparent);
+        }
+
+        .chapter-text {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #b0b0b0;
+        }
+
+        .chapter-text strong {
+            color: #00bfff;
+        }
+
+        .key-concept {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 191, 255, 0.1));
+            border-left: 4px solid #ffd700;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .key-concept h4 {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .timeline {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 4rem 2rem;
+        }
+
+        .timeline-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 4rem;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 150px;
+            bottom: 100px;
+            width: 2px;
+            background: linear-gradient(to bottom, #ffd700, #00bfff, #ff1493);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .quote-section {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(0, 191, 255, 0.05));
+        }
+
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-style: italic;
+            color: #ffd700;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            margin-top: 2rem;
+            color: #888;
+            font-size: 1.2rem;
+        }
+
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #666;
+        }
+
+        @media (max-width: 900px) {
+            .chapter {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .chapter:nth-child(even) {
+                direction: ltr;
+            }
+
+            .timeline-line {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: row;
+                padding-left: 50px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas class="stars-container" id="starsCanvas"></canvas>
+
+    <section class="hero">
+        <div class="hero-subtitle">สรุปหนังสือ</div>
+        <h1 class="hero-title">A Brief History of Time</h1>
+        <div class="hero-author">Stephen Hawking</div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </div>
+    </section>
+
+    <div class="chapters-container">
+        <!-- Chapter 1: Big Bang -->
+        <div class="chapter" style="animation-delay: 0.1s">
+            <div class="chapter-visual">
+                <canvas id="bigbangCanvas" width="400" height="400"></canvas>
+            </div>
+            <div class="chapter-content">
+                <div class="chapter-number">01</div>
+                <h2 class="chapter-title">Big Bang - จุดกำเนิดจักรวาล</h2>
+                <p class="chapter-text">
+                    เมื่อประมาณ <strong>13.8 พันล้านปีก่อน</strong> จักรวาลทั้งหมดถูกบีบอัดอยู่ในจุดเดียวที่มีความหนาแน่นและร้อนมหาศาล 
+                    จุดนี้เรียกว่า <strong>"Singularity"</strong> หรือภาวะเอกฐาน
+                </p>
+                <div class="key-concept">
+                    <h4>💡 แนวคิดสำคัญ</h4>
+                    <p>เวลาและอวกาศเริ่มต้นพร้อมกับ Big Bang ก่อนหน้านั้นไม่มี "ก่อน" เพราะเวลายังไม่มีตัวตน!</p>
+                </div>
+                <p class="chapter-text">
+                    จักรวาลขยายตัวออกอย่างรวดเร็ว และยังคงขยายตัวอยู่จนถึงทุกวันนี้ 
+                    นักดาราศาสตร์ <strong>Edwin Hubble</strong> ค้นพบว่ากาแล็กซีกำลังเคลื่อนที่ออกห่างจากเรา
+                </p>
+            </div>
+        </div>
+
+        <!-- Chapter 2: Space-Time -->
+        <div class="chapter" style="animation-delay: 0.2s">
+            <div class="chapter-visual">
+                <canvas id="spacetimeCanvas" width="400" height="400"></canvas>
+            </div>
+            <div class="chapter-content">
+                <div class="chapter-number">02</div>
+                <h2 class="chapter-title">อวกาศ-เวลา (Space-Time)</h2>
+                <p class="chapter-text">
+                    <strong>Einstein</strong> ค้นพบว่าอวกาศและเวลาไม่ได้แยกจากกัน แต่เป็นสิ่งเดียวกันเรียกว่า 
+                    <strong>"Space-Time"</strong> หรือ กาล-อวกาศ
+                </p>
+                <div class="key-concept">
+                    <h4>💡 แนวคิดสำคัญ</h4>
+                    <p>วัตถุที่มีมวลมาก เช่น ดวงอาทิตย์ จะทำให้ Space-Time โค้งงอ เหมือนลูกบอลหนักวางบนผ้าใบ!</p>
+                </div>
+                <p class="chapter-text">
+                    นี่คือเหตุผลว่าทำไมแรงโน้มถ่วงจึงมีอยู่ - วัตถุไม่ได้ "ถูกดึง" แต่มันเคลื่อนที่ไปตาม 
+                    <strong>ความโค้งของ Space-Time</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- Chapter 3: Black Holes -->
+        <div class="chapter" style="animation-delay: 0.3s">
+            <div class="chapter-visual">
+                <canvas id="blackholeCanvas" width="400" height="400"></canvas>
+            </div>
+            <div class="chapter-content">
+                <div class="chapter-number">03</div>
+                <h2 class="chapter-title">หลุมดำ (Black Holes)</h2>
+                <p class="chapter-text">
+                    หลุมดำคือบริเวณที่แรงโน้มถ่วงรุนแรงมากจน <strong>แม้แต่แสงก็หนีไม่พ้น</strong> 
+                    เกิดจากดาวฤกษ์ขนาดใหญ่ที่ยุบตัวลงเมื่อหมดเชื้อเพลิง
+                </p>
+                <div class="key-concept">
+                    <h4>💡 Hawking Radiation</h4>
+                    <p>Hawking ค้นพบว่าหลุมดำไม่ได้ดำสนิท! มันปล่อยรังสีออกมาอย่างช้าๆ และจะระเหยหายไปในที่สุด</p>
+                </div>
+                <p class="chapter-text">
+                    ขอบเขตที่แสงหนีไม่ได้เรียกว่า <strong>"Event Horizon"</strong> หรือขอบฟ้าเหตุการณ์ 
+                    เมื่อผ่านจุดนี้ไปแล้ว ไม่มีทางกลับ
+                </p>
+            </div>
+        </div>
+
+        <!-- Chapter 4: Quantum Mechanics -->
+        <div class="chapter" style="animation-delay: 0.4s">
+            <div class="chapter-visual">
+                <canvas id="quantumCanvas" width="400" height="400"></canvas>
+            </div>
+            <div class="chapter-content">
+                <div class="chapter-number">04</div>
+                <h2 class="chapter-title">กลศาสตร์ควอนตัม</h2>
+                <p class="chapter-text">
+                    ในระดับอะตอมและอนุภาค กฎฟิสิกส์ที่เราคุ้นเคยใช้ไม่ได้! 
+                    <strong>Heisenberg</strong> ค้นพบหลักความไม่แน่นอน
+                </p>
+                <div class="key-concept">
+                    <h4>💡 หลักความไม่แน่นอน</h4>
+                    <p>เราไม่สามารถรู้ตำแหน่งและความเร็วของอนุภาคได้พร้อมกันอย่างแม่นยำ ยิ่งรู้อย่างหนึ่งแม่น อีกอย่างจะยิ่งคลาดเคลื่อน!</p>
+                </div>
+                <p class="chapter-text">
+                    อนุภาคสามารถอยู่หลายที่พร้อมกันจน <strong>ถูกสังเกต</strong> 
+                    นี่คือความแปลกของโลกควอนตัม
+                </p>
+            </div>
+        </div>
+
+        <!-- Chapter 5: Arrow of Time -->
+        <div class="chapter" style="animation-delay: 0.5s">
+            <div class="chapter-visual">
+                <canvas id="timeCanvas" width="400" height="400"></canvas>
+            </div>
+            <div class="chapter-content">
+                <div class="chapter-number">05</div>
+                <h2 class="chapter-title">ลูกศรแห่งเวลา</h2>
+                <p class="chapter-text">
+                    ทำไมเวลาถึงไหลไปข้างหน้าเท่านั้น? Hawking อธิบายว่ามี <strong>3 ลูกศรแห่งเวลา</strong>
+                </p>
+                <div class="key-concept">
+                    <h4>💡 สามลูกศรแห่งเวลา</h4>
+                    <p>
+                        1. <strong>Thermodynamic Arrow</strong> - ความไม่เป็นระเบียบเพิ่มขึ้น<br>
+                        2. <strong>Psychological Arrow</strong> - เราจำอดีตได้ ไม่ใช่อนาคต<br>
+                        3. <strong>Cosmological Arrow</strong> - จักรวาลขยายตัว ไม่หดตัว
+                    </p>
+                </div>
+                <p class="chapter-text">
+                    ลูกศรทั้งสามชี้ไปทิศทางเดียวกัน ทำให้เรา <strong>รับรู้เวลาไหลไปข้างหน้า</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- Chapter 6: Unified Theory -->
+        <div class="chapter" style="animation-delay: 0.6s">
+            <div class="chapter-visual">
+                <canvas id="unifiedCanvas" width="400" height="400"></canvas>
+            </div>
+            <div class="chapter-content">
+                <div class="chapter-number">06</div>
+                <h2 class="chapter-title">ทฤษฎีรวมทุกอย่าง</h2>
+                <p class="chapter-text">
+                    ความฝันของนักฟิสิกส์คือการหา <strong>"Theory of Everything"</strong> 
+                    ทฤษฎีเดียวที่อธิบายทุกอย่างในจักรวาล
+                </p>
+                <div class="key-concept">
+                    <h4>💡 ปัญหาใหญ่</h4>
+                    <p>ทฤษฎีสัมพัทธภาพ (อธิบายสิ่งใหญ่) และกลศาสตร์ควอนตัม (อธิบายสิ่งเล็ก) ขัดแย้งกัน! เราต้องหาทฤษฎีที่รวมทั้งสองได้</p>
+                </div>
+                <p class="chapter-text">
+                    Hawking เชื่อว่าวันหนึ่งเราจะเข้าใจจักรวาลทั้งหมด นั่นคือ 
+                    <strong>"การรู้จักความคิดของพระเจ้า"</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <section class="quote-section">
+        <blockquote class="quote">
+            "หากเราค้นพบทฤษฎีที่สมบูรณ์ มันจะเป็นชัยชนะสูงสุดของเหตุผลมนุษย์ 
+            เพราะเมื่อนั้นเราจะรู้จักความคิดของพระเจ้า"
+        </blockquote>
+        <div class="quote-author">— Stephen Hawking</div>
+    </section>
+
+    <section class="timeline">
+        <h2 class="timeline-title">🕐 ไทม์ไลน์ประวัติศาสตร์จักรวาล</h2>
+        <div class="timeline-line"></div>
+        
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h3 style="color: #ffd700">13.8 พันล้านปีก่อน</h3>
+                <p>Big Bang - จักรวาลกำเนิด</p>
+            </div>
+            <div class="timeline-dot"></div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h3 style="color: #00bfff">380,000 ปีหลัง Big Bang</h3>
+                <p>อะตอมแรกก่อตัว แสงเดินทางได้อิสระ</p>
+            </div>
+            <div class="timeline-dot"></div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h3 style="color: #ff6b35">200-400 ล้านปีหลัง Big Bang</h3>
+                <p>ดาวฤกษ์ดวงแรกก่อตัว</p>
+            </div>
+            <div class="timeline-dot"></div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h3 style="color: #ff1493">4.6 พันล้านปีก่อน</h3>
+                <p>ระบบสุริยะของเราก่อตัว</p>
+            </div>
+            <div class="timeline-dot"></div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h3 style="color: #00ff88">ปัจจุบัน</h3>
+                <p>มนุษย์พยายามเข้าใจจักรวาล</p>
+            </div>
+            <div class="timeline-dot"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>สรุปจากหนังสือ "A Brief History of Time" โดย Stephen Hawking (1988)</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">หนังสือขายดีกว่า 25 ล้านเล่มทั่วโลก</p>
+    </footer>
+
+    <script>
+        // Stars Background Animation
+        const starsCanvas = document.getElementById('starsCanvas');
+        const starsCtx = starsCanvas.getContext('2d');
+        
+        function resizeStars() {
+            starsCanvas.width = window.innerWidth;
+            starsCanvas.height = window.innerHeight * 5;
+        }
+        resizeStars();
+        window.addEventListener('resize', resizeStars);
+
+        const stars = [];
+        for (let i = 0; i < 500; i++) {
+            stars.push({
+                x: Math.random() * starsCanvas.width,
+                y: Math.random() * starsCanvas.height,
+                radius: Math.random() * 2,
+                opacity: Math.random(),
+                twinkleSpeed: Math.random() * 0.02 + 0.01
+            });
+        }
+
+        function drawStars() {
+            starsCtx.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
+            stars.forEach(star => {
+                star.opacity += star.twinkleSpeed;
+                if (star.opacity > 1 || star.opacity < 0.3) {
+                    star.twinkleSpeed = -star.twinkleSpeed;
+                }
+                starsCtx.beginPath();
+                starsCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                starsCtx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                starsCtx.fill();
+            });
+            requestAnimationFrame(drawStars);
+        }
+        drawStars();
+
+        // Big Bang Animation
+        const bigbangCanvas = document.getElementById('bigbangCanvas');
+        const bigbangCtx = bigbangCanvas.getContext('2d');
+        let bigbangParticles = [];
+        let bigbangTime = 0;
+
+        function initBigBang() {
+            bigbangParticles = [];
+            for (let i = 0; i < 200; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 3 + 1;
+                bigbangParticles.push({
+                    x: 200,
+                    y: 200,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    radius: Math.random() * 3 + 1,
+                    color: `hsl(${Math.random() * 60 + 20}, 100%, ${Math.random() * 30 + 50}%)`
+                });
+            }
+        }
+        initBigBang();
+
+        function animateBigBang() {
+            bigbangCtx.fillStyle = 'rgba(10, 10, 26, 0.1)';
+            bigbangCtx.fillRect(0, 0, 400, 400);
+            
+            bigbangTime++;
+            if (bigbangTime > 200) {
+                bigbangTime = 0;
+                initBigBang();
+            }
+            
+            // Central glow
+            const gradient = bigbangCtx.createRadialGradient(200, 200, 0, 200, 200, 50);
+            gradient.addColorStop(0, 'rgba(255, 215, 0, 0.8)');
+            gradient.addColorStop(0.5, 'rgba(255, 107, 53, 0.3)');
+            gradient.addColorStop(1, 'rgba(255, 107, 53, 0)');
+            bigbangCtx.beginPath();
+            bigbangCtx.arc(200, 200, 50, 0, Math.PI * 2);
+            bigbangCtx.fillStyle = gradient;
+            bigbangCtx.fill();
+            
+            bigbangParticles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vx *= 0.99;
+                p.vy *= 0.99;
+                
+                bigbangCtx.beginPath();
+                bigbangCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                bigbangCtx.fillStyle = p.color;
+                bigbangCtx.fill();
+            });
+            
+            requestAnimationFrame(animateBigBang);
+        }
+        animateBigBang();
+
+        // Space-Time Grid Animation
+        const spacetimeCanvas = document.getElementById('spacetimeCanvas');
+        const spacetimeCtx = spacetimeCanvas.getContext('2d');
+        let warpTime = 0;
+
+        function animateSpaceTime() {
+            spacetimeCtx.fillStyle = '#0a0a1a';
+            spacetimeCtx.fillRect(0, 0, 400, 400);
+            
+            warpTime += 0.02;
+            const massX = 200 + Math.sin(warpTime) * 30;
+            const massY = 200 + Math.cos(warpTime) * 30;
+            
+            // Draw warped grid
+            spacetimeCtx.strokeStyle = 'rgba(0, 191, 255, 0.3)';
+            spacetimeCtx.lineWidth = 1;
+            
+            for (let i = 0; i < 20; i++) {
+                spacetimeCtx.beginPath();
+                for (let j = 0; j <= 20; j++) {
+                    const x = j * 20;
+                    const y = i * 20;
+                    const dx = x - massX;
+                    const dy = y - massY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const warp = dist < 150 ? (150 - dist) / 5 : 0;
+                    const warpedY = y + (dy / dist) * warp * (dist < 150 ? 1 : 0);
+                    
+                    if (j === 0) spacetimeCtx.moveTo(x, warpedY);
+                    else spacetimeCtx.lineTo(x, warpedY);
+                }
+                spacetimeCtx.stroke();
+            }
+            
+            for (let j = 0; j < 20; j++) {
+                spacetimeCtx.beginPath();
+                for (let i = 0; i <= 20; i++) {
+                    const x = j * 20;
+                    const y = i * 20;
+                    const dx = x - massX;
+                    const dy = y - massY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const warp = dist < 150 ? (150 - dist) / 5 : 0;
+                    const warpedX = x + (dx / dist) * warp * (dist < 150 ? 1 : 0);
+                    
+                    if (i === 0) spacetimeCtx.moveTo(warpedX, y);
+                    else spacetimeCtx.lineTo(warpedX, y);
+                }
+                spacetimeCtx.stroke();
+            }
+            
+            // Draw mass (sun)
+            const sunGradient = spacetimeCtx.createRadialGradient(massX, massY, 0, massX, massY, 30);
+            sunGradient.addColorStop(0, '#ffd700');
+            sunGradient.addColorStop(0.7, '#ff6b35');
+            sunGradient.addColorStop(1, 'rgba(255, 107, 53, 0)');
+            spacetimeCtx.beginPath();
+            spacetimeCtx.arc(massX, massY, 30, 0, Math.PI * 2);
+            spacetimeCtx.fillStyle = sunGradient;
+            spacetimeCtx.fill();
+            
+            // Label
+            spacetimeCtx.fillStyle = '#888';
+            spacetimeCtx.font = '14px Sarabun';
+            spacetimeCtx.fillText('มวลทำให้ Space-Time โค้งงอ', 100, 380);
+            
+            requestAnimationFrame(animateSpaceTime);
+        }
+        animateSpaceTime();
+
+        // Black Hole Animation
+        const blackholeCanvas = document.getElementById('blackholeCanvas');
+        const blackholeCtx = blackholeCanvas.getContext('2d');
+        let bhTime = 0;
+
+        function animateBlackHole() {
+            blackholeCtx.fillStyle = '#0a0a1a';
+            blackholeCtx.fillRect(0, 0, 400, 400);
+            
+            bhTime += 0.03;
+            
+            // Accretion disk
+            for (let i = 0; i < 100; i++) {
+                const angle = (i / 100) * Math.PI * 2 + bhTime;
+                const radius = 80 + Math.sin(angle * 3 + bhTime) * 20;
+                const x = 200 + Math.cos(angle) * radius;
+                const y = 200 + Math.sin(angle) * radius * 0.3;
+                const hue = (i * 3 + bhTime * 50) % 60;
+                
+                blackholeCtx.beginPath();
+                blackholeCtx.arc(x, y, 3, 0, Math.PI * 2);
+                blackholeCtx.fillStyle = `hsla(${hue}, 100%, 50%, 0.8)`;
+                blackholeCtx.fill();
+            }
+            
+            // Event Horizon (black circle)
+            const bhGradient = blackholeCtx.createRadialGradient(200, 200, 0, 200, 200, 60);
+            bhGradient.addColorStop(0, '#000');
+            bhGradient.addColorStop(0.8, '#000');
+            bhGradient.addColorStop(1, 'rgba(255, 0, 100, 0.3)');
+            blackholeCtx.beginPath();
+            blackholeCtx.arc(200, 200, 50, 0, Math.PI * 2);
+            blackholeCtx.fillStyle = bhGradient;
+            blackholeCtx.fill();
+            
+            // Gravitational lensing effect
+            for (let i = 0; i < 8; i++) {
+                const angle = (i / 8) * Math.PI * 2 + bhTime * 0.5;
+                const x = 200 + Math.cos(angle) * 120;
+                const y = 200 + Math.sin(angle) * 120;
+                
+                blackholeCtx.beginPath();
+                blackholeCtx.arc(x, y, 2, 0, Math.PI * 2);
+                blackholeCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                blackholeCtx.fill();
+            }
+            
+            // Label
+            blackholeCtx.fillStyle = '#888';
+            blackholeCtx.font = '14px Sarabun';
+            blackholeCtx.fillText('Event Horizon - ขอบฟ้าเหตุการณ์', 110, 380);
+            
+            requestAnimationFrame(animateBlackHole);
+        }
+        animateBlackHole();
+
+        // Quantum Animation
+        const quantumCanvas = document.getElementById('quantumCanvas');
+        const quantumCtx = quantumCanvas.getContext('2d');
+        let qTime = 0;
+        let particles = [];
+
+        for (let i = 0; i < 5; i++) {
+            particles.push({
+                x: 100 + i * 50,
+                y: 200,
+                phase: Math.random() * Math.PI * 2
+            });
+        }
+
+        function animateQuantum() {
+            quantumCtx.fillStyle = 'rgba(10, 10, 26, 0.15)';
+            quantumCtx.fillRect(0, 0, 400, 400);
+            
+            qTime += 0.05;
+            
+            // Wave function visualization
+            quantumCtx.strokeStyle = 'rgba(0, 191, 255, 0.5)';
+            quantumCtx.lineWidth = 2;
+            
+            for (let wave = 0; wave < 3; wave++) {
+                quantumCtx.beginPath();
+                for (let x = 0; x < 400; x++) {
+                    const y = 200 + Math.sin(x * 0.03 + qTime + wave * 0.5) * 50 * Math.sin(x * 0.01);
+                    if (x === 0) quantumCtx.moveTo(x, y);
+                    else quantumCtx.lineTo(x, y);
+                }
+                quantumCtx.stroke();
+            }
+            
+            // Probability clouds
+            particles.forEach((p, i) => {
+                p.phase += 0.1;
+                const spread = 30 + Math.sin(qTime + i) * 10;
+                
+                for (let j = 0; j < 20; j++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const r = Math.random() * spread;
+                    const px = 200 + Math.cos(p.phase * 0.5 + i) * 80 + Math.cos(angle) * r;
+                    const py = 200 + Math.sin(p.phase + i) * 40 + Math.sin(angle) * r;
+                    
+                    quantumCtx.beginPath();
+                    quantumCtx.arc(px, py, 2, 0, Math.PI * 2);
+                    quantumCtx.fillStyle = `hsla(${180 + i * 30}, 100%, 60%, ${0.3 + Math.random() * 0.3})`;
+                    quantumCtx.fill();
+                }
+            });
+            
+            // Label
+            quantumCtx.fillStyle = '#888';
+            quantumCtx.font = '14px Sarabun';
+            quantumCtx.fillText('อนุภาคอยู่ได้หลายที่พร้อมกัน', 115, 380);
+            
+            requestAnimationFrame(animateQuantum);
+        }
+        animateQuantum();
+
+        // Time Arrow Animation
+        const timeCanvas = document.getElementById('timeCanvas');
+        const timeCtx = timeCanvas.getContext('2d');
+        let tTime = 0;
+
+        function animateTime() {
+            timeCtx.fillStyle = '#0a0a1a';
+            timeCtx.fillRect(0, 0, 400, 400);
+            
+            tTime += 0.02;
+            
+            // Three arrows
+            const arrows = [
+                { y: 100, color: '#ffd700', label: 'Thermodynamic' },
+                { y: 200, color: '#00bfff', label: 'Psychological' },
+                { y: 300, color: '#ff1493', label: 'Cosmological' }
+            ];
+            
+            arrows.forEach((arrow, i) => {
+                // Arrow shaft
+                const progress = (Math.sin(tTime - i * 0.3) + 1) / 2;
+                const length = 100 + progress * 150;
+                
+                const gradient = timeCtx.createLinearGradient(50, arrow.y, 50 + length, arrow.y);
+                gradient.addColorStop(0, 'transparent');
+                gradient.addColorStop(0.3, arrow.color);
+                gradient.addColorStop(1, arrow.color);
+                
+                timeCtx.strokeStyle = gradient;
+                timeCtx.lineWidth = 4;
+                timeCtx.beginPath();
+                timeCtx.moveTo(50, arrow.y);
+                timeCtx.lineTo(50 + length, arrow.y);
+                timeCtx.stroke();
+                
+                // Arrow head
+                timeCtx.fillStyle = arrow.color;
+                timeCtx.beginPath();
+                timeCtx.moveTo(50 + length + 20, arrow.y);
+                timeCtx.lineTo(50 + length, arrow.y - 10);
+                timeCtx.lineTo(50 + length, arrow.y + 10);
+                timeCtx.closePath();
+                timeCtx.fill();
+                
+                // Particles trailing
+                for (let j = 0; j < 10; j++) {
+                    const px = 50 + (length * j / 10);
+                    const py = arrow.y + Math.sin(px * 0.1 + tTime * 5) * 5;
+                    timeCtx.beginPath();
+                    timeCtx.arc(px, py, 2, 0, Math.PI * 2);
+                    timeCtx.fillStyle = `${arrow.color}`;
+                    timeCtx.fill();
+                }
+                
+                // Label
+                timeCtx.fillStyle = '#888';
+                timeCtx.font = '12px Sarabun';
+                timeCtx.fillText(arrow.label, 50, arrow.y + 30);
+            });
+            
+            // "FUTURE" text
+            timeCtx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+            timeCtx.font = 'bold 30px Playfair Display';
+            timeCtx.fillText('FUTURE →', 230, 380);
+            
+            requestAnimationFrame(animateTime);
+        }
+        animateTime();
+
+        // Unified Theory Animation
+        const unifiedCanvas = document.getElementById('unifiedCanvas');
+        const unifiedCtx = unifiedCanvas.getContext('2d');
+        let uTime = 0;
+
+        function animateUnified() {
+            unifiedCtx.fillStyle = 'rgba(10, 10, 26, 0.1)';
+            unifiedCtx.fillRect(0, 0, 400, 400);
+            
+            uTime += 0.02;
+            
+            // Two merging circles representing GR and QM
+            const separation = 80 * Math.cos(uTime);
+            
+            // General Relativity circle
+            const grGradient = unifiedCtx.createRadialGradient(200 - separation, 200, 0, 200 - separation, 200, 60);
+            grGradient.addColorStop(0, 'rgba(255, 215, 0, 0.8)');
+            grGradient.addColorStop(1, 'rgba(255, 215, 0, 0)');
+            unifiedCtx.beginPath();
+            unifiedCtx.arc(200 - separation, 200, 60, 0, Math.PI * 2);
+            unifiedCtx.fillStyle = grGradient;
+            unifiedCtx.fill();
+            
+            // Quantum Mechanics circle
+            const qmGradient = unifiedCtx.createRadialGradient(200 + separation, 200, 0, 200 + separation, 200, 60);
+            qmGradient.addColorStop(0, 'rgba(0, 191, 255, 0.8)');
+            qmGradient.addColorStop(1, 'rgba(0, 191, 255, 0)');
+            unifiedCtx.beginPath();
+            unifiedCtx.arc(200 + separation, 200, 60, 0, Math.PI * 2);
+            unifiedCtx.fillStyle = qmGradient;
+            unifiedCtx.fill();
+            
+            // Connecting particles
+            for (let i = 0; i < 30; i++) {
+                const t = i / 30;
+                const x = (200 - separation) + ((200 + separation) - (200 - separation)) * t;
+                const y = 200 + Math.sin(t * Math.PI * 4 + uTime * 5) * 30;
+                
+                unifiedCtx.beginPath();
+                unifiedCtx.arc(x, y, 3, 0, Math.PI * 2);
+                unifiedCtx.fillStyle = `hsl(${t * 180 + 40}, 100%, 60%)`;
+                unifiedCtx.fill();
+            }
+            
+            // Labels
+            unifiedCtx.fillStyle = '#ffd700';
+            unifiedCtx.font = '12px Sarabun';
+            unifiedCtx.fillText('สัมพัทธภาพ', 140 - separation, 280);
+            
+            unifiedCtx.fillStyle = '#00bfff';
+            unifiedCtx.fillText('ควอนตัม', 240 + separation, 280);
+            
+            // Central question mark when merged
+            if (Math.abs(separation) < 20) {
+                unifiedCtx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                unifiedCtx.font = 'bold 40px Playfair Display';
+                unifiedCtx.fillText('?', 190, 215);
+            }
+            
+            unifiedCtx.fillStyle = '#888';
+            unifiedCtx.font = '14px Sarabun';
+            unifiedCtx.fillText('Theory of Everything', 130, 380);
+            
+            requestAnimationFrame(animateUnified);
+        }
+        animateUnified();
+
+        // Intersection Observer for chapter animations
+        const chapters = document.querySelectorAll('.chapter');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        chapters.forEach(chapter => {
+            chapter.style.animationPlayState = 'paused';
+            observer.observe(chapter);
+        });
+    </script>
+</body>
+</html>
