@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANTIFRAGILE - สรุปหนังสือฉบับสมบูรณ์</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&family=Prompt:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
+            --accent: #ff4444;
+            --accent-gold: #ffd700;
+            --text: #f5f5f5;
+            --text-dim: #888;
+            --gradient-1: linear-gradient(135deg, #ff4444 0%, #ff8844 100%);
+            --gradient-2: linear-gradient(135deg, #ffd700 0%, #ff8844 100%);
+            --gradient-dark: linear-gradient(180deg, #0a0a0a 0%, #1a1a2a 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: var(--gradient-dark);
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255,68,68,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255,215,0,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .book-badge {
+            display: inline-block;
+            background: var(--gradient-1);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .hero h1 {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 0.9;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        .author {
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 2rem auto;
+            color: var(--text);
+            border-left: 4px solid var(--accent);
+            padding-left: 1.5rem;
+            text-align: left;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid var(--text-dim);
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: scrollDown 2s infinite;
+        }
+
+        @keyframes scrollDown {
+            0% { top: 8px; opacity: 1; }
+            100% { top: 30px; opacity: 0; }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent);
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Core Concept Grid */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .concept-card {
+            background: var(--secondary);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .concept-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(255,68,68,0.2);
+        }
+
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-1);
+        }
+
+        .concept-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .concept-card h3 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .concept-card p {
+            color: var(--text-dim);
+            font-size: 1.05rem;
+        }
+
+        /* Triad Section */
+        .triad-section {
+            background: linear-gradient(180deg, var(--primary) 0%, #0d0d15 50%, var(--primary) 100%);
+        }
+
+        .triad-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 900px) {
+            .triad-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .triad-item {
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .triad-item:nth-child(1) {
+            background: linear-gradient(135deg, #1a0000 0%, #2a1111 100%);
+            border-radius: 20px 0 0 20px;
+        }
+
+        .triad-item:nth-child(2) {
+            background: linear-gradient(135deg, #1a1a00 0%, #2a2a11 100%);
+        }
+
+        .triad-item:nth-child(3) {
+            background: linear-gradient(135deg, #001a00 0%, #112a11 100%);
+            border-radius: 0 20px 20px 0;
+        }
+
+        @media (max-width: 900px) {
+            .triad-item:nth-child(1),
+            .triad-item:nth-child(2),
+            .triad-item:nth-child(3) {
+                border-radius: 20px;
+                margin-bottom: 1rem;
+            }
+        }
+
+        .triad-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .triad-item:nth-child(1) .triad-icon { color: #ff4444; }
+        .triad-item:nth-child(2) .triad-icon { color: #ffd700; }
+        .triad-item:nth-child(3) .triad-icon { color: #44ff44; }
+
+        .triad-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .triad-item:nth-child(1) .triad-title { color: #ff6666; }
+        .triad-item:nth-child(2) .triad-title { color: #ffdd44; }
+        .triad-item:nth-child(3) .triad-title { color: #66ff66; }
+
+        .triad-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            margin-bottom: 1.5rem;
+        }
+
+        .triad-examples {
+            text-align: left;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .triad-examples li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .triad-examples li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Strategy Cards */
+        .strategy-section {
+            background: var(--secondary);
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .strategy-card {
+            background: var(--primary);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strategy-number {
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 8rem;
+            font-weight: 900;
+            color: rgba(255,68,68,0.1);
+            line-height: 1;
+        }
+
+        .strategy-card h3 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .strategy-card p {
+            color: var(--text-dim);
+            position: relative;
+            z-index: 1;
+            margin-bottom: 1rem;
+        }
+
+        .strategy-example {
+            background: rgba(255,68,68,0.1);
+            border-left: 3px solid var(--accent);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .strategy-example strong {
+            color: var(--accent-gold);
+        }
+
+        /* Mindset Section */
+        .mindset-section {
+            position: relative;
+        }
+
+        .mindset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .mindset-card {
+            background: linear-gradient(135deg, rgba(255,68,68,0.05) 0%, rgba(255,215,0,0.05) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .mindset-card:hover {
+            border-color: var(--accent-gold);
+            transform: scale(1.02);
+        }
+
+        .mindset-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .mindset-card h3 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 0.8rem;
+        }
+
+        .mindset-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        /* Takeaway Section */
+        .takeaway-section {
+            background: linear-gradient(135deg, #1a0a0a 0%, #0a1a1a 100%);
+        }
+
+        .takeaway-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .takeaway-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            background: rgba(0,0,0,0.3);
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .takeaway-item:hover {
+            background: rgba(255,68,68,0.1);
+            transform: translateX(10px);
+        }
+
+        .takeaway-number {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            min-width: 60px;
+        }
+
+        .takeaway-content h3 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .takeaway-content p {
+            color: var(--text-dim);
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 8rem 0;
+            background: var(--primary);
+            position: relative;
+        }
+
+        .quote-section::before {
+            content: '"';
+            position: absolute;
+            top: 2rem;
+            left: 5%;
+            font-family: 'Prompt', sans-serif;
+            font-size: 20rem;
+            color: rgba(255,68,68,0.1);
+            line-height: 1;
+        }
+
+        .quote-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .quote-grid {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .quote-item {
+            position: relative;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(255,68,68,0.05) 0%, transparent 100%);
+            border-radius: 16px;
+        }
+
+        .quote-text {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--text);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .quote-translation {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--accent-gold);
+        }
+
+        /* Application Section */
+        .application-section {
+            background: var(--secondary);
+        }
+
+        .application-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .application-card {
+            background: var(--primary);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .application-header {
+            background: var(--gradient-1);
+            padding: 1.5rem 2rem;
+        }
+
+        .application-header h3 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .application-body {
+            padding: 2rem;
+        }
+
+        .application-list {
+            list-style: none;
+        }
+
+        .application-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .application-list li:last-child {
+            border-bottom: none;
+        }
+
+        .application-list .icon {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            min-width: 24px;
+        }
+
+        .application-list .text {
+            color: var(--text-dim);
+        }
+
+        .application-list .text strong {
+            color: var(--text);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Situation Section */
+        .situation-section {
+            background: linear-gradient(180deg, var(--primary) 0%, #0a0a15 100%);
+        }
+
+        .situation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .situation-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .situation-card:hover {
+            border-color: var(--accent);
+            background: rgba(255,68,68,0.05);
+        }
+
+        .situation-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .situation-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .situation-subtitle {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .situation-content {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .situation-content h4 {
+            color: var(--accent);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+        }
+
+        .situation-content p {
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        /* Teaching Section */
+        .teaching-section {
+            padding: 6rem 0;
+            background: var(--primary);
+        }
+
+        .teaching-grid {
+            display: grid;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .teaching-card {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: linear-gradient(90deg, rgba(255,68,68,0.1) 0%, transparent 100%);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-gold);
+            transition: all 0.3s ease;
+        }
+
+        .teaching-card:hover {
+            background: linear-gradient(90deg, rgba(255,68,68,0.2) 0%, transparent 100%);
+            transform: translateX(10px);
+        }
+
+        .teaching-icon {
+            font-size: 2rem;
+            color: var(--accent-gold);
+        }
+
+        .teaching-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+        }
+
+        .footer-credit {
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .concept-grid,
+            .strategy-grid,
+            .mindset-grid,
+            .application-grid,
+            .situation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .triad-container {
+                grid-template-columns: 1fr;
+            }
+
+            .teaching-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+
+        /* Animations on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="book-badge">📚 Book Summary</span>
+            <h1>ANTIFRAGILE</h1>
+            <p class="hero-subtitle">Things That Gain from Disorder</p>
+            <p class="author">โดย Nassim Nicholas Taleb</p>
+            <p class="tagline">
+                "สิ่งที่ไม่ได้ฆ่าเราให้ตาย จะทำให้เราแข็งแกร่งขึ้น — แต่มากกว่านั้น มันทำให้เราเติบโตจากความโกลาหล"
+            </p>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- Core Explanation Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-number">01 / EXPLANATION</p>
+                <h2 class="section-title">หนังสือเล่มนี้สอนอะไร?</h2>
+                <p class="section-subtitle">ทำความเข้าใจแก่นแท้ของ Antifragile และทำไมมันถึงเปลี่ยนมุมมองของคุณ</p>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card fade-in">
+                    <div class="concept-icon">💡</div>
+                    <h3>แนวคิดหลัก</h3>
+                    <p>Taleb นำเสนอแนวคิดใหม่ที่เรียกว่า <strong>"Antifragile"</strong> — สิ่งที่ไม่ใช่แค่ทนทานต่อความโกลาหล แต่ยัง <strong>ได้ประโยชน์</strong> จากความไม่แน่นอน ความผันผวน และแรงกดดัน เหมือนกล้ามเนื้อที่แข็งแรงขึ้นเมื่อถูกท้าทาย</p>
+                </div>
+
+                <div class="concept-card fade-in">
+                    <div class="concept-icon">🎯</div>
+                    <h3>ปัญหาที่หนังสือแก้</h3>
+                    <p>โลกสมัยใหม่พยายามกำจัดความผันผวนออกไป แต่นั่นกลับทำให้ระบบ <strong>เปราะบางมากขึ้น</strong> เมื่อเกิดวิกฤต หนังสือสอนให้เราสร้างระบบที่แข็งแกร่งขึ้นจากการเผชิญปัญหา</p>
+                </div>
+
+                <div class="concept-card fade-in">
+                    <div class="concept-icon">🔥</div>
+                    <h3>ทำไมต้องอ่าน?</h3>
+                    <p>ไม่ว่าจะเป็นธุรกิจ การลงทุน สุขภาพ หรือชีวิตส่วนตัว — หนังสือเล่มนี้ให้กรอบคิดที่ช่วยให้คุณ <strong>เติบโตจากวิกฤต</strong> แทนที่จะถูกทำลาย</p>
+                </div>
+
+                <div class="concept-card fade-in">
+                    <div class="concept-icon">⚡</div>
+                    <h3>แนวคิดที่ขัดสามัญสำนึก</h3>
+                    <p>ความมั่นคงที่มากเกินไปคือความเปราะบาง, ความล้มเหลวเล็กๆ น้อยๆ ช่วยป้องกันหายนะใหญ่, และบางครั้ง <strong>การลบออก</strong> ดีกว่าการเพิ่มเข้าไป</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Triad Section -->
+    <section class="section triad-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-number">02 / THE TRIAD</p>
+                <h2 class="section-title">สามประเภทของสิ่งต่างๆ</h2>
+                <p class="section-subtitle">ทุกสิ่งในโลกสามารถจัดอยู่ในหนึ่งในสามประเภทนี้</p>
+            </div>
+
+            <div class="triad-container">
+                <div class="triad-item fade-in">
+                    <div class="triad-icon">💔</div>
+                    <h3 class="triad-title">FRAGILE</h3>
+                    <p class="triad-subtitle">เปราะบาง — เสียหายจากความผันผวน</p>
+                    <ul class="triad-examples">
+                        <li>แก้วคริสตัล — ตกแตก</li>
+                        <li>ธนาคารขนาดใหญ่ — ล้มละลายจากวิกฤต</li>
+                        <li>แผนที่ละเอียดเกินไป — พังเมื่อสถานการณ์เปลี่ยน</li>
+                        <li>คนที่หลีกเลี่ยงความเครียดทุกอย่าง</li>
+                        <li>ระบบราชการที่ซับซ้อน</li>
+                    </ul>
+                </div>
+
+                <div class="triad-item fade-in">
+                    <div class="triad-icon">🛡️</div>
+                    <h3 class="triad-title">ROBUST</h3>
+                    <p class="triad-subtitle">แข็งแกร่ง — ทนทานต่อการเปลี่ยนแปลง</p>
+                    <ul class="triad-examples">
+                        <li>หิน — ไม่เปลี่ยนแปลง</li>
+                        <li>ทองคำ — คงมูลค่า</li>
+                        <li>ปรัชญาโบราณที่ยังใช้ได้</li>
+                        <li>สัญญาที่รัดกุม</li>
+                        <li>ความรู้พื้นฐานที่ไม่เปลี่ยน</li>
+                    </ul>
+                </div>
+
+                <div class="triad-item fade-in">
+                    <div class="triad-icon">🔥</div>
+                    <h3 class="triad-title">ANTIFRAGILE</h3>
+                    <p class="triad-subtitle">ต้านความเปราะบาง — เติบโตจากความโกลาหล</p>
+                    <ul class="triad-examples">
+                        <li>กล้ามเนื้อ — แข็งแรงขึ้นจากการออกกำลัง</li>
+                        <li>ระบบภูมิคุ้มกัน — แข็งแกร่งจากเชื้อโรค</li>
+                        <li>นักธุรกิจที่เรียนรู้จากความล้มเหลว</li>
+                        <li>วิวัฒนาการของสิ่งมีชีวิต</li>
+                        <li>ตลาดเสรีที่มีการล้มละลายบ่อยๆ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Principles Section -->
+    <section class="section strategy-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-number">03 / CORE PRINCIPLES</p>
+                <h2 class="section-title">หลักการสำคัญ 7 ประการ</h2>
+                <p class="section-subtitle">แก่นแท้ของความคิดที่คุณสามารถนำไปใช้ได้ทันที</p>
+            </div>
+
+            <div class="strategy-grid">
+                <div class="strategy-card fade-in">
+                    <span class="strategy-number">01</span>
+                    <h3>📊 Barbell Strategy</h3>
+                    <p>หลีกเลี่ยงความเสี่ยงปานกลาง ให้เลือก <strong>ความปลอดภัยสูงสุด + ความเสี่ยงสูงสุด</strong> ในสัดส่วนที่เหมาะสม</p>
+                    <div class="strategy-example">
+                        <strong>ตัวอย่าง:</strong> เก็บเงิน 90% ไว้ในที่ปลอดภัย + ลงทุน 10% ในสิ่งที่มี upside สูงมาก ไม่ใช่ลงกลางๆ 100%
+                    </div>
+                </div>
+
+                <div class="strategy-card fade-in">
+                    <span class="strategy-number">02</span>
+                    <h3>➖ Via Negativa</h3>
+                    <p>การลบออกมักดีกว่าการเพิ่มเข้าไป <strong>รู้ว่าอะไรไม่ควรทำ</strong> สำคัญกว่ารู้ว่าควรทำอะไร</p>
+                    <div class="strategy-example">
+                        <strong>ตัวอย่าง:</strong> การเลิกสูบบุหรี่ดีต่อสุขภาพมากกว่าการกินวิตามินเสริม
+                    </div>
+                </div>
+
+                <div class="strategy-card fade-in">
+                    <span class="strategy-number">03</span>
+                    <h3>🎲 Skin in the Game</h3>
+                    <p>คนที่ให้คำแนะนำต้อง <strong>รับผลลัพธ์ด้วย</strong> ไม่เช่นนั้นคำแนะนำนั้นไม่น่าเชื่อถือ</p>
+                    <div class="strategy-example">
+                        <strong>ตัวอย่าง:</strong> อย่าฟังนักวิเคราะห์หุ้นที่ไม่ได้ลงทุนในหุ้นที่แนะนำ
+                    </div>
+                </div>
+
+                <div class="strategy-card fade-in">
+                    <span class="strategy-number">04</span>
+                    <h3>📈 Hormesis</h3>
+                    <p>ความเครียดเล็กๆ น้อยๆ <strong>ทำให้ระบบแข็งแกร่งขึ้น</strong> — สิ่งที่ไม่ฆ่าคุณจะทำให้คุณแข็งแกร่ง</p>
+                    <div class="strategy-example">
+                        <strong>ตัวอย่าง:</strong> การอดอาหารเป็นระยะ (Intermittent Fasting) ทำให้ร่างกายปรับตัวดีขึ้น
+                    </div>
+                </div>
+
+                <div class="strategy-card fade-in">
+                    <span class="strategy-number">05</span>
+                    <h3>🦃 Turkey Problem</h3>
+                    <p>อดีตที่ดีไม่ได้รับประกันอนาคต ไก่งวงถูกเลี้ยงดีมา 1,000 วัน แล้ววันที่ 1,001 ก็ถูกฆ่าในวัน Thanksgiving</p>
+                    <div class="strategy-example">
+                        <strong>ตัวอย่าง:</strong> บริษัทที่มีกำไรต่อเนื่อง 10 ปี อาจล้มในปีที่ 11 จาก disruption
+                    </div>
+                </div>
+
+                <div class="strategy-card fade-in">
+                    <span class="strategy-number">06</span>
+                    <h3>⏳ Lindy Effect</h3>
+                    <p>สิ่งที่อยู่มานานแล้ว <strong>มีแนวโน้มจะอยู่ต่อไป</strong> — ความเก่าแก่คือหลักฐานของความแข็งแกร่ง</p>
+                    <div class="strategy-example">
+                        <strong>ตัวอย่าง:</strong> หนังสือที่พิมพ์มา 100 ปี จะยังถูกอ่านอีก 100 ปี เทคโนโลยีใหม่ล่าสุดอาจหายไปใน 5 ปี
+                    </div>
+                </div>
+
+                <div class="strategy-card fade-in">
+                    <span class="strategy-number">07</span>
+                    <h3>🎁 Optionality</h3>
+                    <p>สร้างทางเลือกที่มี <strong>upside ไม่จำกัด แต่ downside จำกัด</strong> — ผิดแค่หน่อย ถูกได้มหาศาล</p>
+                    <div class="strategy-example">
+                        <strong>ตัวอย่าง:</strong> เริ่มธุรกิจ side project ที่ถ้าเจ๊งเสียแค่เวลา แต่ถ้าดังอาจเปลี่ยนชีวิต
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mindset Section -->
+    <section class="section mindset-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-number">04 / MINDSET</p>
+                <h2 class="section-title">วิธีคิดแบบ Antifragile</h2>
+                <p class="section-subtitle">เปลี่ยนมุมมองของคุณต่อความไม่แน่นอน</p>
+            </div>
+
+            <div class="mindset-grid">
+                <div class="mindset-card fade-in">
+                    <div class="mindset-emoji">🌪️</div>
+                    <h3>ยอมรับความโกลาหล</h3>
+                    <p>อย่าพยายามควบคุมทุกอย่าง ความผันผวนเป็นส่วนหนึ่งของชีวิต และบ่อยครั้งมันนำมาซึ่งโอกาส</p>
+                </div>
+
+                <div class="mindset-card fade-in">
+                    <div class="mindset-emoji">🔬</div>
+                    <h3>ทดลองบ่อยๆ ล้มเหลวเร็วๆ</h3>
+                    <p>ความล้มเหลวเล็กๆ หลายครั้ง ดีกว่าความล้มเหลวใหญ่ครั้งเดียว ทดลองให้มาก เรียนรู้ให้เร็ว</p>
+                </div>
+
+                <div class="mindset-card fade-in">
+                    <div class="mindset-emoji">🎯</div>
+                    <h3>โฟกัสที่ Downside</h3>
+                    <p>ก่อนคิดถึง upside ให้ถามว่า "ถ้าผิดพลาดจะเสียอะไร?" ปกป้อง downside แล้ว upside จะมาเอง</p>
+                </div>
+
+                <div class="mindset-card fade-in">
+                    <div class="mindset-emoji">🧘</div>
+                    <h3>ลดความซับซ้อน</h3>
+                    <p>ความซับซ้อนสร้างความเปราะบาง ระบบที่เรียบง่ายกว่ามักจะอยู่รอดได้นานกว่า</p>
+                </div>
+
+                <div class="mindset-card fade-in">
+                    <div class="mindset-emoji">⚖️</div>
+                    <h3>Asymmetric Payoffs</h3>
+                    <p>มองหาสถานการณ์ที่ถ้าผิด เสียน้อย แต่ถ้าถูก ได้มาก — นี่คือหัวใจของ Antifragility</p>
+                </div>
+
+                <div class="mindset-card fade-in">
+                    <div class="mindset-emoji">🌱</div>
+                    <h3>เติบโตจากปัญหา</h3>
+                    <p>เมื่อเจอปัญหา อย่าแค่แก้ ให้ถามว่า "ทำอย่างไรให้ปัญหานี้ทำให้เราแข็งแกร่งขึ้น?"</p>
+                </div>
+
+                <div class="mindset-card fade-in">
+                    <div class="mindset-emoji">🚫</div>
+                    <h3>หลีกเลี่ยง Fragilistas</h3>
+                    <p>ระวังคนที่สร้างระบบซับซ้อน แต่ไม่ต้องรับผลเมื่อระบบล้มเหลว (ไม่มี Skin in the Game)</p>
+                </div>
+
+                <div class="mindset-card fade-in">
+                    <div class="mindset-emoji">📚</div>
+                    <h3>เชื่อเวลา ไม่ใช่คำโฆษณา</h3>
+                    <p>สิ่งที่ผ่านการทดสอบของเวลา (Lindy Effect) มักน่าเชื่อถือกว่าสิ่งใหม่ที่ยังไม่พิสูจน์ตัวเอง</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Situation & Examples Section -->
+    <section class="section situation-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-number">05 / REAL SITUATIONS</p>
+                <h2 class="section-title">สถานการณ์จริง & ตัวอย่าง</h2>
+                <p class="section-subtitle">นำแนวคิดไปใช้ในชีวิตจริงได้อย่างไร</p>
+            </div>
+
+            <div class="situation-grid">
+                <div class="situation-card fade-in">
+                    <div class="situation-icon">💼</div>
+                    <h3 class="situation-title">ธุรกิจ & Startup</h3>
+                    <p class="situation-subtitle">สร้างองค์กรที่เติบโตจากวิกฤต</p>
+                    <div class="situation-content">
+                        <h4>Fragile Approach</h4>
+                        <p>ลงทุนหมดหน้าตักกับ product เดียว วางแผน 5 ปีละเอียดยิบ พอตลาดเปลี่ยนก็พังทั้งระบบ</p>
+                        <h4 style="margin-top:1rem;">Antifragile Approach</h4>
+                        <p>ทดลอง MVP หลายตัว ล้มเหลวเร็ว เรียนรู้เร็ว รักษา cash reserve ไว้สำหรับโอกาสในวิกฤต</p>
+                    </div>
+                </div>
+
+                <div class="situation-card fade-in">
+                    <div class="situation-icon">💰</div>
+                    <h3 class="situation-title">การลงทุน</h3>
+                    <p class="situation-subtitle">ปกป้อง downside เปิดรับ upside</p>
+                    <div class="situation-content">
+                        <h4>Fragile Approach</h4>
+                        <p>ลงทุน 100% ในหุ้นเติบโตที่ดูดีในอดีต (Turkey Problem) — มองแค่ผลตอบแทนไม่มองความเสี่ยง</p>
+                        <h4 style="margin-top:1rem;">Antifragile Approach</h4>
+                        <p>Barbell: 80-90% ในสินทรัพย์ปลอดภัยมาก + 10-20% ใน high-risk/high-reward ที่ถ้าเจ๊งก็ไม่ตาย</p>
+                    </div>
+                </div>
+
+                <div class="situation-card fade-in">
+                    <div class="situation-icon">🏃</div>
+                    <h3 class="situation-title">สุขภาพ & Fitness</h3>
+                    <p class="situation-subtitle">ร่างกายต้องการ stressor</p>
+                    <div class="situation-content">
+                        <h4>Fragile Approach</h4>
+                        <p>หลีกเลี่ยงความเหนื่อยทุกอย่าง กินอาหารเสริมเต็มที่ พึ่งยาเมื่อมีอาการเล็กน้อย</p>
+                        <h4 style="margin-top:1rem;">Antifragile Approach</h4>
+                        <p>ออกกำลังกายหนัก, อดอาหารบางมื้อ (IF), เดินเท้าเปล่าบ้าง, นอนให้พอ — ให้ร่างกายปรับตัว</p>
+                    </div>
+                </div>
+
+                <div class="situation-card fade-in">
+                    <div class="situation-icon">👔</div>
+                    <h3 class="situation-title">อาชีพการงาน</h3>
+                    <p class="situation-subtitle">สร้าง Career ที่ไม่ถูก disrupt</p>
+                    <div class="situation-content">
+                        <h4>Fragile Approach</h4>
+                        <p>พึ่งพาเงินเดือนทางเดียว, ทักษะเฉพาะทางมากๆ ที่อาจ obsolete, ไม่มี side income</p>
+                        <h4 style="margin-top:1rem;">Antifragile Approach</h4>
+                        <p>Barbell: งานประจำที่มั่นคง + side project ที่มี upside สูง, สร้าง multiple income streams</p>
+                    </div>
+                </div>
+
+                <div class="situation-card fade-in">
+                    <div class="situation-icon">📚</div>
+                    <h3 class="situation-title">การเรียนรู้</h3>
+                    <p class="situation-subtitle">เรียนอย่างไรให้ได้ผลจริง</p>
+                    <div class="situation-content">
+                        <h4>Fragile Approach</h4>
+                        <p>ท่องจำทฤษฎี, เรียนจากคนที่สอนอย่างเดียว (ไม่มี Skin in the Game), หลีกเลี่ยงการลองผิดลองถูก</p>
+                        <h4 style="margin-top:1rem;">Antifragile Approach</h4>
+                        <p>เรียนจากผู้ปฏิบัติจริง, ลงมือทำแล้วล้มเหลว, เรียนจากของเก่าที่พิสูจน์แล้ว (Lindy)</p>
+                    </div>
+                </div>
+
+                <div class="situation-card fade-in">
+                    <div class="situation-icon">🏠</div>
+                    <h3 class="situation-title">ชีวิตประจำวัน</h3>
+                    <p class="situation-subtitle">ใช้ชีวิตอย่าง Antifragile</p>
+                    <div class="situation-content">
+                        <h4>Fragile Approach</h4>
+                        <p>วางแผนทุกอย่าง, เครียดเมื่อสิ่งไม่เป็นไปตามแผน, หลีกเลี่ยงความไม่สะดวกทุกรูปแบบ</p>
+                        <h4 style="margin-top:1rem;">Antifragile Approach</h4>
+                        <p>ยืดหยุ่น, ลองสิ่งใหม่, ออกจาก comfort zone บ่อยๆ, มีแผนสำรอง, ลด dependency</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Section -->
+    <section class="section application-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-number">06 / PRACTICAL APPLICATION</p>
+                <h2 class="section-title">นำไปปฏิบัติได้ทันที</h2>
+                <p class="section-subtitle">เปลี่ยนความรู้เป็นการกระทำ</p>
+            </div>
+
+            <div class="application-grid">
+                <div class="application-card fade-in">
+                    <div class="application-header">
+                        <h3>💼 ในการทำงาน</h3>
+                    </div>
+                    <div class="application-body">
+                        <ul class="application-list">
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>สร้าง Multiple Income Streams</strong>
+                                    อย่าพึ่งพารายได้ทางเดียว ทำ side project ที่มี asymmetric upside
+                                </span>
+                            </li>
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>Fail Fast, Learn Faster</strong>
+                                    ทดลองไอเดียใหม่ในขนาดเล็ก เรียนรู้จากความล้มเหลวก่อนลงทุนใหญ่
+                                </span>
+                            </li>
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>รักษา Cash Reserve</strong>
+                                    เก็บเงินสำรองไว้เพื่อคว้าโอกาสเมื่อเกิดวิกฤต
+                                </span>
+                            </li>
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>ลดความซับซ้อน</strong>
+                                    ยิ่งระบบเรียบง่าย ยิ่งทนทานต่อการเปลี่ยนแปลง
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="application-card fade-in">
+                    <div class="application-header">
+                        <h3>💰 ในการลงทุน</h3>
+                    </div>
+                    <div class="application-body">
+                        <ul class="application-list">
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>ใช้ Barbell Strategy</strong>
+                                    แบ่งสัดส่วน: 80-90% ในสินทรัพย์ปลอดภัย + 10-20% ใน high-risk
+                                </span>
+                            </li>
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>หลีกเลี่ยง "ความเสี่ยงปานกลาง"</strong>
+                                    ตรงกลางมักเป็นจุดที่เสี่ยงที่สุดโดยไม่รู้ตัว
+                                </span>
+                            </li>
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>ระวัง Turkey Problem</strong>
+                                    ผลตอบแทนที่ดีในอดีตไม่รับประกันอนาคต
+                                </span>
+                            </li>
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>มองหา Optionality</strong>
+                                    ลงทุนในสิ่งที่ downside จำกัด แต่ upside ไม่จำกัด
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="application-card fade-in">
+                    <div class="application-header">
+                        <h3>🏃 ในสุขภาพ</h3>
+                    </div>
+                    <div class="application-body">
+                        <ul class="application-list">
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>Via Negativa</strong>
+                                    ลดสิ่งที่เป็นอันตราย (บุหรี่ น้ำตาล) สำคัญกว่าเพิ่มสิ่งดี (วิตามิน)
+                                </span>
+                            </li>
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>Hormesis</strong>
+                                    ให้ร่างกายเจอ stressor: อดอาหารบางมื้อ, ออกกำลังหนัก, อาบน้ำเย็น
+                                </span>
+                            </li>
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>กินแบบ Lindy</strong>
+                                    เลือกอาหารที่มนุษย์กินมานาน ระวังอาหารแปรรูปใหม่
+                                </span>
+                            </li>
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>หลีกเลี่ยง Over-Medication</strong>
+                                    ไม่กินยาเมื่อไม่จำเป็น ให้ร่างกายฟื้นตัวเอง
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="application-card fade-in">
+                    <div class="application-header">
+                        <h3>🧠 ในการตัดสินใจ</h3>
+                    </div>
+                    <div class="application-body">
+                        <ul class="application-list">
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>ถาม "ถ้าผิดจะเสียอะไร?"</strong>
+                                    ปกป้อง downside ก่อนมอง upside เสมอ
+                                </span>
+                            </li>
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>ฟังคนที่มี Skin in the Game</strong>
+                                    คำแนะนำจากคนที่ต้องรับผลลัพธ์ด้วยน่าเชื่อถือกว่า
+                                </span>
+                            </li>
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>ใช้ Lindy Effect</strong>
+                                    เชื่อสิ่งที่พิสูจน์แล้วจากเวลา มากกว่าสิ่งใหม่ล่าสุด
+                                </span>
+                            </li>
+                            <li>
+                                <span class="icon">✓</span>
+                                <span class="text">
+                                    <strong>หา Asymmetric Opportunities</strong>
+                                    มองหาโอกาสที่ผิดเสียน้อย ถูกได้มาก
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Takeaways Section -->
+    <section class="section takeaway-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-number">07 / KEY TAKEAWAYS</p>
+                <h2 class="section-title">10 บทเรียนสำคัญ</h2>
+                <p class="section-subtitle">สิ่งที่ต้องจำไว้จากหนังสือเล่มนี้</p>
+            </div>
+
+            <div class="takeaway-grid">
+                <div class="takeaway-item fade-in">
+                    <span class="takeaway-number">01</span>
+                    <div class="takeaway-content">
+                        <h3>มีสิ่งที่ดีกว่า "แข็งแกร่ง" — คือ "เติบโตจากความโกลาหล"</h3>
+                        <p>อย่าแค่อยู่รอด ให้ออกแบบชีวิตและธุรกิจที่ได้ประโยชน์จากความผันผวน</p>
+                    </div>
+                </div>
+
+                <div class="takeaway-item fade-in">
+                    <span class="takeaway-number">02</span>
+                    <div class="takeaway-content">
+                        <h3>ความมั่นคงที่มากเกินไปคือความเปราะบางที่ซ่อนเร้น</h3>
+                        <p>การป้องกันความเสี่ยงทุกอย่าง ทำให้คุณไม่พร้อมเมื่อเกิดสิ่งที่คาดไม่ถึง</p>
+                    </div>
+                </div>
+
+                <div class="takeaway-item fade-in">
+                    <span class="takeaway-number">03</span>
+                    <div class="takeaway-content">
+                        <h3>การลบออกมักดีกว่าการเพิ่มเข้าไป (Via Negativa)</h3>
+                        <p>เลิกนิสัยเสียสำคัญกว่าเพิ่มนิสัยดี ลดต้นทุนสำคัญกว่าเพิ่มรายได้</p>
+                    </div>
+                </div>
+
+                <div class="takeaway-item fade-in">
+                    <span class="takeaway-number">04</span>
+                    <div class="takeaway-content">
+                        <h3>อย่าฟังคนที่ไม่ต้องรับผลลัพธ์ (Skin in the Game)</h3>
+                        <p>ที่ปรึกษาที่ดีที่สุดคือคนที่เสียหายถ้าคำแนะนำผิด</p>
+                    </div>
+                </div>
+
+                <div class="takeaway-item fade-in">
+                    <span class="takeaway-number">05</span>
+                    <div class="takeaway-content">
+                        <h3>ความเครียดเล็กๆ ทำให้แข็งแกร่ง (Hormesis)</h3>
+                        <p>กล้ามเนื้อต้องถูกท้าทายจึงจะแข็งแรง ชีวิตก็เช่นกัน</p>
+                    </div>
+                </div>
+
+                <div class="takeaway-item fade-in">
+                    <span class="takeaway-number">06</span>
+                    <div class="takeaway-content">
+                        <h3>อดีตที่ดีไม่รับประกันอนาคต (Turkey Problem)</h3>
+                        <p>ระวังความเชื่อมั่นจาก "มันเป็นแบบนี้มาตลอด"</p>
+                    </div>
+                </div>
+
+                <div class="takeaway-item fade-in">
+                    <span class="takeaway-number">07</span>
+                    <div class="takeaway-content">
+                        <h3>สิ่งที่อยู่มานานมักจะอยู่ต่อไป (Lindy Effect)</h3>
+                        <p>เชื่อของเก่าที่พิสูจน์แล้ว มากกว่าของใหม่ที่ยังไม่พิสูจน์</p>
+                    </div>
+                </div>
+
+                <div class="takeaway-item fade-in">
+                    <span class="takeaway-number">08</span>
+                    <div class="takeaway-content">
+                        <h3>Barbell Strategy: ปลอดภัยสุด + เสี่ยงสุด</h3>
+                        <p>หลีกเลี่ยงจุดกลางที่ดูปลอดภัยแต่จริงๆ แล้วเสี่ยงซ่อนเร้น</p>
+                    </div>
+                </div>
+
+                <div class="takeaway-item fade-in">
+                    <span class="takeaway-number">09</span>
+                    <div class="takeaway-content">
+                        <h3>มองหา Asymmetric Upside</h3>
+                        <p>ผิดเสียน้อย ถูกได้มาก — นี่คือสูตรของ Antifragility</p>
+                    </div>
+                </div>
+
+                <div class="takeaway-item fade-in">
+                    <span class="takeaway-number">10</span>
+                    <div class="takeaway-content">
+                        <h3>ยอมรับว่าเราไม่รู้ทุกอย่าง</h3>
+                        <p>ออกแบบระบบที่ทำงานได้ดีแม้ไม่รู้ว่าอะไรจะเกิดขึ้น</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quotes Section -->
+    <section class="section quote-section">
+        <div class="quote-container">
+            <div class="section-header">
+                <p class="section-number">08 / POWERFUL QUOTES</p>
+                <h2 class="section-title">ข้อความที่เอาไปสอนต่อได้</h2>
+            </div>
+
+            <div class="quote-grid">
+                <div class="quote-item fade-in">
+                    <p class="quote-text">"Wind extinguishes a candle and energizes fire."</p>
+                    <p class="quote-translation">ลมดับเทียน แต่โหมไฟ — จงเป็นไฟ ไม่ใช่เทียน</p>
+                </div>
+
+                <div class="quote-item fade-in">
+                    <p class="quote-text">"The three most harmful addictions are heroin, carbohydrates, and a monthly salary."</p>
+                    <p class="quote-translation">การเสพติด 3 อย่างที่อันตรายที่สุด: เฮโรอีน, คาร์โบไฮเดรต, และเงินเดือนรายเดือน</p>
+                </div>
+
+                <div class="quote-item fade-in">
+                    <p class="quote-text">"If you have more than one reason to do something, just don't do it."</p>
+                    <p class="quote-translation">ถ้าต้องหาเหตุผลหลายข้อมาสนับสนุน แสดงว่าจริงๆ ไม่ควรทำ</p>
+                </div>
+
+                <div class="quote-item fade-in">
+                    <p class="quote-text">"The problem with experts is that they do not know what they do not know."</p>
+                    <p class="quote-translation">ปัญหาของผู้เชี่ยวชาญคือ พวกเขาไม่รู้ว่าตัวเองไม่รู้อะไร</p>
+                </div>
+
+                <div class="quote-item fade-in">
+                    <p class="quote-text">"Don't ask a barber if you need a haircut."</p>
+                    <p class="quote-translation">อย่าถามช่างตัดผมว่าคุณควรตัดผมไหม — ระวังคนที่มีผลประโยชน์</p>
+                </div>
+
+                <div class="quote-item fade-in">
+                    <p class="quote-text">"Never trust a man who doesn't have skin in the game."</p>
+                    <p class="quote-translation">อย่าเชื่อคนที่ไม่ต้องรับผลจากคำแนะนำของตัวเอง</p>
+                </div>
+
+                <div class="quote-item fade-in">
+                    <p class="quote-text">"Success brings asymmetry: you now have a lot more to lose than to gain."</p>
+                    <p class="quote-translation">ความสำเร็จนำมาซึ่งความไม่สมมาตร: ตอนนี้คุณมีอะไรให้เสียมากกว่าให้ได้</p>
+                </div>
+
+                <div class="quote-item fade-in">
+                    <p class="quote-text">"The best way to verify that you are alive is by checking if you like variations."</p>
+                    <p class="quote-translation">วิธีตรวจสอบว่าคุณยังมีชีวิตอยู่คือดูว่าคุณชอบความหลากหลายหรือไม่</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching Cards Section -->
+    <section class="section teaching-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-number">09 / TEACHABLE MOMENTS</p>
+                <h2 class="section-title">ประโยคสอนใจ</h2>
+                <p class="section-subtitle">Copy ไปใช้ได้เลย</p>
+            </div>
+
+            <div class="teaching-grid">
+                <div class="teaching-card fade-in">
+                    <span class="teaching-icon">🔥</span>
+                    <span class="teaching-text">จงเป็นไฟที่โหมจากลม ไม่ใช่เทียนที่ถูกลมดับ</span>
+                </div>
+
+                <div class="teaching-card fade-in">
+                    <span class="teaching-icon">💪</span>
+                    <span class="teaching-text">สิ่งที่ไม่ฆ่าคุณ ไม่ได้แค่ทำให้แข็งแกร่ง — มันทำให้คุณเติบโต</span>
+                </div>
+
+                <div class="teaching-card fade-in">
+                    <span class="teaching-icon">➖</span>
+                    <span class="teaching-text">การลบสิ่งที่ผิดออก สำคัญกว่าการเพิ่มสิ่งที่ถูกเข้าไป</span>
+                </div>
+
+                <div class="teaching-card fade-in">
+                    <span class="teaching-icon">🎲</span>
+                    <span class="teaching-text">ถ้าเขาไม่เดิมพันด้วย อย่าเชื่อคำแนะนำของเขา</span>
+                </div>
+
+                <div class="teaching-card fade-in">
+                    <span class="teaching-icon">⚖️</span>
+                    <span class="teaching-text">มองหาเกมที่ผิดเสียน้อย แต่ถูกได้มหาศาล</span>
+                </div>
+
+                <div class="teaching-card fade-in">
+                    <span class="teaching-icon">🦃</span>
+                    <span class="teaching-text">ไก่งวงไม่เคยคิดว่าวัน Thanksgiving จะมาถึง</span>
+                </div>
+
+                <div class="teaching-card fade-in">
+                    <span class="teaching-icon">⏳</span>
+                    <span class="teaching-text">หนังสือที่อยู่มา 100 ปี จะอยู่อีก 100 ปี แอปใหม่ล่าสุดอาจหายไปในปีหน้า</span>
+                </div>
+
+                <div class="teaching-card fade-in">
+                    <span class="teaching-icon">🏋️</span>
+                    <span class="teaching-text">ความสบายสร้างความอ่อนแอ ความท้าทายสร้างความแข็งแกร่ง</span>
+                </div>
+
+                <div class="teaching-card fade-in">
+                    <span class="teaching-icon">📊</span>
+                    <span class="teaching-text">90% ปลอดภัยสุด + 10% เสี่ยงสุด ดีกว่า 100% กลางๆ</span>
+                </div>
+
+                <div class="teaching-card fade-in">
+                    <span class="teaching-icon">🧠</span>
+                    <span class="teaching-text">รู้ว่าอะไรไม่ควรทำ สำคัญกว่ารู้ว่าควรทำอะไร</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">ANTIFRAGILE</div>
+            <p class="footer-text">
+                "สิ่งที่ได้ประโยชน์จากความโกลาหล ความผันผวน และความไม่แน่นอน"
+            </p>
+            <p class="footer-credit">สร้างโดย Tomz</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
