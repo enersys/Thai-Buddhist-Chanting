@@ -351,11 +351,94 @@
             opacity: 0.6;
         }
 
+        /* Hero Image Section */
+        .hero-image-section {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .hero-image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, rgba(74,44,42,0.3) 0%, rgba(74,44,42,0.7) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-overlay-text {
+            text-align: center;
+            color: var(--cream);
+        }
+
+        .hero-overlay-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            color: var(--cream);
+        }
+
+        .hero-overlay-text h2::after { display: none; }
+
+        .hero-overlay-text p {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--gold-pale);
+        }
+
+        /* Image Banner */
+        .image-banner {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            margin: 2rem 0;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px var(--shadow-warm);
+            border: 3px solid var(--gold);
+        }
+
+        .image-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-banner-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0; right: 0;
+            background: linear-gradient(0deg, rgba(74,44,42,0.9) 0%, transparent 100%);
+            padding: 2rem 1.5rem 1rem;
+            color: var(--cream);
+        }
+
+        .image-banner-caption h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin: 0;
+            color: var(--gold-pale);
+        }
+
         @media (max-width: 768px) {
             .header h1 { font-size: 2rem; letter-spacing: 2px; }
             .books-grid { grid-template-columns: 1fr; }
             .stats { flex-direction: column; align-items: center; margin: -1rem 1rem 2rem; }
             .stat-card { width: 100%; max-width: 280px; }
+            .hero-image-section { height: 200px; }
+            .hero-overlay-text h2 { font-size: 1.5rem; }
+            .image-banner { height: 150px; }
         }
     </style>
 </head>
@@ -369,6 +452,17 @@
             <p class="header-motto">Est. 2025 • A Collection of Wisdom</p>
         </div>
     </header>
+
+    <!-- Hero Image -->
+    <section class="hero-image-section">
+        <img src="images/library-bookshelf.png" alt="Classic Library Bookshelf">
+        <div class="hero-overlay">
+            <div class="hero-overlay-text">
+                <h2>Welcome to the Hall of Knowledge</h2>
+                <p>"The more that you read, the more things you will know" — Dr. Seuss</p>
+            </div>
+        </div>
+    </section>
 
     <div class="stats">
         <div class="stat-card">
@@ -403,11 +497,18 @@
                         <div class="book-tags"><span class="tag">Philosophy</span><span class="tag">Risk</span><span class="tag">Strategy</span></div>
                         <a href="antifragile-summary.html" class="book-link">📖 เปิดอ่าน</a>
                     </div>
-                </article>
-            </div>
+        </div>
         </section>
 
         <div class="ornament">❧ ❧ ❧</div>
+
+        <!-- Reading Desk Banner -->
+        <div class="image-banner">
+            <img src="images/reading-desk.png" alt="Classic Reading Desk">
+            <div class="image-banner-caption">
+                <h3>A Quiet Place for Deep Reading</h3>
+            </div>
+        </div>
 
         <!-- Business & Finance -->
         <section class="category-section">
