@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We Need to Talk - สรุปหนังสือ | Celeste Headlee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #C45D3E;
+            --primary-dark: #A34A2F;
+            --secondary: #2C5F5D;
+            --accent: #D4A574;
+            --bg-cream: #FDF8F3;
+            --bg-warm: #F5EDE6;
+            --bg-card: #FFFFFF;
+            --text-dark: #2D2A26;
+            --text-medium: #5A554E;
+            --text-light: #8B8580;
+            --border: #E8DED4;
+            --shadow: rgba(45, 42, 38, 0.08);
+            --shadow-hover: rgba(45, 42, 38, 0.15);
+            --gradient-warm: linear-gradient(135deg, #FDF8F3 0%, #F5EDE6 100%);
+            --gradient-accent: linear-gradient(135deg, #C45D3E 0%, #D4A574 100%);
+        }
+
+        [data-theme="dark"] {
+            --primary: #E07A5F;
+            --primary-dark: #C45D3E;
+            --secondary: #81B29A;
+            --accent: #F2CC8F;
+            --bg-cream: #1A1A1A;
+            --bg-warm: #242424;
+            --bg-card: #2D2D2D;
+            --text-dark: #F4F1ED;
+            --text-medium: #C4BEB6;
+            --text-light: #8B8580;
+            --border: #3D3D3D;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --shadow-hover: rgba(0, 0, 0, 0.5);
+            --gradient-warm: linear-gradient(135deg, #1A1A1A 0%, #242424 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans Thai', 'DM Sans', sans-serif;
+            background: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.8;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gradient-accent);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        /* Floating Controls */
+        .floating-controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 999;
+        }
+
+        .floating-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            background: var(--bg-card);
+            color: var(--text-dark);
+            box-shadow: 0 4px 20px var(--shadow);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .floating-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px var(--shadow-hover);
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-warm);
+            padding: 4rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C45D3E' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            background: var(--bg-card);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        .book-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .book-subtitle {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.25rem;
+            color: var(--text-medium);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .author {
+            font-size: 1rem;
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .featured-quote {
+            background: var(--bg-card);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem 2rem;
+            border-radius: 0 12px 12px 0;
+            margin-top: 2rem;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .featured-quote blockquote {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            font-style: italic;
+            margin-bottom: 0.75rem;
+        }
+
+        .featured-quote .thai-translation {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Quick Info */
+        .quick-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin: -2rem auto 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .info-card .icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card .label {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-card .value {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-number {
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-medium);
+        }
+
+        /* Target Audience */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .audience-column h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .audience-column.suitable h4 { color: var(--secondary); }
+        .audience-column.unsuitable h4 { color: var(--primary); }
+
+        .audience-list {
+            list-style: none;
+        }
+
+        .audience-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .audience-list li:last-child {
+            border-bottom: none;
+        }
+
+        .audience-list .icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+
+        .suitable .audience-list .icon {
+            background: rgba(44, 95, 93, 0.1);
+            color: var(--secondary);
+        }
+
+        .unsuitable .audience-list .icon {
+            background: rgba(196, 93, 62, 0.1);
+            color: var(--primary);
+        }
+
+        /* Statistics */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px var(--shadow);
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .description {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+        }
+
+        .stat-card .source {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        /* Core Concept */
+        .concept-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .concept-definition {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .concept-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .component {
+            text-align: center;
+        }
+
+        .component .icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            font-size: 1.25rem;
+            color: white;
+        }
+
+        .component .name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .component .name-th {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Key Strategies Pyramid */
+        .strategies-section {
+            background: var(--bg-warm);
+        }
+
+        .pyramid {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pyramid-level {
+            background: var(--bg-card);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 0.75rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pyramid-level:hover {
+            transform: translateX(8px);
+            box-shadow: 0 4px 20px var(--shadow-hover);
+        }
+
+        .pyramid-level .number {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .pyramid-level .content h4 {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .pyramid-level .content p {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+        }
+
+        /* Golden Rules */
+        .rules-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .rule-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px var(--shadow);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.25rem;
+            align-items: start;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .rule-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .rule-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .rule-content h4 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .rule-content .quote {
+            font-family: 'Crimson Pro', serif;
+            font-style: italic;
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent);
+        }
+
+        .rule-content .description {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+        }
+
+        /* Listening Section */
+        .listening-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .listening-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .listening-column {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .listening-column h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .listening-column.dos h4 { color: var(--secondary); }
+        .listening-column.donts h4 { color: var(--primary); }
+
+        .listening-list {
+            list-style: none;
+        }
+
+        .listening-list li {
+            padding: 0.6rem 0;
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .listening-list li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .ai-note {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Quotes Section */
+        .quotes-section {
+            background: var(--bg-warm);
+        }
+
+        .quotes-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .quote-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px var(--shadow);
+            position: relative;
+        }
+
+        .quote-card::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.15;
+            position: absolute;
+            top: 0;
+            left: 1rem;
+            line-height: 1;
+        }
+
+        .quote-card blockquote {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            font-style: italic;
+            margin-bottom: 0.75rem;
+            padding-left: 1rem;
+        }
+
+        .quote-card .thai {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .quote-card .copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--bg-warm);
+            border: none;
+            padding: 0.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        .quote-card .copy-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Action Plan */
+        .action-plan {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .week-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .week-tab {
+            padding: 0.75rem 1.25rem;
+            border: none;
+            background: var(--bg-warm);
+            color: var(--text-medium);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .week-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .week-content {
+            display: none;
+        }
+
+        .week-content.active {
+            display: block;
+        }
+
+        .week-content h4 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .checklist {
+            list-style: none;
+        }
+
+        .checklist li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .checklist label {
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: var(--text-medium);
+        }
+
+        .checklist input:checked + label {
+            text-decoration: line-through;
+            color: var(--text-light);
+        }
+
+        .progress-container {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-track {
+            height: 8px;
+            background: var(--bg-warm);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-accent);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Strengths & Weaknesses */
+        .sw-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .sw-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sw-column {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .sw-column h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sw-column.strengths h4 { color: var(--secondary); }
+        .sw-column.weaknesses h4 { color: var(--primary); }
+
+        .sw-list {
+            list-style: none;
+        }
+
+        .sw-list li {
+            padding: 0.6rem 0;
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sw-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Related Books */
+        .related-section {
+            background: var(--bg-warm);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .related-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .related-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .related-card .author {
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .related-card p {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--bg-cream);
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-section h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-section p, .footer-section li {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .verification-log {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .verification-toggle {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .verification-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .verification-content {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            font-size: 0.8rem;
+        }
+
+        .verification-content.show {
+            display: block;
+        }
+
+        .verification-content code {
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0.25rem 0;
+        }
+
+        .disclaimer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Print Styles */
+        @media print {
+            .floating-controls, .progress-bar, .week-tabs, .copy-btn, .verification-log {
+                display: none !important;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+            
+            section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="floating-controls">
+        <button class="floating-btn" id="themeToggle" title="Toggle Theme (T)">🌙</button>
+        <button class="floating-btn" id="scrollTop" title="Scroll to Top (Esc)">↑</button>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <div class="badges">
+                <span class="badge">📚 NPR's Best Books 2017</span>
+                <span class="badge">🏆 Silver Nautilus Award</span>
+                <span class="badge">🎤 TED Talk 30M+ Views</span>
+            </div>
+            
+            <h1 class="book-title">We Need to Talk</h1>
+            <p class="book-subtitle">How to Have Conversations That Matter</p>
+            <p class="author">โดย Celeste Headlee</p>
+
+            <div class="featured-quote">
+                <blockquote>"Conversation is not a tennis match. It's about connecting, not winning."</blockquote>
+                <p class="thai-translation">การสนทนาไม่ใช่การแข่งเทนนิส แต่เป็นเรื่องของการเชื่อมต่อ ไม่ใช่การเอาชนะ</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quick Info -->
+    <div class="container">
+        <div class="quick-info">
+            <div class="info-card">
+                <div class="icon">📖</div>
+                <div class="label">จำนวนหน้า</div>
+                <div class="value">272 หน้า</div>
+            </div>
+            <div class="info-card">
+                <div class="icon">📅</div>
+                <div class="label">ปีที่พิมพ์</div>
+                <div class="value">กันยายน 2017</div>
+            </div>
+            <div class="info-card">
+                <div class="icon">📂</div>
+                <div class="label">หมวดหมู่</div>
+                <div class="value">Communication</div>
+            </div>
+            <div class="info-card">
+                <div class="icon">⏱️</div>
+                <div class="label">เวลาอ่าน</div>
+                <div class="value">~5-6 ชั่วโมง</div>
+            </div>
+            <div class="info-card">
+                <div class="icon">📊</div>
+                <div class="label">ระดับความยาก</div>
+                <div class="value">ง่าย-ปานกลาง</div>
+            </div>
+            <div class="info-card">
+                <div class="icon">🏢</div>
+                <div class="label">สำนักพิมพ์</div>
+                <div class="value">Harper Wave</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Target Audience -->
+    <section class="container fade-in">
+        <div class="section-header">
+            <div class="section-number">01</div>
+            <h2 class="section-title">หนังสือเล่มนี้เหมาะกับใคร</h2>
+            <p class="section-subtitle">Who Should Read This Book</p>
+        </div>
+
+        <div class="audience-grid">
+            <div class="audience-column suitable">
+                <h4>✓ เหมาะสำหรับ</h4>
+                <ul class="audience-list">
+                    <li>
+                        <span class="icon">👔</span>
+                        <span>ผู้นำและผู้บริหารที่ต้องการพัฒนาทักษะการสื่อสารกับทีม</span>
+                    </li>
+                    <li>
+                        <span class="icon">💼</span>
+                        <span>มืออาชีพที่ทำงานด้านการบริการลูกค้าหรือการขาย</span>
+                    </li>
+                    <li>
+                        <span class="icon">👨‍👩‍👧</span>
+                        <span>พ่อแม่ที่ต้องการสื่อสารกับลูกอย่างมีคุณภาพ</span>
+                    </li>
+                    <li>
+                        <span class="icon">🎓</span>
+                        <span>ครู อาจารย์ และนักการศึกษาทุกระดับ</span>
+                    </li>
+                    <li>
+                        <span class="icon">🤝</span>
+                        <span>ทุกคนที่รู้สึกว่าการสนทนาในยุคดิจิทัลมีคุณภาพลดลง</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="audience-column unsuitable">
+                <h4>✗ อาจไม่เหมาะกับ</h4>
+                <ul class="audience-list">
+                    <li>
+                        <span class="icon">📚</span>
+                        <span>ผู้ที่ต้องการทฤษฎีการสื่อสารเชิงวิชาการเข้มข้น</span>
+                    </li>
+                    <li>
+                        <span class="icon">🔬</span>
+                        <span>นักวิจัยที่ต้องการข้อมูลเชิงสถิติโดยละเอียด</span>
+                    </li>
+                    <li>
+                        <span class="icon">💻</span>
+                        <span>ผู้ที่สนใจเฉพาะการสื่อสารผ่านสื่อดิจิทัล</span>
+                    </li>
+                    <li>
+                        <span class="icon">🎯</span>
+                        <span>ผู้ที่ต้องการเทคนิคการโน้มน้าวใจเชิงกลยุทธ์</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Context & Statistics -->
+    <section class="container fade-in">
+        <div class="section-header">
+            <div class="section-number">02</div>
+            <h2 class="section-title">ทำไมเราต้องอ่านหนังสือเล่มนี้</h2>
+            <p class="section-subtitle">The Context: Why This Book Matters Now</p>
+        </div>
+
+        <p style="color: var(--text-medium); margin-bottom: 2rem;">
+            ในยุคที่เทคโนโลยีทำให้เราเชื่อมต่อกันได้ง่ายขึ้น แต่กลับรู้สึกโดดเดี่ยวและห่างไกลกันมากขึ้น 
+            Celeste Headlee ผู้มีประสบการณ์กว่า 20 ปีในวงการวิทยุสาธารณะ นำเสนอวิธีกลับสู่การสนทนาที่แท้จริง
+        </p>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="number">1/3</div>
+                <div class="description">ของวัยรุ่นส่งข้อความมากกว่า 100 ข้อความต่อวัน</div>
+                <div class="source">Pew Research Center</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">8 วิ</div>
+                <div class="description">ช่วงความสนใจเฉลี่ยของมนุษย์ในปัจจุบัน</div>
+                <div class="source">Microsoft Research</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">225</div>
+                <div class="description">คำต่อนาที - ความเร็วในการพูด</div>
+                <div class="source">vs 500 คำที่สมองประมวลผลได้</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">30M+</div>
+                <div class="description">ยอดวิว TED Talk ของผู้เขียน</div>
+                <div class="source">TED.com</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Concept -->
+    <section class="container fade-in">
+        <div class="section-header">
+            <div class="section-number">03</div>
+            <h2 class="section-title">แก่นแท้ของการสนทนา</h2>
+            <p class="section-subtitle">Core Concept: What Makes a Great Conversation</p>
+        </div>
+
+        <div class="concept-card">
+            <p class="concept-definition">
+                "การสนทนาที่ดีคือการเต้นรำ ไม่ใช่การต่อสู้<br>
+                เป็นการให้และรับ ไม่ใช่การพูดและรอ"
+            </p>
+
+            <div class="concept-components">
+                <div class="component">
+                    <div class="icon">💎</div>
+                    <div class="name">Honesty</div>
+                    <div class="name-th">ความจริงใจ</div>
+                </div>
+                <div class="component">
+                    <div class="icon">⚡</div>
+                    <div class="name">Brevity</div>
+                    <div class="name-th">ความกระชับ</div>
+                </div>
+                <div class="component">
+                    <div class="icon">🔮</div>
+                    <div class="name">Clarity</div>
+                    <div class="name-th">ความชัดเจน</div>
+                </div>
+                <div class="component">
+                    <div class="icon">👂</div>
+                    <div class="name">Listening</div>
+                    <div class="name-th">การฟัง</div>
+                </div>
+                <div class="component">
+                    <div class="icon">❤️</div>
+                    <div class="name">Empathy</div>
+                    <div class="name-th">ความเข้าอกเข้าใจ</div>
+                </div>
+                <div class="component">
+                    <div class="icon">🎯</div>
+                    <div class="name">Presence</div>
+                    <div class="name-th">การอยู่กับปัจจุบัน</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5 Key Strategies -->
+    <section class="strategies-section fade-in">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">04</div>
+                <h2 class="section-title">5 กลยุทธ์หลัก</h2>
+                <p class="section-subtitle">The Five Key Strategies</p>
+            </div>
+
+            <div class="pyramid">
+                <div class="pyramid-level">
+                    <div class="number">1</div>
+                    <div class="content">
+                        <h4>Be Curious — มีความอยากรู้อยากเห็น</h4>
+                        <p>เปิดใจเรียนรู้จากทุกคน ทุกคนมีเรื่องที่สามารถสอนเราได้</p>
+                    </div>
+                </div>
+                <div class="pyramid-level">
+                    <div class="number">2</div>
+                    <div class="content">
+                        <h4>Check Your Bias — ตรวจสอบอคติของตัวเอง</h4>
+                        <p>ความฉลาดไม่ได้ปกป้องเราจากการตั้งสมมติฐานที่ผิดพลาด</p>
+                    </div>
+                </div>
+                <div class="pyramid-level">
+                    <div class="number">3</div>
+                    <div class="content">
+                        <h4>Show Respect — แสดงความเคารพ</h4>
+                        <p>ฟังเพื่อเข้าใจ ไม่ใช่ฟังเพื่อตอบโต้หรือเห็นด้วย</p>
+                    </div>
+                </div>
+                <div class="pyramid-level">
+                    <div class="number">4</div>
+                    <div class="content">
+                        <h4>Stay the Course — มุ่งมั่นอยู่กับการสนทนา</h4>
+                        <p>อยู่กับปัจจุบัน วางโทรศัพท์ หยุด multitasking</p>
+                    </div>
+                </div>
+                <div class="pyramid-level">
+                    <div class="number">5</div>
+                    <div class="content">
+                        <h4>End Well — จบอย่างดี</h4>
+                        <p>รู้จักจบการสนทนาอย่างเหมาะสม ไม่ยืดเยื้อ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10 Golden Rules -->
+    <section class="container fade-in">
+        <div class="section-header">
+            <div class="section-number">05</div>
+            <h2 class="section-title">10 กฎทองของการสนทนา</h2>
+            <p class="section-subtitle">The 10 Golden Rules from TED Talk</p>
+        </div>
+
+        <div class="rules-grid">
+            <div class="rule-card">
+                <div class="rule-number">1</div>
+                <div class="rule-content">
+                    <h4>Don't Multitask — อย่าทำหลายอย่างพร้อมกัน</h4>
+                    <p class="quote">"Be present, or be elsewhere."</p>
+                    <p class="description">อยู่กับการสนทนาอย่างเต็มที่ หรือไม่ก็ไปอยู่ที่อื่นเลย อย่าอยู่ครึ่งๆ กลางๆ</p>
+                </div>
+            </div>
+
+            <div class="rule-card">
+                <div class="rule-number">2</div>
+                <div class="rule-content">
+                    <h4>Don't Pontificate — อย่าเทศนา</h4>
+                    <p class="quote">"Enter every conversation assuming you have something to learn."</p>
+                    <p class="description">เข้าสู่ทุกการสนทนาด้วยความคิดว่าเรามีสิ่งที่ต้องเรียนรู้เสมอ</p>
+                </div>
+            </div>
+
+            <div class="rule-card">
+                <div class="rule-number">3</div>
+                <div class="rule-content">
+                    <h4>Use Open-Ended Questions — ถามคำถามปลายเปิด</h4>
+                    <p class="quote">"Start questions with who, what, when, where, why, or how."</p>
+                    <p class="description">ให้อีกฝ่ายได้อธิบาย ไม่ใช่แค่ตอบใช่หรือไม่</p>
+                </div>
+            </div>
+
+            <div class="rule-card">
+                <div class="rule-number">4</div>
+                <div class="rule-content">
+                    <h4>Go with the Flow — ไหลไปกับการสนทนา</h4>
+                    <p class="quote">"Let thoughts come and go."</p>
+                    <p class="description">อย่ายึดติดกับคำถามที่เตรียมมา ฟังและตอบสนองตามสถานการณ์</p>
+                </div>
+            </div>
+
+            <div class="rule-card">
+                <div class="rule-number">5</div>
+                <div class="rule-content">
+                    <h4>If You Don't Know, Say So — ไม่รู้ก็บอกว่าไม่รู้</h4>
+                    <p class="quote">"Err on the side of caution."</p>
+                    <p class="description">ความซื่อสัตย์สร้างความน่าเชื่อถือมากกว่าการแกล้งทำเป็นรู้</p>
+                </div>
+            </div>
+
+            <div class="rule-card">
+                <div class="rule-number">6</div>
+                <div class="rule-content">
+                    <h4>Don't Equate Your Experience — อย่าเทียบประสบการณ์</h4>
+                    <p class="quote">"It's not about you."</p>
+                    <p class="description">เมื่อคนอื่นเล่าปัญหา อย่ารีบเล่าปัญหาของตัวเองมาเทียบ</p>
+                </div>
+            </div>
+
+            <div class="rule-card">
+                <div class="rule-number">7</div>
+                <div class="rule-content">
+                    <h4>Try Not to Repeat Yourself — อย่าพูดซ้ำ</h4>
+                    <p class="quote">"It's condescending, and it's really boring."</p>
+                    <p class="description">การพูดซ้ำทำให้ดูถูกคู่สนทนาและน่าเบื่อ</p>
+                </div>
+            </div>
+
+            <div class="rule-card">
+                <div class="rule-number">8</div>
+                <div class="rule-content">
+                    <h4>Stay Out of the Weeds — อย่าลงรายละเอียดเกินไป</h4>
+                    <p class="quote">"People don't care about the years, the names..."</p>
+                    <p class="description">คนสนใจตัวคุณ ไม่ใช่รายละเอียดปลีกย่อย</p>
+                </div>
+            </div>
+
+            <div class="rule-card">
+                <div class="rule-number">9</div>
+                <div class="rule-content">
+                    <h4>Listen — ฟัง</h4>
+                    <p class="quote">"Listening is perhaps the most important skill you could develop."</p>
+                    <p class="description">การฟังเป็นทักษะที่สำคัญที่สุดที่คุณควรพัฒนา</p>
+                </div>
+            </div>
+
+            <div class="rule-card">
+                <div class="rule-number">10</div>
+                <div class="rule-content">
+                    <h4>Be Brief — พูดสั้นๆ</h4>
+                    <p class="quote">"A good conversation is like a miniskirt; short enough to retain interest, but long enough to cover the subject."</p>
+                    <p class="description">การสนทนาที่ดีเหมือนกระโปรงสั้น สั้นพอให้น่าสนใจ แต่ยาวพอครอบคลุมเนื้อหา</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Listening Section -->
+    <section class="container fade-in">
+        <div class="section-header">
+            <div class="section-number">06</div>
+            <h2 class="section-title">ศิลปะแห่งการฟัง</h2>
+            <p class="section-subtitle">The Art of Listening</p>
+        </div>
+
+        <div class="listening-grid">
+            <div class="listening-column dos">
+                <h4>✓ สิ่งที่ควรทำ</h4>
+                <ul class="listening-list">
+                    <li>ให้ความสนใจอย่างเต็มที่ สบตาอย่างเหมาะสม</li>
+                    <li>ปล่อยให้อีกฝ่ายพูดจบก่อนตอบ</li>
+                    <li>ถามคำถามที่แสดงว่าคุณฟังอยู่</li>
+                    <li>สังเกตภาษากายและน้ำเสียง</li>
+                    <li>ยอมรับช่วงเงียบในการสนทนา</li>
+                    <li>ฝึกสมาธิและการมีสติ</li>
+                    <li>เปิดใจรับมุมมองที่แตกต่าง</li>
+                </ul>
+                <p class="ai-note">* รายการนี้สังเคราะห์จากหลักการในหนังสือโดย AI</p>
+            </div>
+
+            <div class="listening-column donts">
+                <h4>✗ สิ่งที่ไม่ควรทำ</h4>
+                <ul class="listening-list">
+                    <li>เตรียมคำตอบขณะที่อีกฝ่ายยังพูด</li>
+                    <li>พูดแทรกหรือพูดทับ</li>
+                    <li>เปลี่ยนหัวข้อไปเรื่องของตัวเอง</li>
+                    <li>เล่นโทรศัพท์ขณะสนทนา</li>
+                    <li>ตัดสินก่อนฟังจบ</li>
+                    <li>แกล้งทำเป็นฟังโดยไม่ได้ฟังจริง</li>
+                    <li>ให้คำแนะนำเมื่อไม่ได้ถูกขอ</li>
+                </ul>
+                <p class="ai-note">* รายการนี้สังเคราะห์จากหลักการในหนังสือโดย AI</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Golden Quotes -->
+    <section class="quotes-section fade-in">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">07</div>
+                <h2 class="section-title">คำคมทอง</h2>
+                <p class="section-subtitle">Golden Quotes from the Book</p>
+            </div>
+
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <button class="copy-btn" onclick="copyQuote(this)" title="Copy">📋</button>
+                    <blockquote>"In conversations, as in life, you can't control what someone else does or says; you can only control yourself. But sometimes, that's enough."</blockquote>
+                    <p class="thai">ในการสนทนา เหมือนในชีวิต คุณไม่สามารถควบคุมสิ่งที่คนอื่นทำหรือพูดได้ คุณควบคุมได้แค่ตัวเอง แต่บางครั้ง นั่นก็เพียงพอแล้ว</p>
+                </div>
+
+                <div class="quote-card">
+                    <button class="copy-btn" onclick="copyQuote(this)" title="Copy">📋</button>
+                    <blockquote>"Listening to someone doesn't mean agreeing with them. The purpose of listening is to understand, not to endorse."</blockquote>
+                    <p class="thai">การฟังใครไม่ได้หมายความว่าต้องเห็นด้วยกับเขา จุดประสงค์ของการฟังคือเพื่อเข้าใจ ไม่ใช่เพื่อรับรอง</p>
+                </div>
+
+                <div class="quote-card">
+                    <button class="copy-btn" onclick="copyQuote(this)" title="Copy">📋</button>
+                    <blockquote>"One of the best lessons I've learned in nearly twenty years as a journalist is that everyone has something to teach me."</blockquote>
+                    <p class="thai">บทเรียนที่ดีที่สุดที่ผมเรียนรู้จากการเป็นนักข่าวเกือบยี่สิบปีคือ ทุกคนมีสิ่งที่สามารถสอนผมได้</p>
+                </div>
+
+                <div class="quote-card">
+                    <button class="copy-btn" onclick="copyQuote(this)" title="Copy">📋</button>
+                    <blockquote>"The setting aside of the self — and all of the opinions, causes, beliefs, and biases that come with it — is one of the cornerstones of great conversation."</blockquote>
+                    <p class="thai">การวางตัวเองลง พร้อมความคิดเห็น ความเชื่อ และอคติทั้งหมด คือรากฐานสำคัญของการสนทนาที่ยอดเยี่ยม</p>
+                </div>
+
+                <div class="quote-card">
+                    <button class="copy-btn" onclick="copyQuote(this)" title="Copy">📋</button>
+                    <blockquote>"Intelligence also gets in the way of good conversation because smart people can be reluctant to ask for help."</blockquote>
+                    <p class="thai">ความฉลาดก็เป็นอุปสรรคต่อการสนทนาที่ดีได้ เพราะคนฉลาดมักลังเลที่จะขอความช่วยเหลือ</p>
+                </div>
+
+                <div class="quote-card">
+                    <button class="copy-btn" onclick="copyQuote(this)" title="Copy">📋</button>
+                    <blockquote>"Meditation is the only effective way to train yourself to be present despite all the distractions of daily life."</blockquote>
+                    <p class="thai">การนั่งสมาธิเป็นวิธีเดียวที่มีประสิทธิภาพในการฝึกตัวเองให้อยู่กับปัจจุบัน ท่ามกลางสิ่งรบกวนในชีวิตประจำวัน</p>
+                </div>
+
+                <div class="quote-card">
+                    <button class="copy-btn" onclick="copyQuote(this)" title="Copy">📋</button>
+                    <blockquote>"A flood of information will rush in to fill the vacancy left behind by your ego."</blockquote>
+                    <p class="thai">ข้อมูลจะหลั่งไหลเข้ามาเติมเต็มช่องว่างที่อัตตาของคุณทิ้งไว้</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 30-Day Action Plan -->
+    <section class="container fade-in">
+        <div class="section-header">
+            <div class="section-number">08</div>
+            <h2 class="section-title">แผนปฏิบัติการ 30 วัน</h2>
+            <p class="section-subtitle">30-Day Action Plan — AI-Generated Practice Guide</p>
+        </div>
+
+        <div class="action-plan">
+            <div class="week-tabs">
+                <button class="week-tab active" data-week="1">สัปดาห์ 1</button>
+                <button class="week-tab" data-week="2">สัปดาห์ 2</button>
+                <button class="week-tab" data-week="3">สัปดาห์ 3</button>
+                <button class="week-tab" data-week="4">สัปดาห์ 4</button>
+            </div>
+
+            <div class="week-content active" data-week="1">
+                <h4>📱 สัปดาห์ที่ 1: ลดสิ่งรบกวน</h4>
+                <ul class="checklist">
+                    <li><input type="checkbox" id="w1-1"><label for="w1-1">วางโทรศัพท์ไว้ที่มองไม่เห็นระหว่างสนทนา</label></li>
+                    <li><input type="checkbox" id="w1-2"><label for="w1-2">ฝึกสบตาอย่างน้อย 3 วินาทีก่อนตอบ</label></li>
+                    <li><input type="checkbox" id="w1-3"><label for="w1-3">สังเกตว่าตัวเองอยากหยิบโทรศัพท์กี่ครั้งต่อวัน</label></li>
+                    <li><input type="checkbox" id="w1-4"><label for="w1-4">ปิดแจ้งเตือนระหว่างการประชุมหรือมื้ออาหาร</label></li>
+                    <li><input type="checkbox" id="w1-5"><label for="w1-5">ฝึกนั่งสมาธิ 5 นาทีก่อนการสนทนาสำคัญ</label></li>
+                </ul>
+            </div>
+
+            <div class="week-content" data-week="2">
+                <h4>👂 สัปดาห์ที่ 2: ฝึกการฟัง</h4>
+                <ul class="checklist">
+                    <li><input type="checkbox" id="w2-1"><label for="w2-1">รอ 2 วินาทีหลังอีกฝ่ายพูดจบก่อนตอบ</label></li>
+                    <li><input type="checkbox" id="w2-2"><label for="w2-2">ถามคำถามปลายเปิดอย่างน้อย 3 ข้อต่อการสนทนา</label></li>
+                    <li><input type="checkbox" id="w2-3"><label for="w2-3">สังเกตเมื่อตัวเองกำลังคิดคำตอบแทนที่จะฟัง</label></li>
+                    <li><input type="checkbox" id="w2-4"><label for="w2-4">ทวนสิ่งที่ได้ยินด้วยคำพูดของตัวเอง</label></li>
+                    <li><input type="checkbox" id="w2-5"><label for="w2-5">ถามว่า "แล้วยังไงต่อ?" หรือ "รู้สึกยังไง?"</label></li>
+                </ul>
+            </div>
+
+            <div class="week-content" data-week="3">
+                <h4>🎯 สัปดาห์ที่ 3: ลดอัตตา</h4>
+                <ul class="checklist">
+                    <li><input type="checkbox" id="w3-1"><label for="w3-1">หลีกเลี่ยงการพูดว่า "ผม/ฉันก็เคย..." เมื่อคนอื่นเล่าเรื่อง</label></li>
+                    <li><input type="checkbox" id="w3-2"><label for="w3-2">ยอมรับเมื่อไม่รู้และพูดว่า "ไม่รู้" อย่างน้อย 1 ครั้ง</label></li>
+                    <li><input type="checkbox" id="w3-3"><label for="w3-3">สังเกตอคติของตัวเองในการสนทนา</label></li>
+                    <li><input type="checkbox" id="w3-4"><label for="w3-4">หาจุดร่วมกับคนที่คิดต่างจากเรา</label></li>
+                    <li><input type="checkbox" id="w3-5"><label for="w3-5">ถามคำถามที่แท้จริงอยากรู้คำตอบ</label></li>
+                </ul>
+            </div>
+
+            <div class="week-content" data-week="4">
+                <h4>✨ สัปดาห์ที่ 4: บูรณาการทักษะ</h4>
+                <ul class="checklist">
+                    <li><input type="checkbox" id="w4-1"><label for="w4-1">มีการสนทนาลึกซึ้งกับคนใหม่ 1 คน</label></li>
+                    <li><input type="checkbox" id="w4-2"><label for="w4-2">สนทนากับคนที่มีความเห็นต่างโดยไม่โต้แย้ง</label></li>
+                    <li><input type="checkbox" id="w4-3"><label for="w4-3">ฝึกจบการสนทนาอย่างเหมาะสม</label></li>
+                    <li><input type="checkbox" id="w4-4"><label for="w4-4">สังเกตความเปลี่ยนแปลงในความสัมพันธ์</label></li>
+                    <li><input type="checkbox" id="w4-5"><label for="w4-5">บันทึกบทเรียนที่ได้เรียนรู้ตลอด 30 วัน</label></li>
+                </ul>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>ความคืบหน้า</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <p class="ai-note" style="margin-top: 1rem;">* แผนปฏิบัติการนี้สร้างโดย AI จากหลักการในหนังสือ ไม่ใช่เนื้อหาต้นฉบับ</p>
+        </div>
+    </section>
+
+    <!-- Strengths & Weaknesses -->
+    <section class="container fade-in">
+        <div class="section-header">
+            <div class="section-number">09</div>
+            <h2 class="section-title">จุดแข็งและจุดอ่อน</h2>
+            <p class="section-subtitle">Strengths & Weaknesses of the Book</p>
+        </div>
+
+        <div class="sw-grid">
+            <div class="sw-column strengths">
+                <h4>✓ จุดแข็ง</h4>
+                <ul class="sw-list">
+                    <li>เขียนจากประสบการณ์จริงกว่า 20 ปีในวงการวิทยุ</li>
+                    <li>คำแนะนำปฏิบัติได้จริง ไม่เป็นทฤษฎีเกินไป</li>
+                    <li>อ่านง่าย เข้าใจง่าย มีตัวอย่างเพียบ</li>
+                    <li>มีงานวิจัยรองรับหลายประเด็น</li>
+                    <li>เหมาะกับทุกกลุ่มอายุและอาชีพ</li>
+                </ul>
+            </div>
+
+            <div class="sw-column weaknesses">
+                <h4>✗ จุดอ่อน</h4>
+                <ul class="sw-list">
+                    <li>บางเนื้อหาอาจซ้ำกับหนังสือแนว self-help อื่น</li>
+                    <li>เน้นบริบทอเมริกัน อาจต้องปรับใช้กับวัฒนธรรมอื่น</li>
+                    <li>ขาดกลยุทธ์สำหรับการสื่อสารออนไลน์โดยเฉพาะ</li>
+                    <li>บางคำแนะนำอาจยากสำหรับคนที่ไม่ชอบเข้าสังคม</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Books -->
+    <section class="related-section fade-in">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">10</div>
+                <h2 class="section-title">หนังสือที่แนะนำ</h2>
+                <p class="section-subtitle">Related Books to Explore</p>
+            </div>
+
+            <div class="related-grid">
+                <div class="related-card">
+                    <h4>Difficult Conversations</h4>
+                    <p class="author">Douglas Stone et al.</p>
+                    <p>คู่มือรับมือกับการสนทนาที่ยากลำบาก จาก Harvard Negotiation Project</p>
+                </div>
+
+                <div class="related-card">
+                    <h4>Crucial Conversations</h4>
+                    <p class="author">Patterson, Grenny, et al.</p>
+                    <p>เทคนิคการสนทนาในสถานการณ์ที่มีความเสี่ยงสูง</p>
+                </div>
+
+                <div class="related-card">
+                    <h4>Nonviolent Communication</h4>
+                    <p class="author">Marshall B. Rosenberg</p>
+                    <p>การสื่อสารอย่างสันติ เข้าใจความต้องการที่แท้จริง</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ข้อมูลหนังสือ</h4>
+                    <ul>
+                        <li>ISBN: 978-0062669001</li>
+                        <li>Publisher: Harper Wave</li>
+                        <li>Publication: September 19, 2017</li>
+                        <li>Pages: 272</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Keyboard Shortcuts</h4>
+                    <ul>
+                        <li><strong>T</strong> — Toggle Theme</li>
+                        <li><strong>Esc</strong> — Scroll to Top</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="verification-log">
+                <button class="verification-toggle" onclick="toggleVerification()">📋 ดู Verification Log</button>
+                <div class="verification-content" id="verificationContent">
+                    <p><strong>แหล่งข้อมูลที่ใช้ตรวจสอบ:</strong></p>
+                    <code>✓ Amazon.com - ข้อมูลหนังสือ, รีวิว, ISBN</code>
+                    <code>✓ celesteheadlee.com - ข้อมูลผู้เขียน</code>
+                    <code>✓ TED.com - เนื้อหา TED Talk "10 Ways to Have a Better Conversation"</code>
+                    <code>✓ Goodreads - รีวิวและคะแนน</code>
+                    <code>✓ Barnes & Noble - ข้อมูลสำนักพิมพ์</code>
+                    <code>✓ Perlego - บทคัดย่อหนังสือ</code>
+                    <p style="margin-top: 1rem;"><strong>วันที่สร้าง:</strong> มกราคม 2026</p>
+                </div>
+            </div>
+
+            <div class="disclaimer">
+                <p>สรุปนี้สร้างด้วย AI โดยอ้างอิงจากหนังสือต้นฉบับและแหล่งข้อมูลสาธารณะ<br>
+                คำแปลภาษาไทยสร้างโดย AI แต่ตรวจสอบความหมายแล้ว<br>
+                ส่วนที่ระบุว่า "AI-Generated" ไม่ใช่เนื้อหาต้นฉบับจากหนังสือ</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+        themeToggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
+        });
+
+        // Scroll to Top
+        document.getElementById('scrollTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Fade-in Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in, .rule-card').forEach(el => observer.observe(el));
+
+        // Week Tabs
+        document.querySelectorAll('.week-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.week-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.week-content').forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.querySelector(`.week-content[data-week="${tab.dataset.week}"]`).classList.add('active');
+            });
+        });
+
+        // Checklist with localStorage
+        const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+        const savedChecks = JSON.parse(localStorage.getItem('actionPlanChecks') || '{}');
+
+        checkboxes.forEach(cb => {
+            cb.checked = savedChecks[cb.id] || false;
+            cb.addEventListener('change', () => {
+                savedChecks[cb.id] = cb.checked;
+                localStorage.setItem('actionPlanChecks', JSON.stringify(savedChecks));
+                updateProgress();
+            });
+        });
+
+        function updateProgress() {
+            const total = checkboxes.length;
+            const checked = [...checkboxes].filter(cb => cb.checked).length;
+            const percent = Math.round((checked / total) * 100);
+            document.getElementById('progressPercent').textContent = percent + '%';
+            document.getElementById('progressFill').style.width = percent + '%';
+        }
+        updateProgress();
+
+        // Copy Quote
+        function copyQuote(btn) {
+            const card = btn.closest('.quote-card');
+            const quote = card.querySelector('blockquote').textContent;
+            navigator.clipboard.writeText(quote);
+            btn.textContent = '✓';
+            setTimeout(() => btn.textContent = '📋', 2000);
+        }
+
+        // Verification Log Toggle
+        function toggleVerification() {
+            document.getElementById('verificationContent').classList.toggle('show');
+        }
+
+        // Keyboard Shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 't' || e.key === 'T') themeToggle.click();
+            if (e.key === 'Escape') window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix This Next - ถอดรหัสหนังสือฉบับลึกซึ้ง | Mike Michalowicz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Crimson+Pro:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f0f1a;
+            --bg-card: #1a1a2e;
+            --bg-card-hover: #252540;
+            --accent-gold: #fbbf24;
+            --accent-amber: #f59e0b;
+            --accent-orange: #ea580c;
+            --accent-red: #dc2626;
+            --accent-emerald: #10b981;
+            --accent-teal: #14b8a6;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --text-white: #ffffff;
+            --text-gray: #a1a1aa;
+            --text-muted: #71717a;
+            --border: rgba(255,255,255,0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Noto Sans Thai', 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(251,191,36,0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 70%, rgba(139,92,246,0.1) 0%, transparent 40%),
+                linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 100%);
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(251,191,36,0.15);
+            border: 1px solid rgba(251,191,36,0.3);
+            color: var(--accent-gold);
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        .hero h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+        }
+        .hero-author {
+            font-size: 1rem;
+            color: var(--accent-gold);
+            margin-bottom: 2rem;
+        }
+        .hero-desc {
+            max-width: 700px;
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.9;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+        
+        /* Section Styling */
+        section {
+            margin-bottom: 5rem;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .section-num {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .num-gold { background: linear-gradient(135deg, var(--accent-gold), var(--accent-amber)); color: #000; }
+        .num-emerald { background: linear-gradient(135deg, var(--accent-emerald), var(--accent-teal)); color: #000; }
+        .num-blue { background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); color: #fff; }
+        .num-orange { background: linear-gradient(135deg, var(--accent-orange), var(--accent-red)); color: #fff; }
+        .num-purple { background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink)); color: #fff; }
+        .num-teal { background: linear-gradient(135deg, var(--accent-teal), var(--accent-blue)); color: #fff; }
+        
+        .section-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+        .section-title span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: block;
+            font-family: 'Noto Sans Thai', sans-serif;
+            font-weight: 400;
+            margin-top: 0.25rem;
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-white);
+        }
+        .card p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Core Thesis Box */
+        .thesis-box {
+            background: linear-gradient(135deg, rgba(251,191,36,0.1), rgba(245,158,11,0.05));
+            border: 2px solid var(--accent-gold);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .thesis-box::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 6rem;
+            font-family: 'Crimson Pro', serif;
+            color: rgba(251,191,36,0.15);
+            line-height: 1;
+        }
+        .thesis-text {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            line-height: 1.6;
+            color: var(--text-white);
+            position: relative;
+            z-index: 1;
+        }
+        .thesis-why {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(251,191,36,0.2);
+            color: var(--text-gray);
+        }
+        .thesis-why strong {
+            color: var(--accent-gold);
+        }
+        
+        /* Framework Cards */
+        .framework-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        .framework-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .framework-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+        .framework-card.gold::before { background: var(--accent-gold); }
+        .framework-card.emerald::before { background: var(--accent-emerald); }
+        .framework-card.blue::before { background: var(--accent-blue); }
+        .framework-card.purple::before { background: var(--accent-purple); }
+        .framework-card.orange::before { background: var(--accent-orange); }
+        
+        .framework-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .framework-card.gold .framework-num { background: rgba(251,191,36,0.2); color: var(--accent-gold); }
+        .framework-card.emerald .framework-num { background: rgba(16,185,129,0.2); color: var(--accent-emerald); }
+        .framework-card.blue .framework-num { background: rgba(59,130,246,0.2); color: var(--accent-blue); }
+        .framework-card.purple .framework-num { background: rgba(139,92,246,0.2); color: var(--accent-purple); }
+        .framework-card.orange .framework-num { background: rgba(234,88,12,0.2); color: var(--accent-orange); }
+        
+        .framework-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .framework-card p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+        
+        .example-box {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 1rem;
+            border-left: 3px solid var(--accent-gold);
+        }
+        .example-box strong {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .example-box p {
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        
+        /* Chapter Breakdown */
+        .chapter-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .chapter-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1.25rem;
+            transition: all 0.3s;
+        }
+        .chapter-item:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(251,191,36,0.3);
+        }
+        .chapter-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .chapter-item:nth-child(1) .chapter-badge { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #000; }
+        .chapter-item:nth-child(2) .chapter-badge { background: linear-gradient(135deg, #f59e0b, #ea580c); color: #000; }
+        .chapter-item:nth-child(3) .chapter-badge { background: linear-gradient(135deg, #10b981, #14b8a6); color: #000; }
+        .chapter-item:nth-child(4) .chapter-badge { background: linear-gradient(135deg, #14b8a6, #06b6d4); color: #000; }
+        .chapter-item:nth-child(5) .chapter-badge { background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: #fff; }
+        .chapter-item:nth-child(6) .chapter-badge { background: linear-gradient(135deg, #8b5cf6, #a855f7); color: #fff; }
+        .chapter-item:nth-child(7) .chapter-badge { background: linear-gradient(135deg, #a855f7, #ec4899); color: #fff; }
+        .chapter-item:nth-child(8) .chapter-badge { background: linear-gradient(135deg, #ec4899, #f43f5e); color: #fff; }
+        
+        .chapter-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .chapter-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        
+        /* Case Study */
+        .case-study {
+            background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(59,130,246,0.05));
+            border: 1px solid rgba(139,92,246,0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .case-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(139,92,246,0.2);
+            color: var(--accent-purple);
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .case-study h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .case-study p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+        .case-lesson {
+            background: rgba(139,92,246,0.1);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 1rem;
+        }
+        .case-lesson strong {
+            color: var(--accent-purple);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Action List */
+        .action-grid {
+            display: grid;
+            gap: 1rem;
+        }
+        .action-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .action-check {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent-emerald), var(--accent-teal));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .action-check svg {
+            width: 16px;
+            height: 16px;
+            stroke: #000;
+            stroke-width: 3;
+        }
+        .action-item p {
+            color: var(--text-gray);
+            margin: 0;
+        }
+        .action-item strong {
+            color: var(--text-white);
+        }
+        
+        /* Quotes Section */
+        .quotes-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .quote-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+        }
+        .quote-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 4rem;
+            font-family: 'Crimson Pro', serif;
+            color: rgba(251,191,36,0.1);
+            line-height: 1;
+        }
+        .quote-text {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            line-height: 1.7;
+            color: var(--text-white);
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        .quote-source {
+            margin-top: 1rem;
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+        }
+        
+        /* Pyramid */
+        .pyramid-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 2rem 0;
+        }
+        .pyramid-level {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            color: #fff;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .pyramid-level:hover { transform: scale(1.02); }
+        .pyr-5 { width: 40%; background: linear-gradient(135deg, #a855f7, #8b5cf6); }
+        .pyr-4 { width: 50%; background: linear-gradient(135deg, #14b8a6, #06b6d4); }
+        .pyr-3 { width: 60%; background: linear-gradient(135deg, #10b981, #14b8a6); }
+        .pyr-2 { width: 70%; background: linear-gradient(135deg, #f59e0b, #ea580c); }
+        .pyr-1 { width: 80%; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #000; }
+        .pyr-num { font-size: 1.4rem; font-weight: 800; }
+        .pyr-info { text-align: left; }
+        .pyr-title { font-size: 1rem; }
+        .pyr-sub { font-size: 0.8rem; opacity: 0.85; font-weight: 400; }
+        
+        /* OMEN */
+        .omen-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        .omen-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .omen-letter {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-amber));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #000;
+            margin: 0 auto 1rem;
+            font-family: 'Crimson Pro', serif;
+        }
+        .omen-card h5 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .omen-card p {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+        .footer-brand {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .thesis-text { font-size: 1.25rem; }
+            .section-header { flex-direction: column; text-align: center; }
+            .chapter-item { flex-direction: column; }
+            .omen-grid { grid-template-columns: repeat(2, 1fr); }
+            .pyramid-level { width: 95% !important; }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-badge">📚 Deep Book Summary</div>
+        <h1>Fix This Next</h1>
+        <p class="hero-subtitle">Make the Vital Change That Will Level Up Your Business</p>
+        <p class="hero-author">โดย Mike Michalowicz</p>
+        <p class="hero-desc">ถอดรหัสหนังสือระดับ Wall Street Journal Bestseller ที่จะเปลี่ยนวิธีคิดของคุณในการแก้ปัญหาธุรกิจ — เสมือนว่าคุณได้อ่านหนังสือเล่มนี้จบด้วยตัวเอง</p>
+    </header>
+
+    <main class="container">
+        <!-- Section 1: Core Thesis -->
+        <section>
+            <div class="section-header">
+                <div class="section-num num-gold">1</div>
+                <div class="section-title">The Core Thesis<span>แก่นหลักของหนังสือ</span></div>
+            </div>
+            
+            <div class="thesis-box">
+                <p class="thesis-text">ปัญหาใหญ่ที่สุดของผู้ประกอบการคือ พวกเขาไม่รู้ว่าปัญหาใหญ่ที่สุดของตัวเองคืออะไร ทำให้ติดอยู่ใน "กับดักการเอาตัวรอด" (Survival Trap) วิ่งดับไฟไปเรื่อย โดยไม่เคยแก้ปัญหาที่รากฐานจริงๆ</p>
+                <div class="thesis-why">
+                    <strong>ทำไมมันถึงสำคัญ?</strong> เพราะการแก้ปัญหา "ที่ถูกต้อง" ในเวลา "ที่เหมาะสม" คือความแตกต่างระหว่างธุรกิจที่เติบโตอย่างยั่งยืน กับธุรกิจที่วนอยู่กับที่ตลอดไป ไม่ว่าจะทำงานหนักแค่ไหนก็ตาม
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Key Concepts -->
+        <section>
+            <div class="section-header">
+                <div class="section-num num-emerald">2</div>
+                <div class="section-title">Key Concepts & Frameworks<span>แนวคิดและเฟรมเวิร์กหลัก 5 ประการ</span></div>
+            </div>
+            
+            <div class="framework-grid">
+                <!-- Framework 1 -->
+                <div class="framework-card gold">
+                    <div class="framework-num">01</div>
+                    <h4>Business Hierarchy of Needs (BHN)</h4>
+                    <p>เฟรมเวิร์กหลักของหนังสือ ดัดแปลงมาจาก Maslow's Hierarchy of Needs โดยแบ่งความต้องการของธุรกิจออกเป็น 5 ระดับ ต้องเติมเต็มระดับล่างก่อน จึงจะไประดับบนได้</p>
+                    <div class="pyramid-visual">
+                        <div class="pyramid-level pyr-5"><span class="pyr-num">5</span><div class="pyr-info"><div class="pyr-title">LEGACY</div><div class="pyr-sub">ความยั่งยืน</div></div></div>
+                        <div class="pyramid-level pyr-4"><span class="pyr-num">4</span><div class="pyr-info"><div class="pyr-title">IMPACT</div><div class="pyr-sub">ผลกระทบ</div></div></div>
+                        <div class="pyramid-level pyr-3"><span class="pyr-num">3</span><div class="pyr-info"><div class="pyr-title">ORDER</div><div class="pyr-sub">ระบบ</div></div></div>
+                        <div class="pyramid-level pyr-2"><span class="pyr-num">2</span><div class="pyr-info"><div class="pyr-title">PROFIT</div><div class="pyr-sub">กำไร</div></div></div>
+                        <div class="pyramid-level pyr-1"><span class="pyr-num">1</span><div class="pyr-info"><div class="pyr-title">SALES</div><div class="pyr-sub">การขาย</div></div></div>
+                    </div>
+                    <div class="example-box">
+                        <strong>💡 หลักการสำคัญ</strong>
+                        <p>เหมือนคนที่ต้องมีอาหารและที่พักก่อน จึงจะคิดเรื่องความรักได้ ธุรกิจก็ต้องมี Sales และ Profit ที่มั่นคงก่อน จึงจะไปสร้าง Impact และ Legacy ได้</p>
+                    </div>
+                </div>
+                
+                <!-- Framework 2 -->
+                <div class="framework-card emerald">
+                    <div class="framework-num">02</div>
+                    <h4>Vital Need (ความต้องการสำคัญที่สุด)</h4>
+                    <p>ในทุกช่วงเวลา ธุรกิจมีเพียง "หนึ่ง" ความต้องการที่สำคัญที่สุด ซึ่งถ้าไม่ได้รับการแก้ไข จะสร้างความเสียหายมากที่สุด หรือมองในแง่บวก ถ้าแก้ได้ จะสร้างประโยชน์มากที่สุด</p>
+                    <div class="example-box">
+                        <strong>💡 วิธีค้นหา Vital Need</strong>
+                        <p>เริ่มจากระดับล่างสุดของ BHN (SALES) ถาม 5 คำถามในแต่ละระดับ ถ้ามีข้อใดตอบว่า "ไม่" นั่นคือ Vital Need ที่ต้องแก้ก่อน</p>
+                    </div>
+                </div>
+                
+                <!-- Framework 3 -->
+                <div class="framework-card blue">
+                    <div class="framework-num">03</div>
+                    <h4>OMEN Process (กระบวนการแก้ปัญหา)</h4>
+                    <p>เมื่อระบุ Vital Need ได้แล้ว ใช้กระบวนการ 4 ขั้นตอนนี้เพื่อแก้ปัญหาอย่างเป็นระบบ</p>
+                    <div class="omen-grid">
+                        <div class="omen-card"><div class="omen-letter">O</div><h5>Objective</h5><p>เป้าหมายคืออะไร?</p></div>
+                        <div class="omen-card"><div class="omen-letter">M</div><h5>Measurement</h5><p>วัดผลอย่างไร?</p></div>
+                        <div class="omen-card"><div class="omen-letter">E</div><h5>Evaluation</h5><p>ประเมินบ่อยแค่ไหน?</p></div>
+                        <div class="omen-card"><div class="omen-letter">N</div><h5>Nurture</h5><p>ปรับปรุงอย่างไร?</p></div>
+                    </div>
+                </div>
+                
+                <!-- Framework 4 -->
+                <div class="framework-card purple">
+                    <div class="framework-num">04</div>
+                    <h4>Theory of Constraints (ทฤษฎีข้อจำกัด)</h4>
+                    <p>Mike อ้างอิงแนวคิดจาก Eliyahu Goldratt ว่า "กระบวนการธุรกิจจะทำงานได้เร็วเท่ากับจุดที่ช้าที่สุดเท่านั้น" ดังนั้นการหาและแก้ "คอขวด" คือกุญแจสำคัญ</p>
+                    <div class="example-box">
+                        <strong>💡 การนำไปใช้</strong>
+                        <p>ใช้ BHN เป็นเครื่องมือหา "คอขวด" ของธุรกิจ — ระดับไหนที่ยังไม่ผ่าน ก็คือจุดที่ต้องโฟกัส เมื่อแก้ได้แล้ว คอขวดถัดไปจะเผยตัวเอง</p>
+                    </div>
+                </div>
+                
+                <!-- Framework 5 -->
+                <div class="framework-card orange">
+                    <div class="framework-num">05</div>
+                    <h4>GET vs GIVE Levels</h4>
+                    <p>ปิรามิด BHN แบ่งออกเป็น 2 ส่วน: <strong>GET Levels</strong> (Sales, Profit, Order) คือระดับที่ธุรกิจ "รับ" เพื่อสร้างรากฐาน และ <strong>GIVE Levels</strong> (Impact, Legacy) คือระดับที่ธุรกิจ "ให้" คืนสังคม</p>
+                    <div class="example-box">
+                        <strong>💡 ข้อผิดพลาดที่พบบ่อย</strong>
+                        <p>หลายธุรกิจล้มเหลวเพราะกระโดดไป GIVE Levels โดยไม่ได้สร้าง GET Levels ให้แข็งแรงก่อน — เหมือนสร้างบ้านโดยเริ่มจากหลังคา!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Chapter Breakdown -->
+        <section>
+            <div class="section-header">
+                <div class="section-num num-blue">3</div>
+                <div class="section-title">Detailed Chapter Breakdown<span>เจาะลึกรายบท</span></div>
+            </div>
+            
+            <div class="chapter-list">
+                <div class="chapter-item">
+                    <div class="chapter-badge">1</div>
+                    <div class="chapter-content">
+                        <h4>The Business Owner's Compass</h4>
+                        <p>แนะนำปัญหาหลัก: ผู้ประกอบการใช้เวลาทั้งวันไป "ดับไฟ" โดยไม่รู้ว่าปัญหาแท้จริงคืออะไร Mike เล่าเรื่องเครื่องพิมพ์ที่ติดขัด ซึ่งสะท้อนให้เห็นว่าเขาโฟกัสผิดจุดมาตลอด — เพิ่มยอดขายแต่ไม่ได้แก้ปัญหากำไร</p>
+                    </div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-badge">2</div>
+                    <div class="chapter-content">
+                        <h4>The Business Hierarchy of Needs</h4>
+                        <p>แนะนำเฟรมเวิร์ก BHN ที่ดัดแปลงมาจาก Maslow อธิบายว่าธุรกิจก็มี "ลำดับความต้องการ" เหมือนกับมนุษย์ ต้องเติมเต็มความต้องการพื้นฐานก่อน จึงจะไปถึงความต้องการระดับสูงได้</p>
+                    </div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-badge">3</div>
+                    <div class="chapter-content">
+                        <h4>SALES — Create Cash</h4>
+                        <p>ระดับแรกของ BHN: การสร้างกระแสเงินสด ประกอบด้วย 5 Core Needs ได้แก่ Lifestyle Congruence, Prospect Attraction, Client Conversion, Delivering on Commitments, Collecting on Commitments — การขายคือ "เลือด" ของทุกธุรกิจ</p>
+                    </div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-badge">4</div>
+                    <div class="chapter-content">
+                        <h4>PROFIT — Create Stability</h4>
+                        <p>ระดับที่สอง: การสร้างเสถียรภาพผ่านกำไร แนะนำหลักการ "Profit First" — รายได้ - กำไร = ค่าใช้จ่าย (ไม่ใช่ รายได้ - ค่าใช้จ่าย = กำไร) ครอบคลุม Debt Eradication, Margin Health, Transaction Frequency, Profitable Leverage, Cash Reserves</p>
+                    </div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-badge">5</div>
+                    <div class="chapter-content">
+                        <h4>ORDER — Create Efficiency</h4>
+                        <p>ระดับที่สาม: การสร้างประสิทธิภาพผ่านระบบ Mike เปรียบเทียบกับร่างกายที่ต้องควบคุมการเติบโตของเซลล์ ครอบคลุม Minimized Wasted Effort, Role Alignment, Outcome Delegation, Linchpin Redundancy, Mastery Reputation</p>
+                    </div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-badge">6</div>
+                    <div class="chapter-content">
+                        <h4>IMPACT — Create Transformation</h4>
+                        <p>ระดับที่สี่: การเปลี่ยนจาก "Transaction" เป็น "Transformation" Mike เล่าประสบการณ์ส่วนตัวจากผู้ประกอบการที่ดิ้นรนสู่นักเขียนที่ประสบความสำเร็จ ครอบคลุม Transformation Orientation, Mission Motivation, Dream Alignment, Feedback Integrity, Complementary Network</p>
+                    </div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-badge">7</div>
+                    <div class="chapter-content">
+                        <h4>LEGACY — Create Permanence</h4>
+                        <p>ระดับสูงสุด: การสร้างสิ่งที่ยืนยาวเกินกว่าตัวผู้ก่อตั้ง ครอบคลุม Community Continuance, Intentional Leadership Transition, Heart-Based Promoters, Quarterly Dynamics, Ongoing Adaptation — Legacy ไม่ใช่เรื่องของเงินหรืออำนาจ แต่เป็นผลกระทบที่ยืนยาว</p>
+                    </div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-badge">8</div>
+                    <div class="chapter-content">
+                        <h4>The Fix This Next Process</h4>
+                        <p>สรุปวิธีการนำทุกอย่างไปใช้: 4 ขั้นตอน คือ Identify (หาความต้องการที่ยังไม่ได้รับการตอบสนอง), Pinpoint (หา Level ต่ำสุดที่มีปัญหา), Fix (ใช้ OMEN Process แก้ไข), Repeat (กลับไปเริ่มใหม่จากระดับล่าง)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Case Studies -->
+        <section>
+            <div class="section-header">
+                <div class="section-num num-orange">4</div>
+                <div class="section-title">Best Case Studies<span>กรณีศึกษาเด็ดจากหนังสือ</span></div>
+            </div>
+            
+            <div class="case-study">
+                <div class="case-label">📖 Case Study #1</div>
+                <h4>เครื่องพิมพ์ที่ติดขัด — บทเรียนการโฟกัสผิดจุด</h4>
+                <p>Mike มีหนี้สิน $365,000 และพยายามแก้ด้วยการเพิ่มยอดขายอย่างหนัก แต่แปลกที่ยอดขายเพิ่มขึ้น หนี้กลับไม่ลดลง วันหนึ่งเครื่องพิมพ์ของเขาติดขัด เขาเปิดทุกลิ้นชัก กระชากทุกถาด แต่ไม่พบปัญหา</p>
+                <p>จนกระทั่งเขาหยุด หายใจลึก แล้วสังเกตด้านหลัง... พบกระดาษชิ้นเล็กๆ ติดอยู่ในจุดที่เขาไม่เคยมอง ทันทีที่ดึงออก เครื่องพิมพ์ก็ทำงานได้ปกติ</p>
+                <div class="case-lesson">
+                    <strong>🎯 บทเรียน</strong>
+                    <p>ปัญหาของ Mike ไม่ใช่ยอดขาย แต่เป็น <strong>กำไร</strong> — เขาขายได้มากขึ้น แต่ต้นทุนก็เพิ่มขึ้นตาม เหมือนกับเครื่องพิมพ์ที่ติดขัดเพราะปัญหาเล็กๆ ที่เขาไม่เคยมอง การโฟกัสผิดจุดทำให้แก้ไม่ถูกปัญหา</p>
+                </div>
+            </div>
+            
+            <div class="case-study">
+                <div class="case-label">📖 Case Study #2</div>
+                <h4>Olmec Systems และโทรศัพท์ VoIP — บทเรียนเรื่องการส่งมอบตามสัญญา</h4>
+                <p>ในยุคแรกของบริษัท Olmec Systems Mike ได้ขายระบบโทรศัพท์ VoIP จำนวน 50 เครื่องให้ลูกค้ารายใหญ่ เขาตื่นเต้นมากที่ปิดการขายได้ จึงโทรหา 3Com (ผู้ผลิต) เพื่อสั่งติดตั้ง</p>
+                <p>แต่วิศวกรของ 3Com บอกว่า "ขนาด 50 เครื่องเหรอ? เราเองยังไม่เคยทดสอบมากกว่า 10 เครื่องในแล็บเลย ไม่รู้ว่าจะใช้งานได้หรือเปล่า" ผลคือ — ระบบล่มสนิท Mike สูญเสียเงินมหาศาลและเกือบถูกฟ้อง</p>
+                <div class="case-lesson">
+                    <strong>🎯 บทเรียน</strong>
+                    <p>Core Need ข้อ 4 ของ SALES คือ <strong>"Delivering on Commitments"</strong> — อย่าสัญญาสิ่งที่ทำไม่ได้! ความกระตือรือร้นที่จะขายทำให้ Mike สัญญาเกินความสามารถจริง ตั้งความคาดหวังให้ต่ำกว่าที่ทำได้ แล้วทำให้เกินคาดหวังจะดีกว่า</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Actionable Guide -->
+        <section>
+            <div class="section-header">
+                <div class="section-num num-purple">5</div>
+                <div class="section-title">Actionable Guide<span>สิ่งที่ต้องทำทันทีหลังอ่านจบ</span></div>
+            </div>
+            
+            <div class="action-grid">
+                <div class="action-item">
+                    <div class="action-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none"/></svg></div>
+                    <p><strong>ทำแบบประเมิน FTN:</strong> เข้าไปที่ FixThisNext.com และทำแบบประเมินฟรีเพื่อหา Vital Need ของธุรกิจคุณ ใช้เวลาไม่เกิน 15 นาที</p>
+                </div>
+                <div class="action-item">
+                    <div class="action-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none"/></svg></div>
+                    <p><strong>เริ่มจากระดับล่าง:</strong> ถาม 5 คำถามในระดับ SALES ก่อน ถ้ามีข้อใดตอบ "ไม่" หยุดที่ตรงนั้น อย่ากระโดดไประดับที่สูงกว่า</p>
+                </div>
+                <div class="action-item">
+                    <div class="action-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none"/></svg></div>
+                    <p><strong>ใช้ OMEN Process:</strong> เมื่อได้ Vital Need แล้ว ตั้ง Objective ที่ชัดเจน กำหนด Measurement ที่วัดได้ วาง Evaluation Schedule และวางแผน Nurture</p>
+                </div>
+                <div class="action-item">
+                    <div class="action-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none"/></svg></div>
+                    <p><strong>หยุดดับไฟ:</strong> เมื่อมีปัญหาเร่งด่วนเข้ามา ให้ถามตัวเองว่า "นี่คือปัญหาสำคัญที่สุดจริงหรือ?" ถ้าไม่ใช่ ให้มอบหมายหรือจัดการทีหลัง</p>
+                </div>
+                <div class="action-item">
+                    <div class="action-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none"/></svg></div>
+                    <p><strong>ใช้ Profit First:</strong> เปิดบัญชีแยกสำหรับกำไร และโอนเงินเข้าทันทีที่มีรายได้เข้ามา (ก่อนจ่ายค่าใช้จ่าย)</p>
+                </div>
+                <div class="action-item">
+                    <div class="action-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none"/></svg></div>
+                    <p><strong>ทดสอบ 4-Week Vacation:</strong> ถามตัวเองว่า "ถ้าฉันหายไป 4 สัปดาห์ ธุรกิจจะทำงานได้ปกติหรือไม่?" ถ้าไม่ได้ แสดงว่าต้องพัฒนาระดับ ORDER</p>
+                </div>
+                <div class="action-item">
+                    <div class="action-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none"/></svg></div>
+                    <p><strong>ประเมินซ้ำทุกไตรมาส:</strong> เมื่อแก้ Vital Need หนึ่งได้แล้ว กลับไปเริ่มประเมินใหม่จากระดับล่างสุด ธุรกิจเปลี่ยนแปลงตลอดเวลา</p>
+                </div>
+                <div class="action-item">
+                    <div class="action-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none"/></svg></div>
+                    <p><strong>แชร์กับทีม:</strong> อธิบาย BHN ให้ทีมเข้าใจ เพื่อให้ทุกคนโฟกัสไปที่ Vital Need เดียวกัน ไม่ใช่ต่างคนต่างวิ่ง</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Golden Quotes -->
+        <section>
+            <div class="section-header">
+                <div class="section-num num-teal">6</div>
+                <div class="section-title">Golden Quotes<span>ประโยคทองคำจากหนังสือ</span></div>
+            </div>
+            
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <div class="quote-icon">"</div>
+                    <p class="quote-text">ปัญหาใหญ่ที่สุดของเจ้าของธุรกิจคือ พวกเขาไม่รู้ว่าปัญหาใหญ่ที่สุดของตัวเองคืออะไร</p>
+                    <div class="quote-source">— Mike Michalowicz</div>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-icon">"</div>
+                    <p class="quote-text">เคล็ดลับอยู่ที่ Timing — การใช้วิธีแก้ที่ถูกต้องในเวลาที่ผิด จะได้ผลลัพธ์เพียงเล็กน้อย แต่ได้ความหงุดหงิดมากมาย</p>
+                    <div class="quote-source">— Mike Michalowicz</div>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-icon">"</div>
+                    <p class="quote-text">ตัวชี้วัดคือกระดานคะแนน มันบอกว่าคุณกำลังชนะหรือแพ้ ตั้งระบบการนับคะแนนขึ้นมา แล้วเกมจะเผยตัวเอง ไม่มีคะแนน ก็ไม่รู้ว่ากำลังชนะ</p>
+                    <div class="quote-source">— Mike Michalowicz</div>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-icon">"</div>
+                    <p class="quote-text">แทนที่จะทำทุกอย่างทีละนิด สิ่งหนึ่งที่ควรแก้ไขต่อไปเพื่อให้ธุรกิจก้าวหน้าคืออะไร?</p>
+                    <div class="quote-source">— Mike Michalowicz</div>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-icon">"</div>
+                    <p class="quote-text">ตาม Theory of Constraints กระบวนการธุรกิจจะทำงานได้เร็วเท่ากับจุดที่ช้าที่สุดเท่านั้น ดังนั้นถ้าต้องการปรับปรุงผลผลิตโดยรวม ให้หาข้อจำกัดที่สำคัญที่สุด เปิดมันออก แล้วธุรกิจจะทำงานด้วยความเร็วของข้อจำกัดถัดไป</p>
+                    <div class="quote-source">— Mike Michalowicz</div>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-icon">"</div>
+                    <p class="quote-text">เจ้าของธุรกิจส่วนใหญ่พยายามเก่งทุกอย่างพร้อมกัน ฉันตั้งใจจะสร้างผลกระทบ ทำเงินมากๆ ทำงานเมื่อไหร่ก็ได้ สร้างมรดก และมีลูกค้าแห่เข้ามา แต่เมื่อทุกอย่างสำคัญเท่ากัน ก็เท่ากับไม่มีอะไรสำคัญเลย</p>
+                    <div class="quote-source">— Mike Michalowicz</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="footer-brand">Fix This Next — Deep Summary</p>
+        <p>หนังสือโดย Mike Michalowicz (2020) | สรุปโดย Tomz</p>
+        <p style="margin-top: 1rem;">🔗 เครื่องมือประเมินฟรี: <strong>FixThisNext.com</strong></p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'})})});
+    </script>
+</body>
+</html>

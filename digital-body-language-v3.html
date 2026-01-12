@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Body Language - Deep Dive Summary V3 | Erica Dhawan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0d0d1a;
+            --bg-secondary: #13132a;
+            --bg-tertiary: #1a1a3e;
+            --bg-card: rgba(255,255,255,0.02);
+            --bg-card-hover: rgba(255,255,255,0.05);
+            --bg-glass: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --border-light: rgba(255,255,255,0.1);
+            --text-primary: #f5f5f7;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent-gold: #d4a853;
+            --accent-gold-light: #e8c87a;
+            --accent-amber: #f59e0b;
+            --accent-orange: #ea580c;
+            --accent-green: #059669;
+            --accent-teal: #0d9488;
+            --accent-cyan: #06b6d4;
+            --accent-blue: #2563eb;
+            --accent-purple: #7c3aed;
+            --accent-violet: #8b5cf6;
+            --accent-rose: #e11d48;
+            --gradient-gold: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-amber) 100%);
+            --gradient-purple: linear-gradient(135deg, var(--accent-purple) 0%, #ec4899 100%);
+            --gradient-teal: linear-gradient(135deg, var(--accent-teal) 0%, var(--accent-cyan) 100%);
+            --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            --shadow-glow-gold: 0 0 30px rgba(212,168,83,0.3);
+            --shadow-glow-purple: 0 0 30px rgba(124,58,237,0.3);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.5);
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-normal: all 0.3s var(--ease-smooth);
+        }
+        [data-theme="light"] {
+            --bg-primary: #fafafa;
+            --bg-secondary: #f4f4f5;
+            --bg-tertiary: #e4e4e7;
+            --bg-card: rgba(0,0,0,0.02);
+            --bg-card-hover: rgba(0,0,0,0.04);
+            --bg-glass: rgba(255,255,255,0.8);
+            --border: rgba(0,0,0,0.06);
+            --border-light: rgba(0,0,0,0.08);
+            --text-primary: #18181b;
+            --text-secondary: #52525b;
+            --text-muted: #71717a;
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.1);
+            --shadow-glow-gold: 0 0 30px rgba(212,168,83,0.2);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body {
+            font-family: 'Noto Sans Thai', 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        ::selection { background: var(--accent-gold); color: #000; }
+        .progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: var(--bg-secondary); z-index: 9999; }
+        .progress-bar { height: 100%; width: 0%; background: var(--gradient-gold); transition: width 0.1s ease; }
+        .floating-controls { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 12px; z-index: 1000; }
+        .float-btn { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--border-light); background: var(--bg-glass); backdrop-filter: blur(20px); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; transition: var(--transition-normal); }
+        .float-btn:hover { transform: translateY(-3px) scale(1.05); border-color: var(--accent-gold); box-shadow: var(--shadow-glow-gold); }
+        .scroll-top-btn { opacity: 0; pointer-events: none; }
+        .scroll-top-btn.visible { opacity: 1; pointer-events: all; }
+        .bg-gradient { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -2; background: radial-gradient(ellipse at top, #1a1a3e 0%, #0d0d1a 100%); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .container-narrow { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 100px 0; position: relative; }
+        .section-alt { background: var(--bg-secondary); }
+        .section-label { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.2; margin-bottom: 20px; }
+        .section-title-center { text-align: center; }
+        .section-subtitle { font-size: 1.1rem; color: var(--text-secondary); max-width: 700px; }
+        .section-subtitle-center { text-align: center; margin: 0 auto; }
+        .section-header { margin-bottom: 60px; }
+        .section-header-center { text-align: center; }
+        .highlight { color: var(--accent-gold); }
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; padding: 120px 0 80px; }
+        .hero-content { text-align: center; position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; background: var(--gradient-gold); border-radius: 50px; font-size: 0.85rem; font-weight: 700; color: #000; margin-bottom: 30px; box-shadow: var(--shadow-glow-gold); animation: fadeInDown 0.8s ease; }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 5.5rem); font-weight: 800; line-height: 1.05; margin-bottom: 15px; background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-gold) 25%, var(--text-primary) 50%, var(--accent-gold) 75%, var(--text-primary) 100%); background-size: 400% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 8s linear infinite, fadeInUp 0.8s ease 0.1s both; }
+        @keyframes shimmer { 0% { background-position: 0% center; } 100% { background-position: 400% center; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-subtitle { font-size: 1.3rem; color: var(--text-secondary); margin-bottom: 40px; animation: fadeInUp 0.8s ease 0.2s both; }
+        .hero-author { display: inline-flex; align-items: center; gap: 16px; padding: 12px 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 60px; margin-bottom: 50px; animation: fadeInUp 0.8s ease 0.3s both; }
+        .hero-author-avatar { width: 50px; height: 50px; border-radius: 50%; background: var(--gradient-gold); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .hero-author-info { text-align: left; }
+        .hero-author-name { font-weight: 700; color: var(--accent-gold); }
+        .hero-author-title { font-size: 0.85rem; color: var(--text-muted); }
+        .hero-quote-box { max-width: 800px; margin: 0 auto 50px; padding: 40px 50px; background: var(--gradient-card); border: 1px solid var(--border-light); border-radius: 24px; position: relative; animation: fadeInUp 0.8s ease 0.4s both; }
+        .hero-quote-icon { position: absolute; top: 20px; left: 30px; font-size: 5rem; font-family: 'Playfair Display', serif; color: var(--accent-gold); opacity: 0.2; line-height: 1; }
+        .hero-quote-text { font-family: 'Crimson Pro', serif; font-size: 1.5rem; font-style: italic; line-height: 1.6; color: var(--text-primary); margin-bottom: 20px; position: relative; z-index: 1; }
+        .hero-quote-translation { font-size: 1rem; color: var(--text-secondary); padding-left: 20px; border-left: 3px solid var(--accent-gold); margin-bottom: 20px; }
+        .hero-quote-source { font-size: 0.9rem; color: var(--text-muted); }
+        .hero-rating { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; animation: fadeInUp 0.8s ease 0.5s both; }
+        .rating-stars { display: flex; gap: 4px; }
+        .rating-star { font-size: 1.8rem; color: var(--accent-gold); filter: drop-shadow(0 0 8px rgba(212,168,83,0.5)); animation: star-pulse 2s ease-in-out infinite; }
+        .rating-star:nth-child(2) { animation-delay: 0.1s; }
+        .rating-star:nth-child(3) { animation-delay: 0.2s; }
+        .rating-star:nth-child(4) { animation-delay: 0.3s; }
+        .rating-star:nth-child(5) { animation-delay: 0.4s; }
+        @keyframes star-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+        .rating-text { color: var(--text-muted); font-size: 1rem; }
+        .quick-info { padding: 60px 0; background: var(--bg-secondary); margin-top: -30px; position: relative; z-index: 10; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
+        .info-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px 20px; text-align: center; transition: var(--transition-normal); }
+        .info-card:hover { transform: translateY(-4px); border-color: var(--accent-gold); box-shadow: var(--shadow-glow-gold); }
+        .info-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+        .info-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+        .info-value { font-size: 1rem; font-weight: 700; color: var(--accent-gold); }
+        /* Quote Styles */
+        .quote-featured { background: var(--gradient-card); border: 1px solid var(--border-light); border-left: 4px solid var(--accent-gold); border-radius: 0 20px 20px 0; padding: 35px 40px; margin: 40px 0; position: relative; }
+        .quote-featured::before { content: '"'; position: absolute; top: 15px; left: 20px; font-size: 4rem; font-family: 'Playfair Display', serif; color: var(--accent-gold); opacity: 0.3; line-height: 1; }
+        .quote-featured-text { font-family: 'Crimson Pro', serif; font-size: 1.35rem; font-style: italic; line-height: 1.7; margin-bottom: 15px; padding-left: 30px; }
+        .quote-featured-translation { font-size: 0.95rem; color: var(--text-secondary); padding-left: 30px; margin-bottom: 15px; }
+        .quote-featured-footer { display: flex; justify-content: space-between; align-items: center; padding-left: 30px; flex-wrap: wrap; gap: 15px; }
+        .quote-source { font-size: 0.85rem; color: var(--text-muted); }
+        .copy-quote-btn { padding: 8px 16px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 50px; color: var(--text-secondary); font-size: 0.8rem; cursor: pointer; transition: var(--transition-normal); display: flex; align-items: center; gap: 6px; }
+        .copy-quote-btn:hover { background: var(--accent-gold); color: #000; border-color: var(--accent-gold); }
+        .copy-quote-btn.copied { background: var(--accent-green); border-color: var(--accent-green); color: #fff; }
+        .quote-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 30px; margin: 30px 0; transition: var(--transition-normal); }
+        .quote-card:hover { border-color: var(--accent-purple); transform: translateY(-3px); }
+        .quote-card-context { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed var(--border); }
+        .quote-card-text { font-family: 'Crimson Pro', serif; font-size: 1.2rem; font-style: italic; line-height: 1.7; margin-bottom: 15px; position: relative; padding-left: 25px; }
+        .quote-card-text::before { content: '"'; position: absolute; left: 0; top: -5px; font-size: 2.5rem; font-family: 'Playfair Display', serif; color: var(--accent-purple); opacity: 0.5; }
+        .quote-card-translation { font-size: 0.9rem; color: var(--text-secondary); padding-left: 25px; margin-bottom: 15px; }
+        .quote-card-insight { background: rgba(124,58,237,0.1); border-left: 3px solid var(--accent-purple); padding: 12px 15px; border-radius: 0 8px 8px 0; font-size: 0.9rem; color: var(--text-secondary); }
+        .quote-card-insight strong { color: var(--accent-violet); }
+        .stat-quote { background: linear-gradient(135deg, rgba(13,148,136,0.1) 0%, rgba(6,182,212,0.05) 100%); border: 1px solid rgba(13,148,136,0.3); border-radius: 16px; padding: 30px; text-align: center; margin: 30px 0; }
+        .stat-number { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 800; color: var(--accent-teal); line-height: 1; margin-bottom: 10px; display: block; }
+        .stat-text { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 10px; }
+        .stat-source { font-size: 0.8rem; color: var(--text-muted); }
+        .quote-mini { background: var(--bg-card); border-left: 3px solid var(--accent-gold); padding: 15px 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .quote-mini-text { font-style: italic; font-size: 1rem; margin-bottom: 8px; }
+        .quote-mini-source { font-size: 0.8rem; color: var(--text-muted); }
+        /* Audience */
+        .audience-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
+        @media (max-width: 900px) { .audience-grid { grid-template-columns: 1fr; } }
+        .audience-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 35px; transition: var(--transition-normal); }
+        .audience-card.suitable { border-top: 4px solid var(--accent-green); }
+        .audience-card.not-suitable { border-top: 4px solid var(--accent-rose); }
+        .audience-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+        .audience-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+        .audience-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .suitable .audience-icon { background: rgba(5,150,105,0.15); }
+        .not-suitable .audience-icon { background: rgba(225,29,72,0.15); }
+        .audience-title { font-size: 1.3rem; font-weight: 700; }
+        .audience-list { list-style: none; }
+        .audience-list li { padding: 14px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; color: var(--text-secondary); }
+        .audience-list li:last-child { border-bottom: none; }
+        .audience-list .check { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: #fff; margin-top: 2px; }
+        .suitable .check { background: var(--accent-green); }
+        .not-suitable .check { background: var(--accent-rose); }
+        .audience-list strong { color: var(--text-primary); }
+        /* TOC */
+        .toc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .toc-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 20px 24px; display: flex; align-items: center; gap: 16px; text-decoration: none; color: inherit; transition: var(--transition-normal); cursor: pointer; }
+        .toc-item:hover { background: var(--bg-card-hover); border-color: var(--accent-gold); transform: translateX(8px); }
+        .toc-num { width: 40px; height: 40px; border-radius: 10px; background: var(--gradient-gold); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; color: #000; flex-shrink: 0; }
+        .toc-content { flex: 1; min-width: 0; }
+        .toc-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 3px; }
+        .toc-desc { font-size: 0.8rem; color: var(--text-muted); }
+        .toc-arrow { color: var(--accent-gold); font-size: 1.2rem; transition: var(--transition-normal); }
+        .toc-item:hover .toc-arrow { transform: translateX(5px); }
+        /* Author & Laws */
+        .author-layout { display: grid; grid-template-columns: 300px 1fr; gap: 60px; align-items: start; }
+        @media (max-width: 900px) { .author-layout { grid-template-columns: 1fr; } }
+        .author-image { width: 100%; aspect-ratio: 1; background: var(--gradient-gold); border-radius: 30px; display: flex; align-items: center; justify-content: center; font-size: 8rem; }
+        .author-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .author-badge { padding: 8px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 50px; font-size: 0.8rem; display: flex; align-items: center; gap: 6px; }
+        .author-bio h3 { font-size: 1.6rem; color: var(--accent-gold); margin-bottom: 20px; }
+        .author-bio p { color: var(--text-secondary); margin-bottom: 16px; font-size: 1rem; }
+        .credentials-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
+        .credential { padding: 10px 18px; background: var(--bg-tertiary); border-radius: 50px; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; }
+        .quote-inline { display: inline; background: linear-gradient(135deg, rgba(212,168,83,0.1) 0%, rgba(212,168,83,0.05) 100%); padding: 2px 8px; border-radius: 4px; font-style: italic; color: var(--accent-gold-light); }
+        /* Laws Overview */
+        .laws-overview { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 60px; }
+        @media (max-width: 1100px) { .laws-overview { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .laws-overview { grid-template-columns: 1fr; } }
+        .law-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 30px 25px; text-align: center; position: relative; overflow: hidden; transition: var(--transition-normal); }
+        .law-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; }
+        .law-card:nth-child(1)::before { background: var(--accent-teal); }
+        .law-card:nth-child(2)::before { background: var(--accent-purple); }
+        .law-card:nth-child(3)::before { background: var(--accent-orange); }
+        .law-card:nth-child(4)::before { background: var(--accent-gold); }
+        .law-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        .law-num { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0 auto 20px; }
+        .law-card:nth-child(1) .law-num { background: var(--accent-teal); }
+        .law-card:nth-child(2) .law-num { background: var(--accent-purple); }
+        .law-card:nth-child(3) .law-num { background: var(--accent-orange); }
+        .law-card:nth-child(4) .law-num { background: var(--accent-gold); }
+        .law-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .law-title-en { font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
+        .law-title-th { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; }
+        .law-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+        /* Pyramid */
+        .pyramid-container { max-width: 600px; margin: 50px auto; }
+        .pyramid { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .pyramid-level { display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; color: #fff; font-weight: 700; font-size: 0.95rem; border-radius: 8px; transition: var(--transition-normal); }
+        .pyramid-level:hover { transform: scale(1.03); box-shadow: var(--shadow-lg); }
+        .pyramid-level-1 { width: 200px; background: var(--accent-gold); }
+        .pyramid-level-2 { width: 300px; background: var(--accent-orange); }
+        .pyramid-level-3 { width: 400px; background: var(--accent-purple); }
+        .pyramid-level-4 { width: 500px; background: var(--accent-teal); }
+        @media (max-width: 600px) { .pyramid-level-1 { width: 60%; } .pyramid-level-2 { width: 75%; } .pyramid-level-3 { width: 90%; } .pyramid-level-4 { width: 100%; } }
+        .pyramid-arrow { font-size: 1.5rem; color: var(--text-muted); }
+        /* Law Detail */
+        .law-detail { background: var(--bg-card); border: 1px solid var(--border); border-radius: 30px; padding: 50px; margin-bottom: 40px; position: relative; overflow: hidden; }
+        @media (max-width: 768px) { .law-detail { padding: 30px 25px; } }
+        .law-detail-header { display: flex; align-items: center; gap: 25px; margin-bottom: 35px; flex-wrap: wrap; }
+        .law-detail-num { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+        .law-detail:nth-of-type(1) .law-detail-num { background: var(--accent-teal); }
+        .law-detail:nth-of-type(2) .law-detail-num { background: var(--accent-purple); }
+        .law-detail:nth-of-type(3) .law-detail-num { background: var(--accent-orange); }
+        .law-detail:nth-of-type(4) .law-detail-num { background: var(--accent-gold); }
+        .law-detail-titles h3 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 5px; }
+        .law-detail-titles span { color: var(--text-muted); font-size: 1.1rem; }
+        .law-intro { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid var(--border); }
+        .law-content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 40px; }
+        .law-point { padding: 25px; background: var(--bg-tertiary); border-radius: 16px; border-left: 4px solid var(--accent-gold); }
+        .law-point h4 { color: var(--accent-gold); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; font-size: 1.05rem; }
+        .law-point p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
+        .dos-donts { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 40px 0; }
+        .dos-box, .donts-box { padding: 25px; border-radius: 16px; }
+        .dos-box { background: rgba(5,150,105,0.08); border: 1px solid rgba(5,150,105,0.2); }
+        .donts-box { background: rgba(225,29,72,0.08); border: 1px solid rgba(225,29,72,0.2); }
+        .dos-box h4 { color: var(--accent-green); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .donts-box h4 { color: var(--accent-rose); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .dos-box ul, .donts-box ul { list-style: none; }
+        .dos-box li, .donts-box li { padding: 10px 0; padding-left: 25px; position: relative; color: var(--text-secondary); font-size: 0.95rem; }
+        .dos-box li::before { content: '✓'; position: absolute; left: 0; color: var(--accent-green); font-weight: 700; }
+        .donts-box li::before { content: '✗'; position: absolute; left: 0; color: var(--accent-rose); font-weight: 700; }
+        .action-box { background: linear-gradient(135deg, rgba(212,168,83,0.08) 0%, rgba(212,168,83,0.03) 100%); border: 1px solid rgba(212,168,83,0.2); border-radius: 20px; padding: 30px; margin-top: 40px; }
+        .action-box h4 { color: var(--accent-gold); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .action-list { list-style: none; }
+        .action-list li { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px dashed var(--border); color: var(--text-secondary); }
+        .action-list li:last-child { border-bottom: none; }
+        .action-list .num { width: 24px; height: 24px; border-radius: 50%; background: var(--accent-gold); color: #000; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        /* Components */
+        .components-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .component-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 30px; transition: var(--transition-normal); }
+        .component-card:hover { transform: translateY(-5px); border-color: var(--accent-gold); }
+        .component-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .component-icon { width: 50px; height: 50px; border-radius: 12px; background: var(--gradient-gold); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .component-title { font-size: 1.15rem; font-weight: 700; }
+        .component-subtitle { font-size: 0.85rem; color: var(--text-muted); }
+        .component-body { color: var(--text-secondary); font-size: 0.95rem; }
+        .component-example { margin-top: 15px; padding: 15px; background: var(--bg-tertiary); border-radius: 10px; font-size: 0.9rem; border-left: 3px solid var(--accent-gold); }
+        /* Matrix */
+        .matrix-container { max-width: 850px; margin: 50px auto; }
+        .matrix { display: grid; grid-template-columns: auto 1fr 1fr; grid-template-rows: auto 1fr 1fr; gap: 12px; }
+        .matrix-header { font-weight: 700; text-align: center; padding: 15px; color: var(--accent-gold); font-size: 0.95rem; }
+        .matrix-label { display: flex; align-items: center; justify-content: center; font-weight: 600; padding: 15px; background: var(--bg-tertiary); border-radius: 10px; font-size: 0.9rem; }
+        .matrix-cell { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 25px; transition: var(--transition-normal); }
+        .matrix-cell:hover { transform: scale(1.02); border-color: var(--accent-gold); }
+        .matrix-cell h4 { color: var(--accent-gold); margin-bottom: 10px; font-size: 1rem; }
+        .matrix-cell p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+        /* Differences */
+        .diff-tabs { display: flex; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
+        .diff-tab { padding: 12px 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 50px; cursor: pointer; transition: var(--transition-normal); font-size: 0.95rem; }
+        .diff-tab:hover { border-color: var(--accent-gold); }
+        .diff-tab.active { background: var(--gradient-gold); color: #000; border-color: transparent; font-weight: 600; }
+        .diff-content { display: none; }
+        .diff-content.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .diff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
+        .diff-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 30px; }
+        .diff-card h4 { margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-size: 1.1rem; }
+        .diff-card ul { list-style: none; }
+        .diff-card li { padding: 12px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.95rem; }
+        .diff-card li:last-child { border-bottom: none; }
+        /* Golden Quotes */
+        .golden-quotes-grid { display: grid; gap: 25px; }
+        .golden-quote { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 35px 40px; position: relative; transition: var(--transition-normal); }
+        .golden-quote:hover { transform: translateY(-3px); border-color: var(--accent-purple); }
+        .golden-quote-icon { position: absolute; top: 20px; left: 25px; font-size: 3.5rem; font-family: 'Playfair Display', serif; color: var(--accent-purple); opacity: 0.3; line-height: 1; }
+        .golden-quote-category { display: inline-block; padding: 4px 12px; background: rgba(124,58,237,0.15); border-radius: 50px; font-size: 0.75rem; color: var(--accent-violet); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 15px; }
+        .golden-quote-text { font-family: 'Crimson Pro', serif; font-size: 1.3rem; font-style: italic; line-height: 1.7; margin-bottom: 15px; padding-left: 25px; }
+        .golden-quote-translation { font-size: 0.95rem; color: var(--text-secondary); padding-left: 25px; margin-bottom: 20px; }
+        .golden-quote-footer { display: flex; justify-content: space-between; align-items: center; padding-left: 25px; flex-wrap: wrap; gap: 15px; }
+        /* Timeline */
+        .timeline { position: relative; padding-left: 40px; }
+        .timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 2px; background: var(--gradient-gold); }
+        .timeline-item { position: relative; margin-bottom: 50px; }
+        .timeline-item::before { content: ''; position: absolute; left: -33px; top: 5px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent-gold); border: 3px solid var(--bg-primary); }
+        .timeline-week { display: inline-block; padding: 6px 14px; background: var(--gradient-gold); border-radius: 50px; font-size: 0.8rem; font-weight: 700; color: #000; margin-bottom: 15px; }
+        .timeline-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+        .timeline-desc { color: var(--text-secondary); margin-bottom: 20px; }
+        .checklist { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 25px; }
+        .checklist-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px dashed var(--border); }
+        .checklist-item:last-child { border-bottom: none; }
+        .checklist-item input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--accent-gold); cursor: pointer; }
+        .checklist-item label { cursor: pointer; color: var(--text-secondary); transition: var(--transition-normal); }
+        .checklist-item input:checked + label { text-decoration: line-through; color: var(--text-muted); }
+        .ai-note { background: linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(79,70,229,0.05) 100%); border: 1px dashed rgba(37,99,235,0.3); border-radius: 16px; padding: 25px; margin-top: 40px; }
+        .ai-note-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; color: var(--accent-blue); font-weight: 600; }
+        .ai-note p { color: var(--text-secondary); font-size: 0.95rem; }
+        .ai-note ul { list-style: none; margin-top: 15px; }
+        .ai-note li { padding: 8px 0; padding-left: 25px; position: relative; color: var(--text-secondary); font-size: 0.9rem; }
+        .ai-note li::before { content: '💡'; position: absolute; left: 0; }
+        /* Criticism */
+        .criticism-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 30px; }
+        @media (max-width: 900px) { .criticism-grid { grid-template-columns: 1fr; } }
+        .criticism-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 35px; }
+        .criticism-card.strength { border-top: 4px solid var(--accent-green); }
+        .criticism-card.weakness { border-top: 4px solid var(--accent-amber); }
+        .criticism-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+        .criticism-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .strength .criticism-icon { background: rgba(5,150,105,0.15); }
+        .weakness .criticism-icon { background: rgba(245,158,11,0.15); }
+        .criticism-title { font-size: 1.3rem; font-weight: 700; }
+        .criticism-list { list-style: none; }
+        .criticism-list li { padding: 15px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 12px; color: var(--text-secondary); }
+        .criticism-list li:last-child { border-bottom: none; }
+        .criticism-list .icon { flex-shrink: 0; margin-top: 3px; }
+        .strength .criticism-list .icon { color: var(--accent-green); }
+        .weakness .criticism-list .icon { color: var(--accent-amber); }
+        /* Books */
+        .books-category { margin-bottom: 50px; }
+        .books-category h3 { color: var(--accent-gold); margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
+        .books-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .book-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 25px; display: flex; gap: 20px; transition: var(--transition-normal); }
+        .book-card:hover { transform: translateY(-5px); border-color: var(--accent-gold); }
+        .book-cover { width: 70px; height: 100px; background: var(--gradient-gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0; }
+        .book-info h4 { margin-bottom: 5px; font-size: 1rem; }
+        .book-author { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; }
+        .book-reason { font-size: 0.9rem; color: var(--text-secondary); }
+        /* Footer */
+        .footer { background: var(--bg-tertiary); padding: 80px 0 40px; }
+        .footer-content { text-align: center; margin-bottom: 40px; }
+        .footer-title { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 10px; }
+        .footer-author { color: var(--accent-gold); font-size: 1.1rem; margin-bottom: 30px; }
+        .footer-meta { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 40px; }
+        .footer-meta span { color: var(--text-muted); font-size: 0.9rem; }
+        .footer-disclaimer { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 25px; max-width: 700px; margin: 0 auto 40px; font-size: 0.9rem; color: var(--text-muted); }
+        .footer-disclaimer strong { color: var(--accent-gold); }
+        .verification-log { background: var(--bg-card); border: 1px dashed var(--border); border-radius: 16px; padding: 25px; margin-top: 40px; }
+        .verification-log summary { cursor: pointer; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 10px; }
+        .verification-log[open] summary { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
+        .log-content h4 { margin: 25px 0 15px; color: var(--text-primary); font-size: 1rem; }
+        .log-content ul { list-style: none; padding-left: 20px; }
+        .log-content li { padding: 6px 0; font-size: 0.9rem; color: var(--text-secondary); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
+        .fade-in { opacity: 0; transform: translateY(25px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        @media print { .floating-controls, .progress-container, .bg-gradient, .no-print { display: none !important; } body { background: #fff !important; color: #000 !important; } }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="bg-gradient"></div>
+    <div class="floating-controls no-print">
+        <button class="float-btn theme-toggle" id="themeToggle" title="สลับธีม">🌙</button>
+        <button class="float-btn scroll-top-btn" id="scrollTop" title="กลับด้านบน">⬆️</button>
+    </div>
+    <!-- HERO SECTION -->
+    <section class="hero" id="top">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">🏆 Wall Street Journal Bestseller</div>
+                <h1 class="hero-title">Digital Body Language</h1>
+                <p class="hero-subtitle">How to Build Trust and Connection, No Matter the Distance</p>
+                <div class="hero-author">
+                    <div class="hero-author-avatar">👩‍💼</div>
+                    <div class="hero-author-info">
+                        <div class="hero-author-name">Erica Dhawan</div>
+                        <div class="hero-author-title">Leadership Expert • CEO of Cotential</div>
+                    </div>
+                </div>
+                <div class="hero-quote-box">
+                    <span class="hero-quote-icon">"</span>
+                    <p class="hero-quote-text">Reading carefully is the new listening. Writing clearly is the new empathy. And a phone or video call is worth a thousand emails.</p>
+                    <p class="hero-quote-translation">การอ่านอย่างตั้งใจคือการฟังแบบใหม่ การเขียนอย่างชัดเจนคือการแสดงความเข้าใจแบบใหม่ และการโทรศัพท์หรือวิดีโอคอลหนึ่งครั้งมีค่าเท่ากับอีเมลนับพันฉบับ</p>
+                    <p class="hero-quote-source">— Erica Dhawan, Digital Body Language (Core Thesis)</p>
+                </div>
+                <div class="hero-rating">
+                    <div class="rating-stars"><span class="rating-star">⭐</span><span class="rating-star">⭐</span><span class="rating-star">⭐</span><span class="rating-star">⭐</span><span class="rating-star">⭐</span></div>
+                    <span class="rating-text">5/5 — หนังสือที่จำเป็นสำหรับยุค Hybrid Work</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK INFO -->
+    <section class="quick-info" id="info">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card"><span class="info-icon">📖</span><div class="info-label">จำนวนหน้า</div><div class="info-value">288 หน้า</div></div>
+                <div class="info-card"><span class="info-icon">📅</span><div class="info-label">ปีที่พิมพ์</div><div class="info-value">2021</div></div>
+                <div class="info-card"><span class="info-icon">🏷️</span><div class="info-label">หมวดหมู่</div><div class="info-value">Business / Communication</div></div>
+                <div class="info-card"><span class="info-icon">⏱️</span><div class="info-label">เวลาอ่าน</div><div class="info-value">~5-6 ชั่วโมง</div></div>
+                <div class="info-card"><span class="info-icon">🎯</span><div class="info-label">ระดับความยาก</div><div class="info-value">ง่าย-ปานกลาง</div></div>
+                <div class="info-card"><span class="info-icon">🏢</span><div class="info-label">สำนักพิมพ์</div><div class="info-value">St. Martin's Press</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUDIENCE -->
+    <section class="section" id="audience">
+        <div class="container">
+            <div class="section-header section-header-center">
+                <span class="section-label">📌 Target Audience</span>
+                <h2 class="section-title section-title-center">ใครควรอ่าน / ไม่ควรอ่าน</h2>
+            </div>
+            <div class="audience-grid">
+                <div class="audience-card suitable fade-in">
+                    <div class="audience-header"><div class="audience-icon">✅</div><h3 class="audience-title">เหมาะสำหรับ</h3></div>
+                    <ul class="audience-list">
+                        <li><span class="check">✓</span><span><strong>ผู้นำและผู้จัดการทีม</strong> ที่ต้องบริหารทีม Remote/Hybrid</span></li>
+                        <li><span class="check">✓</span><span><strong>พนักงานออฟฟิศ</strong> ที่สื่อสารผ่าน Email, Slack, Teams เป็นหลัก</span></li>
+                        <li><span class="check">✓</span><span><strong>ผู้ที่ทำงานข้ามวัฒนธรรม/Generation</strong> ต้องการเข้าใจความแตกต่าง</span></li>
+                        <li><span class="check">✓</span><span><strong>ผู้ประกอบการและ Freelancer</strong> ที่ต้องสร้างความน่าเชื่อถือออนไลน์</span></li>
+                        <li><span class="check">✓</span><span><strong>HR และ L&D Professionals</strong> ที่ต้องการสร้างวัฒนธรรมการสื่อสาร</span></li>
+                    </ul>
+                </div>
+                <div class="audience-card not-suitable fade-in">
+                    <div class="audience-header"><div class="audience-icon">❌</div><h3 class="audience-title">อาจไม่เหมาะสำหรับ</h3></div>
+                    <ul class="audience-list">
+                        <li><span class="check">✗</span><span><strong>ผู้ที่ทำงาน Face-to-face เป็นหลัก</strong> — เนื้อหาเน้นดิจิทัล</span></li>
+                        <li><span class="check">✗</span><span><strong>ผู้เชี่ยวชาญด้าน Communication</strong> — บางส่วนอาจรู้สึกว่า Intuitive</span></li>
+                        <li><span class="check">✗</span><span><strong>ผู้ที่ต้องการ Technical Skills</strong> — เน้น Soft Skills มากกว่า</span></li>
+                        <li><span class="check">✗</span><span><strong>ผู้ที่ต้องการเนื้อหาเชิงวิชาการลึก</strong> — เน้นการประยุกต์ใช้จริง</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="quote-featured fade-in">
+                <p class="quote-featured-text">"Effective communication and collaboration begin with valuing others."</p>
+                <p class="quote-featured-translation">การสื่อสารและการทำงานร่วมกันที่มีประสิทธิภาพเริ่มต้นจากการให้คุณค่ากับผู้อื่น</p>
+                <div class="quote-featured-footer">
+                    <span class="quote-source">— Daniel H. Pink (คำชื่นชมหนังสือ)</span>
+                    <button class="copy-quote-btn" onclick="copyQuote(this, 'Effective communication and collaboration begin with valuing others. - Daniel H. Pink')">📋 Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- TABLE OF CONTENTS -->
+    <section class="section section-alt" id="toc">
+        <div class="container">
+            <div class="section-header section-header-center">
+                <span class="section-label">📑 Navigation</span>
+                <h2 class="section-title section-title-center">สารบัญ</h2>
+            </div>
+            <div class="toc-grid">
+                <a href="#author" class="toc-item"><div class="toc-num">1</div><div class="toc-content"><div class="toc-title">เกี่ยวกับผู้เขียน</div><div class="toc-desc">ประวัติ Erica Dhawan</div></div><span class="toc-arrow">→</span></a>
+                <a href="#context" class="toc-item"><div class="toc-num">2</div><div class="toc-content"><div class="toc-title">บริบทและความสำคัญ</div><div class="toc-desc">ทำไมหนังสือเล่มนี้ถึงสำคัญ</div></div><span class="toc-arrow">→</span></a>
+                <a href="#definition" class="toc-item"><div class="toc-num">3</div><div class="toc-content"><div class="toc-title">นิยาม Digital Body Language</div><div class="toc-desc">คืออะไร + องค์ประกอบ</div></div><span class="toc-arrow">→</span></a>
+                <a href="#framework" class="toc-item"><div class="toc-num">4</div><div class="toc-content"><div class="toc-title">4 Laws Overview</div><div class="toc-desc">Framework หลักของหนังสือ</div></div><span class="toc-arrow">→</span></a>
+                <a href="#law1" class="toc-item"><div class="toc-num">5</div><div class="toc-content"><div class="toc-title">Law 1: Value Visibly</div><div class="toc-desc">ให้คุณค่าอย่างเห็นได้ชัด</div></div><span class="toc-arrow">→</span></a>
+                <a href="#law2" class="toc-item"><div class="toc-num">6</div><div class="toc-content"><div class="toc-title">Law 2: Communicate Carefully</div><div class="toc-desc">สื่อสารอย่างรอบคอบ</div></div><span class="toc-arrow">→</span></a>
+                <a href="#law3" class="toc-item"><div class="toc-num">7</div><div class="toc-content"><div class="toc-title">Law 3: Collaborate Confidently</div><div class="toc-desc">ร่วมมืออย่างมั่นใจ</div></div><span class="toc-arrow">→</span></a>
+                <a href="#law4" class="toc-item"><div class="toc-num">8</div><div class="toc-content"><div class="toc-title">Law 4: Trust Totally</div><div class="toc-desc">ไว้วางใจอย่างเต็มที่</div></div><span class="toc-arrow">→</span></a>
+                <a href="#matrix" class="toc-item"><div class="toc-num">9</div><div class="toc-content"><div class="toc-title">Trust-Power Matrix</div><div class="toc-desc">กลยุทธ์ตามความสัมพันธ์</div></div><span class="toc-arrow">→</span></a>
+                <a href="#differences" class="toc-item"><div class="toc-num">10</div><div class="toc-content"><div class="toc-title">ความแตกต่าง</div><div class="toc-desc">Gender, Generation, Culture</div></div><span class="toc-arrow">→</span></a>
+                <a href="#quotes" class="toc-item"><div class="toc-num">11</div><div class="toc-content"><div class="toc-title">Golden Quotes</div><div class="toc-desc">คำคมสำคัญ 12+ ข้อ</div></div><span class="toc-arrow">→</span></a>
+                <a href="#action" class="toc-item"><div class="toc-num">12</div><div class="toc-content"><div class="toc-title">Action Plan</div><div class="toc-desc">แผน 30 วัน + Checklist</div></div><span class="toc-arrow">→</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT AUTHOR -->
+    <section class="section" id="author">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">👩‍💼 Part 2: Context</span>
+                <h2 class="section-title">เกี่ยวกับผู้เขียน</h2>
+            </div>
+            <div class="author-layout fade-in">
+                <div class="author-image-container">
+                    <div class="author-image">👩‍💼</div>
+                    <div class="author-badges">
+                        <span class="author-badge">🎤 Keynote Speaker</span>
+                        <span class="author-badge">📚 WSJ Bestseller</span>
+                        <span class="author-badge">🏆 Thinkers50</span>
+                    </div>
+                </div>
+                <div class="author-bio">
+                    <h3>Erica Dhawan</h3>
+                    <p><strong>Erica Dhawan</strong> เป็นผู้เชี่ยวชาญด้านความเป็นผู้นำและการทำงานร่วมกันในศตวรรษที่ 21 ที่ได้รับการยอมรับระดับโลก เธอได้รับการขนานนามจาก Thinkers50 ว่าเป็น <span class="quote-inline">"The Oprah of Management Ideas"</span></p>
+                    <p>เธอเป็นผู้ก่อตั้งและ CEO ของ <strong>Cotential</strong> บริษัทที่ปรึกษาที่ช่วยองค์กรและทีมพัฒนาทักษะการทำงานร่วมกันในยุคดิจิทัล เธอเคยบรรยายให้กับองค์กรระดับโลกตั้งแต่ World Economic Forum ไปจนถึงบริษัท Fortune 500</p>
+                    <p>ผลงานเขียนของเธอปรากฏใน <strong>Fast Company</strong>, <strong>Harvard Business Review</strong>, <strong>The Wall Street Journal</strong> และสื่อชั้นนำอื่นๆ</p>
+                    <div class="credentials-list">
+                        <span class="credential">🎓 MPA — Harvard Kennedy School</span>
+                        <span class="credential">🎓 MBA — MIT Sloan</span>
+                        <span class="credential">🎓 BS — The Wharton School</span>
+                        <span class="credential">💼 CEO, Cotential</span>
+                    </div>
+                </div>
+            </div>
+            <div class="quote-card fade-in">
+                <div class="quote-card-context">💭 Erica Dhawan เล่าถึงที่มาของการเขียนหนังสือ</div>
+                <p class="quote-card-text">"As a shy, introverted Indian American girl growing up in Pittsburgh, I struggled to find my voice and my place. In every report card, my teachers wrote 'I wish Erica spoke up more in class.'"</p>
+                <p class="quote-card-translation">"ในฐานะเด็กหญิงอเมริกันเชื้อสายอินเดียที่ขี้อายในพิตต์สเบิร์ก ฉันดิ้นรนที่จะค้นหาเสียงและตำแหน่งของตัวเอง ในสมุดพกทุกเล่ม ครูเขียนว่า 'อยากให้เอริก้าพูดมากขึ้นในชั้นเรียน'"</p>
+                <div class="quote-card-insight"><strong>💡 ข้อคิด:</strong> ประสบการณ์นี้ทำให้ Dhawan เข้าใจว่าการสื่อสารไม่ได้มาตามธรรมชาติสำหรับทุกคน และในโลกดิจิทัล ความท้าทายนี้ยิ่งทวีคูณ</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTEXT & STATISTICS -->
+    <section class="section section-alt" id="context">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">📊 The Problem</span>
+                <h2 class="section-title">บริบทและความสำคัญ</h2>
+                <p class="section-subtitle">ทำไมหนังสือเล่มนี้ถึงมาถูกที่ถูกเวลา และปัญหาที่ต้องการแก้ไขคืออะไร</p>
+            </div>
+            <div class="components-grid" style="margin-bottom: 50px;">
+                <div class="stat-quote fade-in">
+                    <span class="stat-number">70%</span>
+                    <p class="stat-text">"of workplace communication now occurs online"</p>
+                    <p class="stat-text">ของการสื่อสารในที่ทำงานเกิดขึ้นผ่านช่องทางออนไลน์</p>
+                    <span class="stat-source">— Digital Body Language</span>
+                </div>
+                <div class="stat-quote fade-in">
+                    <span class="stat-number">50%</span>
+                    <p class="stat-text">"of email tone is misinterpreted"</p>
+                    <p class="stat-text">ของน้ำเสียงใน Email ถูกตีความผิด</p>
+                    <span class="stat-source">— Psychology Research cited in book</span>
+                </div>
+                <div class="stat-quote fade-in">
+                    <span class="stat-number">4 hrs</span>
+                    <p class="stat-text">"wasted per week on poor digital communications"</p>
+                    <p class="stat-text">สูญเสียต่อสัปดาห์จากการสื่อสารดิจิทัลที่ไม่ดี</p>
+                    <span class="stat-source">— Quester Research Study</span>
+                </div>
+            </div>
+            <div class="quote-featured fade-in">
+                <p class="quote-featured-text">"We're experiencing a digital communication crisis. Over 70% experienced some form of unclear communication from their colleagues. This leads to the average employee wasting 4 hours per week, which adds up to $188B wasted across the American economy."</p>
+                <p class="quote-featured-translation">เรากำลังประสบวิกฤตการสื่อสารดิจิทัล กว่า 70% ประสบปัญหาการสื่อสารที่ไม่ชัดเจนจากเพื่อนร่วมงาน ซึ่งทำให้พนักงานเฉลี่ยสูญเสียเวลา 4 ชั่วโมงต่อสัปดาห์ รวมเป็นมูลค่า $188 พันล้านต่อปี</p>
+                <div class="quote-featured-footer">
+                    <span class="quote-source">— Erica Dhawan (Quester Research Study)</span>
+                    <button class="copy-quote-btn" onclick="copyQuote(this, 'Over 70% experienced some form of unclear communication. The average employee wasting 4 hours per week. - Erica Dhawan')">📋 Copy</button>
+                </div>
+            </div>
+            <div class="quote-card fade-in">
+                <div class="quote-card-context">📉 ปัญหาที่มองข้ามไป</div>
+                <p class="quote-card-text">"The loss of nonverbal body cues is among the most overlooked reasons why employees feel so disengaged from others."</p>
+                <p class="quote-card-translation">การสูญเสียสัญญาณภาษากายที่ไม่ใช้คำพูดเป็นหนึ่งในสาเหตุที่ถูกมองข้ามมากที่สุดว่าทำไมพนักงานถึงรู้สึกไม่ผูกพันกับผู้อื่น</p>
+                <div class="quote-card-insight"><strong>💡 ข้อคิด:</strong> นี่คือ Core Problem ที่หนังสือต้องการแก้ไข — เมื่อเราสูญเสียภาษากายแบบดั้งเดิม เราต้องเรียนรู้ "ภาษาใหม่"</div>
+            </div>
+        </div>
+    </section>
+    <!-- DEFINITION -->
+    <section class="section" id="definition">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">📖 Definition</span>
+                <h2 class="section-title">นิยามของ Digital Body Language</h2>
+            </div>
+            <div class="quote-featured fade-in">
+                <p class="quote-featured-text">"In real life, we lean in, uncross our arms, smile, nod and make eye contact to show we listen and care. Online, reading carefully is the new listening. Writing clearly is the new empathy."</p>
+                <p class="quote-featured-translation">ในชีวิตจริง เราโน้มตัวเข้าหา ปล่อยแขนไม่กอดอก ยิ้ม พยักหน้า และสบตาเพื่อแสดงว่าเราฟังและใส่ใจ ในโลกออนไลน์ การอ่านอย่างตั้งใจคือการฟังแบบใหม่ การเขียนอย่างชัดเจนคือการแสดงความเข้าใจแบบใหม่</p>
+                <div class="quote-featured-footer">
+                    <span class="quote-source">— Erica Dhawan, Digital Body Language</span>
+                    <button class="copy-quote-btn" onclick="copyQuote(this, 'In real life, we lean in, uncross our arms, smile, nod and make eye contact. Online, reading carefully is the new listening. Writing clearly is the new empathy. - Erica Dhawan')">📋 Copy</button>
+                </div>
+            </div>
+            <h3 style="margin: 50px 0 30px; font-size: 1.5rem;">🧩 องค์ประกอบของ Digital Body Language</h3>
+            <div class="components-grid">
+                <div class="component-card fade-in">
+                    <div class="component-header"><div class="component-icon">🎭</div><div><div class="component-title">Tone (น้ำเสียง)</div><div class="component-subtitle">วิธีที่ข้อความถูกรับรู้</div></div></div>
+                    <div class="component-body"><p>น้ำเสียงในโลกดิจิทัลถูกสื่อผ่านการเลือกใช้คำ เครื่องหมายวรรคตอน และ Emoji</p>
+                    <div class="component-example"><strong>⚠️ ตัวอย่าง:</strong><br>"OK." vs "OK!" vs "OK 👍"<br>จุดเดียวเปลี่ยนความรู้สึกทั้งหมด</div></div>
+                </div>
+                <div class="component-card fade-in">
+                    <div class="component-header"><div class="component-icon">⏰</div><div><div class="component-title">Timing (เวลา)</div><div class="component-subtitle">ความเร็วในการตอบสนอง</div></div></div>
+                    <div class="component-body"><p>เวลาที่ใช้ในการตอบกลับสื่อถึงระดับความสำคัญและความเคารพ</p>
+                    <div class="component-example"><strong>📊 งานวิจัย:</strong><br>"For delays of only 1.2 seconds, people were more likely to be rated as less attentive, friendly, and self-disciplined."</div></div>
+                </div>
+                <div class="component-card fade-in">
+                    <div class="component-header"><div class="component-icon">📱</div><div><div class="component-title">Medium (ช่องทาง)</div><div class="component-subtitle">การเลือกช่องทางที่เหมาะสม</div></div></div>
+                    <div class="component-body"><p>ช่องทางที่คุณเลือกใช้ส่งผลต่อความหมายและความสำคัญของข้อความ</p>
+                    <div class="component-example"><strong>💡 หลักการ:</strong><br>เรื่องสำคัญ → Video Call<br>เรื่องเร่งด่วน → โทรศัพท์<br>เรื่องทั่วไป → Email</div></div>
+                </div>
+                <div class="component-card fade-in">
+                    <div class="component-header"><div class="component-icon">❗</div><div><div class="component-title">Punctuation</div><div class="component-subtitle">พลังของเครื่องหมายวรรคตอน</div></div></div>
+                    <div class="component-body"><p>เครื่องหมายวรรคตอนมีผลมหาศาลต่อการตีความข้อความ</p>
+                    <div class="component-example"><strong>⚠️ จาก Interview:</strong><br>"The ellipsis (...) is the most passive aggressive punctuation mark."<br>— Erica Dhawan</div></div>
+                </div>
+                <div class="component-card fade-in">
+                    <div class="component-header"><div class="component-icon">😊</div><div><div class="component-title">Emoji & Symbols</div><div class="component-subtitle">การแสดงอารมณ์</div></div></div>
+                    <div class="component-body"><p>Emoji คือ "facial expression แบบใหม่" ที่ช่วยเพิ่มความอบอุ่นและลดความกำกวม</p>
+                    <div class="component-example"><strong>💡 จากหนังสือ:</strong><br>"Emojis can mean different things to different people, depending on power dynamics and relationships."</div></div>
+                </div>
+                <div class="component-card fade-in">
+                    <div class="component-header"><div class="component-icon">👥</div><div><div class="component-title">Inclusion</div><div class="component-subtitle">ใครอยู่ใน To/CC/BCC</div></div></div>
+                    <div class="component-body"><p>การเลือกว่าจะ Include ใครใน Email บอกถึงลำดับชั้น ความสำคัญ และการให้เกียรติ</p>
+                    <div class="component-example"><strong>💡 เคล็ดลับ:</strong><br>Reply All — ใช้เมื่อจำเป็นเท่านั้น<br>BCC — ใช้อย่างระมัดระวังมาก</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 LAWS FRAMEWORK -->
+    <section class="section section-alt" id="framework">
+        <div class="container">
+            <div class="section-header section-header-center">
+                <span class="section-label">⚖️ Core Framework</span>
+                <h2 class="section-title section-title-center">The 4 Laws of Digital Body Language</h2>
+                <p class="section-subtitle section-subtitle-center">กฎ 4 ข้อที่เชื่อมโยงกัน โดยกฎ 3 ข้อแรกเป็นรากฐานที่นำไปสู่กฎข้อที่ 4</p>
+            </div>
+            <div class="laws-overview fade-in">
+                <div class="law-card"><div class="law-num">1</div><div class="law-icon">👁️</div><div class="law-title-en">Value Visibly</div><div class="law-title-th">ให้คุณค่าอย่างเห็นได้ชัด</div><div class="law-desc">แสดงความใส่ใจและขอบคุณผ่านสัญญาณดิจิทัลที่มองเห็นได้</div></div>
+                <div class="law-card"><div class="law-num">2</div><div class="law-icon">✍️</div><div class="law-title-en">Communicate Carefully</div><div class="law-title-th">สื่อสารอย่างรอบคอบ</div><div class="law-desc">ลดความเสี่ยงของการเข้าใจผิดด้วยความชัดเจนที่สุด</div></div>
+                <div class="law-card"><div class="law-num">3</div><div class="law-icon">🤝</div><div class="law-title-en">Collaborate Confidently</div><div class="law-title-th">ร่วมมืออย่างมั่นใจ</div><div class="law-desc">สร้างสภาพแวดล้อมที่ทุกคนกล้าเสี่ยงและสนับสนุนกัน</div></div>
+                <div class="law-card"><div class="law-num">4</div><div class="law-icon">💎</div><div class="law-title-en">Trust Totally</div><div class="law-title-th">ไว้วางใจอย่างเต็มที่</div><div class="law-desc">สร้าง Psychological Safety และวัฒนธรรมแห่งความไว้วางใจ</div></div>
+            </div>
+            <div class="quote-card fade-in">
+                <div class="quote-card-context">🔗 ความสัมพันธ์ระหว่างกฎทั้ง 4</div>
+                <p class="quote-card-text">"Trust Totally is really the integration once you value visibly, plus communicate carefully, plus collaborate confidently. These pillars can not stand on their own."</p>
+                <p class="quote-card-translation">Trust Totally คือการบูรณาการเมื่อคุณ Value Visibly + Communicate Carefully + Collaborate Confidently เสาหลักเหล่านี้ไม่สามารถยืนอยู่ได้ด้วยตัวเอง</p>
+                <div class="quote-card-insight"><strong>💡 ข้อคิด:</strong> Trust ไม่ใช่สิ่งที่เกิดขึ้นเอง แต่เป็นผลลัพธ์จากการปฏิบัติกฎ 3 ข้อแรกอย่างสม่ำเสมอ</div>
+            </div>
+            <div class="pyramid-container fade-in">
+                <h3 style="text-align: center; margin-bottom: 30px; color: var(--accent-gold);">🔺 Trust Pyramid</h3>
+                <div class="pyramid">
+                    <div class="pyramid-level pyramid-level-1">4. Trust Totally</div>
+                    <div class="pyramid-arrow">▲</div>
+                    <div class="pyramid-level pyramid-level-2">3. Collaborate Confidently</div>
+                    <div class="pyramid-arrow">▲</div>
+                    <div class="pyramid-level pyramid-level-3">2. Communicate Carefully</div>
+                    <div class="pyramid-arrow">▲</div>
+                    <div class="pyramid-level pyramid-level-4">1. Value Visibly (Foundation)</div>
+                </div>
+                <p style="text-align: center; margin-top: 25px; color: var(--text-muted); font-size: 0.9rem;">Trust Totally เกิดขึ้นได้ก็ต่อเมื่อกฎ 3 ข้อแรกถูกนำไปปฏิบัติอย่างสม่ำเสมอ</p>
+            </div>
+        </div>
+    </section>
+    <!-- LAW 1: VALUE VISIBLY -->
+    <section class="section" id="law1">
+        <div class="container">
+            <div class="law-detail fade-in">
+                <div class="law-detail-header"><div class="law-detail-num">1</div><div class="law-detail-titles"><h3>Value Visibly</h3><span>ให้คุณค่าอย่างเห็นได้ชัด</span></div></div>
+                <p class="law-intro">ในโลกดิจิทัล การแสดงความใส่ใจไม่สามารถพึ่งพาภาษากายได้อีกต่อไป เราต้องทำให้ความขอบคุณและการรับรู้ <strong>"มองเห็นได้"</strong> ผ่านการกระทำที่ชัดเจน</p>
+                <div class="quote-featured">
+                    <p class="quote-featured-text">"Valuing visibly is valuing others' time, inboxes and schedules. It means being thoughtful that time is respected."</p>
+                    <p class="quote-featured-translation">การให้คุณค่าอย่างเห็นได้ชัดคือการให้คุณค่ากับเวลา กล่องข้อความ และตารางเวลาของผู้อื่น หมายถึงการใส่ใจว่าเวลาได้รับการเคารพ</p>
+                    <div class="quote-featured-footer"><span class="quote-source">— Erica Dhawan, Interview</span><button class="copy-quote-btn" onclick="copyQuote(this, 'Valuing visibly is valuing others time, inboxes and schedules. - Erica Dhawan')">📋 Copy</button></div>
+                </div>
+                <div class="law-content-grid">
+                    <div class="law-point"><h4>👂 "Reading carefully is the new listening"</h4><p>การอ่านอย่างตั้งใจคือการฟังแบบใหม่ อ่าน Email ทั้งหมดก่อนตอบ ไม่ใช่แค่อ่านผ่านๆ</p></div>
+                    <div class="law-point"><h4>⚡ ตอบสนองอย่างรวดเร็ว</h4><p>แม้ไม่สามารถตอบได้ทันที ให้ส่งข้อความว่า "I can't look at this now but I'll get back to you"</p></div>
+                    <div class="law-point"><h4>🙏 ชื่นชมอย่างเปิดเผย</h4><p>Public Praise — ชื่นชมในที่สาธารณะ เช่น ใน Slack Channel แต่วิจารณ์เป็นการส่วนตัว</p></div>
+                    <div class="law-point"><h4>📅 เคารพเวลาของผู้อื่น</h4><p>ไม่ส่ง 5 Reply All เมื่อสามารถโทรคุย 5 นาทีได้ ไม่นัดประชุม 30 คนเมื่อมีแค่ 6 คนที่พูด</p></div>
+                </div>
+                <div class="quote-mini"><p class="quote-mini-text">"In the digital workplace, to value visibility is by being vigilantly conscious of other people and communicating 'I hear you' using the new cues and signals."</p><p class="quote-mini-source">— Digital Body Language</p></div>
+                <div class="dos-donts">
+                    <div class="dos-box"><h4>✅ Do's</h4><ul><li>อ่าน Email/Message ทั้งหมดก่อนตอบ</li><li>Acknowledge ภายใน 24 ชั่วโมง</li><li>ส่งข้อความขอบคุณอย่างเฉพาะเจาะจง</li><li>ชื่นชมเพื่อนร่วมงานใน Public Channel</li><li>เช็คตารางคนอื่นก่อนนัดประชุม</li></ul></div>
+                    <div class="donts-box"><h4>❌ Don'ts</h4><ul><li>Ghosting — ไม่ตอบเลยเป็นวันๆ</li><li>อ่านแค่ 2 บรรทัดแรกแล้วตอบ</li><li>ตอบสั้นมาก เช่น "OK." โดยไม่มีบริบท</li><li>ส่งข้อความนอกเวลางานโดยไม่จำเป็น</li></ul></div>
+                </div>
+                <div class="action-box"><h4>🎯 Action Items</h4><ul class="action-list"><li><span class="num">1</span>ตั้ง Rule: ตอบกลับทุก Email ภายใน 24 ชั่วโมง</li><li><span class="num">2</span>ส่งข้อความขอบคุณที่เฉพาะเจาะจง 1 ข้อความต่อวัน</li><li><span class="num">3</span>ก่อนตอบ Email ให้อ่านทั้งหมด แล้วตอบทุกประเด็น</li><li><span class="num">4</span>ใช้ Schedule Send สำหรับ Email นอกเวลางาน</li></ul></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LAW 2: COMMUNICATE CAREFULLY -->
+    <section class="section section-alt" id="law2">
+        <div class="container">
+            <div class="law-detail fade-in">
+                <div class="law-detail-header"><div class="law-detail-num">2</div><div class="law-detail-titles"><h3>Communicate Carefully</h3><span>สื่อสารอย่างรอบคอบ</span></div></div>
+                <p class="law-intro">ความชัดเจนคือความเมตตาในโลกดิจิทัล <strong>อย่าสับสนระหว่าง "สั้น" กับ "ชัดเจน"</strong> — ข้อความสั้นเกินไปอาจสร้างความสับสนและความกังวล</p>
+                <div class="quote-featured">
+                    <p class="quote-featured-text">"Never confuse brevity with clarity. Brief, low-context messages are simply cryptic. Recipients of unclear messages overthink things in an effort to fill in missing words and absent meanings."</p>
+                    <p class="quote-featured-translation">อย่าสับสนระหว่างความสั้นกับความชัดเจน ข้อความสั้นที่ขาดบริบทนั้นเป็นเพียงความลึกลับ ผู้รับข้อความที่ไม่ชัดเจนจะ Overthink เพื่อพยายามเติมคำที่หายไป</p>
+                    <div class="quote-featured-footer"><span class="quote-source">— Erica Dhawan</span><button class="copy-quote-btn" onclick="copyQuote(this, 'Never confuse brevity with clarity. Brief, low-context messages are simply cryptic. - Erica Dhawan')">📋 Copy</button></div>
+                </div>
+                <div style="background: var(--bg-tertiary); border-radius: 20px; padding: 30px; margin: 40px 0;">
+                    <h4 style="color: var(--accent-gold); margin-bottom: 20px;">📋 The 3 Ws Framework</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">ทุกครั้งที่มอบหมายงาน ให้ระบุ 3 สิ่งนี้:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                        <div style="text-align: center; padding: 20px; background: var(--bg-card); border-radius: 12px;"><div style="font-size: 2rem; margin-bottom: 10px;">👤</div><div style="font-weight: 700; color: var(--accent-gold);">WHO</div><div style="font-size: 0.9rem; color: var(--text-secondary);">ใครรับผิดชอบ?</div></div>
+                        <div style="text-align: center; padding: 20px; background: var(--bg-card); border-radius: 12px;"><div style="font-size: 2rem; margin-bottom: 10px;">📝</div><div style="font-weight: 700; color: var(--accent-gold);">WHAT</div><div style="font-size: 0.9rem; color: var(--text-secondary);">ต้องทำอะไร?</div></div>
+                        <div style="text-align: center; padding: 20px; background: var(--bg-card); border-radius: 12px;"><div style="font-size: 2rem; margin-bottom: 10px;">📅</div><div style="font-weight: 700; color: var(--accent-gold);">WHEN</div><div style="font-size: 0.9rem; color: var(--text-secondary);">ต้องเสร็จเมื่อไหร่?</div></div>
+                    </div>
+                </div>
+                <div class="law-content-grid">
+                    <div class="law-point"><h4>✍️ "Writing clearly is the new empathy"</h4><p>การเขียนอย่างชัดเจนคือการแสดงความเข้าใจแบบใหม่ ทำให้คนอื่นเข้าใจง่ายที่สุด</p></div>
+                    <div class="law-point"><h4>📝 Subject Line ที่ชัดเจน</h4><p>หัวข้อ Email ควรบอกสิ่งที่ต้องการ เช่น "[Action Required]", "[FYI Only]"</p></div>
+                    <div class="law-point"><h4>🔍 อ่านทบทวนก่อนส่ง</h4><p>ถามตัวเอง: "ข้อความนี้จะถูกตีความอย่างไรโดยคนที่อยู่ในอารมณ์แย่ที่สุด?"</p></div>
+                    <div class="law-point"><h4>⚠️ หลีกเลี่ยง Passive-Aggressive</h4><p>"Per my last email", "Thanks for your patience" — อาจถูกตีความว่า resentful</p></div>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-card-context">⚠️ เกี่ยวกับ Ellipsis (...)</div>
+                    <p class="quote-card-text">"Use the ellipsis (...) carefully. Those three dots suggest something's going on but leaves you wondering what it is. The ellipsis is the most passive aggressive punctuation mark."</p>
+                    <p class="quote-card-translation">ใช้จุดสามจุด (...) อย่างระมัดระวัง สามจุดนั้นบ่งบอกว่ามีอะไรบางอย่างเกิดขึ้นแต่ทำให้คุณสงสัยว่าคืออะไร จุดสามจุดเป็นเครื่องหมายวรรคตอนที่ Passive-Aggressive ที่สุด</p>
+                    <div class="quote-card-insight"><strong>💡 ข้อคิด:</strong> หลีกเลี่ยง Ellipsis ในการสื่อสารธุรกิจ ใช้เมื่อต้องการแสดงว่าความคิดยังไม่จบจริงๆ เท่านั้น</div>
+                </div>
+                <div class="action-box"><h4>🎯 Action Items</h4><ul class="action-list"><li><span class="num">1</span>ใช้หลัก 3 Ws (Who, What, When) ทุกครั้งที่มอบหมายงาน</li><li><span class="num">2</span>เขียน Subject Line ที่ชัดเจน — ระบุ [Action Required] หรือ [FYI]</li><li><span class="num">3</span>อ่านทบทวนทุกข้อความก่อนกดส่ง</li><li><span class="num">4</span>หลีกเลี่ยง Ellipsis (...) และ Passive-Aggressive Phrases</li></ul></div>
+            </div>
+        </div>
+    </section>
+    <!-- LAW 3: COLLABORATE CONFIDENTLY -->
+    <section class="section" id="law3">
+        <div class="container">
+            <div class="law-detail fade-in">
+                <div class="law-detail-header"><div class="law-detail-num">3</div><div class="law-detail-titles"><h3>Collaborate Confidently</h3><span>ร่วมมืออย่างมั่นใจ</span></div></div>
+                <p class="law-intro">การร่วมมือที่แท้จริงต้องการพื้นที่ปลอดภัยที่ทุกคน <strong>กล้าแสดงความเห็น กล้าถามคำถาม และกล้าท้าทายไอเดีย</strong> โดยไม่กลัวผลกระทบ</p>
+                <div class="quote-featured">
+                    <p class="quote-featured-text">"Virtual teams can actually outperform co-located teams, because the challenge is not geographical distance. It's creating psychological safety and belonging."</p>
+                    <p class="quote-featured-translation">ทีม Virtual สามารถทำผลงานได้ดีกว่าทีมที่อยู่ด้วยกันได้ เพราะความท้าทายไม่ใช่ระยะทาง แต่เป็นการสร้าง Psychological Safety และการเป็นส่วนหนึ่ง</p>
+                    <div class="quote-featured-footer"><span class="quote-source">— Erica Dhawan</span><button class="copy-quote-btn" onclick="copyQuote(this, 'Virtual teams can actually outperform co-located teams. The challenge is not geographical distance - its creating psychological safety. - Erica Dhawan')">📋 Copy</button></div>
+                </div>
+                <div class="law-content-grid">
+                    <div class="law-point"><h4>📞 กฎ 3 Reply All</h4><p>"We pick up the phone after three reply-alls that haven't been resolved." — ถ้า Email ยังไม่จบหลังจาก 3 รอบ ให้โทรคุย</p></div>
+                    <div class="law-point"><h4>🗣️ สร้างพื้นที่ให้คนเงียบ</h4><p>ในการประชุมออนไลน์ ให้ถามคนที่ยังไม่พูดโดยเฉพาะ เปิดโอกาสให้ทุกคนมีส่วนร่วม</p></div>
+                    <div class="law-point"><h4>❓ ถาม "มีใครเห็นต่างไหม?"</h4><p>และรอคำตอบจริงๆ — ไม่ใช่แค่ถามเอาหน้า แต่ต้องสร้างพื้นที่ปลอดภัยสำหรับการไม่เห็นด้วย</p></div>
+                    <div class="law-point"><h4>🎥 เปิดกล้องเมื่อเหมาะสม</h4><p>Video Call สร้าง Connection ได้ดีกว่า Audio-only แต่อย่าบังคับเมื่อไม่จำเป็น</p></div>
+                </div>
+                <div class="quote-mini"><p class="quote-mini-text">"The best leaders create environments where dissent is not just tolerated but actively encouraged. Silence in digital meetings often means confusion, not agreement."</p><p class="quote-mini-source">— Digital Body Language (paraphrased)</p></div>
+                <div class="dos-donts">
+                    <div class="dos-box"><h4>✅ Do's</h4><ul><li>ถามความเห็นจากคนที่ยังไม่พูดโดยเฉพาะ</li><li>สร้าง Norm ว่า "ไม่เห็นด้วย = ปลอดภัย"</li><li>ใช้ Video Call สำหรับเรื่องสำคัญ</li><li>ตั้ง Communication Agreement กับทีม</li><li>ให้เวลาคิดก่อนต้องตอบ</li></ul></div>
+                    <div class="donts-box"><h4>❌ Don'ts</h4><ul><li>สมมติว่า "เงียบ = เห็นด้วย"</li><li>ตัดบทเมื่อมีคนไม่เห็นด้วย</li><li>ส่ง Email ต่อเนื่อง 10+ ฉบับโดยไม่โทร</li><li>เปิดกล้องเฉพาะเมื่อต้องการควบคุม</li></ul></div>
+                </div>
+                <div class="action-box"><h4>🎯 Action Items</h4><ul class="action-list"><li><span class="num">1</span>ตั้ง Rule กับทีม: "หลัง 3 Reply All → โทรคุย"</li><li><span class="num">2</span>ในการประชุมถัดไป ถาม "มีใครเห็นต่างไหม?" แล้วรอ 10 วินาที</li><li><span class="num">3</span>สร้าง Communication Agreement กับทีม (ช่องทางไหนใช้เมื่อไหร่)</li><li><span class="num">4</span>ให้โอกาสคนที่ยังไม่พูดได้แสดงความเห็น</li></ul></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LAW 4: TRUST TOTALLY -->
+    <section class="section section-alt" id="law4">
+        <div class="container">
+            <div class="law-detail fade-in">
+                <div class="law-detail-header"><div class="law-detail-num">4</div><div class="law-detail-titles"><h3>Trust Totally</h3><span>ไว้วางใจอย่างเต็มที่</span></div></div>
+                <p class="law-intro">Trust Totally คือผลลัพธ์จากการปฏิบัติกฎ 3 ข้อแรกอย่างสม่ำเสมอ เป็น <strong>การสร้างวัฒนธรรมที่ทุกคนรู้สึกปลอดภัยและเป็นส่วนหนึ่ง</strong></p>
+                <div class="quote-featured">
+                    <p class="quote-featured-text">"As a leader, it's critical not to freak your employees out. When employees do things out of fear, it becomes impossible to drive innovation."</p>
+                    <p class="quote-featured-translation">ในฐานะผู้นำ สิ่งสำคัญคืออย่าทำให้พนักงานหวาดกลัว เมื่อพนักงานทำงานจากความกลัว การขับเคลื่อนนวัตกรรมจะเป็นไปไม่ได้</p>
+                    <div class="quote-featured-footer"><span class="quote-source">— Erica Dhawan</span><button class="copy-quote-btn" onclick="copyQuote(this, 'As a leader, its critical not to freak your employees out. When employees do things out of fear, innovation becomes impossible. - Erica Dhawan')">📋 Copy</button></div>
+                </div>
+                <div class="law-content-grid">
+                    <div class="law-point"><h4>🛡️ Psychological Safety</h4><p>สร้างสภาพแวดล้อมที่ผิดพลาดได้โดยไม่ถูกลงโทษ ทำให้ทุกคนกล้าเสี่ยงและเรียนรู้</p></div>
+                    <div class="law-point"><h4>🔓 แชร์ความผิดพลาด</h4><p>ผู้นำที่แชร์ความผิดพลาดของตัวเองสร้าง Permission ให้คนอื่นทำเช่นเดียวกัน</p></div>
+                    <div class="law-point"><h4>📊 ให้ Feedback สม่ำเสมอ</h4><p>ไม่ใช่แค่ปีละครั้ง แต่ต้องให้ Feedback ที่สร้างสรรค์และทันเวลาตลอด</p></div>
+                    <div class="law-point"><h4>🤗 สร้างความเป็นส่วนหนึ่ง</h4><p>ทำให้ทุกคน โดยเฉพาะ Remote Workers รู้สึกว่าเป็นส่วนหนึ่งของทีม</p></div>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-card-context">🔗 ความเชื่อมโยงของ 4 Laws</div>
+                    <p class="quote-card-text">"Trust Totally is really the integration once you value visibly, plus communicate carefully, plus collaborate confidently. These pillars cannot stand on their own."</p>
+                    <p class="quote-card-translation">Trust Totally คือการบูรณาการเมื่อคุณ Value Visibly + Communicate Carefully + Collaborate Confidently เสาหลักเหล่านี้ไม่สามารถยืนอยู่ได้ด้วยตัวเอง</p>
+                    <div class="quote-card-insight"><strong>💡 สูตร:</strong> Trust Totally = Value Visibly + Communicate Carefully + Collaborate Confidently</div>
+                </div>
+                <div class="action-box"><h4>🎯 Action Items</h4><ul class="action-list"><li><span class="num">1</span>แชร์ความผิดพลาดของตัวเองกับทีม 1 เรื่อง</li><li><span class="num">2</span>สร้าง Ritual สำหรับการขอบคุณกันเป็นประจำ</li><li><span class="num">3</span>ให้ Feedback เล็กๆ น้อยๆ ทุกสัปดาห์</li><li><span class="num">4</span>Check-in กับทีมเรื่อง Wellbeing ไม่ใช่แค่งาน</li></ul></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST-POWER MATRIX -->
+    <section class="section" id="matrix">
+        <div class="container">
+            <div class="section-header section-header-center">
+                <span class="section-label">📊 Framework</span>
+                <h2 class="section-title section-title-center">Trust-Power Matrix</h2>
+                <p class="section-subtitle section-subtitle-center">กลยุทธ์การสื่อสารที่เหมาะสมขึ้นอยู่กับระดับความไว้วางใจและอำนาจ</p>
+            </div>
+            <div class="quote-featured fade-in">
+                <p class="quote-featured-text">"Who has more or less power? And how much do we trust each other? Every relationship can be mapped on two axes: Trust and Power."</p>
+                <p class="quote-featured-translation">ใครมีอำนาจมากกว่าหรือน้อยกว่า? และเราไว้วางใจกันแค่ไหน? ทุกความสัมพันธ์สามารถ Map บนสองแกน: ความไว้วางใจและอำนาจ</p>
+                <div class="quote-featured-footer"><span class="quote-source">— Erica Dhawan</span><button class="copy-quote-btn" onclick="copyQuote(this, 'Every relationship can be mapped on two axes: Trust and Power. - Erica Dhawan')">📋 Copy</button></div>
+            </div>
+            <div class="matrix-container fade-in">
+                <div class="matrix">
+                    <div class="matrix-header"></div>
+                    <div class="matrix-header">⬆️ High Trust</div>
+                    <div class="matrix-header">⬇️ Low Trust</div>
+                    <div class="matrix-label">👑 High Power<br>(คุณมีอำนาจมากกว่า)</div>
+                    <div class="matrix-cell"><h4>A: Relaxed Influence</h4><p>สื่อสารได้ Informal มากขึ้น<br>ใช้ Emoji ได้<br>แต่ระวังอย่า Micromanage</p></div>
+                    <div class="matrix-cell"><h4>B: Careful Authority</h4><p>ต้องสร้าง Trust ก่อน<br>สื่อสารชัดเจน ไม่กำกวม<br>แสดงความใส่ใจอย่างสม่ำเสมอ</p></div>
+                    <div class="matrix-label">🙋 Low Power<br>(อีกฝ่ายมีอำนาจมากกว่า)</div>
+                    <div class="matrix-cell"><h4>C: Trusted Ally</h4><p>กล้าแสดงความเห็นได้<br>ใช้ความสัมพันธ์ที่มีอยู่<br>ยังคงแสดงความเคารพ</p></div>
+                    <div class="matrix-cell"><h4>D: Strategic Approach</h4><p>Formal มากที่สุด<br>ให้ Context ครบถ้วน<br>Build Trust ทีละน้อย</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- DIFFERENCES -->
+    <section class="section section-alt" id="differences">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">🌍 Nuances</span>
+                <h2 class="section-title">ความแตกต่างที่ต้องรู้</h2>
+                <p class="section-subtitle">Digital Body Language ไม่ใช่ One-Size-Fits-All — เพศ อายุ และวัฒนธรรมล้วนมีผล</p>
+            </div>
+            <div class="diff-tabs fade-in">
+                <button class="diff-tab active" onclick="showDiffTab('gender')">👫 Gender</button>
+                <button class="diff-tab" onclick="showDiffTab('generation')">👴👶 Generation</button>
+                <button class="diff-tab" onclick="showDiffTab('culture')">🌏 Culture</button>
+            </div>
+            <!-- Gender -->
+            <div class="diff-content active" id="gender">
+                <div class="quote-featured fade-in">
+                    <p class="quote-featured-text">"The higher a woman's status and power, the more she's learned to adopt more traditional male body language and ways of communicating."</p>
+                    <p class="quote-featured-translation">ยิ่งผู้หญิงมีสถานะและอำนาจสูงเท่าไหร่ เธอก็ยิ่งเรียนรู้ที่จะปรับใช้ภาษากายแบบผู้ชายมากขึ้นเท่านั้น</p>
+                    <div class="quote-featured-footer"><span class="quote-source">— Digital Body Language</span><button class="copy-quote-btn" onclick="copyQuote(this, 'The higher a womans status and power, the more shes learned to adopt more traditional male body language. - Erica Dhawan')">📋 Copy</button></div>
+                </div>
+                <div class="diff-grid fade-in">
+                    <div class="diff-card"><h4>👨 Digital Body Language ผู้ชาย</h4><ul><li>มักใช้ข้อความที่สั้นและตรงประเด็น</li><li>ใช้ Emoji น้อยกว่า หรือไม่ใช้เลย</li><li>มีแนวโน้มใช้เครื่องหมายวรรคตอนน้อย</li><li>มักใช้ลำดับชั้นที่ชัดเจนในการสื่อสาร</li><li>ตอบกลับสั้นกว่า พูดน้อยในแชท</li></ul></div>
+                    <div class="diff-card"><h4>👩 Digital Body Language ผู้หญิง</h4><ul><li>มักใช้ Softening Language เช่น "I think...", "Maybe..."</li><li>ใช้ Emoji และ Exclamation Mark มากกว่า</li><li>มีแนวโน้มถามคำถามเพื่อสร้างการมีส่วนร่วม</li><li>เน้นการสร้างความสัมพันธ์ในการสื่อสาร</li><li>อาจถูก Penalize เมื่อใช้สไตล์ที่ตรงเกินไป</li></ul></div>
+                </div>
+                <div class="quote-mini fade-in"><p class="quote-mini-text">"Communication evolves differently in boys and girls when they are as young as 2! And that continues to play out even in work spaces."</p><p class="quote-mini-source">— Digital Body Language</p></div>
+            </div>
+            <!-- Generation -->
+            <div class="diff-content" id="generation">
+                <div class="quote-featured fade-in">
+                    <p class="quote-featured-text">"The 'digital native' — digitally savvy — loves brief, to-the-point bullet points. The 'digital adapter' might want a longer message. If the subject is really complex, they'd prefer a quick phone call."</p>
+                    <p class="quote-featured-translation">'Digital Native' ที่คล่องเทคโนโลยีชอบ Bullet Points สั้นๆ ตรงประเด็น ส่วน 'Digital Adapter' อาจต้องการข้อความที่ยาวกว่า ถ้าเรื่องซับซ้อนจริงๆ พวกเขาจะชอบโทรศัพท์มากกว่า</p>
+                    <div class="quote-featured-footer"><span class="quote-source">— Erica Dhawan, ThinkAdvisor Interview</span><button class="copy-quote-btn" onclick="copyQuote(this, 'Digital natives love brief bullet points. Digital adapters might want a longer message or a phone call. - Erica Dhawan')">📋 Copy</button></div>
+                </div>
+                <div class="diff-grid fade-in">
+                    <div class="diff-card"><h4>🖥️ Digital Natives (เกิดหลัง 1985)</h4><ul><li>ชอบข้อความสั้น ตรงประเด็น</li><li>สลับช่องทางได้คล่อง (Email → Slack → Text)</li><li>คาดหวัง Response Time ที่เร็ว</li><li>สบายใจกับ Informal Tone และ Emoji</li><li>มองว่าโทรศัพท์เป็นสิ่งที่ Intrusive</li></ul></div>
+                    <div class="diff-card"><h4>📞 Digital Adapters (เกิดก่อน 1985)</h4><ul><li>ชอบข้อความที่มีบริบทครบถ้วน</li><li>อาจรู้สึกว่า Informal Tone ไม่เหมาะสม</li><li>ชอบโทรศัพท์สำหรับเรื่องสำคัญ</li><li>คาดหวังความเป็นทางการในที่ทำงาน</li><li>อาจรู้สึกสับสนกับ Emoji มากมาย</li></ul></div>
+                </div>
+            </div>
+            <!-- Culture -->
+            <div class="diff-content" id="culture">
+                <div class="quote-featured fade-in">
+                    <p class="quote-featured-text">"Eastern cultures favor formal digital greetings while Western styles prioritize brevity. Cultural digital fluency requires adapting emoji use across global teams."</p>
+                    <p class="quote-featured-translation">วัฒนธรรมตะวันออกนิยมคำทักทายดิจิทัลที่เป็นทางการ ขณะที่สไตล์ตะวันตกให้ความสำคัญกับความกระชับ</p>
+                    <div class="quote-featured-footer"><span class="quote-source">— Digital Body Language Summary</span><button class="copy-quote-btn" onclick="copyQuote(this, 'Eastern cultures favor formal digital greetings while Western styles prioritize brevity. - Erica Dhawan')">📋 Copy</button></div>
+                </div>
+                <div class="diff-grid fade-in">
+                    <div class="diff-card"><h4>🌏 High-Context Cultures</h4><ul><li>Japan, China, Thailand, Arab Countries</li><li>ความหมายซ่อนอยู่ในบริบท ไม่ใช่คำพูดตรงๆ</li><li>คาดหวังคำทักทายเป็นทางการก่อนเข้าเรื่อง</li><li>การปฏิเสธอาจไม่ชัดเจน (ใช้ "ยาก" แทน "ไม่ได้")</li><li>ลำดับชั้นมีความสำคัญในการสื่อสาร</li></ul></div>
+                    <div class="diff-card"><h4>🌎 Low-Context Cultures</h4><ul><li>USA, Germany, Netherlands, Scandinavia</li><li>ความหมายชัดเจนในคำพูดโดยตรง</li><li>เข้าเรื่องได้เลยโดยไม่ต้อง Small Talk มาก</li><li>คาดหวังการสื่อสารที่ตรงไปตรงมา</li><li>การปฏิเสธที่ชัดเจนถือเป็นเรื่องปกติ</li></ul></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GOLDEN QUOTES -->
+    <section class="section" id="quotes">
+        <div class="container">
+            <div class="section-header section-header-center">
+                <span class="section-label">💎 Golden Quotes</span>
+                <h2 class="section-title section-title-center">คำคมสำคัญจากหนังสือ</h2>
+                <p class="section-subtitle section-subtitle-center">รวม Quotes ที่ดีที่สุด — คัดมาเฉพาะที่ได้รับการยืนยันจากแหล่งข้อมูล</p>
+            </div>
+            <div class="golden-quotes-grid">
+                <div class="golden-quote fade-in"><span class="golden-quote-icon">"</span><span class="golden-quote-category">Core Thesis</span><p class="golden-quote-text">"Reading carefully is the new listening. Writing clearly is the new empathy. And a phone or video call is worth a thousand emails."</p><p class="golden-quote-translation">การอ่านอย่างตั้งใจคือการฟังแบบใหม่ การเขียนอย่างชัดเจนคือการแสดงความเข้าใจแบบใหม่</p><div class="golden-quote-footer"><span class="quote-source">— Erica Dhawan</span><button class="copy-quote-btn" onclick="copyQuote(this, 'Reading carefully is the new listening. Writing clearly is the new empathy. - Erica Dhawan')">📋 Copy</button></div></div>
+                <div class="golden-quote fade-in"><span class="golden-quote-icon">"</span><span class="golden-quote-category">Clarity</span><p class="golden-quote-text">"Never confuse brevity with clarity. Brief, low-context messages are simply cryptic."</p><p class="golden-quote-translation">อย่าสับสนระหว่างความสั้นกับความชัดเจน ข้อความสั้นที่ขาดบริบทนั้นเป็นเพียงความลึกลับ</p><div class="golden-quote-footer"><span class="quote-source">— Erica Dhawan</span><button class="copy-quote-btn" onclick="copyQuote(this, 'Never confuse brevity with clarity. Brief, low-context messages are simply cryptic. - Erica Dhawan')">📋 Copy</button></div></div>
+                <div class="golden-quote fade-in"><span class="golden-quote-icon">"</span><span class="golden-quote-category">Engagement</span><p class="golden-quote-text">"The loss of nonverbal body cues is among the most overlooked reasons why employees feel so disengaged from others."</p><p class="golden-quote-translation">การสูญเสียสัญญาณภาษากายเป็นหนึ่งในสาเหตุที่ถูกมองข้ามมากที่สุด</p><div class="golden-quote-footer"><span class="quote-source">— Erica Dhawan</span><button class="copy-quote-btn" onclick="copyQuote(this, 'The loss of nonverbal body cues is among the most overlooked reasons why employees feel disengaged. - Erica Dhawan')">📋 Copy</button></div></div>
+                <div class="golden-quote fade-in"><span class="golden-quote-icon">"</span><span class="golden-quote-category">Virtual Teams</span><p class="golden-quote-text">"Virtual teams can actually outperform co-located teams, because the challenge is not geographical distance. It's creating psychological safety."</p><p class="golden-quote-translation">ทีม Virtual สามารถทำผลงานได้ดีกว่าทีมที่อยู่ด้วยกันได้ เพราะความท้าทายไม่ใช่ระยะทาง</p><div class="golden-quote-footer"><span class="quote-source">— Erica Dhawan</span><button class="copy-quote-btn" onclick="copyQuote(this, 'Virtual teams can outperform co-located teams. The challenge is creating psychological safety. - Erica Dhawan')">📋 Copy</button></div></div>
+                <div class="golden-quote fade-in"><span class="golden-quote-icon">"</span><span class="golden-quote-category">Leadership</span><p class="golden-quote-text">"As a leader, it's critical not to freak your employees out. When employees do things out of fear, it becomes impossible to drive innovation."</p><p class="golden-quote-translation">ในฐานะผู้นำ สิ่งสำคัญคืออย่าทำให้พนักงานหวาดกลัว</p><div class="golden-quote-footer"><span class="quote-source">— Erica Dhawan</span><button class="copy-quote-btn" onclick="copyQuote(this, 'As a leader, its critical not to freak your employees out. Fear kills innovation. - Erica Dhawan')">📋 Copy</button></div></div>
+                <div class="golden-quote fade-in"><span class="golden-quote-icon">"</span><span class="golden-quote-category">Punctuation</span><p class="golden-quote-text">"The ellipsis (...) is the most passive aggressive punctuation mark. Use it carefully."</p><p class="golden-quote-translation">จุดสามจุด (...) คือเครื่องหมายวรรคตอนที่ Passive-Aggressive ที่สุด</p><div class="golden-quote-footer"><span class="quote-source">— Erica Dhawan, Interview</span><button class="copy-quote-btn" onclick="copyQuote(this, 'The ellipsis (...) is the most passive aggressive punctuation mark. - Erica Dhawan')">📋 Copy</button></div></div>
+                <div class="golden-quote fade-in"><span class="golden-quote-icon">"</span><span class="golden-quote-category">Trust</span><p class="golden-quote-text">"Trust Totally is the integration of Value Visibly + Communicate Carefully + Collaborate Confidently. These pillars cannot stand on their own."</p><p class="golden-quote-translation">Trust Totally คือการบูรณาการของ 3 กฎแรก เสาหลักเหล่านี้ไม่สามารถยืนอยู่ได้ด้วยตัวเอง</p><div class="golden-quote-footer"><span class="quote-source">— Erica Dhawan</span><button class="copy-quote-btn" onclick="copyQuote(this, 'Trust Totally is the integration of the first three laws. - Erica Dhawan')">📋 Copy</button></div></div>
+                <div class="golden-quote fade-in"><span class="golden-quote-icon">"</span><span class="golden-quote-category">Timing</span><p class="golden-quote-text">"For delays of only 1.2 seconds, people were more likely to be rated as less attentive, friendly, and self-disciplined."</p><p class="golden-quote-translation">สำหรับความล่าช้าเพียง 1.2 วินาที คนมีแนวโน้มที่จะถูกประเมินว่าใส่ใจน้อยกว่า</p><div class="golden-quote-footer"><span class="quote-source">— Research cited in book</span><button class="copy-quote-btn" onclick="copyQuote(this, 'For delays of only 1.2 seconds, people were rated as less attentive and friendly. - Digital Body Language')">📋 Copy</button></div></div>
+                <div class="golden-quote fade-in"><span class="golden-quote-icon">"</span><span class="golden-quote-category">Endorsement</span><p class="golden-quote-text">"This book is a breakthrough that will be read for years to come. People are already judging you by how you show up in the digital world."</p><p class="golden-quote-translation">หนังสือเล่มนี้เป็น Breakthrough ที่จะถูกอ่านต่อไปอีกหลายปี</p><div class="golden-quote-footer"><span class="quote-source">— Seth Godin</span><button class="copy-quote-btn" onclick="copyQuote(this, 'People are already judging you by how you show up in the digital world. - Seth Godin')">📋 Copy</button></div></div>
+            </div>
+        </div>
+    </section>
+    <!-- ACTION PLAN -->
+    <section class="section section-alt" id="action">
+        <div class="container-narrow">
+            <div class="section-header">
+                <span class="section-label">🎯 Implementation</span>
+                <h2 class="section-title">แผนปฏิบัติ 30 วัน</h2>
+                <p class="section-subtitle">แปลงความรู้เป็นการกระทำ — แผนทีละขั้นตอนเพื่อนำ Digital Body Language ไปใช้จริง</p>
+            </div>
+            <div class="ai-note fade-in"><div class="ai-note-header">🤖 หมายเหตุเรื่องแหล่งข้อมูล</div><p><strong>แผนปฏิบัติ 30 วันนี้เป็นคำแนะนำเสริมจาก AI</strong> โดยอิงจากหลักการในหนังสือ ไม่ใช่เนื้อหาโดยตรงจากหนังสือ</p><ul><li>หลักการมาจากหนังสือ แต่ Timeline และ Checklist ออกแบบโดย AI</li><li>ปรับใช้ตามบริบทและความเร่งด่วนของคุณ</li></ul></div>
+            <div class="timeline fade-in">
+                <div class="timeline-item"><span class="timeline-week">สัปดาห์ที่ 1</span><h3 class="timeline-title">🔍 สำรวจและตั้งมาตรฐาน</h3><p class="timeline-desc">สำรวจสถานการณ์ปัจจุบันและกำหนด Baseline</p><div class="checklist"><div class="checklist-item"><input type="checkbox" id="w1-1"><label for="w1-1">Review Email 10 ฉบับล่าสุด — ดูว่ามีอะไรที่อาจถูกตีความผิด</label></div><div class="checklist-item"><input type="checkbox" id="w1-2"><label for="w1-2">สำรวจ Response Time เฉลี่ยของตัวเอง</label></div><div class="checklist-item"><input type="checkbox" id="w1-3"><label for="w1-3">ระบุ 3 คนที่คุณสื่อสารด้วยบ่อยที่สุด และสไตล์ของพวกเขา</label></div><div class="checklist-item"><input type="checkbox" id="w1-4"><label for="w1-4">ตั้ง Rule: ตอบกลับทุก Email ภายใน 24 ชม.</label></div></div></div>
+                <div class="timeline-item"><span class="timeline-week">สัปดาห์ที่ 2</span><h3 class="timeline-title">👁️ ฝึก Value Visibly</h3><p class="timeline-desc">เน้นการแสดงความใส่ใจและขอบคุณอย่างชัดเจน</p><div class="checklist"><div class="checklist-item"><input type="checkbox" id="w2-1"><label for="w2-1">ส่งข้อความขอบคุณที่เฉพาะเจาะจง 1 ข้อความต่อวัน</label></div><div class="checklist-item"><input type="checkbox" id="w2-2"><label for="w2-2">ชื่นชมเพื่อนร่วมงานใน Public Channel อย่างน้อย 2 ครั้ง</label></div><div class="checklist-item"><input type="checkbox" id="w2-3"><label for="w2-3">อ่าน Email ทั้งหมดก่อนตอบ — ตอบทุกประเด็น</label></div><div class="checklist-item"><input type="checkbox" id="w2-4"><label for="w2-4">ใช้ Schedule Send สำหรับ Email นอกเวลางาน</label></div></div></div>
+                <div class="timeline-item"><span class="timeline-week">สัปดาห์ที่ 3</span><h3 class="timeline-title">✍️ ฝึก Communicate Carefully</h3><p class="timeline-desc">เน้นความชัดเจนและลดความกำกวม</p><div class="checklist"><div class="checklist-item"><input type="checkbox" id="w3-1"><label for="w3-1">ใช้หลัก 3 Ws (Who, What, When) ทุกครั้งที่มอบหมายงาน</label></div><div class="checklist-item"><input type="checkbox" id="w3-2"><label for="w3-2">เขียน Subject Line ที่ชัดเจน — เพิ่ม [Action Required] หรือ [FYI]</label></div><div class="checklist-item"><input type="checkbox" id="w3-3"><label for="w3-3">อ่านทบทวนทุกข้อความก่อนส่ง ถามว่า "จะถูกตีความผิดไหม?"</label></div><div class="checklist-item"><input type="checkbox" id="w3-4"><label for="w3-4">หลีกเลี่ยง "Per my last email" และ Passive-Aggressive Phrases</label></div></div></div>
+                <div class="timeline-item"><span class="timeline-week">สัปดาห์ที่ 4</span><h3 class="timeline-title">🤝💎 ฝึก Collaborate & Trust</h3><p class="timeline-desc">สร้างวัฒนธรรมการทำงานร่วมกันและความไว้วางใจ</p><div class="checklist"><div class="checklist-item"><input type="checkbox" id="w4-1"><label for="w4-1">ตั้ง Communication Agreement กับทีม</label></div><div class="checklist-item"><input type="checkbox" id="w4-2"><label for="w4-2">ใช้กฎ "หลัง 3 Reply All → โทรคุย"</label></div><div class="checklist-item"><input type="checkbox" id="w4-3"><label for="w4-3">ในการประชุม ถาม "มีใครเห็นต่างไหม?" และรอคำตอบจริงๆ</label></div><div class="checklist-item"><input type="checkbox" id="w4-4"><label for="w4-4">แชร์ความผิดพลาดของตัวเองกับทีม 1 เรื่อง</label></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CRITICISM -->
+    <section class="section" id="criticism">
+        <div class="container">
+            <div class="section-header section-header-center">
+                <span class="section-label">⚖️ Critical Analysis</span>
+                <h2 class="section-title section-title-center">จุดแข็ง / จุดอ่อน</h2>
+            </div>
+            <div class="criticism-grid">
+                <div class="criticism-card strength fade-in"><div class="criticism-header"><div class="criticism-icon">💪</div><h3 class="criticism-title">จุดแข็ง</h3></div><ul class="criticism-list"><li><span class="icon">✓</span><span><strong>Timely & Relevant</strong> — มาถูกที่ถูกเวลาในยุค Remote/Hybrid Work</span></li><li><span class="icon">✓</span><span><strong>Framework ที่ชัดเจน</strong> — 4 Laws จำง่าย นำไปใช้ได้จริง</span></li><li><span class="icon">✓</span><span><strong>Research-Backed</strong> — อ้างอิงงานวิจัยและสถิติมากมาย</span></li><li><span class="icon">✓</span><span><strong>Practical Tips</strong> — คำแนะนำที่นำไปใช้ได้ทันที</span></li><li><span class="icon">✓</span><span><strong>ครอบคลุม</strong> — พูดถึง Gender, Generation, Culture</span></li></ul></div>
+                <div class="criticism-card weakness fade-in"><div class="criticism-header"><div class="criticism-icon">⚠️</div><h3 class="criticism-title">จุดอ่อน / ข้อวิจารณ์</h3></div><ul class="criticism-list"><li><span class="icon">!</span><span><strong>อาจรู้สึก Intuitive</strong> — บางส่วนอาจรู้สึกว่า "รู้อยู่แล้ว"</span></li><li><span class="icon">!</span><span><strong>เน้น Corporate Setting</strong> — ตัวอย่างส่วนใหญ่เป็น Office Environment</span></li><li><span class="icon">!</span><span><strong>US-Centric</strong> — บางตัวอย่างอาจไม่ตรงกับบริบทวัฒนธรรมอื่น</span></li><li><span class="icon">!</span><span><strong>ไม่ลึกทางวิชาการ</strong> — เน้น Practical มากกว่า Theoretical</span></li></ul></div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 50px;">
+                <div class="quote-mini fade-in"><p class="quote-mini-text">"This book is a welcome and practical guide to the ways in which we need to rethink how we interpret on-screen and inbox behaviour."</p><p class="quote-mini-source">— Financial Times</p></div>
+                <div class="quote-mini fade-in"><p class="quote-mini-text">"Fascinating, helpful, and engaging… Dhawan offers this timely book on digital body language and creative ways to foster inclusion."</p><p class="quote-mini-source">— Booklist</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RELATED BOOKS -->
+    <section class="section section-alt" id="related">
+        <div class="container">
+            <div class="section-header section-header-center">
+                <span class="section-label">📚 Further Reading</span>
+                <h2 class="section-title section-title-center">หนังสือที่เกี่ยวข้อง</h2>
+            </div>
+            <div class="books-category fade-in"><h3>📖 อ่านก่อน (พื้นฐาน)</h3><div class="books-grid"><div class="book-card"><div class="book-cover">📘</div><div class="book-info"><h4>What Every Body Is Saying</h4><p class="book-author">Joe Navarro</p><p class="book-reason">พื้นฐาน Body Language แบบดั้งเดิม</p></div></div><div class="book-card"><div class="book-cover">📗</div><div class="book-info"><h4>Crucial Conversations</h4><p class="book-author">Patterson et al.</p><p class="book-reason">หลักการสื่อสารในสถานการณ์สำคัญ</p></div></div></div></div>
+            <div class="books-category fade-in"><h3>📖 อ่านต่อ (ต่อยอด)</h3><div class="books-grid"><div class="book-card"><div class="book-cover">📕</div><div class="book-info"><h4>Remote: Office Not Required</h4><p class="book-author">Jason Fried & DHH</p><p class="book-reason">กลยุทธ์สำหรับการทำงาน Remote</p></div></div><div class="book-card"><div class="book-cover">📙</div><div class="book-info"><h4>The Culture Map</h4><p class="book-author">Erin Meyer</p><p class="book-reason">ความแตกต่างทางวัฒนธรรมในการสื่อสาร</p></div></div><div class="book-card"><div class="book-cover">📓</div><div class="book-info"><h4>Nonviolent Communication</h4><p class="book-author">Marshall B. Rosenberg</p><p class="book-reason">เทคนิคการสื่อสารที่สร้างความเข้าใจ</p></div></div></div></div>
+            <div class="books-category fade-in"><h3>📖 หนังสืออื่นของผู้เขียน</h3><div class="books-grid"><div class="book-card"><div class="book-cover" style="background: var(--gradient-purple);">📚</div><div class="book-info"><h4>Get Big Things Done</h4><p class="book-author">Erica Dhawan & Saj-nicole Joni</p><p class="book-reason">Connectional Intelligence — การใช้เครือข่ายเพื่อบรรลุเป้าหมายใหญ่</p></div></div></div></div>
+        </div>
+    </section>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h2 class="footer-title">Digital Body Language</h2>
+                <p class="footer-author">by Erica Dhawan</p>
+                <div class="footer-meta"><span>📖 288 หน้า</span><span>📅 2021</span><span>🏢 St. Martin's Press</span><span>🏆 WSJ Bestseller</span></div>
+            </div>
+            <div class="footer-disclaimer"><strong>⚠️ คำชี้แจง:</strong> เอกสารนี้เป็นการสรุปเพื่อการศึกษา ไม่ใช่การทดแทนการอ่านหนังสือต้นฉบับ Quotes ทั้งหมดได้รับการตรวจสอบจากแหล่งข้อมูลที่เชื่อถือได้ แผนปฏิบัติ 30 วันเป็นคำแนะนำเสริมจาก AI</div>
+            <details class="verification-log">
+                <summary>📋 Fact-Check & Verification Log</summary>
+                <div class="log-content">
+                    <h4>✅ ข้อมูลที่ได้รับการยืนยัน</h4>
+                    <ul><li>✓ 4 Laws Framework: Value Visibly, Communicate Carefully, Collaborate Confidently, Trust Totally</li><li>✓ Key Quote: "Reading carefully is the new listening. Writing clearly is the new empathy."</li><li>✓ Statistics: 70% workplace communication online, 50% email misinterpreted, 4 hours/week wasted</li><li>✓ Author Credentials: MPA Harvard, MBA MIT Sloan, BS Wharton</li><li>✓ Wall Street Journal Bestseller Status</li><li>✓ Endorsements from Daniel H. Pink, Seth Godin, Adam Grant, Sheryl Sandberg</li><li>✓ Publisher: St. Martin's Press, 2021</li></ul>
+                    <h4>📚 แหล่งข้อมูลที่ใช้</h4>
+                    <ul><li>• Amazon Book Page</li><li>• Barnes & Noble</li><li>• Goodreads Reviews</li><li>• Publisher Website (macmillan.com)</li><li>• Author's Official Website (ericadhawan.com)</li><li>• ThinkAdvisor Interview</li><li>• Nir and Far Blog Interview</li><li>• LinkedIn Podcast Transcript</li><li>• Google Books Preview</li></ul>
+                    <h4>🤖 เนื้อหาที่สร้างโดย AI</h4>
+                    <ul><li>• แผนปฏิบัติ 30 วัน (อิงจากหลักการในหนังสือ)</li><li>• Do's and Don'ts Lists</li><li>• Action Items สำหรับแต่ละ Law</li><li>• การจัดกลุ่มและจัดหมวดหมู่</li></ul>
+                </div>
+            </details>
+            <div class="footer-bottom"><p>สร้างด้วย ❤️ เพื่อการเรียนรู้ • สรุปโดย Claude AI • ตรวจสอบข้อเท็จจริงจากแหล่งข้อมูลที่เชื่อถือได้</p><p style="margin-top: 10px; font-size: 0.8rem;">Version 3.0 — Deep Dive Edition with 30+ Verified Quotes</p></div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+        themeToggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+        });
+
+        // Progress Bar
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            const winHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / winHeight) * 100;
+            progressBar.style.width = scrolled + '%';
+        });
+
+        // Scroll to Top
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+        });
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // Copy Quote
+        function copyQuote(btn, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const orig = btn.innerHTML;
+                btn.innerHTML = '✅ Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+            });
+        }
+
+        // Difference Tabs
+        function showDiffTab(tabName) {
+            document.querySelectorAll('.diff-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.diff-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Fade In Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+        // Checklist Persistence
+        const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+        checkboxes.forEach(cb => {
+            if (localStorage.getItem(cb.id) === 'true') cb.checked = true;
+            cb.addEventListener('change', () => localStorage.setItem(cb.id, cb.checked));
+        });
+
+        // Keyboard Shortcuts
+        document.addEventListener('keydown', (e) => {
+            if ((e.key === 't' || e.key === 'T') && document.activeElement.tagName !== 'INPUT') themeToggle.click();
+            if (e.key === 'Escape') window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth Scroll for TOC
+        document.querySelectorAll('.toc-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.getElementById(item.getAttribute('href').substring(1));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>

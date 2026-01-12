@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Richest Man in Babylon - สรุปหนังสือ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0a0e1a;
+            --secondary-dark: #121832;
+            --tertiary-dark: #1a2340;
+            --gold: #d4a853;
+            --gold-light: #f4d03f;
+            --gold-dark: #b8860b;
+            --orange: #e67e22;
+            --teal: #1abc9c;
+            --purple: #9b59b6;
+            --green: #27ae60;
+            --red: #c0392b;
+            --text-primary: #f5f5f5;
+            --text-secondary: #b8c5d6;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--tertiary-dark) 100%);
+            color: var(--text-primary);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(ellipse at 20% 30%, rgba(212, 168, 83, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(230, 126, 34, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 60px 20px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(212, 168, 83, 0.1) 0%, transparent 40%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        .hero-content { position: relative; z-index: 1; }
+        .book-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 30px;
+            margin-bottom: 30px;
+        }
+        .hero-title {
+            font-family: 'Cinzel', 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: var(--gold);
+            text-shadow: 0 0 60px rgba(212, 168, 83, 0.4);
+            margin-bottom: 15px;
+        }
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+        .author {
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            margin-bottom: 50px;
+        }
+        .author span { color: var(--text-secondary); }
+        .hero-quote {
+            max-width: 700px;
+            padding: 40px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            position: relative;
+        }
+        .hero-quote::before {
+            content: '"';
+            position: absolute;
+            top: -20px; left: 30px;
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            color: var(--gold);
+            opacity: 0.3;
+            line-height: 1;
+        }
+        .hero-quote p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        .scroll-indicator svg { width: 30px; height: 30px; stroke: var(--gold); }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .toc {
+            padding: 80px 20px;
+            background: linear-gradient(180deg, transparent, rgba(0,0,0,0.3), transparent);
+        }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-number {
+            display: inline-block;
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+            line-height: 40px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-family: 'Cinzel', 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        .section-subtitle { color: var(--text-secondary); font-size: 1rem; }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 25px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+        .toc-item:hover {
+            background: rgba(212, 168, 83, 0.1);
+            border-color: var(--gold);
+            transform: translateX(10px);
+        }
+        .toc-icon {
+            width: 45px; height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.2), rgba(230, 126, 34, 0.2));
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+        .toc-text h3 { font-size: 1rem; font-weight: 600; margin-bottom: 3px; }
+        .toc-text p { font-size: 0.85rem; color: var(--text-secondary); }
+
+        .section { padding: 80px 20px; position: relative; }
+        .section:nth-child(even) { background: rgba(0, 0, 0, 0.2); }
+        
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(212, 168, 83, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .box {
+            border-radius: 15px;
+            padding: 25px 30px;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 5px; height: 100%;
+        }
+        .box-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .situation-box {
+            background: linear-gradient(135deg, rgba(26, 188, 156, 0.15), rgba(26, 188, 156, 0.05));
+            border: 1px solid rgba(26, 188, 156, 0.3);
+        }
+        .situation-box::before { background: var(--teal); }
+        .situation-box .box-title { color: var(--teal); }
+        .example-box {
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.15), rgba(212, 168, 83, 0.05));
+            border: 1px solid rgba(212, 168, 83, 0.3);
+        }
+        .example-box::before { background: var(--gold); }
+        .example-box .box-title { color: var(--gold); }
+        .key-box {
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.15), rgba(39, 174, 96, 0.05));
+            border: 1px solid rgba(39, 174, 96, 0.3);
+        }
+        .key-box::before { background: var(--green); }
+        .key-box .box-title { color: var(--green); }
+        .quote-box {
+            background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), rgba(155, 89, 182, 0.05));
+            border: 1px solid rgba(155, 89, 182, 0.3);
+        }
+        .quote-box::before { background: var(--purple); }
+        .quote-box .box-title { color: var(--purple); }
+        .quote-box blockquote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.15rem;
+        }
+        .teaching-box {
+            background: linear-gradient(135deg, rgba(192, 57, 43, 0.15), rgba(192, 57, 43, 0.05));
+            border: 2px dashed rgba(192, 57, 43, 0.5);
+        }
+        .teaching-box::before { background: var(--red); }
+        .teaching-box .box-title { color: #e74c3c; }
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.2), rgba(230, 126, 34, 0.2));
+            border: 2px solid var(--gold);
+        }
+        .highlight-box::before { background: linear-gradient(135deg, var(--gold), var(--orange)); }
+        .highlight-box .box-title {
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .laws-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .law-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .law-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--orange));
+        }
+        .law-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .law-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            color: var(--primary-dark);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .law-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        .law-subtitle {
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        .law-content { color: var(--text-secondary); font-size: 0.95rem; }
+        .law-content ul { list-style: none; margin-top: 15px; }
+        .law-content li { padding: 8px 0; padding-left: 25px; position: relative; }
+        .law-content li::before { content: '→'; position: absolute; left: 0; color: var(--gold); }
+
+        .gold-laws {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .gold-law-card {
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.15), rgba(184, 134, 11, 0.1));
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+        }
+        .gold-law-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px; height: 45px;
+            background: var(--gold);
+            color: var(--primary-dark);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .gold-law-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .story-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+        .story-header {
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.2), rgba(230, 126, 34, 0.1));
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .story-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+        .story-subtitle { font-size: 0.9rem; color: var(--text-secondary); }
+        .story-content { padding: 25px; }
+        .story-lesson {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+        .story-lesson h4 {
+            color: var(--green);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .mindset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .mindset-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .mindset-card:hover {
+            border-color: var(--gold);
+            transform: scale(1.02);
+        }
+        .mindset-icon { font-size: 3rem; margin-bottom: 20px; }
+        .mindset-from {
+            background: rgba(192, 57, 43, 0.2);
+            border: 1px solid rgba(192, 57, 43, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .mindset-from::before {
+            content: '❌ เดิม';
+            display: block;
+            font-size: 0.8rem;
+            color: #e74c3c;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .mindset-to {
+            background: rgba(39, 174, 96, 0.2);
+            border: 1px solid rgba(39, 174, 96, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+        }
+        .mindset-to::before {
+            content: '✓ ใหม่';
+            display: block;
+            font-size: 0.8rem;
+            color: var(--green);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .mindset-arrow { font-size: 1.5rem; color: var(--gold); margin: 10px 0; }
+
+        .action-timeline {
+            position: relative;
+            max-width: 700px;
+            margin: 40px auto;
+            padding-left: 50px;
+        }
+        .action-timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--gold), var(--orange), var(--gold));
+            border-radius: 3px;
+        }
+        .action-item {
+            position: relative;
+            padding: 25px 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        .action-item:hover {
+            border-color: var(--gold);
+            transform: translateX(10px);
+        }
+        .action-item::before {
+            content: '';
+            position: absolute;
+            left: -42px;
+            top: 30px;
+            width: 18px; height: 18px;
+            background: var(--gold);
+            border-radius: 50%;
+            border: 4px solid var(--primary-dark);
+        }
+        .action-item .time-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+        .action-item h3 { font-size: 1.2rem; margin-bottom: 10px; }
+        .action-item p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .golden-quote {
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.1), rgba(230, 126, 34, 0.05));
+            border: 1px solid rgba(212, 168, 83, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .golden-quote:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(212, 168, 83, 0.1);
+        }
+        .golden-quote::before {
+            content: '"';
+            position: absolute;
+            top: 10px; left: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.3;
+            line-height: 1;
+        }
+        .golden-quote p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+            padding-top: 20px;
+        }
+        .golden-quote .quote-theme {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: var(--gold);
+            font-weight: 600;
+            font-family: 'Noto Sans Thai', sans-serif;
+            font-style: normal;
+        }
+
+        .footer {
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, transparent, rgba(0,0,0,0.5));
+        }
+        .footer-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        .footer-info {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        .summarizer {
+            display: inline-block;
+            padding: 10px 30px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+        }
+        .footer-note {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(212, 168, 83, 0.3);
+        }
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 168, 83, 0.4);
+        }
+        .back-to-top.visible { display: flex; }
+
+        @media (max-width: 768px) {
+            .hero { padding: 40px 20px; }
+            .hero-quote { padding: 25px; }
+            .hero-quote p { font-size: 1.1rem; }
+            .section { padding: 50px 15px; }
+            .glass-card { padding: 25px; }
+            .laws-grid, .gold-laws { grid-template-columns: 1fr; }
+            .action-timeline { padding-left: 40px; }
+            .action-timeline::before { left: 15px; }
+            .action-item::before { left: -32px; }
+            .toc-item { padding: 15px 20px; }
+            .box { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero" id="top">
+        <div class="hero-content">
+            <span class="book-badge">📚 Classic Financial Wisdom</span>
+            <h1 class="hero-title">The Richest Man in Babylon</h1>
+            <p class="hero-subtitle">เศรษฐีที่ร่ำรวยที่สุดแห่งบาบิโลน</p>
+            <p class="author"><span>โดย</span> George S. Clason</p>
+            <div class="hero-quote">
+                <p>"ส่วนหนึ่งของทุกสิ่งที่เจ้าหาได้ จงเก็บไว้เพื่อตัวเอง"</p>
+            </div>
+        </div>
+        <a href="#toc" class="scroll-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </a>
+    </section>
+
+    <section class="toc" id="toc">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">📋</div>
+                <h2 class="section-title">สารบัญ</h2>
+                <p class="section-subtitle">เนื้อหาทั้งหมดในสรุปนี้</p>
+            </div>
+            <div class="toc-grid">
+                <a href="#overview" class="toc-item">
+                    <div class="toc-icon">🏛️</div>
+                    <div class="toc-text"><h3>ภาพรวมและแนวคิดหลัก</h3><p>ที่มาและปัญหาที่หนังสือแก้ไข</p></div>
+                </a>
+                <a href="#seven-cures" class="toc-item">
+                    <div class="toc-icon">💰</div>
+                    <div class="toc-text"><h3>7 วิธีรักษากระเป๋าที่ผอมแห้ง</h3><p>หลักการสร้างความมั่งคั่งพื้นฐาน</p></div>
+                </a>
+                <a href="#five-laws" class="toc-item">
+                    <div class="toc-icon">⚖️</div>
+                    <div class="toc-text"><h3>5 กฎทองแห่งการเงิน</h3><p>กฎแห่งทองคำที่ไม่เคยเปลี่ยนแปลง</p></div>
+                </a>
+                <a href="#stories" class="toc-item">
+                    <div class="toc-icon">📖</div>
+                    <div class="toc-text"><h3>เรื่องเล่าจากบาบิโลน</h3><p>กรณีศึกษาและบทเรียนสำคัญ</p></div>
+                </a>
+                <a href="#mindset" class="toc-item">
+                    <div class="toc-icon">🧠</div>
+                    <div class="toc-text"><h3>Mindset ที่ต้องเปลี่ยน</h3><p>แนวคิดที่แตกต่างของคนรวย</p></div>
+                </a>
+                <a href="#action" class="toc-item">
+                    <div class="toc-icon">🎯</div>
+                    <div class="toc-text"><h3>Action Plan</h3><p>สิ่งที่ต้องทำทันที</p></div>
+                </a>
+                <a href="#quotes" class="toc-item">
+                    <div class="toc-icon">✨</div>
+                    <div class="toc-text"><h3>ประโยคทองคำ</h3><p>ข้อความที่เอาไปสอนต่อได้</p></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="overview">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title">ภาพรวมและแนวคิดหลัก</h2>
+                <p class="section-subtitle">ทำความเข้าใจหนังสือเล่มนี้</p>
+            </div>
+            <div class="glass-card">
+                <h3 style="color: var(--gold); margin-bottom: 20px; font-family: 'Playfair Display', serif; font-size: 1.4rem;">📚 เกี่ยวกับหนังสือ</h3>
+                <p style="margin-bottom: 20px;"><strong>The Richest Man in Babylon</strong> ตีพิมพ์ครั้งแรกในปี 1926 โดย <strong>George S. Clason</strong> นักธุรกิจและนักเขียนชาวอเมริกัน หนังสือเล่มนี้รวบรวมเรื่องเล่าและ Parables จากอาณาจักรบาบิโลนโบราณ ซึ่งเป็นหนึ่งในอารยธรรมที่ร่ำรวยที่สุดในโลก เพื่อสอนหลักการทางการเงินพื้นฐานที่เป็นจริงมาตลอด 4,000 ปี</p>
+                <div class="situation-box box">
+                    <div class="box-title">🎯 ปัญหาที่หนังสือแก้ไข</div>
+                    <ul style="margin-left: 20px;">
+                        <li>ทำไมคนส่วนใหญ่ทำงานหนักทั้งชีวิตแต่ยังไม่มีเงินเก็บ?</li>
+                        <li>ทำไมบางคนรวยขึ้นเรื่อยๆ ในขณะที่บางคนจนลงเรื่อยๆ?</li>
+                        <li>ความมั่งคั่งมาจากโชคชะตา หรือมีสูตรที่เรียนรู้ได้?</li>
+                        <li>จะเริ่มสร้างความมั่งคั่งอย่างไรเมื่อมีรายได้จำกัด?</li>
+                    </ul>
+                </div>
+                <div class="key-box box">
+                    <div class="box-title">🔑 แนวคิดหลักของหนังสือ</div>
+                    <p><strong>"ความมั่งคั่งไม่ได้มาจากโชค แต่มาจากหลักการง่ายๆ ที่ทุกคนเรียนรู้และปฏิบัติได้"</strong></p>
+                    <p style="margin-top: 15px;">หนังสือเสนอว่าความลับของความร่ำรวยคือการปฏิบัติตามหลักการพื้นฐานอย่างสม่ำเสมอ ไม่ใช่เรื่องของความฉลาดเฉพาะทาง หรือโชคลาภ แต่เป็นเรื่องของ <strong>วินัย ความรู้ และความอดทน</strong></p>
+                </div>
+            </div>
+            <div class="glass-card">
+                <h3 style="color: var(--gold); margin-bottom: 20px; font-family: 'Playfair Display', serif; font-size: 1.4rem;">🏛️ ทำไมต้องบาบิโลน?</h3>
+                <p style="margin-bottom: 15px;">บาบิโลนเป็นหนึ่งในอารยธรรมที่ร่ำรวยและเจริญรุ่งเรืองที่สุดในประวัติศาสตร์มนุษยชาติ แม้จะตั้งอยู่ในทะเลทรายที่แห้งแล้ง แต่ชาวบาบิโลนกลับสร้างความมั่งคั่งมหาศาลผ่านระบบชลประทานที่ล้ำสมัย การค้าขายระหว่างประเทศ และ <strong>หลักการบริหารเงินที่ส่งต่อจากรุ่นสู่รุ่น</strong></p>
+                <div class="highlight-box box">
+                    <div class="box-title">⚠️ บทเรียนสำคัญ</div>
+                    <p>ความร่ำรวยของบาบิโลนไม่ได้มาจากทรัพยากรธรรมชาติ แต่มาจาก <strong>"ภูมิปัญญาทางการเงิน"</strong> ที่ถูกค้นพบ ทดสอบ และส่งต่อกันมา - หลักการเดียวกันที่หนังสือเล่มนี้จะสอนคุณ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="seven-cures">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">7 วิธีรักษากระเป๋าที่ผอมแห้ง</h2>
+                <p class="section-subtitle">Seven Cures for a Lean Purse</p>
+            </div>
+            <div class="glass-card">
+                <p style="margin-bottom: 30px; font-size: 1.05rem;">ในเรื่องเล่า <strong>Arkad</strong> ชายที่ร่ำรวยที่สุดในบาบิโลน ได้สอนหลักการ 7 ข้อแก่ชาวเมืองที่ต้องการหลุดพ้นจากความยากจน หลักการเหล่านี้ถูกเรียกว่า "7 วิธีรักษากระเป๋าที่ผอมแห้ง" ซึ่งเป็นรากฐานของความมั่งคั่งทั้งหมด</p>
+            </div>
+            <div class="laws-grid">
+                <div class="law-card">
+                    <div class="law-number">1</div>
+                    <h3 class="law-title">Start Thy Purse to Fattening</h3>
+                    <p class="law-subtitle">เริ่มทำให้กระเป๋าอ้วนขึ้น</p>
+                    <div class="law-content">
+                        <p><strong>"จากทุกๆ 10 เหรียญที่เจ้าได้รับ จงใช้เพียง 9 เหรียญ"</strong></p>
+                        <p style="margin-top: 10px;">เก็บ 10% ของรายได้ทุกครั้งก่อนใช้จ่าย นี่คือกฎพื้นฐานที่สุด</p>
+                        <ul>
+                            <li>Pay Yourself First - จ่ายให้ตัวเองก่อน</li>
+                            <li>ทำให้เป็นอัตโนมัติ ไม่ต้องคิด</li>
+                            <li>เริ่มจากวันนี้ ไม่ใช่พรุ่งนี้</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="law-card">
+                    <div class="law-number">2</div>
+                    <h3 class="law-title">Control Thy Expenditures</h3>
+                    <p class="law-subtitle">ควบคุมรายจ่าย</p>
+                    <div class="law-content">
+                        <p><strong>"สิ่งที่เราเรียกว่า 'ค่าใช้จ่ายจำเป็น' จะขยายตัวเสมอเพื่อให้เท่ากับรายได้ของเรา"</strong></p>
+                        <ul>
+                            <li>ทำงบประมาณรายเดือน</li>
+                            <li>แยก Needs vs Wants</li>
+                            <li>ระวัง Lifestyle Inflation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="law-card">
+                    <div class="law-number">3</div>
+                    <h3 class="law-title">Make Thy Gold Multiply</h3>
+                    <p class="law-subtitle">ทำให้เงินงอกเงย</p>
+                    <div class="law-content">
+                        <p><strong>"เงินทุกเหรียญที่เก็บไว้คือทาสที่ทำงานให้เจ้า"</strong></p>
+                        <ul>
+                            <li>ใช้พลัง Compound Interest</li>
+                            <li>Reinvest ผลตอบแทน</li>
+                            <li>เวลาคือพันธมิตรที่ดีที่สุด</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="law-card">
+                    <div class="law-number">4</div>
+                    <h3 class="law-title">Guard Thy Treasures from Loss</h3>
+                    <p class="law-subtitle">ปกป้องทรัพย์สิน</p>
+                    <div class="law-content">
+                        <p><strong>"การป้องกันเงินทองจากการสูญเสียสำคัญกว่าการหาเงินเพิ่ม"</strong></p>
+                        <ul>
+                            <li>ศึกษาก่อนลงทุนเสมอ</li>
+                            <li>ปรึกษาผู้เชี่ยวชาญที่แท้จริง</li>
+                            <li>หลีกเลี่ยง "โอกาสทอง" ที่ดีเกินจริง</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="law-card">
+                    <div class="law-number">5</div>
+                    <h3 class="law-title">Make of Thy Dwelling a Profitable Investment</h3>
+                    <p class="law-subtitle">ทำให้บ้านเป็นการลงทุน</p>
+                    <div class="law-content">
+                        <p><strong>"การมีบ้านเป็นของตัวเองทำให้จิตใจมั่นคง"</strong></p>
+                        <ul>
+                            <li>ซื้อดีกว่าเช่า (ถ้าเหมาะสม)</li>
+                            <li>ความมั่นคงทางจิตใจ</li>
+                            <li>สินทรัพย์ที่เติบโตได้</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="law-card">
+                    <div class="law-number">6</div>
+                    <h3 class="law-title">Insure a Future Income</h3>
+                    <p class="law-subtitle">ประกันรายได้ในอนาคต</p>
+                    <div class="law-content">
+                        <p><strong>"จงเตรียมพร้อมสำหรับวันที่เจ้าแก่ตัวลง"</strong></p>
+                        <ul>
+                            <li>วางแผนเกษียณแต่เนิ่นๆ</li>
+                            <li>สร้าง Passive Income</li>
+                            <li>ซื้อประกันที่เหมาะสม</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="law-card">
+                    <div class="law-number">7</div>
+                    <h3 class="law-title">Increase Thy Ability to Earn</h3>
+                    <p class="law-subtitle">เพิ่มความสามารถในการหารายได้</p>
+                    <div class="law-content">
+                        <p><strong>"ยิ่งเจ้ารู้มาก เจ้าก็ยิ่งหาได้มาก"</strong></p>
+                        <ul>
+                            <li>เรียนรู้ทักษะใหม่ตลอดเวลา</li>
+                            <li>เพิ่มคุณค่าให้ตัวเอง</li>
+                            <li>ความรู้ = รายได้</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card" style="margin-top: 40px;">
+                <div class="teaching-box box">
+                    <div class="box-title">📚 ข้อความที่สอนต่อได้</div>
+                    <p style="font-size: 1.1rem;">"กระเป๋าที่อ้วนขึ้นเหมือนทาสผู้ซื่อสัตย์ที่ทำงานให้เจ้าขณะที่เจ้าหลับ และทุกเหรียญที่มันหาได้ก็กลายเป็นทาสอีกคน"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="five-laws">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">5 กฎทองแห่งการเงิน</h2>
+                <p class="section-subtitle">The Five Laws of Gold</p>
+            </div>
+            <div class="glass-card">
+                <p style="margin-bottom: 20px; font-size: 1.05rem;">ในเรื่องเล่า Arkad ส่งลูกชายชื่อ <strong>Nomasir</strong> ออกไปพิสูจน์ตัวเองในโลกกว้าง พร้อมมอบถุงทองคำและแผ่นดินเหนียวที่จารึก "5 กฎทองแห่งการเงิน" ไว้ให้ Nomasir สูญเสียถุงทองคำไปหมดในสองปีแรก แต่เมื่อนำ 5 กฎทองมาปฏิบัติ เขากลับสร้างความมั่งคั่งได้มากกว่าถุงทองเดิมหลายเท่า</p>
+                <div class="highlight-box box">
+                    <div class="box-title">⚠️ บทเรียนจาก Nomasir</div>
+                    <p>"ถุงทองหายไปได้ แต่ภูมิปัญญาที่ถูกจารึกไว้ในหัวใจนั้นหายไม่ได้ และมันสามารถสร้างถุงทองขึ้นมาใหม่ได้เสมอ"</p>
+                </div>
+            </div>
+            <div class="gold-laws">
+                <div class="gold-law-card">
+                    <div class="gold-law-num">I</div>
+                    <h3 class="gold-law-title">กฎข้อที่ 1: ทองคำมาหาผู้ที่เก็บออม</h3>
+                    <p>ทองคำจะไหลเข้าหาผู้ที่เก็บอย่างน้อย 1 ใน 10 ของรายได้อย่างสม่ำเสมอ การเก็บออมเป็นประตูแรกสู่ความมั่งคั่ง</p>
+                </div>
+                <div class="gold-law-card">
+                    <div class="gold-law-num">II</div>
+                    <h3 class="gold-law-title">กฎข้อที่ 2: ทองคำทำงานให้ผู้ที่ลงทุนอย่างฉลาด</h3>
+                    <p>ทองคำจะทำงานอย่างขยันขันแข็งให้เจ้าของที่ฉลาด ซึ่งหาทางให้มันงอกเงยอย่างมีผลตอบแทน</p>
+                </div>
+                <div class="gold-law-card">
+                    <div class="gold-law-num">III</div>
+                    <h3 class="gold-law-title">กฎข้อที่ 3: ทองคำเชื่อฟังผู้ที่ปรึกษาคนฉลาด</h3>
+                    <p>ทองคำจะอยู่กับผู้ที่ระมัดระวังและปรึกษาผู้เชี่ยวชาญที่มีประสบการณ์จริงในการจัดการเงินทอง</p>
+                </div>
+                <div class="gold-law-card">
+                    <div class="gold-law-num">IV</div>
+                    <h3 class="gold-law-title">กฎข้อที่ 4: ทองคำหนีจากผู้ที่ลงทุนไม่รู้เรื่อง</h3>
+                    <p>ทองคำจะหลบหนีจากผู้ที่บังคับให้มันไปลงทุนในสิ่งที่ตัวเองไม่คุ้นเคย หรือฟังคำแนะนำจากคนที่ไม่มีความรู้จริง</p>
+                </div>
+                <div class="gold-law-card">
+                    <div class="gold-law-num">V</div>
+                    <h3 class="gold-law-title">กฎข้อที่ 5: ทองคำหนีจากผู้ที่โลภมาก</h3>
+                    <p>ทองคำจะหนีจากผู้ที่แสวงหาผลตอบแทนที่เป็นไปไม่ได้ หรือฟังคำแนะนำจากนักต้มตุ๋นและพวกมิจฉาชีพ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="stories">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">เรื่องเล่าจากบาบิโลน</h2>
+                <p class="section-subtitle">Case Studies และบทเรียนจากตัวละคร</p>
+            </div>
+            <div class="story-grid">
+                <div class="story-card">
+                    <div class="story-header">
+                        <h3 class="story-title">เรื่องของ Arkad</h3>
+                        <p class="story-subtitle">จากเสมียนจนสู่เศรษฐี</p>
+                    </div>
+                    <div class="story-content">
+                        <p><strong>Arkad</strong> เป็นเสมียนที่ยากจน วันหนึ่งเขาถาม <strong>Algamish</strong> ผู้ให้กู้ว่าทำไมถึงรวย Algamish บอกว่า "ส่วนหนึ่งของทุกสิ่งที่เจ้าหาได้ จงเก็บไว้เพื่อตัวเอง" Arkad ทำตามและกลายเป็นเศรษฐีที่ร่ำรวยที่สุดในบาบิโลน</p>
+                        <div class="story-lesson">
+                            <h4>🔑 บทเรียน</h4>
+                            <p>หลักการง่ายๆ ที่ปฏิบัติอย่างสม่ำเสมอสามารถเปลี่ยนชีวิตได้ ความมั่งคั่งเริ่มต้นจากการเก็บออม 10% ก่อนใช้จ่าย</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-header">
+                        <h3 class="story-title">เรื่องของ Bansir และ Kobbi</h3>
+                        <p class="story-subtitle">ช่างฝีมือที่ไม่มีเงินเก็บ</p>
+                    </div>
+                    <div class="story-content">
+                        <p><strong>Bansir</strong> ช่างทำรถม้า และ <strong>Kobbi</strong> นักดนตรี แม้ทำงานหนักมาหลายสิบปี แต่ไม่มีเงินเก็บ ทั้งสองไปหา Arkad เพื่อเรียนรู้ความลับของความมั่งคั่ง และได้รู้ว่าการทำงานหนักอย่างเดียวไม่พอ ต้องมีหลักการจัดการเงินด้วย</p>
+                        <div class="story-lesson">
+                            <h4>🔑 บทเรียน</h4>
+                            <p>ทักษะฝีมือไม่ได้รับประกันความมั่งคั่ง ถ้าไม่มีความรู้เรื่องการจัดการเงิน รายได้ที่มากแค่ไหนก็จะหายไปหมด</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-header">
+                        <h3 class="story-title">เรื่องของ Nomasir</h3>
+                        <p class="story-subtitle">ลูกชายที่พิสูจน์ตัวเอง</p>
+                    </div>
+                    <div class="story-content">
+                        <p><strong>Nomasir</strong> ลูกชายของ Arkad ได้รับถุงทองคำและแผ่นดินเหนียวจารึก 5 กฎทอง เขาสูญเสียทองทั้งหมดในสองปีแรกเพราะไม่อ่านกฎ แต่เมื่อนำกฎมาใช้ เขากลับมาพร้อมความมั่งคั่งมากกว่าเดิมหลายเท่า</p>
+                        <div class="story-lesson">
+                            <h4>🔑 บทเรียน</h4>
+                            <p>ภูมิปัญญามีค่ากว่าทองคำ เพราะมันสามารถสร้างทองคำขึ้นมาใหม่ได้เสมอ แม้จะสูญเสียทุกอย่างไป</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-header">
+                        <h3 class="story-title">เรื่องของ Rodan</h3>
+                        <p class="story-subtitle">ช่างทำหอกกับการให้ยืมเงิน</p>
+                    </div>
+                    <div class="story-content">
+                        <p><strong>Rodan</strong> ได้รับเงินทองก้อนใหญ่จากกษัตริย์ น้องสาวมาขอยืมเพื่อให้สามีไปทำธุรกิจ เขาไปปรึกษา <strong>Mathon</strong> ผู้ให้กู้ ซึ่งสอนว่า "ก่อนให้ยืม ต้องดูว่าผู้ยืมมีความสามารถชำระคืนหรือไม่"</p>
+                        <div class="story-lesson">
+                            <h4>🔑 บทเรียน</h4>
+                            <p>การให้ยืมเงินโดยไม่พิจารณาความสามารถในการชำระคืน คือการสูญเสียทั้งเงินและมิตรภาพ</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-header">
+                        <h3 class="story-title">กำแพงแห่งบาบิโลน</h3>
+                        <p class="story-subtitle">บทเรียนเรื่องการป้องกัน</p>
+                    </div>
+                    <div class="story-content">
+                        <p>กำแพงบาบิโลนปกป้องชาวเมืองจากกองทัพอัสซีเรียที่โหดร้าย ในขณะที่ข้าศึกอดตายอยู่ข้างนอก ชาวบาบิโลนมีอาหารและน้ำอุดมสมบูรณ์ภายในกำแพง</p>
+                        <div class="story-lesson">
+                            <h4>🔑 บทเรียน</h4>
+                            <p>กำแพงคือสัญลักษณ์ของ "ระบบป้องกันทางการเงิน" - กองทุนฉุกเฉิน ประกันภัย การกระจายความเสี่ยง สิ่งเหล่านี้ปกป้องเราจากวิกฤตที่จะมาถึง</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-header">
+                        <h3 class="story-title">เรื่องของ Dabasir</h3>
+                        <p class="story-subtitle">พ่อค้าอูฐกับการชำระหนี้</p>
+                    </div>
+                    <div class="story-content">
+                        <p><strong>Dabasir</strong> เคยเป็นคนหนุ่มฟุ่มเฟือยที่ใช้จ่ายเกินตัวจนเป็นหนี้สินล้นพ้นตัว เขาตั้งใจจ่ายหนี้ทุกบาทด้วย "แผนชำระหนี้": 70% สำหรับค่าใช้จ่าย, 20% สำหรับชำระหนี้, 10% สำหรับตัวเอง</p>
+                        <div class="story-lesson">
+                            <h4>🔑 บทเรียน</h4>
+                            <p>ไม่ว่าจะหนี้สินมากเพียงใด การมีแผนที่ชัดเจนและทำตามอย่างมีวินัย จะนำไปสู่อิสรภาพทางการเงินในที่สุด</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="mindset">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title">Mindset ที่ต้องเปลี่ยน</h2>
+                <p class="section-subtitle">แนวคิดที่แตกต่างระหว่างคนรวยและคนจน</p>
+            </div>
+            <div class="mindset-grid">
+                <div class="mindset-card">
+                    <div class="mindset-icon">💰</div>
+                    <div class="mindset-from"><p>"รายได้น้อย เก็บไม่ได้"</p></div>
+                    <div class="mindset-arrow">⬇️</div>
+                    <div class="mindset-to"><p>"รายได้เท่าไหร่ก็เก็บ 10% ได้เสมอ"</p></div>
+                </div>
+                <div class="mindset-card">
+                    <div class="mindset-icon">⏰</div>
+                    <div class="mindset-from"><p>"รอให้รวยก่อนค่อยลงทุน"</p></div>
+                    <div class="mindset-arrow">⬇️</div>
+                    <div class="mindset-to"><p>"ลงทุนก่อน จึงจะรวย"</p></div>
+                </div>
+                <div class="mindset-card">
+                    <div class="mindset-icon">🎯</div>
+                    <div class="mindset-from"><p>"ใช้ก่อน เหลือค่อยเก็บ"</p></div>
+                    <div class="mindset-arrow">⬇️</div>
+                    <div class="mindset-to"><p>"เก็บก่อน เหลือค่อยใช้"</p></div>
+                </div>
+                <div class="mindset-card">
+                    <div class="mindset-icon">🍀</div>
+                    <div class="mindset-from"><p>"คนรวยโชคดี"</p></div>
+                    <div class="mindset-arrow">⬇️</div>
+                    <div class="mindset-to"><p>"คนรวยมีระบบและวินัย"</p></div>
+                </div>
+                <div class="mindset-card">
+                    <div class="mindset-icon">📚</div>
+                    <div class="mindset-from"><p>"ไม่มีเวลาเรียนรู้เรื่องเงิน"</p></div>
+                    <div class="mindset-arrow">⬇️</div>
+                    <div class="mindset-to"><p>"การศึกษาเรื่องเงินคือการลงทุนที่คุ้มค่าที่สุด"</p></div>
+                </div>
+                <div class="mindset-card">
+                    <div class="mindset-icon">🔥</div>
+                    <div class="mindset-from"><p>"อยากรวยเร็ว"</p></div>
+                    <div class="mindset-arrow">⬇️</div>
+                    <div class="mindset-to"><p>"ความมั่งคั่งมาจากความอดทนและสม่ำเสมอ"</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="action">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2 class="section-title">Action Plan</h2>
+                <p class="section-subtitle">สิ่งที่ต้องทำทันทีหลังอ่านหนังสือเล่มนี้</p>
+            </div>
+            <div class="action-timeline">
+                <div class="action-item">
+                    <span class="time-badge">ทำทันที - วันนี้</span>
+                    <h3>🎯 ตั้งค่าโอนอัตโนมัติ 10%</h3>
+                    <p>เปิดบัญชีออมทรัพย์แยกต่างหาก ตั้งค่าให้โอนอัตโนมัติ 10% ของเงินเดือนทันทีที่ได้รับ</p>
+                </div>
+                <div class="action-item">
+                    <span class="time-badge">สัปดาห์นี้</span>
+                    <h3>📊 ทำงบประมาณรายเดือน</h3>
+                    <p>เขียนรายได้และรายจ่ายทั้งหมด แบ่งเป็นหมวดหมู่ แยก "ความต้องการ" ออกจาก "ความอยาก"</p>
+                </div>
+                <div class="action-item">
+                    <span class="time-badge">เดือนนี้</span>
+                    <h3>📚 ศึกษาเรื่องการลงทุนเบื้องต้น</h3>
+                    <p>อ่านหนังสือ ดูวิดีโอ หรือเข้าคอร์สเรียนเรื่องการลงทุนพื้นฐาน เช่น กองทุนรวม หุ้น พันธบัตร</p>
+                </div>
+                <div class="action-item">
+                    <span class="time-badge">3 เดือน</span>
+                    <h3>🛡️ สร้างกองทุนฉุกเฉิน</h3>
+                    <p>สะสมเงินให้ได้อย่างน้อย 3-6 เดือนของค่าใช้จ่าย เก็บไว้ในที่ที่เข้าถึงได้ง่าย</p>
+                </div>
+                <div class="action-item">
+                    <span class="time-badge">6 เดือน</span>
+                    <h3>💼 เริ่มลงทุนจริง</h3>
+                    <p>นำเงินที่เก็บไว้ไปลงทุนตามที่ศึกษามา เริ่มจากการลงทุนที่เข้าใจและมีความเสี่ยงต่ำ</p>
+                </div>
+                <div class="action-item">
+                    <span class="time-badge">ระยะยาว</span>
+                    <h3>🏆 สร้าง Passive Income</h3>
+                    <p>ตั้งเป้าหมายให้รายได้จากการลงทุนเพียงพอที่จะครอบคลุมค่าใช้จ่ายพื้นฐานทั้งหมด</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="quotes">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2 class="section-title">ประโยคทองคำ</h2>
+                <p class="section-subtitle">ข้อความที่เอาไปสอนต่อได้</p>
+            </div>
+            <div class="quotes-grid">
+                <div class="golden-quote">
+                    <p>"ส่วนหนึ่งของทุกสิ่งที่เจ้าหาได้ จงเก็บไว้เพื่อตัวเอง"</p>
+                    <div class="quote-theme">— หลักการพื้นฐาน</div>
+                </div>
+                <div class="golden-quote">
+                    <p>"ความมั่งคั่งเหมือนต้นไม้ ต้นกำเนิดมาจากเมล็ดพันธุ์เล็กๆ ที่ถูกหว่านและดูแลอย่างสม่ำเสมอ"</p>
+                    <div class="quote-theme">— การเติบโตของเงิน</div>
+                </div>
+                <div class="golden-quote">
+                    <p>"โชคลาภมาหาผู้ที่ลงมือทำ ไม่ใช่ผู้ที่รอคอย"</p>
+                    <div class="quote-theme">— การลงมือทำ</div>
+                </div>
+                <div class="golden-quote">
+                    <p>"สิ่งที่เราเรียกว่า 'ค่าใช้จ่ายจำเป็น' จะขยายตัวเสมอเพื่อให้เท่ากับรายได้"</p>
+                    <div class="quote-theme">— Lifestyle Inflation</div>
+                </div>
+                <div class="golden-quote">
+                    <p>"เงินทุกเหรียญที่เก็บไว้คือทาสที่ทำงานให้เจ้า และทุกเหรียญที่มันหาได้ก็กลายเป็นทาสอีกคน"</p>
+                    <div class="quote-theme">— Compound Interest</div>
+                </div>
+                <div class="golden-quote">
+                    <p>"การป้องกันเงินทองจากการสูญเสียสำคัญกว่าการหาเงินเพิ่ม"</p>
+                    <div class="quote-theme">— การปกป้องทรัพย์สิน</div>
+                </div>
+                <div class="golden-quote">
+                    <p>"อย่าปรึกษาช่างอิฐเรื่องเพชรพลอย"</p>
+                    <div class="quote-theme">— การเลือกที่ปรึกษา</div>
+                </div>
+                <div class="golden-quote">
+                    <p>"ยิ่งเจ้ารู้มาก เจ้าก็ยิ่งหาได้มาก"</p>
+                    <div class="quote-theme">— การลงทุนในตัวเอง</div>
+                </div>
+                <div class="golden-quote">
+                    <p>"ภูมิปัญญามีค่ากว่าทองคำ เพราะมันสร้างทองคำได้อีกครั้งแล้วครั้งเล่า"</p>
+                    <div class="quote-theme">— คุณค่าของความรู้</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="summary">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">✨</div>
+                <h2 class="section-title">สรุปทิ้งท้าย</h2>
+                <p class="section-subtitle">บทเรียนที่ต้องจำ</p>
+            </div>
+            <div class="glass-card">
+                <div class="key-box box">
+                    <div class="box-title">🔑 7 วิธีรักษากระเป๋าที่ผอมแห้ง</div>
+                    <ol style="margin-left: 20px;">
+                        <li><strong>เก็บ 10%</strong> - เริ่มทำให้กระเป๋าอ้วนขึ้น</li>
+                        <li><strong>ควบคุมรายจ่าย</strong> - ใช้ชีวิตด้วย 90% อย่างมีคุณภาพ</li>
+                        <li><strong>ลงทุนให้งอกเงย</strong> - ใช้พลัง Compound Interest</li>
+                        <li><strong>ปกป้องทรัพย์สิน</strong> - อย่าลงทุนในสิ่งที่ไม่เข้าใจ</li>
+                        <li><strong>มีบ้านเป็นของตัวเอง</strong> - สร้างความมั่นคง</li>
+                        <li><strong>วางแผนอนาคต</strong> - เตรียมพร้อมสำหรับวันเกษียณ</li>
+                        <li><strong>ลงทุนในตัวเอง</strong> - เพิ่มความสามารถในการหารายได้</li>
+                    </ol>
+                </div>
+                <div class="teaching-box box" style="margin-top: 25px;">
+                    <div class="box-title">📚 บทเรียนสำคัญที่สุด</div>
+                    <p style="font-size: 1.15rem; text-align: center; margin-top: 15px;"><strong>"ความมั่งคั่งไม่ได้มาจากโชค ความฉลาดพิเศษ หรือมรดก แต่มาจากการปฏิบัติตามหลักการง่ายๆ อย่างสม่ำเสมอ ทุกคนเรียนรู้และทำได้"</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">📜 The Richest Man in Babylon</div>
+            <p class="footer-info">สรุปหนังสือ "The Richest Man in Babylon"<br>โดย George S. Clason (1926)</p>
+            <div class="summarizer">📝 สรุปโดย Claude AI | Anthropic</div>
+            <p class="footer-note">หนังสือเล่มนี้เป็นหนังสือ Public Domain และถูกใช้เป็นหนังสือสอนการเงินพื้นฐานทั่วโลกมากว่า 100 ปี<br>สรุปนี้จัดทำเพื่อการศึกษาและเผยแพร่ความรู้ทางการเงิน</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <script>
+        window.onscroll = function() {
+            const button = document.getElementById('backToTop');
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                button.classList.add('visible');
+            } else {
+                button.classList.remove('visible');
+            }
+        };
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

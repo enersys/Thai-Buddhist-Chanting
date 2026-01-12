@@ -1,0 +1,3034 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profit First - สรุปหนังสืออย่างละเอียด</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Sarabun:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F4E4BA;
+            --gold-dark: #B8960C;
+            --emerald: #065F46;
+            --emerald-light: #10B981;
+            --emerald-dark: #022C22;
+            --slate: #1E293B;
+            --slate-light: #475569;
+            --cream: #FFFBEB;
+            --white: #FFFFFF;
+            --profit-green: #059669;
+            --tax-red: #DC2626;
+            --owner-blue: #2563EB;
+            --opex-orange: #EA580C;
+            --income-purple: #7C3AED;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: var(--cream);
+            color: var(--slate);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--emerald-dark) 0%, var(--emerald) 50%, var(--slate) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--emerald-dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 1rem;
+            text-shadow: 2px 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+            display: block;
+        }
+
+        .hero-author {
+            font-size: 1.4rem;
+            color: var(--gold-light);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .hero-stat-label {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .scroll-indicator svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--gold);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Base */
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--gold-dark);
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--emerald-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--slate-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Key Takeaway Box */
+        .key-takeaway {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .key-takeaway::before {
+            content: '💡';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 5rem;
+            opacity: 0.2;
+        }
+
+        .key-takeaway-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--emerald-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .key-takeaway h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--emerald-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .key-takeaway p {
+            color: var(--emerald-dark);
+            font-size: 1.1rem;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: var(--white);
+            border-left: 5px solid var(--gold);
+            padding: 2rem 2.5rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+
+        .quote-box blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--emerald-dark);
+            margin-bottom: 1rem;
+        }
+
+        .quote-box cite {
+            color: var(--gold-dark);
+            font-weight: 600;
+        }
+
+        .quote-box .thai-translation {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--gold-light);
+            color: var(--slate-light);
+            font-size: 1rem;
+        }
+
+        /* Case Study Box */
+        .case-study {
+            background: linear-gradient(145deg, var(--cream), var(--white));
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border: 2px solid var(--emerald-light);
+            position: relative;
+        }
+
+        .case-study::before {
+            content: '📋 กรณีศึกษา';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: var(--emerald);
+            color: var(--white);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .case-study-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--emerald-dark);
+            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .case-study-content {
+            color: var(--slate);
+        }
+
+        .case-study-result {
+            background: rgba(16, 185, 129, 0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            border-left: 4px solid var(--emerald-light);
+        }
+
+        .case-study-result strong {
+            color: var(--profit-green);
+        }
+
+        /* Teachable Box */
+        .teachable {
+            background: linear-gradient(135deg, var(--slate), var(--emerald-dark));
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0;
+            color: var(--white);
+        }
+
+        .teachable-label {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--emerald-dark);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .teachable h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .teachable p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            background: var(--white);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .problem-card {
+            background: linear-gradient(145deg, var(--cream), var(--white));
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--gold), var(--gold-dark));
+        }
+
+        .problem-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(6, 95, 70, 0.1);
+        }
+
+        .problem-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--emerald), var(--emerald-light));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .problem-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--emerald-dark);
+            margin-bottom: 1rem;
+        }
+
+        .problem-card p {
+            color: var(--slate-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .problem-example {
+            background: rgba(220, 38, 38, 0.08);
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--tax-red);
+            border-left: 3px solid var(--tax-red);
+        }
+
+        /* Author Story Section */
+        .author-story {
+            background: linear-gradient(135deg, var(--emerald-dark), var(--slate));
+            color: var(--white);
+            padding: 5rem 0;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .author-avatar {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .story-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .story-content p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+        }
+
+        .story-highlight {
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            border-left: 4px solid var(--gold);
+        }
+
+        .story-highlight p {
+            margin-bottom: 0;
+            color: var(--gold-light);
+        }
+
+        /* Formula Section */
+        .formula-section {
+            background: linear-gradient(180deg, var(--emerald-dark) 0%, var(--slate) 100%);
+            color: var(--white);
+            position: relative;
+        }
+
+        .formula-section .section-title {
+            color: var(--white);
+        }
+
+        .formula-section .section-subtitle {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .formula-comparison {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .formula-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .formula-box {
+            background: rgba(255,255,255,0.05);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .formula-box.old {
+            opacity: 0.7;
+        }
+
+        .formula-box.new {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            border: 2px solid var(--gold);
+            transform: scale(1.05);
+        }
+
+        .formula-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .formula-box.old .formula-label {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .formula-equation {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 600;
+            line-height: 2;
+        }
+
+        .formula-equation .highlight {
+            color: var(--gold);
+            padding: 0.2rem 0.8rem;
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+        }
+
+        .formula-arrow {
+            font-size: 3rem;
+            color: var(--gold);
+            animation: arrowPulse 1.5s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .formula-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        @keyframes arrowPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .formula-insight {
+            margin-top: 4rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border-left: 4px solid var(--gold);
+        }
+
+        .formula-insight h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .formula-insight p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.1rem;
+        }
+
+        /* Scenario Box */
+        .scenario-box {
+            background: rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .scenario-title {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .scenario-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            .scenario-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scenario-item {
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .scenario-item.before {
+            background: rgba(220, 38, 38, 0.2);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+        }
+
+        .scenario-item.after {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .scenario-item h5 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .scenario-item.before h5 { color: #FCA5A5; }
+        .scenario-item.after h5 { color: #6EE7B7; }
+
+        .scenario-item ul {
+            list-style: none;
+        }
+
+        .scenario-item li {
+            padding: 0.4rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+        }
+
+        /* Principles Section */
+        .principles-section {
+            background: var(--cream);
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .principle-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .principle-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(6, 95, 70, 0.15);
+        }
+
+        .principle-number {
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 8rem;
+            font-weight: 900;
+            color: rgba(212, 175, 55, 0.1);
+            line-height: 1;
+        }
+
+        .principle-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .principle-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--emerald-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .principle-thai {
+            font-size: 1rem;
+            color: var(--gold-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .principle-card p {
+            color: var(--slate-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .principle-example {
+            background: var(--cream);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: var(--slate);
+            border-left: 3px solid var(--emerald-light);
+            margin-bottom: 1rem;
+        }
+
+        .principle-action {
+            background: rgba(5, 150, 105, 0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: var(--profit-green);
+            font-weight: 500;
+        }
+
+        .principle-action strong {
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Accounts Section */
+        .accounts-section {
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .accounts-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--emerald-dark), var(--emerald));
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+            opacity: 0.03;
+        }
+
+        .accounts-intro {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .accounts-intro p {
+            color: var(--slate-light);
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+
+        .accounts-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .account-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        @media (max-width: 768px) {
+            .account-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .account-item:hover {
+            transform: scale(1.02);
+            border-color: var(--gold);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.15);
+        }
+
+        .account-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .account-icon {
+                margin: 0 auto;
+            }
+        }
+
+        .account-icon.income { background: linear-gradient(135deg, var(--income-purple), #9333EA); }
+        .account-icon.profit { background: linear-gradient(135deg, var(--profit-green), #10B981); }
+        .account-icon.owner { background: linear-gradient(135deg, var(--owner-blue), #3B82F6); }
+        .account-icon.tax { background: linear-gradient(135deg, var(--tax-red), #EF4444); }
+        .account-icon.opex { background: linear-gradient(135deg, var(--opex-orange), #F97316); }
+
+        .account-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--emerald-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .account-info .thai-name {
+            font-size: 1rem;
+            color: var(--gold-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .account-info p {
+            color: var(--slate-light);
+            font-size: 0.95rem;
+        }
+
+        .account-percentage {
+            text-align: center;
+        }
+
+        .percentage-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--emerald-dark);
+        }
+
+        .percentage-label {
+            font-size: 0.85rem;
+            color: var(--slate-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Bank Setup Section */
+        .bank-setup {
+            background: var(--cream);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-top: 4rem;
+        }
+
+        .bank-setup h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--emerald-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .bank-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .bank-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 2px dashed var(--gold-light);
+        }
+
+        .bank-card h4 {
+            color: var(--emerald-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .bank-card p {
+            color: var(--slate-light);
+            font-size: 0.9rem;
+        }
+
+        .bank-card.main {
+            border-color: var(--emerald-light);
+            border-style: solid;
+        }
+
+        .bank-card.hidden {
+            border-color: var(--gold);
+            border-style: solid;
+            background: linear-gradient(145deg, var(--gold-light), var(--white));
+        }
+
+        /* TAPs Section */
+        .taps-section {
+            background: linear-gradient(180deg, var(--slate) 0%, var(--emerald-dark) 100%);
+            color: var(--white);
+        }
+
+        .taps-section .section-title {
+            color: var(--white);
+        }
+
+        .taps-section .section-subtitle {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .taps-explanation {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .taps-explanation p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.1rem;
+        }
+
+        .taps-table-wrapper {
+            overflow-x: auto;
+            margin-top: 3rem;
+        }
+
+        .taps-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .taps-table th {
+            background: rgba(212, 175, 55, 0.2);
+            padding: 1.5rem;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .taps-table td {
+            padding: 1.2rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .taps-table tr:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .taps-table .revenue-range {
+            text-align: left;
+            font-family: 'Sarabun', sans-serif;
+            color: var(--gold-light);
+        }
+
+        .taps-note {
+            margin-top: 3rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .taps-note h4 {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+        }
+
+        .taps-note ul {
+            list-style: none;
+        }
+
+        .taps-note li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .taps-note li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        /* Real Example Calculation */
+        .calculation-example {
+            background: rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .calculation-example h4 {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .calc-item {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .calc-item .label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .calc-item .value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .calc-item.income .value { color: var(--income-purple); }
+        .calc-item.profit .value { color: var(--profit-green); }
+        .calc-item.owner .value { color: var(--owner-blue); }
+        .calc-item.tax .value { color: #FCA5A5; }
+        .calc-item.opex .value { color: var(--opex-orange); }
+
+        /* Implementation Section */
+        .implementation-section {
+            background: var(--cream);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--gold), var(--emerald));
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 120px;
+            padding-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item {
+                padding-left: 60px;
+            }
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 30px;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--emerald-dark);
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-marker {
+                left: 0;
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        .timeline-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .timeline-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--emerald-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .step-label {
+            font-size: 0.9rem;
+            color: var(--gold-dark);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content p {
+            color: var(--slate-light);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content .action-list {
+            background: var(--cream);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+        }
+
+        .action-list li {
+            padding: 0.5rem 0;
+            color: var(--slate);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .action-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* 10/25 Rhythm Section */
+        .rhythm-section {
+            background: var(--white);
+        }
+
+        .rhythm-visual {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .rhythm-day {
+            text-align: center;
+        }
+
+        .rhythm-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--emerald-dark);
+            margin-bottom: 1rem;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .rhythm-circle .day-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .rhythm-circle .day-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .rhythm-day h4 {
+            color: var(--emerald-dark);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .rhythm-day p {
+            color: var(--slate-light);
+            font-size: 0.95rem;
+        }
+
+        .rhythm-process {
+            background: var(--cream);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .rhythm-process h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--emerald-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .process-step {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '→';
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .process-step::after {
+                display: none;
+            }
+        }
+
+        .process-step .step-num {
+            width: 30px;
+            height: 30px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--emerald-dark);
+        }
+
+        .process-step h5 {
+            color: var(--emerald-dark);
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .process-step p {
+            color: var(--slate-light);
+            font-size: 0.85rem;
+        }
+
+        /* Quarterly Section */
+        .quarterly-section {
+            background: linear-gradient(135deg, var(--emerald-dark), var(--slate));
+            color: var(--white);
+            text-align: center;
+        }
+
+        .quarterly-section .section-title {
+            color: var(--white);
+        }
+
+        .quarterly-dates {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .quarterly-date {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2rem 3rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .quarterly-date:hover {
+            transform: scale(1.05);
+            background: rgba(212, 175, 55, 0.2);
+        }
+
+        .quarterly-date .month {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .quarterly-date .day {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .quarterly-date .quarter {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .quarterly-celebration {
+            background: rgba(212, 175, 55, 0.15);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .celebration-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .quarterly-celebration h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .quarterly-celebration p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .celebration-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .celebration-example {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .celebration-example span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Instant Assessment */
+        .assessment-section {
+            background: var(--cream);
+        }
+
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .assessment-step {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .assessment-step:hover {
+            box-shadow: 0 15px 40px rgba(6, 95, 70, 0.1);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--emerald-dark);
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .assessment-step h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--emerald-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .assessment-step p {
+            color: var(--slate-light);
+            margin-bottom: 1rem;
+        }
+
+        .assessment-formula {
+            background: var(--cream);
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--emerald-dark);
+            text-align: center;
+        }
+
+        /* Real World Assessment Example */
+        .assessment-example {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-top: 4rem;
+            border: 2px solid var(--emerald-light);
+        }
+
+        .assessment-example h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--emerald-dark);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: var(--emerald-dark);
+            color: var(--white);
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--cream);
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--cream);
+        }
+
+        .comparison-table .gap {
+            color: var(--tax-red);
+            font-weight: 600;
+        }
+
+        .comparison-table .gap.positive {
+            color: var(--profit-green);
+        }
+
+        /* Mindset Section */
+        .mindset-section {
+            background: var(--white);
+        }
+
+        .mindset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .mindset-card {
+            background: linear-gradient(145deg, var(--cream), var(--white));
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .mindset-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--emerald-light));
+        }
+
+        .mindset-from-to {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .mindset-from, .mindset-to {
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .mindset-from {
+            background: rgba(220, 38, 38, 0.1);
+            color: var(--tax-red);
+        }
+
+        .mindset-to {
+            background: rgba(5, 150, 105, 0.1);
+            color: var(--profit-green);
+        }
+
+        .mindset-arrow {
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        .mindset-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--emerald-dark);
+            margin-bottom: 1rem;
+        }
+
+        .mindset-card p {
+            color: var(--slate-light);
+            margin-bottom: 1rem;
+        }
+
+        .mindset-story {
+            background: var(--cream);
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--slate);
+            font-style: italic;
+        }
+
+        /* Common Mistakes Section */
+        .mistakes-section {
+            background: linear-gradient(135deg, #7F1D1D, #991B1B);
+            color: var(--white);
+        }
+
+        .mistakes-section .section-title {
+            color: var(--white);
+        }
+
+        .mistakes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .mistake-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mistake-card h3 {
+            color: #FCA5A5;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mistake-card p {
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 1rem;
+        }
+
+        .mistake-fix {
+            background: rgba(16, 185, 129, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 3px solid var(--emerald-light);
+        }
+
+        .mistake-fix strong {
+            color: #6EE7B7;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .mistake-fix p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0;
+        }
+
+        /* Tips Section */
+        .tips-section {
+            background: var(--cream);
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tip-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateX(10px);
+            box-shadow: -10px 10px 30px rgba(212, 175, 55, 0.15);
+        }
+
+        .tip-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--emerald-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tip-card h3 span {
+            font-size: 1.5rem;
+        }
+
+        .tip-card p {
+            color: var(--slate-light);
+        }
+
+        /* Final Summary / Key Takeaways Section */
+        .summary-section {
+            background: var(--white);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .summary-card {
+            background: linear-gradient(145deg, var(--cream), var(--white));
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid var(--gold-light);
+            transition: all 0.3s ease;
+        }
+
+        .summary-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .summary-card .emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .summary-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--emerald-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-card p {
+            color: var(--slate-light);
+            font-size: 0.95rem;
+        }
+
+        /* Final CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--emerald-dark);
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            color: var(--emerald-dark);
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-quote {
+            background: rgba(255,255,255,0.3);
+            border-radius: 20px;
+            padding: 2rem 3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-quote blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--emerald-dark);
+            margin-bottom: 1rem;
+        }
+
+        .cta-quote cite {
+            color: var(--emerald-dark);
+            opacity: 0.7;
+        }
+
+        .action-checklist {
+            background: rgba(255,255,255,0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .action-checklist h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--emerald-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .action-checklist ul {
+            list-style: none;
+        }
+
+        .action-checklist li {
+            padding: 0.7rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--emerald-dark);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .action-checklist li::before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--slate);
+            color: rgba(255,255,255,0.6);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer .author-credit {
+            color: var(--gold);
+        }
+
+        /* Animations on Scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 480px) {
+            section {
+                padding: 4rem 0;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .formula-box {
+                padding: 1.5rem;
+            }
+
+            .quarterly-dates {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">📚 Complete Book Summary</span>
+            <h1>Profit <span>First</span></h1>
+            <p class="hero-author">โดย Mike Michalowicz</p>
+            <p class="hero-tagline">
+                เปลี่ยนวิธีคิดเรื่องเงินในธุรกิจ จาก "ขายได้เท่าไหร่ ใช้เท่านั้น เหลือก็กำไร" 
+                เป็น "ขายได้เท่าไหร่ เก็บกำไรก่อน ที่เหลือค่อยใช้"
+            </p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">82%</div>
+                    <div class="hero-stat-label">ธุรกิจมีปัญหาเงินสด</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">500K+</div>
+                    <div class="hero-stat-label">ธุรกิจใช้ Profit First</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">5 บัญชี</div>
+                    <div class="hero-stat-label">ระบบจัดการเงิน</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24"><path d="M12 16l-6-6h12l-6 6z"/></svg>
+        </div>
+    </section>
+
+    <!-- Author Story Section -->
+    <section class="author-story">
+        <div class="container">
+            <div class="story-grid">
+                <div class="author-avatar">👨‍💼</div>
+                <div class="story-content">
+                    <h2>เรื่องราวของ Mike Michalowicz</h2>
+                    <p>
+                        Mike เริ่มต้นธุรกิจแรกตั้งแต่อายุ 24 ปี และสร้างบริษัทจนขายได้หลายล้านดอลลาร์ 
+                        แต่หลังจากขายธุรกิจแล้ว เขากลับใช้เงินทั้งหมดหมดภายใน 3 ปี เพราะลงทุนผิดพลาดและใช้จ่ายฟุ่มเฟือย
+                    </p>
+                    <p>
+                        จุดต่ำสุดในชีวิตคือตอนที่ต้องบอกลูกสาววัย 9 ขวบว่า ต้องขายของเล่นเพื่อหาเงินมาจ่ายค่าอาหาร
+                        ความอับอายในวันนั้นทำให้เขาตั้งใจหาวิธีจัดการเงินที่ได้ผลจริง
+                    </p>
+                    <div class="story-highlight">
+                        <p>
+                            💡 "ผมค้นพบว่าปัญหาไม่ใช่รายได้ แต่คือ <strong>วิธีที่เราจัดการกับเงิน</strong> 
+                            ถ้าเงินอยู่ตรงหน้า เราจะใช้มัน นั่นคือธรรมชาติของมนุษย์"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">01 — THE PROBLEM</span>
+                <h2 class="section-title">ปัญหาที่ผู้ประกอบการเผชิญ</h2>
+                <p class="section-subtitle">ทำไมธุรกิจถึงมีรายได้เยอะ แต่กำไรน้อย หรือไม่มีเงินเหลือ?</p>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">🔥</div>
+                    <h3>Survival Trap</h3>
+                    <p>ทำงานหนักขึ้น ขายได้มากขึ้น แต่สุดท้ายเงินก็หายไปกับค่าใช้จ่ายที่เพิ่มขึ้นตาม ต้องวิ่งไม่หยุดเหมือนหนูในกรงหมุน</p>
+                    <div class="problem-example">
+                        📌 ตัวอย่าง: ร้านอาหารขายได้ 2 ล้านต่อเดือน แต่สิ้นเดือนเจ้าของไม่เหลือเงินเดือนให้ตัวเอง
+                    </div>
+                </div>
+
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">📊</div>
+                    <h3>Parkinson's Law</h3>
+                    <p>กฎที่ว่า "ค่าใช้จ่ายจะขยายตัวเพื่อใช้ทรัพยากรที่มีอยู่ทั้งหมด" ยิ่งมีเงินมาก ยิ่งใช้มาก ไม่ว่าจะจำเป็นหรือไม่</p>
+                    <div class="problem-example">
+                        📌 ตัวอย่าง: พอรายได้เพิ่ม 30% ก็ย้ายออฟฟิศใหม่ จ้างคนเพิ่ม ซื้ออุปกรณ์ใหม่ สุดท้ายกำไรยังเท่าเดิม
+                    </div>
+                </div>
+
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">😰</div>
+                    <h3>Bank Balance Accounting</h3>
+                    <p>ตัดสินใจใช้เงินจากยอดเงินในบัญชี ไม่ได้ดูจากงบกำไรขาดทุนจริง ทำให้ใช้จ่ายเกินตัวโดยไม่รู้ตัว</p>
+                    <div class="problem-example">
+                        📌 ตัวอย่าง: เห็นมี 500,000 ในบัญชี ก็ซื้อเครื่องจักรใหม่ โดยลืมว่าอีก 3 วันต้องจ่ายเงินเดือนพนักงาน
+                    </div>
+                </div>
+
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">💸</div>
+                    <h3>Profit as Afterthought</h3>
+                    <p>สูตรบัญชีแบบเดิม Sales - Expenses = Profit ทำให้กำไรกลายเป็นสิ่งที่ "เหลือ" แทนที่จะเป็นสิ่งที่ต้อง "รับประกัน"</p>
+                    <div class="problem-example">
+                        📌 ตัวอย่าง: สิ้นปีดูงบแล้วบอกว่า "ปีหน้าเราจะทำกำไร" แต่ทุกปีก็พูดเหมือนเดิม
+                    </div>
+                </div>
+            </div>
+
+            <div class="quote-box fade-in">
+                <blockquote>
+                    "A business that just generates revenue is not a business. 
+                    It's a glorified job with all the risk and none of the paycheck."
+                </blockquote>
+                <cite>— Mike Michalowicz</cite>
+                <p class="thai-translation">
+                    🇹🇭 "ธุรกิจที่มีแต่รายได้แต่ไม่มีกำไร ไม่ใช่ธุรกิจ มันคืองานประจำที่ต้องแบกรับความเสี่ยงทั้งหมด แต่ไม่มีเงินเดือนให้ตัวเอง"
+                </p>
+            </div>
+
+            <div class="case-study fade-in">
+                <h4 class="case-study-title">กรณี: ร้านเบเกอรี่ที่ขายดีแต่เจ๊ง</h4>
+                <div class="case-study-content">
+                    <p>
+                        คุณแอนเปิดร้านเบเกอรี่ ขายได้วันละ 15,000 บาท = 450,000 บาท/เดือน 
+                        ทุกคนชมว่าร้านขายดี แต่ทุกเดือนคุณแอนต้องใช้บัตรเครดิตส่วนตัวจ่ายค่าวัตถุดิบ
+                    </p>
+                    <p>
+                        เมื่อวิเคราะห์ดูพบว่า: ค่าเช่า 80,000 + วัตถุดิบ 180,000 + เงินเดือนพนักงาน 120,000 
+                        + ค่าน้ำค่าไฟ 30,000 + ค่าการตลาด 40,000 = 450,000 บาทพอดี!
+                    </p>
+                    <div class="case-study-result">
+                        <strong>ปัญหา:</strong> รายได้เท่ากับรายจ่าย = กำไร 0 บาท = เจ้าของไม่มีเงินเดือน = ธุรกิจที่ไม่ยั่งยืน
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-takeaway fade-in">
+                <span class="key-takeaway-label">Key Takeaway</span>
+                <h4>รายได้ ≠ กำไร</h4>
+                <p>ธุรกิจที่มีรายได้สูงไม่ได้หมายความว่าจะทำกำไร ปัญหาไม่ใช่ "ขายไม่ได้" แต่คือ "จัดการเงินไม่เป็น"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formula Section -->
+    <section class="formula-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">02 — THE FORMULA</span>
+                <h2 class="section-title">การปฏิวัติสูตรทางการเงิน</h2>
+                <p class="section-subtitle">เปลี่ยนลำดับความสำคัญ เปลี่ยนผลลัพธ์ทั้งหมด</p>
+            </div>
+
+            <div class="formula-comparison">
+                <div class="formula-box old">
+                    <div class="formula-label">❌ สูตรเดิม (GAAP)</div>
+                    <div class="formula-equation">
+                        Sales - Expenses = Profit
+                    </div>
+                    <p style="margin-top: 1rem; opacity: 0.7; font-size: 0.95rem;">
+                        "เหลือเท่าไหร่ก็กำไรเท่านั้น"
+                    </p>
+                </div>
+
+                <div class="formula-arrow">→</div>
+
+                <div class="formula-box new">
+                    <div class="formula-label">✅ สูตร Profit First</div>
+                    <div class="formula-equation">
+                        Sales - <span class="highlight">Profit</span> = Expenses
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--gold); font-size: 0.95rem;">
+                        "เก็บกำไรก่อน ที่เหลือค่อยใช้"
+                    </p>
+                </div>
+            </div>
+
+            <div class="formula-insight fade-in">
+                <h4>💡 ทำไมสูตรนี้ถึงได้ผล?</h4>
+                <p>
+                    เมื่อเราหักกำไรออกก่อน ธรรมชาติของมนุษย์ (Parkinson's Law) จะบังคับให้เราหาทางบริหาร
+                    ค่าใช้จ่ายให้อยู่ในกรอบที่เหลือ มนุษย์เราปรับตัวได้เก่งมาก — เมื่อมีน้อยลง เราก็หาทางใช้น้อยลง
+                    และนี่คือสาเหตุที่ระบบนี้ทำงานได้โดยอัตโนมัติ
+                </p>
+            </div>
+
+            <div class="scenario-box fade-in">
+                <h4 class="scenario-title">🎯 สถานการณ์: รายได้ 100,000 บาท</h4>
+                <div class="scenario-comparison">
+                    <div class="scenario-item before">
+                        <h5>❌ วิธีเดิม</h5>
+                        <ul>
+                            <li>รายได้: ฿100,000</li>
+                            <li>ค่าใช้จ่าย: ฿95,000</li>
+                            <li>เหลือ: ฿5,000</li>
+                            <li style="color: #FCA5A5; font-weight: 600;">→ กำไร 5%</li>
+                        </ul>
+                    </div>
+                    <div class="scenario-item after">
+                        <h5>✅ Profit First</h5>
+                        <ul>
+                            <li>รายได้: ฿100,000</li>
+                            <li>เก็บกำไรก่อน: ฿15,000</li>
+                            <li>ค่าใช้จ่ายได้: ฿85,000</li>
+                            <li style="color: #6EE7B7; font-weight: 600;">→ กำไร 15%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="teachable fade-in">
+                <span class="teachable-label">📢 สอนต่อได้</span>
+                <h4>หลักการ "Pay Yourself First" ใช้ได้กับธุรกิจ</h4>
+                <p>
+                    เหมือนกับการออมเงินส่วนตัว ถ้ารอเก็บ "ที่เหลือ" ก็จะไม่มีวันเหลือ 
+                    แต่ถ้าหักเก็บก่อนทันทีที่เงินเข้า เราจะบังคับตัวเองให้ใช้จ่ายตามที่เหลือ
+                    <br><br>
+                    <strong style="color: var(--gold);">🔑 จำง่ายๆ: "เก็บก่อน ใช้ทีหลัง" ไม่ใช่ "ใช้ก่อน เก็บที่เหลือ"</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 Principles Section -->
+    <section class="principles-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">03 — CORE PRINCIPLES</span>
+                <h2 class="section-title">หลักการ 4 ประการ</h2>
+                <p class="section-subtitle">พื้นฐานทางจิตวิทยาที่ทำให้ระบบ Profit First ได้ผล</p>
+            </div>
+
+            <div class="principles-grid">
+                <div class="principle-card fade-in">
+                    <span class="principle-number">1</span>
+                    <div class="principle-icon">🍽️</div>
+                    <h3>Use Small Plates</h3>
+                    <p class="principle-thai">ใช้จานเล็ก</p>
+                    <p>แบ่งเงินออกเป็นหลายบัญชี แทนที่จะมีบัญชีเดียว เพื่อจำกัดจำนวนเงินที่เห็นและใช้ได้</p>
+                    <div class="principle-example">
+                        🔬 <strong>หลักฐานทางวิทยาศาสตร์:</strong> งานวิจัยพบว่าคนที่ใช้จานเล็กกินอาหารน้อยลง 22% โดยไม่รู้สึกอดอยาก เพราะจานดูเต็ม
+                    </div>
+                    <div class="principle-action">
+                        <strong>🎯 นำไปใช้:</strong>
+                        แทนที่จะมีบัญชีเดียว ให้แบ่งเป็น 5 บัญชี แต่ละบัญชีมีวัตถุประสงค์ชัดเจน
+                    </div>
+                </div>
+
+                <div class="principle-card fade-in">
+                    <span class="principle-number">2</span>
+                    <div class="principle-icon">🥇</div>
+                    <h3>Serve Sequentially</h3>
+                    <p class="principle-thai">เสิร์ฟตามลำดับ</p>
+                    <p>จ่ายกำไรและเงินเดือนตัวเองก่อน ก่อนที่จะจ่ายค่าใช้จ่ายอื่นๆ ทำให้กำไรเป็นความจริงเสมอ</p>
+                    <div class="principle-example">
+                        🍴 <strong>เปรียบเทียบ:</strong> เหมือนบุฟเฟ่ต์ คนที่เข้าคิวก่อนได้อาหารดีๆ คนที่มาทีหลังเหลือแต่ของที่ไม่อยากกิน
+                    </div>
+                    <div class="principle-action">
+                        <strong>🎯 นำไปใช้:</strong>
+                        ทุกครั้งที่เงินเข้า จัดสรรไป PROFIT และ OWNER'S COMP ก่อน ก่อนจ่ายค่าใช้จ่ายใดๆ
+                    </div>
+                </div>
+
+                <div class="principle-card fade-in">
+                    <span class="principle-number">3</span>
+                    <div class="principle-icon">🙈</div>
+                    <h3>Remove Temptation</h3>
+                    <p class="principle-thai">กำจัดสิ่งล่อใจ</p>
+                    <p>ย้ายเงินกำไรและภาษีไปธนาคารอื่นที่เข้าถึงยาก ไม่มี ATM ไม่มี App ป้องกันการหยิบใช้</p>
+                    <div class="principle-example">
+                        🍪 <strong>เปรียบเทียบ:</strong> ถ้าอยากลดน้ำหนัก อย่าเก็บขนมไว้ในบ้าน ถ้าอยากเก็บเงิน อย่าให้เงินอยู่ใกล้มือ
+                    </div>
+                    <div class="principle-action">
+                        <strong>🎯 นำไปใช้:</strong>
+                        เปิดบัญชี PROFIT และ TAX ที่ธนาคารอื่น ไม่ทำ Mobile Banking ไม่ทำบัตร ATM
+                    </div>
+                </div>
+
+                <div class="principle-card fade-in">
+                    <span class="principle-number">4</span>
+                    <div class="principle-icon">⏰</div>
+                    <h3>Enforce a Rhythm</h3>
+                    <p class="principle-thai">สร้างจังหวะคงที่</p>
+                    <p>จัดสรรเงินทุก 10 และ 25 ของเดือน ทำให้เป็นกิจวัตร ไม่ต้องคิดหรือตัดสินใจใหม่ทุกครั้ง</p>
+                    <div class="principle-example">
+                        🏋️ <strong>เปรียบเทียบ:</strong> เหมือนการออกกำลังกาย ถ้าทำเป็นเวลาประจำ จะทำได้ง่ายกว่าทำ "เมื่อมีเวลา"
+                    </div>
+                    <div class="principle-action">
+                        <strong>🎯 นำไปใช้:</strong>
+                        ตั้ง Calendar วันที่ 10 และ 25 ทุกเดือน = "Allocation Day" ทำจนเป็นนิสัย
+                    </div>
+                </div>
+            </div>
+
+            <div class="quote-box fade-in">
+                <blockquote>
+                    "We don't need more self-control. 
+                    We need better systems that work with our nature, not against it."
+                </blockquote>
+                <cite>— Mike Michalowicz</cite>
+                <p class="thai-translation">
+                    🇹🇭 "เราไม่ต้องการความมีวินัยมากขึ้น เราต้องการระบบที่ทำงานร่วมกับธรรมชาติของเรา ไม่ใช่ต่อต้านมัน"
+                </p>
+            </div>
+
+            <div class="key-takeaway fade-in">
+                <span class="key-takeaway-label">Key Takeaway</span>
+                <h4>ออกแบบระบบที่ทำให้ "ทำถูก" ง่ายกว่า "ทำผิด"</h4>
+                <p>อย่าพึ่งพาความมีวินัย ให้สร้างระบบที่บังคับพฤติกรรมที่ถูกต้องโดยอัตโนมัติ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5 Accounts Section -->
+    <section class="accounts-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">04 — THE SYSTEM</span>
+                <h2 class="section-title">ระบบ 5 บัญชี</h2>
+                <p class="section-subtitle">โครงสร้างพื้นฐานสำหรับการจัดการเงินแบบ Profit First</p>
+            </div>
+
+            <div class="accounts-intro fade-in">
+                <p>
+                    ระบบ 5 บัญชีเป็นหัวใจของ Profit First ทุกบาทที่เข้ามาจะถูกจัดสรรไปยังบัญชีต่างๆ 
+                    ตามสัดส่วนที่กำหนด ไม่มีเงินที่ "ลอยอยู่" โดยไม่มีที่หมาย
+                </p>
+            </div>
+
+            <div class="accounts-flow">
+                <div class="account-item fade-in">
+                    <div class="account-icon income">💜</div>
+                    <div class="account-info">
+                        <h3>1. INCOME</h3>
+                        <p class="thai-name">บัญชีรับเงิน (ประตูหน้า)</p>
+                        <p>จุดรับเงินทั้งหมดที่เข้ามา ทุกการขาย ทุกรายได้ ต้องเข้าที่นี่ก่อน เป็นบัญชี "พักเงิน" ชั่วคราว ก่อนจัดสรรออกไป</p>
+                    </div>
+                    <div class="account-percentage">
+                        <div class="percentage-value">100%</div>
+                        <div class="percentage-label">รับทั้งหมด</div>
+                    </div>
+                </div>
+
+                <div class="account-item fade-in">
+                    <div class="account-icon profit">💚</div>
+                    <div class="account-info">
+                        <h3>2. PROFIT</h3>
+                        <p class="thai-name">บัญชีกำไร (รางวัลของเจ้าของ)</p>
+                        <p>กำไรที่ต้องเก็บไว้เป็นรางวัลสำหรับการเสี่ยงและทำธุรกิจ <strong>ห้ามใช้ในกิจการ!</strong> ทุกไตรมาสจะนำ 50% มาเฉลิมฉลอง อีก 50% เก็บเป็นสำรอง</p>
+                    </div>
+                    <div class="account-percentage">
+                        <div class="percentage-value">5-20%</div>
+                        <div class="percentage-label">เป้าหมาย</div>
+                    </div>
+                </div>
+
+                <div class="account-item fade-in">
+                    <div class="account-icon owner">💙</div>
+                    <div class="account-info">
+                        <h3>3. OWNER'S COMP</h3>
+                        <p class="thai-name">เงินเดือนเจ้าของ</p>
+                        <p>เงินเดือนที่เจ้าของต้องได้รับอย่างสม่ำเสมอ ไม่ใช่ "เหลือเท่าไหร่ก็เอาเท่านั้น" แต่เป็นค่าตอบแทนที่แน่นอนสำหรับการทำงาน</p>
+                    </div>
+                    <div class="account-percentage">
+                        <div class="percentage-value">5-50%</div>
+                        <div class="percentage-label">เป้าหมาย</div>
+                    </div>
+                </div>
+
+                <div class="account-item fade-in">
+                    <div class="account-icon tax">❤️</div>
+                    <div class="account-info">
+                        <h3>4. TAX</h3>
+                        <p class="thai-name">บัญชีภาษี</p>
+                        <p>เงินสำรองสำหรับจ่ายภาษี เก็บไว้ตลอดเวลา ไม่ต้องเครียดตอนสิ้นปีหรือตอนยื่นภาษี เพราะเงินพร้อมอยู่แล้ว</p>
+                    </div>
+                    <div class="account-percentage">
+                        <div class="percentage-value">15%</div>
+                        <div class="percentage-label">เป้าหมาย</div>
+                    </div>
+                </div>
+
+                <div class="account-item fade-in">
+                    <div class="account-icon opex">🧡</div>
+                    <div class="account-info">
+                        <h3>5. OPERATING EXPENSES</h3>
+                        <p class="thai-name">ค่าใช้จ่ายดำเนินงาน</p>
+                        <p>ค่าใช้จ่ายทั้งหมดของธุรกิจ: ค่าเช่า, เงินเดือนพนักงาน, ค่าวัสดุ, ค่าการตลาด, ค่าน้ำค่าไฟ ฯลฯ <strong>นี่คือเงินที่ใช้ได้!</strong></p>
+                    </div>
+                    <div class="account-percentage">
+                        <div class="percentage-value">30-65%</div>
+                        <div class="percentage-label">เป้าหมาย</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bank-setup fade-in">
+                <h3>🏦 วิธีตั้งค่าบัญชี</h3>
+                <div class="bank-grid">
+                    <div class="bank-card main">
+                        <h4>ธนาคารหลัก</h4>
+                        <p>✅ INCOME<br>✅ OWNER'S COMP<br>✅ OPEX</p>
+                        <p style="font-size: 0.85rem; color: var(--emerald);">เข้าถึงง่าย ใช้งานประจำ</p>
+                    </div>
+                    <div class="bank-card hidden">
+                        <h4>ธนาคารที่สอง (ซ่อน)</h4>
+                        <p>✅ PROFIT<br>✅ TAX</p>
+                        <p style="font-size: 0.85rem; color: var(--gold-dark);">ไม่มี Mobile App, ไม่มี ATM, เข้าถึงยาก = ไม่หยิบใช้</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="teachable fade-in">
+                <span class="teachable-label">📢 สอนต่อได้</span>
+                <h4>5 บัญชี = 5 ถังเก็บน้ำ</h4>
+                <p>
+                    ลองนึกภาพน้ำ (เงิน) ที่ไหลเข้ามาทางท่อเดียว (INCOME) 
+                    แล้วถูกแบ่งใส่ถังต่างๆ ตามสัดส่วน ถังไหนเต็มก็รู้ ถังไหนขาดก็เห็น
+                    <br><br>
+                    <strong style="color: var(--gold);">💡 ข้อดี: เห็นชัดเจนว่าเงินอยู่ไหน ใช้ไปเท่าไหร่ เหลือเท่าไหร่ ไม่ต้องเดา</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TAPs Section -->
+    <section class="taps-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">05 — TARGET ALLOCATIONS</span>
+                <h2 class="section-title">TAPs: Target Allocation Percentages</h2>
+                <p class="section-subtitle">เปอร์เซ็นต์เป้าหมายที่ควรจัดสรรตามขนาดรายได้ของธุรกิจ</p>
+            </div>
+
+            <div class="taps-explanation fade-in">
+                <p>
+                    TAPs คือ "เป้าหมาย" ที่เราต้องการไปให้ถึง ไม่ใช่จุดเริ่มต้น 
+                    สิ่งสำคัญคือต้องหา CAPs (Current Allocation Percentages) ของธุรกิจเราก่อน 
+                    แล้วค่อยๆ ปรับทีละนิดจนถึง TAPs
+                </p>
+            </div>
+
+            <div class="taps-table-wrapper fade-in">
+                <table class="taps-table">
+                    <thead>
+                        <tr>
+                            <th>Real Revenue Range</th>
+                            <th>Profit</th>
+                            <th>Owner's Comp</th>
+                            <th>Tax</th>
+                            <th>OpEx</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="revenue-range">$0 - $250K (0-8 ล้านบาท)</td>
+                            <td>5%</td>
+                            <td>50%</td>
+                            <td>15%</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td class="revenue-range">$250K - $500K (8-16 ล้านบาท)</td>
+                            <td>10%</td>
+                            <td>35%</td>
+                            <td>15%</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td class="revenue-range">$500K - $1M (16-32 ล้านบาท)</td>
+                            <td>15%</td>
+                            <td>20%</td>
+                            <td>15%</td>
+                            <td>50%</td>
+                        </tr>
+                        <tr>
+                            <td class="revenue-range">$1M - $5M (32-160 ล้านบาท)</td>
+                            <td>10%</td>
+                            <td>10%</td>
+                            <td>15%</td>
+                            <td>65%</td>
+                        </tr>
+                        <tr>
+                            <td class="revenue-range">$5M - $10M (160-320 ล้านบาท)</td>
+                            <td>15%</td>
+                            <td>5%</td>
+                            <td>15%</td>
+                            <td>65%</td>
+                        </tr>
+                        <tr>
+                            <td class="revenue-range">$10M+ (320+ ล้านบาท)</td>
+                            <td>20%</td>
+                            <td>0%</td>
+                            <td>15%</td>
+                            <td>65%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="calculation-example fade-in">
+                <h4>📊 ตัวอย่างการคำนวณ: ธุรกิจรายได้ 1 ล้านบาท/เดือน</h4>
+                <div class="calc-grid">
+                    <div class="calc-item income">
+                        <div class="label">รายได้รับ</div>
+                        <div class="value">฿1,000,000</div>
+                    </div>
+                    <div class="calc-item profit">
+                        <div class="label">Profit (10%)</div>
+                        <div class="value">฿100,000</div>
+                    </div>
+                    <div class="calc-item owner">
+                        <div class="label">Owner's Comp (20%)</div>
+                        <div class="value">฿200,000</div>
+                    </div>
+                    <div class="calc-item tax">
+                        <div class="label">Tax (15%)</div>
+                        <div class="value">฿150,000</div>
+                    </div>
+                    <div class="calc-item opex">
+                        <div class="label">OpEx (55%)</div>
+                        <div class="value">฿550,000</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="taps-note fade-in">
+                <h4>📝 วิธีใช้ตาราง TAPs</h4>
+                <ul>
+                    <li><strong>Real Revenue</strong> = รายได้หลังหักต้นทุนวัสดุและ Subcontractors (ไม่ใช่ Total Revenue)</li>
+                    <li>เริ่มจากหา <strong>CAPs</strong> (Current Allocation Percentages) ของคุณก่อน ดูว่าตอนนี้ใช้เท่าไหร่</li>
+                    <li>ค่อยๆ ปรับจาก CAPs ไปหา TAPs ทีละ <strong>1-3%</strong> ต่อไตรมาส อย่าเปลี่ยนทันที!</li>
+                    <li>ปรับตาราง TAPs ตามประเภทธุรกิจ: Service business จะมี OpEx ต่ำกว่า Product business</li>
+                    <li>Owner's Comp % จะลดลงเมื่อธุรกิจโต เพราะเงินเดือนไม่ต้องโตตามสัดส่วน</li>
+                </ul>
+            </div>
+
+            <div class="key-takeaway fade-in" style="background: rgba(255,255,255,0.1); margin-top: 3rem;">
+                <span class="key-takeaway-label" style="color: var(--gold);">Key Takeaway</span>
+                <h4 style="color: var(--white);">TAPs = เข็มทิศ ไม่ใช่ปลายทาง</h4>
+                <p style="color: rgba(255,255,255,0.9);">ใช้ TAPs เป็นแนวทาง แต่ปรับตามสถานการณ์จริงของธุรกิจ สิ่งสำคัญคือ "มีกำไร" ไม่ใช่ "ตาม % เป๊ะ"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10/25 Rhythm Section -->
+    <section class="rhythm-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">06 — THE RHYTHM</span>
+                <h2 class="section-title">จังหวะ 10/25</h2>
+                <p class="section-subtitle">ทำทุก 2 สัปดาห์ จนเป็นนิสัย</p>
+            </div>
+
+            <div class="rhythm-visual fade-in">
+                <div class="rhythm-day">
+                    <div class="rhythm-circle">
+                        <span class="day-number">10</span>
+                        <span class="day-label">ของเดือน</span>
+                    </div>
+                    <h4>Allocation Day #1</h4>
+                    <p>จัดสรรเงินรอบแรก</p>
+                </div>
+                <div class="rhythm-day">
+                    <div class="rhythm-circle">
+                        <span class="day-number">25</span>
+                        <span class="day-label">ของเดือน</span>
+                    </div>
+                    <h4>Allocation Day #2</h4>
+                    <p>จัดสรรเงินรอบสอง</p>
+                </div>
+            </div>
+
+            <div class="rhythm-process fade-in">
+                <h4>📋 ขั้นตอนใน Allocation Day (ใช้เวลา 10-15 นาที)</h4>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-num">1</div>
+                        <h5>เช็คยอด INCOME</h5>
+                        <p>ดูว่ามีเงินเข้ามาเท่าไหร่</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-num">2</div>
+                        <h5>คำนวณ %</h5>
+                        <p>คูณยอดด้วย % แต่ละบัญชี</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-num">3</div>
+                        <h5>โอนเงิน</h5>
+                        <p>ย้ายเงินไปแต่ละบัญชี</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-num">4</div>
+                        <h5>ซ่อน Profit & Tax</h5>
+                        <p>โอนไปธนาคารที่ 2</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-num">5</div>
+                        <h5>เสร็จ!</h5>
+                        <p>OpEx = เงินที่ใช้ได้</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study fade-in">
+                <h4 class="case-study-title">กรณี: ร้านซ่อมคอมพิวเตอร์</h4>
+                <div class="case-study-content">
+                    <p>
+                        คุณเจมส์เปิดร้านซ่อมคอม ทุกวันที่ 10 และ 25 เขาจะนั่งทำ Allocation 
+                        วันที่ 10 มกราคม: INCOME มี 180,000 บาท
+                    </p>
+                    <ul style="list-style: none; margin: 1rem 0;">
+                        <li>→ Profit (10%): 18,000 บาท → โอนไปธนาคารที่ 2</li>
+                        <li>→ Owner's Comp (35%): 63,000 บาท</li>
+                        <li>→ Tax (15%): 27,000 บาท → โอนไปธนาคารที่ 2</li>
+                        <li>→ OpEx (40%): 72,000 บาท → นี่คือเงินที่ใช้ได้จ่ายค่าใช้จ่าย</li>
+                    </ul>
+                    <div class="case-study-result">
+                        <strong>ผลลัพธ์:</strong> คุณเจมส์มีเงินเดือน 63,000 บาท และมีกำไรสะสม 18,000 บาท โดยไม่ต้องรอสิ้นปีมาคำนวณ!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quarterly Section -->
+    <section class="quarterly-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number" style="color: var(--gold);">07 — QUARTERLY RITUAL</span>
+                <h2 class="section-title">วันแจกกำไรประจำไตรมาส</h2>
+            </div>
+
+            <div class="quarterly-dates fade-in">
+                <div class="quarterly-date">
+                    <div class="month">มกราคม</div>
+                    <div class="day">10</div>
+                    <div class="quarter">Q4 Distribution</div>
+                </div>
+                <div class="quarterly-date">
+                    <div class="month">เมษายน</div>
+                    <div class="day">10</div>
+                    <div class="quarter">Q1 Distribution</div>
+                </div>
+                <div class="quarterly-date">
+                    <div class="month">กรกฎาคม</div>
+                    <div class="day">10</div>
+                    <div class="quarter">Q2 Distribution</div>
+                </div>
+                <div class="quarterly-date">
+                    <div class="month">ตุลาคม</div>
+                    <div class="day">10</div>
+                    <div class="quarter">Q3 Distribution</div>
+                </div>
+            </div>
+
+            <div class="quarterly-celebration fade-in">
+                <div class="celebration-icon">🎊</div>
+                <h3>ทำไมต้องเฉลิมฉลอง?</h3>
+                <p>
+                    การนำกำไร 50% มาให้รางวัลตัวเองไม่ใช่ความฟุ่มเฟือย แต่เป็น <strong>ส่วนสำคัญของระบบ!</strong>
+                    เมื่อสมองเห็นว่าการทำกำไรนำไปสู่รางวัลที่จับต้องได้ มันจะสร้างแรงจูงใจให้รักษาระบบต่อไป
+                </p>
+                <p style="color: var(--gold); font-weight: 600;">
+                    ⚠️ กฎสำคัญ: ใช้เงินนี้กับสิ่งที่ทำให้มีความสุข — ไม่ใช่จ่ายบิลหรือลงทุนกลับในธุรกิจ!
+                </p>
+                <div class="celebration-examples">
+                    <div class="celebration-example">
+                        <span>✈️</span>
+                        <p>ท่องเที่ยวกับครอบครัว</p>
+                    </div>
+                    <div class="celebration-example">
+                        <span>🍽️</span>
+                        <p>ดินเนอร์หรู</p>
+                    </div>
+                    <div class="celebration-example">
+                        <span>🛍️</span>
+                        <p>ซื้อของที่อยากได้</p>
+                    </div>
+                    <div class="celebration-example">
+                        <span>💆</span>
+                        <p>สปา / พักผ่อน</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="teachable fade-in" style="max-width: 800px; margin: 3rem auto 0;">
+                <span class="teachable-label">📢 สอนต่อได้</span>
+                <h4>กำไร 50% = รางวัล | กำไร 50% = สำรอง</h4>
+                <p>
+                    ทุกไตรมาส นำกำไร 50% มาเฉลิมฉลอง อีก 50% เก็บไว้เป็น "Vault" หรือเงินสำรองฉุกเฉินของธุรกิจ
+                    เมื่อ Vault มีเงินเพียงพอ (3-6 เดือนค่าใช้จ่าย) ค่อยนำส่วนเกินไปลงทุนหรือขยายธุรกิจ
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instant Assessment -->
+    <section class="assessment-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">08 — INSTANT ASSESSMENT</span>
+                <h2 class="section-title">วิเคราะห์สถานะปัจจุบัน</h2>
+                <p class="section-subtitle">ก่อนเริ่ม Profit First ต้องรู้ก่อนว่าตอนนี้เราอยู่ตรงไหน</p>
+            </div>
+
+            <div class="assessment-grid">
+                <div class="assessment-step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>หา Real Revenue</h3>
+                    <p>รายได้หลังหักต้นทุนวัสดุและผู้รับเหมาช่วง (ไม่รวมค่าแรง)</p>
+                    <div class="assessment-formula">
+                        Total Revenue<br>
+                        − Materials & Supplies<br>
+                        − Subcontractors<br>
+                        = <strong>Real Revenue</strong>
+                    </div>
+                </div>
+
+                <div class="assessment-step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>หา Actual Profit</h3>
+                    <p>กำไรจริงที่เหลือหลังจ่ายทุกอย่าง (ถ้าติดลบ = ขาดทุน)</p>
+                    <div class="assessment-formula">
+                        Real Revenue<br>
+                        − All Expenses<br>
+                        − Owner's Actual Pay<br>
+                        = <strong>Actual Profit</strong>
+                    </div>
+                </div>
+
+                <div class="assessment-step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>คำนวณ CAPs</h3>
+                    <p>เปอร์เซ็นต์การจัดสรรปัจจุบัน (สิ่งที่เป็นอยู่จริง)</p>
+                    <div class="assessment-formula">
+                        Profit ÷ Real Rev = Profit %<br>
+                        Owner Pay ÷ Real Rev = OC %<br>
+                        Tax ÷ Real Rev = Tax %<br>
+                        OpEx ÷ Real Rev = OpEx %
+                    </div>
+                </div>
+
+                <div class="assessment-step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>เทียบกับ TAPs</h3>
+                    <p>ดูว่าต้องปรับตรงไหน ปรับทีละนิด</p>
+                    <div class="assessment-formula">
+                        ถ้า CAPs ≠ TAPs<br>
+                        → ปรับทีละ 1-3%<br>
+                        → ทุกไตรมาส<br>
+                        → จนถึงเป้าหมาย
+                    </div>
+                </div>
+            </div>
+
+            <div class="assessment-example fade-in">
+                <h3>📊 ตัวอย่าง: วิเคราะห์ร้านเสื้อผ้าออนไลน์</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>รายการ</th>
+                            <th>CAPs (ปัจจุบัน)</th>
+                            <th>TAPs (เป้าหมาย)</th>
+                            <th>Gap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Real Revenue</td>
+                            <td>฿500,000/เดือน</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Profit</td>
+                            <td>2% (฿10,000)</td>
+                            <td>10% (฿50,000)</td>
+                            <td class="gap">-8%</td>
+                        </tr>
+                        <tr>
+                            <td>Owner's Comp</td>
+                            <td>10% (฿50,000)</td>
+                            <td>35% (฿175,000)</td>
+                            <td class="gap">-25%</td>
+                        </tr>
+                        <tr>
+                            <td>Tax</td>
+                            <td>0% (฿0)</td>
+                            <td>15% (฿75,000)</td>
+                            <td class="gap">-15%</td>
+                        </tr>
+                        <tr>
+                            <td>OpEx</td>
+                            <td>88% (฿440,000)</td>
+                            <td>40% (฿200,000)</td>
+                            <td class="gap positive">+48% (ลดได้)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 1rem; color: var(--slate-light);">
+                    💡 <strong>วิเคราะห์:</strong> ร้านนี้ใช้จ่าย OpEx สูงเกินไป (88% vs 40%) ต้องหาทางลดค่าใช้จ่าย 
+                    และเจ้าของจ่ายเงินเดือนตัวเองน้อยเกินไป ทำให้ต้องทำงานหนักแต่ไม่ได้รับค่าตอบแทนที่เหมาะสม
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mindset Section -->
+    <section class="mindset-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">09 — MINDSET SHIFTS</span>
+                <h2 class="section-title">การเปลี่ยนความคิด</h2>
+                <p class="section-subtitle">Profit First ไม่ใช่แค่เทคนิค แต่คือการเปลี่ยนวิธีคิดทั้งหมด</p>
+            </div>
+
+            <div class="mindset-grid">
+                <div class="mindset-card fade-in">
+                    <div class="mindset-from-to">
+                        <div class="mindset-from">เติบโตก่อน<br>กำไรทีหลัง</div>
+                        <div class="mindset-arrow">→</div>
+                        <div class="mindset-to">กำไรก่อน<br>เติบโตตาม</div>
+                    </div>
+                    <h3>Profitability over Growth</h3>
+                    <p>การเติบโตโดยไม่มีกำไรคือการสร้างหนี้ที่ใหญ่ขึ้น ธุรกิจเล็กที่กำไรดีกว่าธุรกิจใหญ่ที่ขาดทุน</p>
+                    <div class="mindset-story">
+                        "ผมเคยคิดว่าต้องโตก่อน กำไรมาทีหลัง พอโตแล้วก็ต้องโตต่อ สุดท้ายไม่เคยถึง 'ทีหลัง' เลย"
+                    </div>
+                </div>
+
+                <div class="mindset-card fade-in">
+                    <div class="mindset-from-to">
+                        <div class="mindset-from">ใช้ก่อน<br>เหลือเก็บ</div>
+                        <div class="mindset-arrow">→</div>
+                        <div class="mindset-to">เก็บก่อน<br>เหลือใช้</div>
+                    </div>
+                    <h3>Save First Spend Later</h3>
+                    <p>เมื่อเก็บเงินก่อน จะบังคับให้หาทางใช้เงินอย่างมีประสิทธิภาพมากขึ้น</p>
+                    <div class="mindset-story">
+                        "ตอนเงินน้อย เราหาทางรอด ตอนเงินเยอะ เราหาทางใช้ — ถ้าทำให้เงินน้อยลง (ด้วยการเก็บก่อน) เราก็จะหาทางรอดได้เสมอ"
+                    </div>
+                </div>
+
+                <div class="mindset-card fade-in">
+                    <div class="mindset-from-to">
+                        <div class="mindset-from">ดูยอดบัญชี<br>ตัดสินใจใช้</div>
+                        <div class="mindset-arrow">→</div>
+                        <div class="mindset-to">ดูบัญชี OPEX<br>ตัดสินใจใช้</div>
+                    </div>
+                    <h3>Controlled Spending</h3>
+                    <p>มองเฉพาะบัญชี OPEX เป็นเงินที่ใช้ได้ ไม่ใช่ยอดรวมทั้งหมด ป้องกันการใช้จ่ายเกิน</p>
+                    <div class="mindset-story">
+                        "เหมือนใช้ซองเงินสด ถ้าซองหมด ก็หมด ไม่มีการยืมจากซองอื่น"
+                    </div>
+                </div>
+
+                <div class="mindset-card fade-in">
+                    <div class="mindset-from-to">
+                        <div class="mindset-from">ทำทุกอย่าง<br>หาลูกค้าทุกคน</div>
+                        <div class="mindset-arrow">→</div>
+                        <div class="mindset-to">ทำสิ่งที่กำไร<br>เลือกลูกค้าดี</div>
+                    </div>
+                    <h3>Selectivity</h3>
+                    <p>ไม่ใช่ลูกค้าทุกคนที่คุ้มค่า ไม่ใช่ทุกงานที่ควรรับ โฟกัสสิ่งที่ทำกำไรจริง</p>
+                    <div class="mindset-story">
+                        "ลูกค้าที่จ่ายน้อยแต่เรียกร้องมาก vs ลูกค้าที่จ่ายดีและง่าย — ทำไมเราถึงรับทั้งสองประเภท?"
+                    </div>
+                </div>
+
+                <div class="mindset-card fade-in">
+                    <div class="mindset-from-to">
+                        <div class="mindset-from">กำไรคือ<br>สิ่งที่เหลือ</div>
+                        <div class="mindset-arrow">→</div>
+                        <div class="mindset-to">กำไรคือ<br>สิ่งที่ต้องมี</div>
+                    </div>
+                    <h3>Profit is Non-Negotiable</h3>
+                    <p>กำไรไม่ใช่ตัวเลือก แต่เป็นความจำเป็น ธุรกิจที่ไม่มีกำไรคืองานอดิเรกที่มีราคาแพง</p>
+                    <div class="mindset-story">
+                        "ถ้าธุรกิจไม่มีกำไร มันไม่ใช่ธุรกิจ มันคืองานการกุศลที่คุณเป็นคนบริจาค"
+                    </div>
+                </div>
+
+                <div class="mindset-card fade-in">
+                    <div class="mindset-from-to">
+                        <div class="mindset-from">ทำงานหนัก<br>ไม่ได้รางวัล</div>
+                        <div class="mindset-arrow">→</div>
+                        <div class="mindset-to">ทำงานฉลาด<br>รับรางวัลทุก Q</div>
+                    </div>
+                    <h3>Reward Yourself</h3>
+                    <p>ผู้ประกอบการสมควรได้รางวัลจากความเสี่ยงที่รับ การเฉลิมฉลองไตรมาสละครั้งไม่ใช่ความฟุ่มเฟือย แต่คือแรงจูงใจ</p>
+                    <div class="mindset-story">
+                        "คุณจะวิ่งมาราธอนได้นานแค่ไหน ถ้าไม่มีจุดพักและไม่มีเหรียญรางวัลที่เส้นชัย?"
+                    </div>
+                </div>
+            </div>
+
+            <div class="quote-box fade-in">
+                <blockquote>
+                    "The real measure of your wealth is how much you'd be worth if you lost all your money."
+                </blockquote>
+                <cite>— Mike Michalowicz</cite>
+                <p class="thai-translation">
+                    🇹🇭 "มูลค่าที่แท้จริงของความมั่งคั่งคือ คุณจะมีค่าเท่าไหร่ถ้าสูญเสียเงินทั้งหมด — คำตอบคือทักษะและระบบที่คุณสร้าง"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Common Mistakes Section -->
+    <section class="mistakes-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number" style="color: #FCA5A5;">10 — COMMON MISTAKES</span>
+                <h2 class="section-title">ข้อผิดพลาดที่พบบ่อย</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.7);">หลีกเลี่ยงกับดักเหล่านี้เพื่อให้ระบบ Profit First ได้ผล</p>
+            </div>
+
+            <div class="mistakes-grid">
+                <div class="mistake-card fade-in">
+                    <h3>❌ เปลี่ยน % ทันทีแบบหักดิบ</h3>
+                    <p>พยายามเปลี่ยนจาก 0% Profit เป็น 15% ในวันเดียว ทำให้ไม่มีเงินจ่ายค่าใช้จ่าย และล้มเลิกระบบ</p>
+                    <div class="mistake-fix">
+                        <strong>✅ แก้ไข:</strong>
+                        <p>เริ่มที่ 1% ก่อน แล้วเพิ่มทีละ 1-3% ทุกไตรมาส ให้เวลาธุรกิจปรับตัว</p>
+                    </div>
+                </div>
+
+                <div class="mistake-card fade-in">
+                    <h3>❌ หยิบเงินจาก PROFIT มาใช้</h3>
+                    <p>"ตอนนี้จำเป็น เดี๋ยวใส่คืน" แต่ไม่เคยใส่คืน และบัญชี PROFIT กลายเป็นบัญชีสำรองฉุกเฉิน</p>
+                    <div class="mistake-fix">
+                        <strong>✅ แก้ไข:</strong>
+                        <p>PROFIT คือ "รางวัล" ไม่ใช่เงินสำรอง ถ้าต้องการเงินสำรอง ให้เปิดบัญชีที่ 6: Emergency Fund</p>
+                    </div>
+                </div>
+
+                <div class="mistake-card fade-in">
+                    <h3>❌ เก็บบัญชีทั้งหมดไว้ธนาคารเดียวกัน</h3>
+                    <p>เห็นยอดรวมทั้งหมดใน App ธนาคาร ทำให้รู้สึกว่า "มีเงินเยอะ" และใช้จ่ายเกิน</p>
+                    <div class="mistake-fix">
+                        <strong>✅ แก้ไข:</strong>
+                        <p>แยก PROFIT และ TAX ไปธนาคารที่ 2 ที่ไม่มี Mobile App ไม่มีบัตร ATM เข้าถึงยาก</p>
+                    </div>
+                </div>
+
+                <div class="mistake-card fade-in">
+                    <h3>❌ ไม่ทำ Allocation Day สม่ำเสมอ</h3>
+                    <p>ทำๆ หยุดๆ บางเดือนทำ บางเดือนลืม ระบบไม่สม่ำเสมอก็ไม่ได้ผล</p>
+                    <div class="mistake-fix">
+                        <strong>✅ แก้ไข:</strong>
+                        <p>ตั้ง Calendar reminder วันที่ 10 และ 25 ทุกเดือน ทำจนเป็นนิสัย ใช้เวลาแค่ 10-15 นาที</p>
+                    </div>
+                </div>
+
+                <div class="mistake-card fade-in">
+                    <h3>❌ ไม่เฉลิมฉลองกำไร</h3>
+                    <p>"เก็บไว้ก่อนดีกว่า" ไม่เคยใช้กำไรให้รางวัลตัวเอง ทำให้รู้สึกว่าทำงานหนักแต่ไม่เคยได้อะไร</p>
+                    <div class="mistake-fix">
+                        <strong>✅ แก้ไข:</strong>
+                        <p>ทุกไตรมาส นำกำไร 50% มาเฉลิมฉลอง บังคับตัวเอง! นี่คือแรงจูงใจให้รักษาระบบต่อไป</p>
+                    </div>
+                </div>
+
+                <div class="mistake-card fade-in">
+                    <h3>❌ ใช้ % เดียวกับทุกธุรกิจ</h3>
+                    <p>ใช้ตาราง TAPs แบบตายตัวโดยไม่ปรับตามประเภทธุรกิจ ทำให้ไม่ fit กับความเป็นจริง</p>
+                    <div class="mistake-fix">
+                        <strong>✅ แก้ไข:</strong>
+                        <p>ปรับ % ตามประเภทธุรกิจ: Service business มี OpEx ต่ำกว่า, Product business มี Cost of Goods สูงกว่า</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="tips-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">11 — PRO TIPS</span>
+                <h2 class="section-title">เคล็ดลับจากผู้เชี่ยวชาญ</h2>
+                <p class="section-subtitle">ข้อควรรู้เพื่อให้ระบบ Profit First ได้ผลดีที่สุด</p>
+            </div>
+
+            <div class="tips-grid">
+                <div class="tip-card fade-in">
+                    <h3><span>🐢</span> เริ่มช้าๆ แต่มั่นคง</h3>
+                    <p>อย่าเปลี่ยนจาก 0% Profit เป็น 15% ทันที เริ่มที่ 1% ก่อน แล้วเพิ่มทีละนิด ทุกไตรมาสปรับขึ้น 1-3%</p>
+                </div>
+
+                <div class="tip-card fade-in">
+                    <h3><span>🏦</span> เลือกธนาคารที่เข้าถึงยาก</h3>
+                    <p>บัญชี PROFIT และ TAX ควรอยู่ธนาคารที่ไม่มี Mobile App ไม่มี ATM ใกล้บ้าน ยิ่งเข้าถึงยาก ยิ่งไม่หยิบใช้</p>
+                </div>
+
+                <div class="tip-card fade-in">
+                    <h3><span>📅</span> ตั้งเวลาแจ้งเตือน</h3>
+                    <p>ตั้ง Calendar reminder สำหรับวันที่ 10 และ 25 ทุกเดือน ทำจนเป็นอัตโนมัติ ไม่ต้องคิด</p>
+                </div>
+
+                <div class="tip-card fade-in">
+                    <h3><span>🔪</span> ตัดค่าใช้จ่ายก่อนเริ่ม</h3>
+                    <p>ก่อนเริ่มระบบ ลองตัดค่าใช้จ่ายที่ไม่จำเป็น 10-15% ก่อน จะทำให้ระบบเริ่มต้นได้ง่ายขึ้น</p>
+                </div>
+
+                <div class="tip-card fade-in">
+                    <h3><span>🎯</span> อย่าแตะบัญชี PROFIT</h3>
+                    <p>ไม่ว่าจะเกิดอะไรขึ้น ห้ามหยิบเงินจากบัญชี PROFIT มาใช้ในกิจการ นี่คือ "รางวัล" ไม่ใช่เงินสำรอง</p>
+                </div>
+
+                <div class="tip-card fade-in">
+                    <h3><span>📊</span> ทำ Assessment ทุกไตรมาส</h3>
+                    <p>อัปเดต CAPs ทุก 3 เดือน เพื่อดูความก้าวหน้า และปรับ % ให้เข้าใกล้ TAPs มากขึ้น</p>
+                </div>
+
+                <div class="tip-card fade-in">
+                    <h3><span>👥</span> หา Profit First Professional</h3>
+                    <p>ถ้าธุรกิจซับซ้อน ลองหานักบัญชีที่มี Certification จาก Profit First ช่วยวางระบบ</p>
+                </div>
+
+                <div class="tip-card fade-in">
+                    <h3><span>🚫</span> อย่าหลอกตัวเอง</h3>
+                    <p>ถ้า OPEX ไม่พอ หมายความว่าต้องลดค่าใช้จ่ายหรือเพิ่มรายได้ ไม่ใช่ยืมจากบัญชีอื่น</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Summary Section -->
+    <section class="summary-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">12 — KEY TAKEAWAYS</span>
+                <h2 class="section-title">สรุป 10 ข้อที่ต้องจำ</h2>
+                <p class="section-subtitle">สิ่งที่ต้องจดจำและนำไปสอนต่อได้</p>
+            </div>
+
+            <div class="summary-grid">
+                <div class="summary-card fade-in">
+                    <div class="emoji">1️⃣</div>
+                    <h3>รายได้ ≠ กำไร</h3>
+                    <p>ธุรกิจที่มีรายได้สูงไม่ได้หมายความว่าจะมีกำไร ต้องวัดกำไร ไม่ใช่แค่วัดยอดขาย</p>
+                </div>
+                <div class="summary-card fade-in">
+                    <div class="emoji">2️⃣</div>
+                    <h3>เก็บก่อน ใช้ทีหลัง</h3>
+                    <p>Sales - Profit = Expenses สูตรที่เปลี่ยนทุกอย่าง</p>
+                </div>
+                <div class="summary-card fade-in">
+                    <div class="emoji">3️⃣</div>
+                    <h3>5 บัญชี 1 ระบบ</h3>
+                    <p>INCOME → PROFIT, OWNER'S COMP, TAX, OPEX</p>
+                </div>
+                <div class="summary-card fade-in">
+                    <div class="emoji">4️⃣</div>
+                    <h3>จานเล็ก กินน้อย</h3>
+                    <p>แบ่งเงินให้เห็นน้อยลง จะใช้น้อยลงโดยอัตโนมัติ</p>
+                </div>
+                <div class="summary-card fade-in">
+                    <div class="emoji">5️⃣</div>
+                    <h3>ซ่อนเงินให้พ้นมือ</h3>
+                    <p>PROFIT และ TAX ต้องอยู่ธนาคารที่เข้าถึงยาก</p>
+                </div>
+                <div class="summary-card fade-in">
+                    <div class="emoji">6️⃣</div>
+                    <h3>10/25 คือจังหวะ</h3>
+                    <p>ทำ Allocation ทุกวันที่ 10 และ 25 ของเดือน</p>
+                </div>
+                <div class="summary-card fade-in">
+                    <div class="emoji">7️⃣</div>
+                    <h3>ไตรมาสละครั้ง เฉลิมฉลอง</h3>
+                    <p>นำกำไร 50% มาให้รางวัลตัวเอง อีก 50% เก็บเป็นสำรอง</p>
+                </div>
+                <div class="summary-card fade-in">
+                    <div class="emoji">8️⃣</div>
+                    <h3>เริ่มช้า แต่มั่นคง</h3>
+                    <p>ปรับ % ทีละนิด 1-3% ต่อไตรมาส อย่าหักดิบ</p>
+                </div>
+                <div class="summary-card fade-in">
+                    <div class="emoji">9️⃣</div>
+                    <h3>ระบบ ไม่ใช่วินัย</h3>
+                    <p>สร้างระบบที่บังคับพฤติกรรมที่ถูกต้องโดยอัตโนมัติ</p>
+                </div>
+                <div class="summary-card fade-in">
+                    <div class="emoji">🔟</div>
+                    <h3>กำไรไม่ใช่ตัวเลือก</h3>
+                    <p>ธุรกิจที่ไม่มีกำไร คืองานอดิเรกที่มีราคาแพง</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>เปลี่ยนธุรกิจของคุณวันนี้</h2>
+                <p>Profit First ไม่ใช่แค่วิธีจัดการเงิน แต่คือการปลดปล่อยตัวเองจากกับดักของธุรกิจที่มีรายได้แต่ไม่มีกำไร</p>
+                
+                <div class="cta-quote">
+                    <blockquote>
+                        "Revenue is vanity, profit is sanity, and cash is king."
+                    </blockquote>
+                    <cite>— Mike Michalowicz</cite>
+                </div>
+
+                <div class="action-checklist">
+                    <h4>✅ Checklist เริ่มต้น Profit First วันนี้</h4>
+                    <ul>
+                        <li>เปิด 5 บัญชีธนาคาร (3 หลัก + 2 ซ่อน)</li>
+                        <li>ทำ Instant Assessment หา CAPs ปัจจุบัน</li>
+                        <li>กำหนด % เริ่มต้น (เริ่มที่ 1% Profit)</li>
+                        <li>ตั้ง Calendar วันที่ 10 และ 25</li>
+                        <li>ตั้ง Calendar ไตรมาส (10 ม.ค., เม.ย., ก.ค., ต.ค.)</li>
+                        <li>บอกคนรอบข้างเกี่ยวกับระบบนี้ (Accountability)</li>
+                        <li>เริ่มทำ Allocation Day แรก!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>สรุปหนังสือ <strong class="author-credit">"Profit First"</strong> โดย Mike Michalowicz</p>
+            <p>สร้างโดย <strong class="author-credit">Tomz</strong> | Enersys Co., Ltd.</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
+                "เปลี่ยนวิธีคิด เปลี่ยนวิธีจัดการเงิน เปลี่ยนธุรกิจ เปลี่ยนชีวิต"
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Fade in on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
