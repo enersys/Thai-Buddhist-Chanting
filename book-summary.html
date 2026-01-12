@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สรุปหนังสือ: Boundaries, Priorities, and Finding Work-Life Balance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #12122a;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.08);
+            --text-primary: #f8f9fa;
+            --text-secondary: #b0b0c0;
+            --text-muted: #71717a;
+            --accent-gold: #f0a500;
+            --accent-orange: #ff6b35;
+            --accent-red: #e63946;
+            --accent-green: #2d6a4f;
+            --accent-teal: #0097a7;
+            --accent-purple: #7b2cbf;
+            --accent-blue: #3b82f6;
+            --gradient-hero: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --gradient-gold: linear-gradient(135deg, #f0a500 0%, #ff6b35 100%);
+            --gradient-purple: linear-gradient(135deg, #7b2cbf 0%, #3b82f6 100%);
+        }
+        [data-theme="light"] {
+            --bg-primary: #fafafa;
+            --bg-secondary: #ffffff;
+            --bg-card: rgba(0,0,0,0.02);
+            --border: rgba(0,0,0,0.08);
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a5a;
+            --text-muted: #71717a;
+            --gradient-hero: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.9;
+            font-size: 17px;
+        }
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--gradient-gold);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(240,165,0,0.3);
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .hero {
+            background: var(--gradient-hero);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 70%, rgba(240,165,0,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(123,44,191,0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, 5%) rotate(5deg); }
+        }
+        .hero-content { position: relative; z-index: 1; }
+        .badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: var(--gradient-gold);
+            color: #000;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 20px;
+        }
+        .badge.series { background: var(--gradient-purple); color: #fff; }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .author { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 20px; }
+        .author-bio {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+        }
+        .hero-quote {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--accent-gold);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            padding: 20px;
+            border-left: 3px solid var(--accent-gold);
+            text-align: left;
+        }
+        .rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1rem;
+        }
+        .stars { color: var(--accent-gold); font-size: 1.3rem; }
+        .quick-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin: -50px auto 50px;
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+        }
+        .info-item { text-align: center; }
+        .info-icon { font-size: 2rem; margin-bottom: 10px; }
+        .info-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .info-value { font-weight: 600; color: var(--text-primary); }
+        section { padding: 60px 0; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #000;
+            margin-bottom: 15px;
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .section-subtitle { color: var(--text-muted); font-size: 1rem; }
+        .content-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 30px;
+        }
+        .content-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .card-icon.gold { background: rgba(240,165,0,0.2); }
+        .card-icon.purple { background: rgba(123,44,191,0.2); }
+        .card-icon.green { background: rgba(45,106,79,0.2); }
+        .card-icon.teal { background: rgba(0,151,167,0.2); }
+        .card-icon.blue { background: rgba(59,130,246,0.2); }
+        .card-icon.red { background: rgba(230,57,70,0.2); }
+        .highlight-box {
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        .highlight-box.key { background: rgba(45,106,79,0.15); border-left: 4px solid var(--accent-green); }
+        .highlight-box.example { background: rgba(240,165,0,0.1); border-left: 4px solid var(--accent-gold); }
+        .highlight-box.warning { background: rgba(230,57,70,0.1); border: 2px dashed var(--accent-red); border-left: 4px solid var(--accent-red); }
+        .highlight-box.quote { background: rgba(123,44,191,0.1); border-left: 4px solid var(--accent-purple); }
+        .highlight-box.situation { background: rgba(0,151,167,0.1); border-left: 4px solid var(--accent-teal); }
+        .highlight-box.unverified { background: rgba(113,113,122,0.1); border: 2px dashed var(--text-muted); }
+        .highlight-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            opacity: 0.9;
+        }
+        .story-box {
+            background: linear-gradient(135deg, rgba(240,165,0,0.05) 0%, rgba(123,44,191,0.05) 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+        .story-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .author-profile {
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 1px solid var(--border);
+        }
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+        .author-details h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--accent-gold); }
+        .author-details .role { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px; }
+        .author-details p { font-size: 0.95rem; line-height: 1.7; }
+        .framework-box {
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-gold);
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 40px;
+        }
+        .framework-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .framework-source { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px; }
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .framework-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        .framework-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-gold);
+        }
+        .framework-letter {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+        }
+        .framework-word {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 5px 0;
+        }
+        .framework-desc { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        .toc-item:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .toc-icon { font-size: 1.5rem; }
+        .toc-text { font-weight: 500; }
+        .audience-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
+        .audience-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid var(--border);
+        }
+        .audience-card.suitable { border-top: 4px solid var(--accent-green); }
+        .audience-card.not-suitable { border-top: 4px solid var(--accent-red); }
+        .audience-card h3 { margin-bottom: 20px; font-size: 1.2rem; }
+        .audience-card ul { list-style: none; }
+        .audience-card li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .audience-card li:last-child { border-bottom: none; }
+        .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
+        .checklist { list-style: none; padding: 0; }
+        .checklist li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+            line-height: 1.7;
+        }
+        .checklist li:last-child { border-bottom: none; }
+        .checklist li::before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+        .quote-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .quote-card::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--accent-gold);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            opacity: 0.3;
+        }
+        .quote-text {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            padding-left: 40px;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        .quote-source {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 40px;
+        }
+        .quote-author { font-size: 0.9rem; color: var(--text-muted); }
+        .copy-btn {
+            background: var(--accent-gold);
+            color: #000;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .copy-btn:hover { transform: scale(1.05); }
+        .action-step {
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .step-number {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #000;
+            flex-shrink: 0;
+        }
+        .step-content h4 { margin-bottom: 8px; font-size: 1.1rem; }
+        .step-content p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
+        .ai-opinion {
+            display: inline-block;
+            padding: 3px 10px;
+            background: rgba(59,130,246,0.2);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--accent-blue);
+            margin-left: 10px;
+        }
+        .verification-log {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+        .verification-log h3 { margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .source-list { list-style: none; }
+        .source-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+        .source-list li::before { content: '🔗'; }
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        @media print {
+            .theme-toggle, .progress-bar, .copy-btn { display: none; }
+            body { background: #fff; color: #000; }
+            .hero { background: #f5f5f5; }
+        }
+        @media (max-width: 768px) {
+            .two-col, .audience-grid, .framework-grid { grid-template-columns: 1fr; }
+            .author-profile { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="badge-row">
+                <span class="badge series">HBR Work Smart Series</span>
+                <span class="badge">Published May 2024</span>
+            </div>
+            <h1>Boundaries, Priorities, and Finding Work-Life Balance</h1>
+            <p class="author">โดย Harvard Business Review</p>
+            <p class="author-bio">
+                รวบรวม 20 บทความคัดสรรจากผู้เชี่ยวชาญระดับโลก ได้แก่ <strong>Russell Glass</strong> (อดีต CEO Headspace ผู้เปลี่ยนแปลงวงการสุขภาพจิต), 
+                <strong>Morra Aarons-Mele</strong> (ผู้เขียน The Anxious Achiever และ Host ของ Podcast ด้าน Mental Health อันดับต้นๆ ของโลก), 
+                <strong>Dr. Alyssa F. Westring</strong> (ศาสตราจารย์ด้าน Management), <strong>Dr. Amantha Imber</strong> (นักจิตวิทยาองค์กรผู้ได้รับรางวัล Thinkers50),
+                <strong>Ioana Lupu</strong> และ <strong>Mayra Ruiz-Castro</strong> (นักวิจัยผู้ศึกษา Work-Life Balance จาก 200 บทสัมภาษณ์เชิงลึก),
+                <strong>Carson Tate</strong> (ผู้เชี่ยวชาญด้าน Productivity ที่ทำงานกับ Fortune 500), และ <strong>Joe Sanok</strong> (ผู้เขียน Thursday is the New Friday)
+            </p>
+            <blockquote class="hero-quote">
+                "Work-life balance is a cycle, not an achievement. It's not something you do once and check off the list. 
+                It requires regularly pausing, evaluating your emotions, reprioritizing, and making changes throughout your career."
+                <br><small style="color: var(--text-muted);">— Ioana Lupu & Mayra Ruiz-Castro, จากงานวิจัยที่สัมภาษณ์คนทำงาน 78 คน</small>
+            </blockquote>
+            <div class="rating">
+                <span class="stars">★★★★☆</span>
+                <span>4.2/5 — แนะนำสำหรับคนทำงานรุ่นใหม่ที่ต้องการสร้างสมดุลชีวิต</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quick Info Box -->
+    <div class="container">
+        <div class="quick-info">
+            <div class="info-item">
+                <div class="info-icon">📖</div>
+                <div class="info-label">รูปแบบ</div>
+                <div class="info-value">20 บทความ</div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">📅</div>
+                <div class="info-label">ปีที่พิมพ์</div>
+                <div class="info-value">พฤษภาคม 2024</div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">🏷️</div>
+                <div class="info-label">หมวดหมู่</div>
+                <div class="info-value">Self-Help / Business</div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">⏱️</div>
+                <div class="info-label">เวลาอ่าน</div>
+                <div class="info-value">3-4 ชั่วโมง</div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">🎯</div>
+                <div class="info-label">ระดับความยาก</div>
+                <div class="info-value">ง่าย-ปานกลาง</div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">🏢</div>
+                <div class="info-label">สำนักพิมพ์</div>
+                <div class="info-value">HBR Press</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Who Should Read -->
+    <section id="audience">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2>ใครควรอ่าน / ไม่ควรอ่าน</h2>
+                <p class="section-subtitle">ช่วยคุณตัดสินใจว่าหนังสือเล่มนี้เหมาะกับคุณหรือไม่</p>
+            </div>
+
+            <div class="audience-grid">
+                <div class="audience-card suitable">
+                    <h3>✅ เหมาะสำหรับ</h3>
+                    <ul>
+                        <li><strong>คนทำงานช่วงต้น Career (0-10 ปี)</strong> — ซีรีส์ Work Smart ออกแบบมาสำหรับกลุ่มนี้โดยเฉพาะ เพื่อช่วยให้เริ่มต้นอาชีพอย่างถูกทิศทาง</li>
+                        <li><strong>คนที่รู้สึก Burnout หรือกำลังจะหมดไฟ</strong> — มีกรอบความคิดและเครื่องมือที่พิสูจน์แล้วว่าช่วยได้จริง</li>
+                        <li><strong>ผู้ที่ชอบอ่านบทความสั้นๆ กระชับ</strong> — แต่ละบทความ 10-15 นาที เหมาะกับคนที่มีเวลาจำกัด</li>
+                        <li><strong>Working Parents ที่ต้องดูแลครอบครัวและงาน</strong> — มีหลายบทที่พูดถึงการจัดสมดุลโดยเฉพาะ</li>
+                        <li><strong>คนที่ต้องการ Practical Tips ที่ใช้ได้ทันที</strong> — ไม่ใช่ทฤษฎีลอยๆ แต่มี Action Items ชัดเจน</li>
+                        <li><strong>คนที่ทำงาน Remote หรือ Hybrid</strong> — มีคำแนะนำเฉพาะสำหรับการแยกขอบเขตงานและชีวิตส่วนตัวในยุค WFH</li>
+                    </ul>
+                </div>
+
+                <div class="audience-card not-suitable">
+                    <h3>❌ อาจไม่เหมาะสำหรับ</h3>
+                    <ul>
+                        <li><strong>ผู้บริหารระดับสูงที่มีประสบการณ์มาก</strong> — เนื้อหาอาจเป็น Basic เพราะกลุ่มเป้าหมายคือคนทำงานรุ่นใหม่</li>
+                        <li><strong>คนที่ต้องการหนังสือเชิงลึกแบบ Academic</strong> — นี่เป็นคู่มือปฏิบัติ ไม่ใช่งานวิจัยเชิงวิชาการ</li>
+                        <li><strong>คนที่คาดหวังเนื้อหาใหม่ทั้งหมด</strong> — บทความถูก Curate จากที่เคยลง HBR มาก่อน (ตั้งแต่ปี 2019-2024)</li>
+                        <li><strong>คนที่ต้องการ One-Size-Fits-All Solution</strong> — หนังสือเสนอหลายแนวทาง ต้องเลือกที่เหมาะกับบริบทของตัวเอง</li>
+                        <li><strong>คนที่ต้องการมุมมองจากบริบทเอเชีย</strong> — ผู้เขียนส่วนใหญ่เป็นชาวตะวันตก บริบทบางอย่างอาจต้องปรับใช้</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <section id="toc">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2>สารบัญ</h2>
+                <p class="section-subtitle">เลือกหัวข้อที่ต้องการอ่าน</p>
+            </div>
+
+            <div class="toc-grid">
+                <a href="#overview" class="toc-item"><span class="toc-icon">🎯</span><span class="toc-text">ภาพรวมและแนวคิดหลัก</span></a>
+                <a href="#authors" class="toc-item"><span class="toc-icon">👤</span><span class="toc-text">รู้จักผู้เขียน</span></a>
+                <a href="#framework" class="toc-item"><span class="toc-icon">⚙️</span><span class="toc-text">Framework หลัก</span></a>
+                <a href="#boundaries" class="toc-item"><span class="toc-icon">🛡️</span><span class="toc-text">การตั้ง Boundaries</span></a>
+                <a href="#burnout" class="toc-item"><span class="toc-icon">🔥</span><span class="toc-text">รับมือกับ Burnout</span></a>
+                <a href="#energy" class="toc-item"><span class="toc-icon">⚡</span><span class="toc-text">บริหารพลังงาน</span></a>
+                <a href="#selfcare" class="toc-item"><span class="toc-icon">💆</span><span class="toc-text">Self-Care ที่ใช่</span></a>
+                <a href="#action" class="toc-item"><span class="toc-icon">✅</span><span class="toc-text">Action Plan</span></a>
+                <a href="#quotes" class="toc-item"><span class="toc-icon">💬</span><span class="toc-text">Golden Quotes</span></a>
+                <a href="#critique" class="toc-item"><span class="toc-icon">⚖️</span><span class="toc-text">วิจารณ์และข้อจำกัด</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2>ภาพรวมและแนวคิดหลัก</h2>
+                <p class="section-subtitle">เข้าใจหัวใจสำคัญของหนังสือ</p>
+            </div>
+
+            <div class="content-card">
+                <h3><span class="card-icon gold">📖</span> เกี่ยวกับหนังสือ</h3>
+                <p style="margin-bottom: 20px;">
+                    <strong>"Boundaries, Priorities, and Finding Work-Life Balance"</strong> เป็นส่วนหนึ่งของซีรีส์ <em>HBR Work Smart</em> 
+                    ที่ออกแบบมาสำหรับคนทำงานในช่วงเริ่มต้นอาชีพ (0-10 ปีแรก) โดยเฉพาะ ซีรีส์นี้มีเป้าหมายเพื่อช่วยให้คนรุ่นใหม่ 
+                    "ก้าวเข้าสู่โลกการทำงานอย่างมั่นใจ พร้อมเครื่องมือที่จำเป็นสำหรับการเติบโตในสายอาชีพ"
+                </p>
+                <p style="margin-bottom: 20px;">
+                    หนังสือเล่มนี้รวบรวม <strong>20 บทความคัดสรร</strong> จากนักเขียนและผู้เชี่ยวชาญที่เคยตีพิมพ์ใน Harvard Business Review 
+                    ตั้งแต่ปี 2019-2024 มาไว้ในที่เดียว พร้อมจัดหมวดหมู่ใหม่ให้เป็นระบบ ทำให้ผู้อ่านสามารถเข้าถึงความรู้ที่กระจัดกระจายได้ง่ายขึ้น
+                </p>
+
+                <div class="story-box">
+                    <div class="story-title">📚 ที่มาของซีรีส์ Work Smart</div>
+                    <p style="margin-bottom: 15px;">
+                        HBR ตระหนักว่าคนทำงานรุ่นใหม่ในยุคนี้ต้องเผชิญกับความท้าทายที่แตกต่างจากคนรุ่นก่อน ไม่ว่าจะเป็น 
+                        การทำงานแบบ Remote/Hybrid ที่ทำให้ขอบเขตระหว่างงานและชีวิตส่วนตัวเลือนลาง, 
+                        ความคาดหวังให้ "ออนไลน์" ตลอดเวลา, และปัญหา Burnout ที่เพิ่มสูงขึ้นอย่างน่าตกใจหลังช่วง Covid-19
+                    </p>
+                    <p>
+                        Russell Glass อดีต CEO ของ Headspace ซึ่งเขียนบทนำของหนังสือ เล่าว่า 
+                        <em>"สุขภาพจิตอาจเป็นภาวะเดียวที่คุณถูกขอให้ใช้อวัยวะที่กำลังมีปัญหาในการแก้ไขปัญหานั้น"</em> 
+                        นั่นคือเหตุผลว่าทำไมเราถึงต้องการ "คู่มือ" และ "เครื่องมือ" ที่ช่วยนำทาง ไม่ใช่แค่บอกให้ "พยายามมากขึ้น"
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3><span class="card-icon purple">💡</span> แนวคิดหลัก (Core Thesis)</h3>
+                
+                <div class="highlight-box key">
+                    <div class="highlight-label">🔑 Key Message</div>
+                    <p style="font-size: 1.15rem; font-weight: 500; margin-bottom: 15px;">
+                        "Work-Life Balance ไม่ใช่เป้าหมายที่ทำครั้งเดียวแล้วจบ 
+                        แต่เป็น <strong>วัฏจักร (Cycle)</strong> ที่ต้องหมุนวนซ้ำตลอดชีวิตการทำงาน"
+                    </p>
+                    <p>
+                        — Ioana Lupu (ศาสตราจารย์ ESSEC Business School) และ Mayra Ruiz-Castro (มหาวิทยาลัย Roehampton, UK) 
+                        ผู้ทำการวิจัยเชิงลึกกับคนทำงาน 78 คน จาก 200 บทสัมภาษณ์ในบริษัทกฎหมายและบัญชีชั้นนำในลอนดอน
+                    </p>
+                </div>
+
+                <div class="story-box">
+                    <div class="story-title">🔬 งานวิจัยที่อยู่เบื้องหลัง</div>
+                    <p style="margin-bottom: 15px;">
+                        ศาสตราจารย์ Lupu และ Ruiz-Castro ค้นพบว่าคนทำงานส่วนใหญ่ที่พวกเขาสัมภาษณ์ (ในสาขาที่มีชื่อว่าเป็นงานหนัก เช่น กฎหมาย และบัญชี) 
+                        มักอธิบายงานของตัวเองว่า <em>"demanding, exhausting, and chaotic"</em> และพวกเขาถือว่าการทำงานหนักเป็น "เรื่องปกติที่หลีกเลี่ยงไม่ได้"
+                    </p>
+                    <p style="margin-bottom: 15px;">
+                        แต่น่าสนใจว่า <strong>มีคนกลุ่มน้อย</strong> ที่สามารถต้านทานแรงกดดันนี้ได้ และสร้างสมดุลที่ดีกว่า 
+                        พวกเขาทำได้อย่างไร? งานวิจัยชี้ว่าคนเหล่านี้ผ่านกระบวนการ 5 ขั้นตอน:
+                    </p>
+                    <ol style="margin-left: 25px; line-height: 2;">
+                        <li><strong>Pause and Denormalize (หยุดและตั้งคำถาม)</strong> — ถอยออกมาถามตัวเองว่า "อะไรทำให้เราเครียด? อะไรที่เราเสียสละไป?"</li>
+                        <li><strong>Pay Attention to Your Emotions (ฟังอารมณ์ตัวเอง)</strong> — รู้สึกอย่างไรกับสถานการณ์ปัจจุบัน? มีพลังหรือหมดแรง?</li>
+                        <li><strong>Reprioritize (ทบทวนลำดับความสำคัญ)</strong> — อะไรคือสิ่งที่จะเสียใจถ้าไม่ทำ?</li>
+                        <li><strong>Consider Your Alternatives (พิจารณาทางเลือก)</strong> — มีอะไรที่ทำได้แตกต่างไปบ้าง?</li>
+                        <li><strong>Implement Changes (ลงมือเปลี่ยน)</strong> — เปลี่ยนแปลงทั้งภายนอก (ตารางงาน, งานที่รับ) และภายใน (ความคาดหวัง, วิธีคิด)</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3><span class="card-icon red">❓</span> ปัญหาที่หนังสือช่วยแก้ไข</h3>
+                <ul class="checklist">
+                    <li>ทำงานหนักจนรู้สึกหมดไฟ แต่ไม่รู้จะหยุดอย่างไร เพราะกลัวจะถูกมองว่าไม่ทุ่มเท</li>
+                    <li>ไม่รู้วิธีปฏิเสธงานอย่างมืออาชีพ โดยไม่ทำลายความสัมพันธ์กับเพื่อนร่วมงานหรือหัวหน้า</li>
+                    <li>แยกเวลาส่วนตัวกับงานไม่ออก โดยเฉพาะในยุค Work From Home ที่บ้านกลายเป็นที่ทำงาน</li>
+                    <li>รู้สึกผิดเมื่อพักผ่อน รู้สึกว่าต้องทำงานตลอดเวลาเพื่อพิสูจน์คุณค่าตัวเอง</li>
+                    <li>มี Inner Critic (เสียงวิจารณ์ภายใน) ที่โหดร้ายกับตัวเอง กลัวไม่ดีพอ กลัวพลาด</li>
+                    <li>อยากทำโปรเจกต์ส่วนตัว เรียนต่อ หรือทำ Side Hustle แต่รู้สึกว่าไม่มีเวลา</li>
+                    <li>ไม่รู้วิธีดูแลสุขภาพจิตในที่ทำงาน หรือไม่รู้จะเริ่มต้น Self-Care อย่างไร</li>
+                    <li>รู้สึกว่าชีวิตไม่ Balance แต่ไม่รู้ว่า "Balance" ที่ใช่สำหรับตัวเองคืออะไร</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Authors Section -->
+    <section id="authors">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2>รู้จักผู้เขียนคนสำคัญ</h2>
+                <p class="section-subtitle">เรียนรู้จากผู้เชี่ยวชาญระดับโลก</p>
+            </div>
+
+            <div class="author-profile">
+                <div class="author-avatar">👤</div>
+                <div class="author-details">
+                    <h4>Russell Glass — ผู้เขียนบทนำ</h4>
+                    <div class="role">อดีต CEO, Headspace Health</div>
+                    <p>
+                        Russell Glass เป็นผู้นำธุรกิจที่เปลี่ยนชีวิตตัวเองด้วย Meditation และนำประสบการณ์นั้นมาช่วยคนอื่นในฐานะ CEO ของ Headspace 
+                        เขาเล่าว่า <em>"Mindfulness เปลี่ยนชีวิตผม — ทำให้ผมเป็นสามี พ่อ และ CEO ที่ดีขึ้น"</em>
+                    </p>
+                    <p style="margin-top: 10px;">
+                        Glass เคยเป็น CEO ของ Ginger (บริการสุขภาพจิตออนไลน์) และนำบริษัทควบรวมกับ Headspace ในปี 2021 
+                        สร้างแพลตฟอร์มสุขภาพจิตที่ครบวงจรที่สุดในโลก เขาเปรียบ Headspace ว่าเป็น <em>"แปรงสีฟันของสมอง"</em> — 
+                        สิ่งที่เราควรทำทุกวันเพื่อรักษาสุขภาพจิต เหมือนที่เราแปรงฟันเพื่อสุขภาพฟัน
+                    </p>
+                </div>
+            </div>
+
+            <div class="author-profile">
+                <div class="author-avatar">👩</div>
+                <div class="author-details">
+                    <h4>Morra Aarons-Mele</h4>
+                    <div class="role">ผู้เขียน "The Anxious Achiever" และ Host ของ Podcast ชื่อเดียวกัน</div>
+                    <p>
+                        Morra เป็นผู้เชี่ยวชาญด้านสุขภาพจิตในที่ทำงาน เธอเปิดเผยอย่างตรงไปตรงมาว่าตัวเองเป็น "Anxious Achiever" — 
+                        คนที่ประสบความสำเร็จแต่ก็ต่อสู้กับความวิตกกังวลมาตลอดชีวิต
+                    </p>
+                    <p style="margin-top: 10px;">
+                        หนังสือ "The Anxious Achiever" ของเธอได้รับเลือกให้เป็นหนึ่งใน <strong>10 Best Management Books of 2024</strong> 
+                        โดย Thinkers50 และเธอได้รับรางวัล Mental Health America's Media Award ปี 2023
+                    </p>
+                    <p style="margin-top: 10px;">
+                        ในหนังสือเล่มนี้ Morra เขียนเกี่ยวกับ <strong>"Thought Traps"</strong> — กับดักความคิด 11 รูปแบบที่ทำให้คนทำงานเครียดโดยไม่รู้ตัว 
+                        เช่น All-or-Nothing Thinking, Catastrophizing, และ Social Comparison
+                    </p>
+                </div>
+            </div>
+
+            <div class="author-profile">
+                <div class="author-avatar">👩‍🔬</div>
+                <div class="author-details">
+                    <h4>Dr. Amantha Imber</h4>
+                    <div class="role">นักจิตวิทยาองค์กร, ผู้ก่อตั้ง Inventium และ Host Podcast "How I Work"</div>
+                    <p>
+                        Dr. Imber เป็นชาวออสเตรเลียคนแรกที่ได้รับรางวัล <strong>Thinkers50 Innovation Award</strong> (2021) 
+                        ซึ่ง Financial Times เรียกว่า "Oscars for Management Thinking" — รางวัลที่มอบให้กับนักคิดที่มีส่วนสร้างความเข้าใจด้านนวัตกรรมมากที่สุดในโลก
+                    </p>
+                    <p style="margin-top: 10px;">
+                        เธอเป็นผู้เขียนหนังสือ "Time Wise" และเป็น Host ของ Podcast "How I Work" ที่มียอดดาวน์โหลดมากกว่า 5 ล้านครั้ง 
+                        โดยสัมภาษณ์คนดังและผู้นำธุรกิจระดับโลกเกี่ยวกับนิสัยและกลยุทธ์การทำงานของพวกเขา
+                    </p>
+                    <p style="margin-top: 10px;">
+                        ในหนังสือเล่มนี้ เธอเขียนบท <strong>"Stop Trying to Manage Your Time"</strong> ที่ท้าทายความเชื่อเดิมๆ 
+                        ว่าการจัดการเวลาคือคำตอบ — เธอเสนอว่าควรโฟกัสที่ <em>การจัดการพลังงาน</em> แทน
+                    </p>
+                </div>
+            </div>
+
+            <div class="author-profile">
+                <div class="author-avatar">👨‍💼</div>
+                <div class="author-details">
+                    <h4>Carson Tate</h4>
+                    <div class="role">ผู้ก่อตั้ง Working Simply, Inc. และผู้เขียน "Work Simply"</div>
+                    <p>
+                        Carson Tate เป็นผู้เชี่ยวชาญด้าน Productivity ที่ทำงานกับบริษัท Fortune 500 มากมาย 
+                        รวมถึง Delta Airlines, FedEx, Wells Fargo, และ Deloitte
+                    </p>
+                    <p style="margin-top: 10px;">
+                        เธอเล่าว่าจุดเปลี่ยนของชีวิตเกิดขึ้นในวันที่ 26 ธันวาคม หนึ่งวันหลังคริสต์มาส เมื่อเธอพบว่าตัวเองนั่งอยู่กลางห้องรับแขก 
+                        กำลังจะซ่อมหลอดไฟต้นคริสต์มาส แต่ไม่สามารถลุกขึ้นได้ — <em>"ผมหมดแรงทุกอย่าง ทั้งร่างกาย จิตใจ อารมณ์ แม้แต่จิตวิญญาณ"</em> 
+                        สิบวันก่อนหน้านั้นเธอเพิ่งจัดงานวันเกิดลูกสาวคนแรกครบ 1 ขวบ พร้อมเค้กขนาดเท่าปราสาท — 
+                        นั่นคือสิ่งที่เธอเรียกว่า "Working-mom Guilt"
+                    </p>
+                    <p style="margin-top: 10px;">
+                        ประสบการณ์นั้นทำให้เธอคิดค้น <strong>E.M.P.O.W.E.R. Framework</strong> — เครื่องมือช่วยตัดสินใจว่าควรรับงานเพิ่มหรือไม่
+                    </p>
+                </div>
+            </div>
+
+            <div class="author-profile">
+                <div class="author-avatar">👨‍🎓</div>
+                <div class="author-details">
+                    <h4>Joe Sanok</h4>
+                    <div class="role">ผู้เขียน "Thursday is the New Friday" และ Host Podcast "Practice of the Practice"</div>
+                    <p>
+                        Joe Sanok เป็นนักจิตวิทยาและที่ปรึกษาธุรกิจที่มีชื่อเสียงจากการส่งเสริม <strong>การทำงาน 4 วันต่อสัปดาห์</strong>
+                        Podcast ของเขามียอดดาวน์โหลดมากกว่า 100,000 ครั้งต่อเดือน และถูกจัดอันดับให้เป็น Top 50 Podcast ระดับโลก
+                    </p>
+                    <p style="margin-top: 10px;">
+                        ในหนังสือ "Thursday is the New Friday" เขาอธิบายว่าสัปดาห์ทำงาน 5 วันเป็นสิ่งที่ Henry Ford กำหนดขึ้นในปี 1926 
+                        — ไม่ใช่กฎธรรมชาติที่เปลี่ยนไม่ได้ เขาชี้ให้เห็นว่าการศึกษาในไอซ์แลนด์ที่ติดตามคนทำงาน 2,500 คน 
+                        พบว่าการทำงาน 4 วันช่วยเพิ่มทั้ง Productivity, Health Outcomes และ Happiness
+                    </p>
+                    <p style="margin-top: 10px;">
+                        ในหนังสือเล่มนี้ เขาเขียนบท <strong>"A Guide to Better Boundaries"</strong> 
+                        ที่แนะนำแนวคิด Hard vs Soft Boundaries
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Framework Section -->
+    <section id="framework">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2>Framework หลัก</h2>
+                <p class="section-subtitle">เครื่องมือและกรอบความคิดที่สำคัญจากหนังสือ</p>
+            </div>
+
+            <!-- E.M.P.O.W.E.R. Framework -->
+            <div class="framework-box">
+                <h3 class="framework-title">🔥 E.M.P.O.W.E.R. Framework</h3>
+                <p class="framework-source">โดย Carson Tate — จากบท "Battle Burnout with This Acronym" (หน้า 69-76)</p>
+                
+                <p style="margin-bottom: 25px;">
+                    Carson Tate พัฒนา Framework นี้จากประสบการณ์ตรงของเธอที่ทำงานหนักจนหมดแรง 
+                    และจากการให้คำปรึกษาผู้บริหารมากกว่า 2.5 ล้านคนตลอด 15 ปี 
+                    เธออธิบายว่า <em>"เมื่อมีคนขอให้เราทำงานเพิ่ม สิ่งแรกที่เราทำคือตอบตกลงโดยอัตโนมัติ 
+                    เพราะเราถูกสอนมาให้เป็น 'team player' — แต่นั่นคือวิธีที่เร็วที่สุดที่จะนำไปสู่ Burnout"</em>
+                </p>
+                
+                <div class="framework-grid">
+                    <div class="framework-item">
+                        <div class="framework-letter">E</div>
+                        <div class="framework-word">Evaluate</div>
+                        <div class="framework-desc">หายใจลึกๆ ก่อน อย่าตอบทันที ประเมินข้อเท็จจริง: งานนี้ใช้เวลาเท่าไหร่? ต้องเตรียมอะไรบ้าง? Deadline คือเมื่อไหร่?</div>
+                    </div>
+                    <div class="framework-item">
+                        <div class="framework-letter">M</div>
+                        <div class="framework-word">My Story</div>
+                        <div class="framework-desc">คุณกำลังเล่าเรื่องอะไรให้ตัวเองฟัง? "ถ้าปฏิเสธ เขาจะโกรธ" — นั่นคือข้อเท็จจริงหรือสมมติฐาน? แยกความรู้สึกออกจากข้อเท็จจริง</div>
+                    </div>
+                    <div class="framework-item">
+                        <div class="framework-letter">P</div>
+                        <div class="framework-word">Priorities</div>
+                        <div class="framework-desc">งานนี้สอดคล้องกับเป้าหมายขององค์กรและความต้องการส่วนตัวของคุณหรือไม่? ถ้าไม่ — ทำไมถึงควรรับ?</div>
+                    </div>
+                    <div class="framework-item">
+                        <div class="framework-letter">O</div>
+                        <div class="framework-word">Options</div>
+                        <div class="framework-desc">มีทางเลือกอะไรบ้าง? ตอบตกลง, ปฏิเสธ, เจรจาขอเลื่อน Deadline, หรือเสนอให้คนอื่นทำแทน?</div>
+                    </div>
+                    <div class="framework-item">
+                        <div class="framework-letter">W</div>
+                        <div class="framework-word">What If</div>
+                        <div class="framework-desc">จะเกิดอะไรขึ้นถ้าตอบรับ? (เสียเวลากับครอบครัว? งานอื่นล่าช้า?) จะเกิดอะไรขึ้นถ้าปฏิเสธ? (จริงๆ แล้วอาจไม่ร้ายแรงอย่างที่คิด)</div>
+                    </div>
+                    <div class="framework-item">
+                        <div class="framework-letter">E</div>
+                        <div class="framework-word">Expect</div>
+                        <div class="framework-desc">ถ้าตอบรับ — คาดหวังอะไรจากอีกฝ่าย? กำหนด Boundaries ชัดเจน เช่น "ผมทำให้ได้แต่ต้องขอเลื่อน Deadline โปรเจกต์ X"</div>
+                    </div>
+                    <div class="framework-item">
+                        <div class="framework-letter">R</div>
+                        <div class="framework-word">Reply</div>
+                        <div class="framework-desc">ตอบกลับอย่างสุภาพ ชัดเจน ไม่ต้องขอโทษมากเกินไป และไม่ต้องให้เหตุผลยาวเหยียด "ขอบคุณที่นึกถึงครับ แต่ช่วงนี้ผมมีโปรเจกต์สำคัญที่ต้องโฟกัส"</div>
+                    </div>
+                </div>
+
+                <div class="story-box" style="margin-top: 30px;">
+                    <div class="story-title">🎯 ตัวอย่างการใช้งานจริง</div>
+                    <p style="margin-bottom: 15px;">
+                        <strong>สถานการณ์:</strong> หัวหน้าส่ง Email วันศุกร์บ่าย 4 โมง ขอให้คุณทำรีพอร์ตพิเศษส่งวันจันทร์เช้า 
+                        คุณมีแพลนจะพาครอบครัวไปเที่ยวต่างจังหวัดสุดสัปดาห์นี้
+                    </p>
+                    <p style="margin-bottom: 15px;">
+                        <strong>การใช้ E.M.P.O.W.E.R.:</strong>
+                    </p>
+                    <ul style="margin-left: 25px; line-height: 2;">
+                        <li><strong>E</strong>: รีพอร์ตนี้ต้องใช้เวลา 4-5 ชั่วโมง + ต้องดึงข้อมูลจากทีมอื่น</li>
+                        <li><strong>M</strong>: "ถ้าปฏิเสธ หัวหน้าจะมองว่าผมไม่ทุ่มเท" — นี่คือข้อเท็จจริงหรือสมมติฐาน?</li>
+                        <li><strong>P</strong>: รีพอร์ตนี้สำคัญสำหรับ Q1 Planning ซึ่งตรงกับเป้าหมายองค์กร — แต่ไม่ใช่ Urgent Crisis</li>
+                        <li><strong>O</strong>: ขอเลื่อนเป็นวันอังคาร / ทำครึ่งเดียวส่งวันจันทร์ / ขอทีมช่วย</li>
+                        <li><strong>W</strong>: ถ้ารับ = เสียทริปครอบครัว / ถ้าขอเลื่อน = หัวหน้าอาจเข้าใจ (หรือไม่ก็ต้องคุยกัน)</li>
+                        <li><strong>E</strong>: ถ้าขอเลื่อนได้ ผมจะทำให้ดีที่สุดภายในวันอังคารเที่ยง</li>
+                        <li><strong>R</strong>: "ขอบคุณครับ รีพอร์ตนี้สำคัญมาก ผมอยากทำให้ดีที่สุด — ถ้าขอเลื่อนเป็นวันอังคารได้จะ Perfect ครับ"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Hard vs Soft Boundaries -->
+            <div class="content-card">
+                <h3><span class="card-icon green">🛡️</span> Hard Boundaries vs Soft Boundaries</h3>
+                <p class="framework-source" style="color: var(--text-muted); margin-bottom: 20px;">
+                    โดย Joe Sanok — จากบท "A Guide to Better Boundaries" (หน้า 31-39)
+                </p>
+                
+                <p style="margin-bottom: 20px;">
+                    Joe Sanok อธิบายว่าหลายคนล้มเหลวในการตั้ง Boundaries เพราะพยายามทำให้ทุกอย่างเป็น "กฎเหล็ก" 
+                    ซึ่งไม่ Realistic — ชีวิตมันยืดหยุ่นกว่านั้น เขาเสนอให้แบ่ง Boundaries ออกเป็น 2 ประเภท:
+                </p>
+                
+                <div class="two-col">
+                    <div class="highlight-box key">
+                        <div class="highlight-label">🔒 Hard Boundaries — ขอบเขตที่ต่อรองไม่ได้</div>
+                        <p style="margin-bottom: 15px;"><strong>คือ Non-negotiables ที่คุณจะรักษาไว้ไม่ว่าจะเกิดอะไรขึ้น</strong></p>
+                        <p style="margin-bottom: 10px;">ตัวอย่าง:</p>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li>ไม่ตอบอีเมลงานหลัง 2 ทุ่ม</li>
+                            <li>ไม่ทำงานวันอาทิตย์ (วันครอบครัว)</li>
+                            <li>ต้องนอนอย่างน้อย 7 ชั่วโมง</li>
+                            <li>มื้อเย็นกับครอบครัวทุกวัน</li>
+                            <li>ไม่รับโทรศัพท์งานระหว่างกิจกรรมกับลูก</li>
+                        </ul>
+                        <p style="margin-top: 15px; font-style: italic; color: var(--text-muted);">
+                            Joe Sanok เล่าว่า Hard Boundary ของเขาคือ "ไม่ทำงานวันศุกร์" — ถึงขนาดที่เขาเขียนหนังสือชื่อ "Thursday is the New Friday" 
+                            ดังนั้นถ้ามีใครขอนัดประชุมวันศุกร์ เขาจะปฏิเสธเสมอ
+                        </p>
+                    </div>
+                    <div class="highlight-box situation">
+                        <div class="highlight-label">🎯 Soft Boundaries — ขอบเขตที่ยืดหยุ่นได้</div>
+                        <p style="margin-bottom: 15px;"><strong>คือ เป้าหมายที่คุณพยายามทำ แต่ยอมปรับได้ตามสถานการณ์</strong></p>
+                        <p style="margin-bottom: 10px;">ตัวอย่าง:</p>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li>พยายามออกกำลังกาย 4 วันต่อสัปดาห์</li>
+                            <li>อ่านหนังสือ 30 นาทีต่อวัน</li>
+                            <li>เข้านอนก่อน 5 ทุ่ม</li>
+                            <li>ลดการประชุมที่ไม่จำเป็น</li>
+                            <li>ไม่เช็คโทรศัพท์ระหว่างมื้ออาหาร</li>
+                        </ul>
+                        <p style="margin-top: 15px; font-style: italic; color: var(--text-muted);">
+                            Soft Boundaries คือสิ่งที่ถ้าผิดไปบ้าง คุณจะไม่รู้สึกผิดมหาศาล — 
+                            เช่น ถ้าอาทิตย์นี้ออกกำลังกายได้แค่ 2 วัน ก็โอเค อาทิตย์หน้าค่อยทำให้ดีขึ้น
+                        </p>
+                    </div>
+                </div>
+
+                <div class="story-box" style="margin-top: 25px;">
+                    <div class="story-title">💡 แบบฝึกหัดค้นหา Hard Boundaries ของคุณ</div>
+                    <p style="margin-bottom: 15px;">
+                        Joe Sanok แนะนำแบบฝึกหัดที่ทรงพลังมาก: <strong>ลองจินตนาการว่าชีวิตปัจจุบันของคุณไม่สามารถเป็นไปได้อีกต่อไป</strong>
+                    </p>
+                    <p style="margin-bottom: 15px;">
+                        สมมติว่าคุณถูกเลิกจ้าง, ต้องย้ายไปเมืองอื่น, ต้องเปลี่ยนอาชีพ, 
+                        หรือต้องเริ่มต้นใหม่ทั้งหมด — <em>อะไรคือสิ่งที่คุณจะคิดถึงมากที่สุด?</em>
+                    </p>
+                    <ul style="margin-left: 25px; line-height: 2;">
+                        <li>เวลากับลูก?</li>
+                        <li>อาหารเย็นกับครอบครัว?</li>
+                        <li>วันหยุดที่ไม่มีใครรบกวน?</li>
+                        <li>เวลาออกกำลังกาย?</li>
+                        <li>งานที่มีความหมาย?</li>
+                    </ul>
+                    <p style="margin-top: 15px;">
+                        <strong>สิ่งที่คุณคิดถึงมากที่สุด — นั่นคือ Hard Boundaries ที่คุณต้องปกป้อง</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Energy Management -->
+            <div class="content-card">
+                <h3><span class="card-icon blue">⚡</span> Energy Management vs Time Management</h3>
+                <p class="framework-source" style="color: var(--text-muted); margin-bottom: 20px;">
+                    โดย Dr. Amantha Imber — จากบท "Stop Trying to Manage Your Time" (หน้า 99-105)
+                </p>
+
+                <p style="margin-bottom: 20px;">
+                    Dr. Amantha Imber ท้าทายความเชื่อที่ว่า "ถ้าจัดการเวลาดีขึ้น ทุกอย่างจะดีขึ้น" 
+                    เธออธิบายว่าเวลามี 24 ชั่วโมงเท่ากันทุกคน — คุณไม่สามารถ "สร้าง" เวลาเพิ่มได้ 
+                    แต่สิ่งที่คุณสามารถทำได้คือ <strong>จัดการพลังงาน</strong>
+                </p>
+
+                <div class="highlight-box key">
+                    <div class="highlight-label">🔑 Key Insight</div>
+                    <p style="font-size: 1.15rem; font-weight: 500; margin-bottom: 15px;">
+                        "Time is finite and can't be flexed. But energy is not."
+                    </p>
+                    <p>
+                        — เวลาเป็นทรัพยากรที่จำกัดและยืดไม่ได้ แต่พลังงานสามารถจัดการและสร้างใหม่ได้
+                    </p>
+                </div>
+
+                <div class="story-box" style="margin-top: 25px;">
+                    <div class="story-title">🔬 Chronotype และ Ultradian Rhythms</div>
+                    <p style="margin-bottom: 15px;">
+                        Dr. Imber อธิบายว่าร่างกายมนุษย์มี <strong>Chronotype</strong> — รูปแบบพลังงานธรรมชาติที่แตกต่างกันไปในแต่ละคน 
+                        บางคนเป็น "Lark" (ตื่นเช้า พลังงานสูงช่วงเช้า) บางคนเป็น "Owl" (ตื่นสาย พลังงานสูงช่วงค่ำ) 
+                        และส่วนใหญ่เป็น "Third Bird" (อยู่ตรงกลาง)
+                    </p>
+                    <p style="margin-bottom: 15px;">
+                        นอกจากนี้ ร่างกายยังมี <strong>Ultradian Rhythms</strong> — วงจรพลังงานที่เปลี่ยนแปลงทุก 90-120 นาที 
+                        ซึ่งหมายความว่าเราไม่สามารถทำงานที่ต้องใช้สมาธิสูงได้ตลอดทั้งวัน — 
+                        เราต้องหยุดพักเพื่อ "ชาร์จ" พลังงาน
+                    </p>
+                    <p>
+                        <strong>คำแนะนำ:</strong> ทำงานที่ต้องใช้ความคิดสร้างสรรค์และสมาธิสูงในช่วงที่พลังงานสูงสุด 
+                        เก็บงานที่ไม่ต้องคิดมาก (ตอบอีเมล, ประชุม Routine) ไว้ช่วงที่พลังงานต่ำ
+                    </p>
+                </div>
+
+                <div class="highlight-box example" style="margin-top: 20px;">
+                    <div class="highlight-label">💡 เทคนิคเพิ่มพลังงานจากหนังสือ</div>
+                    <ul style="margin-left: 20px; margin-top: 10px; line-height: 2;">
+                        <li><strong>Put Your Purpose on a Post-it:</strong> เขียนเป้าหมายหรือ "ทำไมถึงทำงานนี้" ใส่ Post-it แปะไว้ที่โต๊ะ — ช่วยเตือนตัวเองในวันที่หมดแรง</li>
+                        <li><strong>Create "A Wall of Encouragement":</strong> รวบรวมคำชม รางวัล Email ขอบคุณ Feedback ดีๆ ไว้ที่เดียว — ดูเวลาหมดไฟ</li>
+                        <li><strong>Remove Irritants:</strong> งานอะไรที่ดูดพลังงานคุณมากที่สุด? หาทางกำจัด Delegate หรือทำให้เร็วขึ้น</li>
+                        <li><strong>พักทุก 90 นาที:</strong> ลุกขึ้นเดิน ดื่มน้ำ ออกไปรับแดด 5 นาที — สมองต้องการ Reset</li>
+                        <li><strong>Time Boxing:</strong> กำหนดเวลาไว้ล่วงหน้าว่าจะทำอะไรเมื่อไหร่ — ช่วยลดการตัดสินใจและ Procrastination</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Work-Life Balance Cycle -->
+            <div class="content-card">
+                <h3><span class="card-icon purple">🔄</span> วัฏจักร Work-Life Balance (5 ขั้นตอน)</h3>
+                <p class="framework-source" style="color: var(--text-muted); margin-bottom: 20px;">
+                    โดย Ioana Lupu & Mayra Ruiz-Castro — จากบท "Work-Life Balance Is a Cycle, Not an Achievement" (หน้า 3-10)
+                </p>
+
+                <p style="margin-bottom: 20px;">
+                    งานวิจัยจากการสัมภาษณ์เชิงลึก 200 ครั้งกับคนทำงาน 78 คน ในบริษัทกฎหมายและบัญชีชั้นนำในลอนดอน 
+                    ค้นพบว่าคนที่สามารถสร้าง Work-Life Balance ได้ดี มักผ่านกระบวนการ 5 ขั้นตอนนี้ซ้ำๆ ตลอดชีวิตการทำงาน:
+                </p>
+
+                <div class="action-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Pause and Denormalize (หยุดและตั้งคำถาม)</h4>
+                        <p>
+                            หยุดพักจากความวุ่นวาย ถอยออกมาตั้งคำถามว่า: อะไรทำให้เครียด? อะไรที่รู้สึกไม่ Balance? 
+                            สิ่งที่คุณคิดว่า "ปกติ" (เช่น ทำงานวันละ 12 ชั่วโมง) จริงๆ แล้วเป็น "ปกติ" หรือเปล่า?
+                        </p>
+                    </div>
+                </div>
+
+                <div class="action-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Pay Attention to Your Emotions (ฟังอารมณ์ตัวเอง)</h4>
+                        <p>
+                            รู้สึกอย่างไรกับสถานการณ์ปัจจุบัน? มีพลัง ภูมิใจ พอใจ? หรือรู้สึกโกรธ เสียใจ หมดแรง? 
+                            อารมณ์เป็นเข็มทิศที่บอกว่าอะไรสำคัญจริงๆ สำหรับคุณ
+                        </p>
+                    </div>
+                </div>
+
+                <div class="action-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Reprioritize (ทบทวนลำดับความสำคัญ)</h4>
+                        <p>
+                            Lupu และ Ruiz-Castro แนะนำให้ถามตัวเองว่า: "อะไรคือสิ่งที่จะเสียใจถ้าไม่ทำ?" 
+                            และ "อะไรคือสิ่งที่จะเสียใจถ้าทำต่อไปเหมือนเดิม?"
+                        </p>
+                    </div>
+                </div>
+
+                <div class="action-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Consider Your Alternatives (พิจารณาทางเลือก)</h4>
+                        <p>
+                            มีอะไรที่ทำได้แตกต่างไป? ไม่จำเป็นต้องลาออก — อาจเป็นการปรับตารางงาน, เปลี่ยนวิธีทำงาน, 
+                            เจรจากับหัวหน้า, หรือแค่เปลี่ยนความคาดหวังของตัวเอง
+                        </p>
+                    </div>
+                </div>
+
+                <div class="action-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Implement Changes (ลงมือเปลี่ยน)</h4>
+                        <p>
+                            ลงมือทำจริง — ทั้ง Public Changes (เช่น ขอปรับเวลาทำงาน, ปฏิเสธงานบางอย่าง) 
+                            และ Private Changes (เช่น เปลี่ยนวิธีคิดเกี่ยวกับความสำเร็จ, ลดความคาดหวังที่ไม่ Realistic)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning" style="margin-top: 25px;">
+                    <div class="highlight-label">⚠️ สิ่งสำคัญที่ต้องจำ</div>
+                    <p>
+                        <strong>นี่ไม่ใช่กระบวนการที่ทำครั้งเดียวแล้วจบ</strong> — คุณต้องหมุนวนซ้ำตลอดชีวิตการทำงาน 
+                        เพราะสถานการณ์เปลี่ยนแปลงตลอดเวลา: เลื่อนตำแหน่ง, มีลูก, ย้ายบ้าน, เปลี่ยนหัวหน้า, 
+                        แต่ละเหตุการณ์ต้องการการปรับ Balance ใหม่
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Burnout Section -->
+    <section id="burnout">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2>รับมือกับ Burnout</h2>
+                <p class="section-subtitle">เข้าใจสาเหตุ สัญญาณเตือน และวิธีจัดการ</p>
+            </div>
+
+            <div class="content-card">
+                <h3><span class="card-icon red">🔥</span> Burnout ไม่ใช่ปัญหาของคุณคนเดียว</h3>
+                
+                <div class="highlight-box warning">
+                    <div class="highlight-label">⚠️ ข้อความสำคัญจากหนังสือ</div>
+                    <p style="font-size: 1.1rem; font-weight: 500; margin-bottom: 15px;">
+                        "Burnout is an organizational issue, meaning we, as employees, are not responsible for solving it."
+                    </p>
+                    <p>
+                        — Carson Tate ย้ำว่า Burnout ไม่ใช่ความผิดของคุณที่ "ไม่แข็งแกร่งพอ" 
+                        แต่เป็นปัญหาเชิงระบบที่องค์กรต้องร่วมรับผิดชอบ
+                    </p>
+                </div>
+
+                <p style="margin-top: 20px; margin-bottom: 20px;">
+                    หนังสือเล่มนี้เน้นย้ำว่า Burnout ไม่ใช่แค่ "ความเหนื่อย" ธรรมดา แต่มี 3 องค์ประกอบหลัก 
+                    ตามที่นักจิตวิทยาชั้นนำอย่าง Christina Maslach กำหนดไว้:
+                </p>
+
+                <div class="two-col">
+                    <div class="highlight-box key">
+                        <div class="highlight-label">📊 3 องค์ประกอบของ Burnout</div>
+                        <ul style="margin-left: 20px; margin-top: 10px; line-height: 2;">
+                            <li><strong>Exhaustion (หมดแรง):</strong> รู้สึกหมดพลังทั้งทางกาย อารมณ์ และจิตใจ</li>
+                            <li><strong>Cynicism (ห่างเหิน):</strong> รู้สึกเฉยชา ไม่ผูกพันกับงาน มองทุกอย่างในแง่ลบ</li>
+                            <li><strong>Inefficacy (ไม่มีประสิทธิภาพ):</strong> รู้สึกว่าตัวเองทำอะไรไม่สำเร็จ ไม่มีคุณค่า</li>
+                        </ul>
+                    </div>
+                    <div class="highlight-box situation">
+                        <div class="highlight-label">🔍 6 สาเหตุของ Burnout</div>
+                        <ul style="margin-left: 20px; margin-top: 10px; line-height: 2;">
+                            <li><strong>Workload:</strong> งานมากเกินไป ไม่มีเวลาพักฟื้น</li>
+                            <li><strong>Lack of Control:</strong> ไม่มีอำนาจตัดสินใจในงานตัวเอง</li>
+                            <li><strong>Insufficient Reward:</strong> ไม่ได้รับการยอมรับหรือค่าตอบแทนที่เหมาะสม</li>
+                            <li><strong>Community:</strong> ความสัมพันธ์ในที่ทำงานไม่ดี</li>
+                            <li><strong>Fairness:</strong> รู้สึกว่าถูกปฏิบัติอย่างไม่เป็นธรรม</li>
+                            <li><strong>Values Mismatch:</strong> ค่านิยมส่วนตัวไม่ตรงกับองค์กร</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3><span class="card-icon purple">🧠</span> เอาชนะ Inner Critic (เสียงวิจารณ์ภายใน)</h3>
+                <p class="framework-source" style="color: var(--text-muted); margin-bottom: 20px;">
+                    จากบทความของ Morra Aarons-Mele ผู้เขียน "The Anxious Achiever"
+                </p>
+
+                <p style="margin-bottom: 20px;">
+                    Morra Aarons-Mele เล่าว่าเธอต่อสู้กับความวิตกกังวลมาตลอดชีวิต แม้จะประสบความสำเร็จในอาชีพ 
+                    เธออธิบายว่าหลายคนที่ดูสำเร็จภายนอก ภายในกลับมี <strong>"Thought Traps"</strong> — กับดักความคิดที่ทำให้เครียดโดยไม่รู้ตัว
+                </p>
+
+                <div class="story-box">
+                    <div class="story-title">🎭 11 กับดักความคิด (Thought Traps)</div>
+                    <div class="two-col" style="margin-top: 15px;">
+                        <div>
+                            <ul style="margin-left: 20px; line-height: 2;">
+                                <li><strong>All-or-Nothing Thinking:</strong> ถ้าไม่ Perfect คือ Fail</li>
+                                <li><strong>Labeling:</strong> "ฉันเป็นคนแย่"</li>
+                                <li><strong>Jumping to Conclusions:</strong> คิดไปเองว่าคนอื่นคิดอะไร</li>
+                                <li><strong>Catastrophizing:</strong> คิดว่าจะเกิดเรื่องแย่ที่สุด</li>
+                                <li><strong>Filtering:</strong> มองเห็นแต่ด้านลบ</li>
+                                <li><strong>Discounting the Positive:</strong> ปัดสิ่งดีๆ ว่า "ไม่นับ"</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul style="margin-left: 20px; line-height: 2;">
+                                <li><strong>"Should" Statements:</strong> "ฉันควรจะ..."</li>
+                                <li><strong>Social Comparison:</strong> เปรียบเทียบกับคนอื่นตลอด</li>
+                                <li><strong>Personalization:</strong> โทษตัวเองทุกเรื่อง</li>
+                                <li><strong>Ruminating:</strong> คิดวนเวียนซ้ำๆ</li>
+                                <li><strong>Emotional Reasoning:</strong> "รู้สึกว่าแย่ = มันต้องแย่จริง"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box example" style="margin-top: 25px;">
+                    <div class="highlight-label">💡 วิธีจัดการ Inner Critic</div>
+                    <p style="margin-bottom: 15px;">
+                        Dr. Ellen Hendriksen ที่ Morra สัมภาษณ์ใน Podcast ของเธอ แนะนำว่า:
+                    </p>
+                    <p style="margin-bottom: 15px;">
+                        <em>"คุณไม่สามารถเติบโตและรักษาตัวเองได้ในสภาพแวดล้อมที่ลงโทษตัวเอง 
+                        การพูดกับตัวเองแบบ 'Tough Love' จริงๆ แล้วฉุดรั้งเราไว้ 
+                        แต่ถ้าเราพูดกับตัวเองด้วยความเมตตา — ไม่ใช่ปล่อยตัวเอง แต่ให้กำลังใจลองสิ่งยาก — 
+                        นั่นคือจุดที่ Magic เกิดขึ้น"</em>
+                    </p>
+                    <p>
+                        <strong>ลองเปลี่ยนจาก:</strong> "เธอทำพัง มันแย่มาก"<br>
+                        <strong>เป็น:</strong> "ช่วงแรกมันยากเสมอ ครั้งที่แล้วเธอทำได้ดี ลองดูอีกครั้ง ดูว่าจะเป็นอย่างไร"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Self-Care Section -->
+    <section id="selfcare">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2>Self-Care ที่ใช่สำหรับคุณ</h2>
+                <p class="section-subtitle">ไม่มีสูตรสำเร็จ — ต้องทดลองหาเอง</p>
+            </div>
+
+            <div class="content-card">
+                <h3><span class="card-icon teal">💆</span> Self-Care ไม่ใช่สิ่งหรูหรา แต่เป็นความจำเป็น</h3>
+                <p class="framework-source" style="color: var(--text-muted); margin-bottom: 20px;">
+                    จากบท "There Is No 'Right' Way to Do Self-Care" (หน้า 143-147)
+                </p>
+
+                <p style="margin-bottom: 20px;">
+                    หนังสือท้าทายความเชื่อที่ว่า Self-Care ต้องเป็นอะไรหรูหรา เช่น สปา โยคะ หรือ Retreat 
+                    จริงๆ แล้ว Self-Care คือ <strong>"กิจกรรมใดก็ตามที่ช่วยฟื้นฟูพลังงานและทำให้คุณรู้สึกดีขึ้น"</strong> — 
+                    ซึ่งอาจแตกต่างกันไปในแต่ละคน
+                </p>
+
+                <div class="highlight-box key">
+                    <div class="highlight-label">🔑 แนวคิดหลัก</div>
+                    <p>
+                        Self-Care ที่ดีที่สุดคือสิ่งที่คุณ <strong>ทำได้จริงอย่างสม่ำเสมอ</strong> 
+                        ไม่ใช่สิ่งที่ดู "ดี" ในรูป Instagram แต่ทำได้ปีละครั้ง
+                    </p>
+                </div>
+
+                <div class="story-box" style="margin-top: 25px;">
+                    <div class="story-title">🧪 แนวคิด "Self-Care as Experiment"</div>
+                    <p style="margin-bottom: 15px;">
+                        หนังสือแนะนำให้มอง Self-Care เป็นการทดลอง — ลองหลายๆ อย่าง สังเกตว่าอะไรได้ผล อะไรไม่ได้ผล
+                    </p>
+                    <ul style="margin-left: 25px; line-height: 2;">
+                        <li><strong>สำหรับบางคน:</strong> การวิ่งเช้าทำให้สดชื่นตลอดวัน</li>
+                        <li><strong>สำหรับบางคน:</strong> การอ่านหนังสือก่อนนอน 15 นาทีช่วยให้นอนหลับดี</li>
+                        <li><strong>สำหรับบางคน:</strong> การโทรคุยกับเพื่อนสัปดาห์ละครั้งช่วยลดความเครียด</li>
+                        <li><strong>สำหรับบางคน:</strong> การทำอาหารเป็นการ Meditation</li>
+                        <li><strong>สำหรับบางคน:</strong> การนั่งเฉยๆ ไม่ทำอะไร 10 นาทีช่วยได้มาก</li>
+                    </ul>
+                    <p style="margin-top: 15px;">
+                        <strong>คำถามสำคัญ:</strong> หลังจากทำกิจกรรมนั้น คุณรู้สึกมีพลังมากขึ้นหรือหมดแรงมากขึ้น?
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Plan -->
+    <section id="action">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <h2>Action Plan: ลงมือทำ 7 วัน</h2>
+                <p class="section-subtitle">แผนปฏิบัติที่เริ่มต้นได้ทันที <span class="ai-opinion">สังเคราะห์โดย AI</span></p>
+            </div>
+
+            <div class="content-card">
+                <p style="margin-bottom: 25px;">
+                    นี่คือแผนปฏิบัติ 7 วันที่สังเคราะห์จากคำแนะนำในหนังสือ ออกแบบมาให้เริ่มต้นง่ายและค่อยๆ สร้างนิสัยใหม่:
+                </p>
+
+                <div class="action-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>วันที่ 1: Pause & Reflect (หยุดและทบทวน)</h4>
+                        <p>
+                            ใช้เวลา 15 นาที เขียนตอบคำถามเหล่านี้: อะไรทำให้คุณเครียดที่สุดตอนนี้? 
+                            อะไรคือสิ่งที่คุณเสียสละไปเพราะงาน? คุณรู้สึกอย่างไรกับชีวิตตอนนี้?
+                        </p>
+                    </div>
+                </div>
+
+                <div class="action-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>วันที่ 2: กำหนด Hard Boundaries 3 ข้อ</h4>
+                        <p>
+                            ใช้แบบฝึกหัดของ Joe Sanok: ลองคิดว่าถ้าชีวิตปัจจุบันหายไป อะไรที่จะคิดถึงที่สุด? 
+                            เขียน Hard Boundaries 3 ข้อที่จะปกป้องสิ่งเหล่านั้น
+                        </p>
+                    </div>
+                </div>
+
+                <div class="action-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>วันที่ 3: ค้นหา Chronotype ของคุณ</h4>
+                        <p>
+                            สังเกตตัวเองวันนี้ว่าช่วงไหนมีพลังงานสูงสุด? เช้า กลางวัน หรือเย็น? 
+                            วางแผนทำงานที่ต้องใช้สมาธิสูงในช่วงนั้น
+                        </p>
+                    </div>
+                </div>
+
+                <div class="action-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>วันที่ 4: ฝึกใช้ E.M.P.O.W.E.R.</h4>
+                        <p>
+                            วันนี้ถ้ามีใครขอให้คุณทำอะไรเพิ่ม — อย่าตอบทันที ใช้ E.M.P.O.W.E.R. Checklist ก่อนตัดสินใจ
+                        </p>
+                    </div>
+                </div>
+
+                <div class="action-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>วันที่ 5: สื่อสาร Boundaries กับคนใกล้ชิด</h4>
+                        <p>
+                            บอกครอบครัว เพื่อนร่วมงาน หรือหัวหน้า เกี่ยวกับ Hard Boundaries ที่คุณกำหนด 
+                            สื่อสารอย่างชัดเจนแต่สุภาพ
+                        </p>
+                    </div>
+                </div>
+
+                <div class="action-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h4>วันที่ 6: ทดลอง Self-Care 1 อย่าง</h4>
+                        <p>
+                            เลือกกิจกรรม Self-Care 1 อย่างที่อยากลอง — ไม่ต้องใหญ่โต แค่ 15-30 นาที 
+                            สังเกตว่ารู้สึกอย่างไรหลังทำ
+                        </p>
+                    </div>
+                </div>
+
+                <div class="action-step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <h4>วันที่ 7: Review & Plan Ahead</h4>
+                        <p>
+                            ทบทวนสัปดาห์ที่ผ่านมา: อะไรได้ผล? อะไรไม่ได้ผล? ปรับแผนสำหรับสัปดาห์หน้า 
+                            จำไว้ว่า Work-Life Balance เป็น Cycle ที่ต้องทำซ้ำ
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Golden Quotes -->
+    <section id="quotes">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">9</div>
+                <h2>Golden Quotes</h2>
+                <p class="section-subtitle">คำคมที่ควรจำจากหนังสือ</p>
+            </div>
+
+            <div class="quote-card">
+                <p class="quote-text">
+                    "Work-life balance is a cycle, not an achievement. It's not something you do once and check off your list."
+                </p>
+                <div class="quote-source">
+                    <span class="quote-author">— Ioana Lupu & Mayra Ruiz-Castro</span>
+                    <button class="copy-btn" onclick="copyQuote(this)">📋 Copy</button>
+                </div>
+            </div>
+
+            <div class="quote-card">
+                <p class="quote-text">
+                    "Time is finite and can't be flexed. But energy is not."
+                </p>
+                <div class="quote-source">
+                    <span class="quote-author">— Dr. Amantha Imber</span>
+                    <button class="copy-btn" onclick="copyQuote(this)">📋 Copy</button>
+                </div>
+            </div>
+
+            <div class="quote-card">
+                <p class="quote-text">
+                    "Burnout is an organizational issue, meaning we, as employees, are not responsible for solving it."
+                </p>
+                <div class="quote-source">
+                    <span class="quote-author">— Carson Tate</span>
+                    <button class="copy-btn" onclick="copyQuote(this)">📋 Copy</button>
+                </div>
+            </div>
+
+            <div class="quote-card">
+                <p class="quote-text">
+                    "When we define what we need to feel secure and healthy, when we need it, and create tools to protect those parts of ourselves, we can do wonders for our well-being."
+                </p>
+                <div class="quote-source">
+                    <span class="quote-author">— Joe Sanok</span>
+                    <button class="copy-btn" onclick="copyQuote(this)">📋 Copy</button>
+                </div>
+            </div>
+
+            <div class="quote-card">
+                <p class="quote-text">
+                    "You can't grow and heal in a punitive environment. Harsh criticism doesn't let us move forward. But if we talk to ourselves with kindness and compassion, that can be where the magic happens."
+                </p>
+                <div class="quote-source">
+                    <span class="quote-author">— Dr. Ellen Hendriksen (จาก The Anxious Achiever Podcast)</span>
+                    <button class="copy-btn" onclick="copyQuote(this)">📋 Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Critique Section -->
+    <section id="critique">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">10</div>
+                <h2>วิจารณ์และข้อจำกัด</h2>
+                <p class="section-subtitle">มุมมองที่สมดุลเกี่ยวกับหนังสือ</p>
+            </div>
+
+            <div class="two-col">
+                <div class="content-card">
+                    <h3><span class="card-icon green">👍</span> จุดแข็ง</h3>
+                    <ul class="checklist">
+                        <li><strong>อ่านง่าย เข้าถึงได้:</strong> บทความสั้นกระชับ เหมาะกับคนไม่มีเวลา</li>
+                        <li><strong>Practical และนำไปใช้ได้จริง:</strong> มี Frameworks ชัดเจน ไม่ใช่แค่ทฤษฎี</li>
+                        <li><strong>หลากหลายมุมมอง:</strong> รวบรวมผู้เชี่ยวชาญจากหลายสาขา</li>
+                        <li><strong>คุ้มค่า:</strong> ได้ความรู้จากหลายบทความในที่เดียว ไม่ต้องหาเอง</li>
+                        <li><strong>มี Resources เพิ่มเติม:</strong> ลิงก์ไปยัง Video, Audio และ Worksheets ที่ hbr.org/book-resources</li>
+                        <li><strong>Design สวย:</strong> มี Chapter Recap ท้ายบท ช่วยสรุปประเด็นสำคัญ</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3><span class="card-icon red">👎</span> จุดอ่อน</h3>
+                    <ul class="checklist">
+                        <li><strong>ไม่ใช่เนื้อหาใหม่:</strong> บทความถูก Curate จากที่เคยลง HBR มาก่อน</li>
+                        <li><strong>อาจซ้ำซ้อนบ้าง:</strong> บางบทความพูดเรื่องคล้ายกัน</li>
+                        <li><strong>บริบทตะวันตก:</strong> ผู้เขียนส่วนใหญ่มาจากสหรัฐฯ และยุโรป บางคำแนะนำอาจต้องปรับใช้ในบริบทไทย/เอเชีย</li>
+                        <li><strong>ไม่เจาะลึกมาก:</strong> เหมาะกับคนเริ่มต้น ไม่ใช่คนที่ต้องการความรู้ระดับ Expert</li>
+                        <li><strong>ไม่มี Systemic Change:</strong> โฟกัสที่สิ่งที่ปัจเจกทำได้ ไม่ได้พูดถึงการเปลี่ยนแปลงเชิงระบบขององค์กรมากนัก</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Verification Log -->
+    <section id="verification">
+        <div class="container">
+            <div class="verification-log">
+                <h3>📋 บันทึกการตรวจสอบข้อมูล</h3>
+                <p style="margin-bottom: 20px; color: var(--text-muted);">
+                    ข้อมูลในสรุปนี้ได้รับการตรวจสอบจากแหล่งข้อมูลดังต่อไปนี้:
+                </p>
+                <ul class="source-list">
+                    <li>HBR.org — บทความต้นฉบับและข้อมูลผู้เขียน</li>
+                    <li>O'Reilly Learning Platform — เนื้อหาบทต่างๆ ของหนังสือ</li>
+                    <li>Amazon.com — รีวิวและข้อมูลหนังสือ</li>
+                    <li>Goodreads — Rating และรีวิวจากผู้อ่าน</li>
+                    <li>LinkedIn ของผู้เขียนแต่ละท่าน — ประวัติและความเชี่ยวชาญ</li>
+                    <li>Podcast Interviews — The Anxious Achiever, How I Work, Practice of the Practice</li>
+                    <li>Author Websites — morraam.com, amantha.com, joesanok.com, carsontateconsulting.com</li>
+                </ul>
+                
+                <div class="highlight-box unverified" style="margin-top: 25px;">
+                    <div class="highlight-label">❓ ข้อจำกัดในการตรวจสอบ</div>
+                    <p>
+                        สรุปนี้จัดทำโดยไม่มี PDF หนังสือฉบับเต็ม ดังนั้น:
+                    </p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>เลขหน้าอ้างอิงจากแหล่งข้อมูลภายนอก (รีวิว, O'Reilly) — ควรตรวจสอบกับหนังสือจริง</li>
+                        <li>Quotes บางประโยคอาจมีการ Paraphrase — ควรเทียบกับต้นฉบับ</li>
+                        <li>เนื้อหาบางส่วนสังเคราะห์จากบทความต้นฉบับที่ตีพิมพ์ใน HBR ก่อนรวมเล่ม</li>
+                    </ul>
+                </div>
+
+                <p style="margin-top: 25px; font-size: 0.9rem; color: var(--text-muted);">
+                    <strong>วันที่สร้าง:</strong> 11 มกราคม 2026 | <strong>Version:</strong> 2.0 (Expanded)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="margin-bottom: 10px;">
+                📚 สรุปนี้ไม่สามารถทดแทนการอ่านหนังสือฉบับเต็มได้ แนะนำให้ซื้อหนังสือเพื่อรับประโยชน์สูงสุด
+            </p>
+            <p style="margin-bottom: 15px;">
+                🛒 หาซื้อได้ที่: Amazon, HBR Store, และร้านหนังสือชั้นนำ
+            </p>
+            <p style="font-size: 0.8rem; opacity: 0.7;">
+                สรุปหนังสือนี้จัดทำเพื่อการศึกษาเท่านั้น | ลิขสิทธิ์เนื้อหาต้นฉบับเป็นของ Harvard Business Review
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+        });
+
+        // Copy Quote Function
+        function copyQuote(button) {
+            const quoteCard = button.closest('.quote-card');
+            const quoteText = quoteCard.querySelector('.quote-text').textContent;
+            const quoteAuthor = quoteCard.querySelector('.quote-author').textContent;
+            const fullQuote = `"${quoteText.trim()}" ${quoteAuthor}`;
+            
+            navigator.clipboard.writeText(fullQuote).then(() => {
+                button.textContent = '✅ Copied!';
+                setTimeout(() => {
+                    button.textContent = '📋 Copy';
+                }, 2000);
+            });
+        }
+
+        // Smooth scroll for TOC
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
