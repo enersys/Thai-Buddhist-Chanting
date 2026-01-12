@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Win Friends and Influence People - สรุปฉบับสมบูรณ์</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Noto+Sans+Thai:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2C3E50;
+            --secondary: #E74C3C;
+            --accent: #F39C12;
+            --warm-bg: #FFF9F0;
+            --cream: #FEF6E4;
+            --dark-cream: #F3E9D2;
+            --text-primary: #2C3E50;
+            --text-secondary: #546E7A;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --glow: rgba(247, 156, 18, 0.2);
+        }
+
+        body {
+            font-family: 'Noto Sans Thai', -apple-system, sans-serif;
+            line-height: 1.8;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--warm-bg) 0%, var(--cream) 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #34495E 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="50" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            opacity: 0.95;
+            font-style: italic;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s both;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .author {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease 0.4s both;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .credit {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 30px;
+            animation: fadeInUp 1s ease 0.6s both;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation */
+        .nav {
+            background: white;
+            box-shadow: 0 2px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(243, 156, 18, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav a:hover::before {
+            left: 100%;
+        }
+
+        .nav a:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--glow);
+        }
+
+        /* Main Content */
+        .content {
+            padding: 60px 20px;
+        }
+
+        section {
+            margin-bottom: 80px;
+            animation: fadeIn 1s ease;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--primary);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--secondary);
+            margin: 40px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h3::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px var(--shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        /* Overview Section */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .overview-item {
+            background: linear-gradient(135deg, white, var(--cream));
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .overview-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .overview-item h4 {
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Principle Cards */
+        .principle {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px var(--shadow);
+            border-top: 5px solid var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .principle::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--glow), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .principle:hover::after {
+            opacity: 1;
+        }
+
+        .principle-number {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), #E67E22);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px var(--glow);
+        }
+
+        .principle h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        /* Example Boxes */
+        .example {
+            background: linear-gradient(135deg, var(--cream), var(--dark-cream));
+            border-left: 4px solid var(--accent);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+            position: relative;
+            font-style: italic;
+            transition: all 0.3s ease;
+        }
+
+        .example::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.3;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .example:hover {
+            background: linear-gradient(135deg, var(--dark-cream), #E8DCC0);
+            transform: translateX(5px);
+        }
+
+        .example-title {
+            font-weight: bold;
+            color: var(--secondary);
+            font-style: normal;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Key Takeaway Boxes */
+        .takeaway {
+            background: linear-gradient(135deg, var(--secondary), #C0392B);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .takeaway::before {
+            content: '💡';
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 3rem;
+            opacity: 0.2;
+        }
+
+        .takeaway h4 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* Quote Boxes */
+        .quote {
+            background: white;
+            border-left: 5px solid var(--accent);
+            padding: 30px;
+            margin: 30px 0;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        .quote::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 6rem;
+            color: var(--accent);
+            opacity: 0.2;
+            line-height: 1;
+        }
+
+        /* Teaching Points */
+        .teaching-point {
+            background: linear-gradient(135deg, #3498DB, #2980B9);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .teaching-point:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.5);
+        }
+
+        .teaching-point::before {
+            content: '📚';
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        /* List Styles */
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        li::marker {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Highlight Text */
+        .highlight {
+            background: linear-gradient(120deg, var(--accent) 0%, var(--accent) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 80%;
+            padding: 2px 5px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Part Headers */
+        .part-header {
+            background: linear-gradient(135deg, var(--primary), #34495E);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0 30px;
+            text-align: center;
+            box-shadow: 0 10px 40px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .part-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .part-header h2 {
+            color: white;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .part-header h2::after {
+            display: none;
+        }
+
+        .part-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Mindset Section */
+        .mindset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .mindset-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px var(--shadow);
+            border-top: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .mindset-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        .mindset-card h4 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Action Steps */
+        .action-steps {
+            background: linear-gradient(135deg, #27AE60, #229954);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
+        }
+
+        .action-steps h3 {
+            color: white;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .action-steps h3::before {
+            background: white;
+            box-shadow: 0 0 20px white;
+        }
+
+        .action-step {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 40px 15px;
+            }
+
+            .card, .principle {
+                padding: 25px;
+            }
+
+            .nav-inner {
+                gap: 10px;
+            }
+
+            .nav a {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent), var(--secondary));
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--secondary), var(--accent));
+        }
+
+        /* Print Styles */
+        @media print {
+            .nav {
+                display: none;
+            }
+            
+            .card, .principle {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>How to Win Friends<br>and Influence People</h1>
+        <div class="subtitle">ศิลปะแห่งการสร้างมนุษยสัมพันธ์และมีอิทธิพลต่อผู้คน</div>
+        <div class="author">โดย Dale Carnegie</div>
+        <div class="credit">สร้างโดย Tomz</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#overview">ภาพรวม</a>
+            <a href="#part1">หลักพื้นฐาน</a>
+            <a href="#part2">ให้คนชอบคุณ</a>
+            <a href="#part3">โน้มน้าวใจ</a>
+            <a href="#part4">ผู้นำ</a>
+            <a href="#mindset">Mindset</a>
+            <a href="#practical">ปฏิบัติจริง</a>
+            <a href="#takeaways">สรุปสำคัญ</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container content">
+        
+        <!-- Overview Section -->
+        <section id="overview">
+            <h2>ภาพรวมหนังสือ</h2>
+            
+            <div class="card">
+                <p style="font-size: 1.2rem; line-height: 2; margin-bottom: 25px;">
+                    <span class="highlight">"How to Win Friends and Influence People"</span> เป็นหนังสือคลาสสิกที่เขียนโดย <strong>Dale Carnegie</strong> ตั้งแต่ปี 1936 และยังคงเป็นหนึ่งในหนังสือพัฒนาตนเองที่ขายดีที่สุดในโลกตลอดกาล ด้วยยอดขายกว่า <strong>30 ล้านเล่ม</strong> ในกว่า 100 ภาษา
+                </p>
+                <p style="font-size: 1.1rem; line-height: 2;">
+                    หนังสือเล่มนี้นำเสนอหลักการที่เป็นจิตวิทยาพื้นฐานของมนุษย์ในการสร้างความสัมพันธ์ที่ดี สร้างอิทธิพล และเป็นผู้นำที่ยิ่งใหญ่ โดยไม่ใช้การบังคับหรือการจัดการ แต่ใช้ความเข้าใจธรรมชาติของมนุษย์และการให้เกียรติผู้อื่น
+                </p>
+            </div>
+
+            <div class="overview-grid">
+                <div class="overview-item">
+                    <h4>📖 จำนวนหลักการ</h4>
+                    <p><strong>30 หลักการ</strong> แบ่งเป็น 4 ส่วนหลัก ครอบคลุมทุกมิติของการสร้างความสัมพันธ์และการมีอิทธิพล</p>
+                </div>
+                
+                <div class="overview-item">
+                    <h4>🎯 เป้าหมายหลัก</h4>
+                    <p>สอนให้เราเข้าใจและทำงานกับ<strong>ธรรมชาติของมนุษย์</strong> ไม่ใช่ต่อสู้กับมัน เพื่อสร้างความสัมพันธ์ที่แท้จริงและยั่งยืน</p>
+                </div>
+                
+                <div class="overview-item">
+                    <h4>💡 ปรัชญาหลัก</h4>
+                    <p>มนุษย์ทุกคนต้องการ<strong>ความสำคัญ</strong>และ<strong>การยอมรับ</strong> หากคุณให้สิ่งนี้แก่ผู้อื่นอย่างจริงใจ คุณจะได้รับความร่วมมือและความนับถือกลับมา</p>
+                </div>
+                
+                <div class="overview-item">
+                    <h4>🌟 จุดเด่น</h4>
+                    <p>ใช้<strong>ตัวอย่างจริง</strong>จากชีวิตของผู้คนที่ประสบความสำเร็จ พร้อมหลักการที่<strong>ทดสอบและพิสูจน์</strong>มาแล้วนานกว่า 80 ปี</p>
+                </div>
+            </div>
+
+            <div class="quote">
+                You can make more friends in two months by becoming interested in other people than you can in two years by trying to get other people interested in you.
+                <div style="margin-top: 15px; font-style: normal; font-weight: bold; color: var(--accent);">— Dale Carnegie</div>
+            </div>
+        </section>
+
+        <!-- Part 1 -->
+        <div class="part-header">
+            <h2>ส่วนที่ 1: Fundamental Techniques in Handling People</h2>
+            <p>หลักพื้นฐานในการเข้าร่วมกับผู้คน</p>
+        </div>
+
+        <section id="part1">
+            <div class="card">
+                <h3>แก่นหลัก (Core Concept)</h3>
+                <p style="font-size: 1.15rem; line-height: 2;">
+                    มนุษย์เป็นสิ่งมีชีวิตที่ขับเคลื่อนด้วย<span class="highlight">อารมณ์</span>มากกว่าเหตุผล พวกเขาต้องการความสำคัญ การยอมรับ และการเป็นที่รัก การวิจารณ์ตำหนิและการบังคับจะสร้างแต่<strong>การต่อต้าน</strong> ขณะที่<span class="highlight">การชื่นชม การเข้าใจ และการให้เกียรติ</span>จะสร้างความร่วมมือและความจงรักภักดี
+                </p>
+            </div>
+
+            <!-- Principle 1 -->
+            <div class="principle">
+                <div class="principle-number">1</div>
+                <h4>Don't criticize, condemn, or complain</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>อย่าวิจารณ์ ตำหนิ หรือบ่น</strong> เพราะการวิจารณ์ไม่ทำให้คนเปลี่ยนแปลง แต่ทำให้พวกเขาต่อต้านและหาข้ออ้างให้ตัวเอง มนุษย์ไม่ใช่สิ่งมีชีวิตที่ขับเคลื่อนด้วยเหตุผล แต่ขับเคลื่อนด้วยอารมณ์ ความภาคภูมิใจ และความต้องการความสำคัญ
+                </p>
+
+                <div class="example">
+                    <div class="example-title">🎭 สถานการณ์: หัวหน้าที่โกรธลูกน้อง</div>
+                    <p><strong>แบบผิด:</strong> "ทำไมคุณถึงทำงานผิดพลาดอยู่เรื่อย! คุณไม่เคยใส่ใจงานเลยใช่ไหม!"</p>
+                    <p style="margin-top: 10px;"><strong>แบบถูก:</strong> "ผมสังเกตเห็นว่ามีข้อผิดพลาดในรายงาน เรามาคุยกันดีกว่าว่าเราจะทำอย่างไรให้ดีขึ้นได้บ้าง ผมพร้อมช่วยนะ"</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--secondary);">ผลลัพธ์: ลูกน้องไม่รู้สึกถูกโจมตี เปิดใจรับฟัง และพร้อมปรับปรุง</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">💼 ตัวอย่างจริง: Abraham Lincoln</div>
+                    <p>Lincoln เคยเป็นคนชอบวิจารณ์คนอื่นและเขียนจดหมายเหน็บแนมคู่แข่ง แต่หลังจากที่เขาเกือบต้องดวลปืนกับผู้ที่เขาเหน็บแนม เขาก็เรียนรู้บทเรียนสำคัญ ในช่วงเป็นประธานาธิบดี แม้ว่านายพลของเขาจะทำผิดพลาดครั้งใหญ่ เขาก็ไม่เคยวิจารณ์ต่อหน้าสาธารณะ เพราะเขาเข้าใจว่า <strong>"Judge not, that ye be not judged"</strong></p>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p>การวิจารณ์เป็นเหมือนพิษที่ทำลายความสัมพันธ์ แทนที่จะวิจารณ์ ให้<strong>พยายามเข้าใจ</strong>ว่าทำไมผู้คนถึงทำอย่างนั้น คนเราไม่ต้องการคำติเตียน แต่ต้องการ<strong>ความเข้าใจและการให้กำลังใจ</strong></p>
+                </div>
+
+                <div class="teaching-point">
+                    <strong>ข้อความสำหรับสอน:</strong> "เมื่อคุณอยากวิจารณ์ใครสักคน จำไว้ว่าคนในโลกนี้ไม่ได้ได้รับโอกาสเท่ากันทุกคน พยายามเข้าใจเหตุผลของพวกเขาก่อนที่จะตัดสิน การให้ความเข้าใจจะสร้างสะพานเชื่อมใจ ขณะที่การวิจารณ์จะสร้างแต่กำแพงกั้นใจ"
+                </div>
+            </div>
+
+            <!-- Principle 2 -->
+            <div class="principle">
+                <div class="principle-number">2</div>
+                <h4>Give honest and sincere appreciation</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>ให้คำชมและความชื่นชมอย่างจริงใจ</strong> ความต้องการที่ลึกที่สุดของมนุษย์คือ "ความรู้สึกว่าตัวเองสำคัญ" (Feeling of Importance) คำชมที่จริงใจจะตอบสนองความต้องการนี้ได้ แต่ต้องเป็น<span class="highlight">ความจริงใจ</span>ไม่ใช่การเยินยอเพื่อผลประโยชน์
+                </p>
+
+                <div class="example">
+                    <div class="example-title">🏢 สถานการณ์: CEO ที่ฉลาด</div>
+                    <p>Andrew Carnegie (เศรษฐีเหล็กกล้า) เขียนไว้บนหลุมฝังศพของเขาว่า: <strong>"Here lies a man who knew how to get around him men who were cleverer than himself"</strong> (ที่นี่นอนหลับคนที่รู้จักวิธีรวบรวมคนที่ฉลาดกว่าตัวเขามารอบตัว)</p>
+                    <p style="margin-top: 15px;">เขาทำได้อย่างไร? ด้วยการ<strong>ชื่นชมและให้ความสำคัญ</strong>กับพนักงานของเขาอย่างจริงใจ เขายกย่อยความสามารถของพวกเขา ทำให้พวกเขารู้สึกมีค่าและทำงานเต็มที่</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🌟 ตัวอย่าง: คำชมที่ดี vs คำเยินยอ</div>
+                    <p><strong>คำเยินยอ (ไม่จริงใจ):</strong> "คุณเก่งที่สุดในโลกเลย!" (พูดเกินจริงเพื่อเอาใจ)</p>
+                    <p style="margin-top: 10px;"><strong>คำชมจริงใจ:</strong> "ผมสังเกตเห็นว่าคุณใส่ใจรายละเอียดในส่วนนี้มาก โดยเฉพาะการที่คุณตรวจสอบซ้ำสามครั้ง นี่แหละความรับผิดชอบที่แท้จริง"</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--secondary);">ความต่าง: ความจริงใจอยู่ที่<strong>รายละเอียดที่เฉพาะเจาะจง</strong>และ<strong>การสังเกตจริง</strong></p>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p>ความแตกต่างระหว่างคำชมกับคำเยินยอคือ: <strong>ความจริงใจ</strong> คำชมที่ดีต้องมาจากการสังเกตที่แท้จริงและความรู้สึกที่จริงใจ มันจะสร้าง<strong>แรงบันดาลใจ</strong>ที่ยาวนานกว่าเงินเดือนหรือโบนัส</p>
+                </div>
+
+                <div class="teaching-point">
+                    <strong>ข้อความสำหรับสอน:</strong> "คำชมที่ดีไม่ได้มาจากการพูดว่า 'เก่ง' แต่มาจากการที่คุณสังเกตเห็น<strong>ความพยายาม</strong>และ<strong>จุดเด่น</strong>ที่เฉพาะของแต่ละคน และบอกพวกเขาอย่างจริงใจว่าสิ่งนั้นส่งผลดีอย่างไร ให้คำชมที่จริงใจเป็นนิสัย และคุณจะเห็นคนรอบตัวเติบโต"
+                </div>
+            </div>
+
+            <!-- Principle 3 -->
+            <div class="principle">
+                <div class="principle-number">3</div>
+                <h4>Arouse in the other person an eager want</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>ปลุกความต้องการในตัวอีกฝ่าย</strong> วิธีเดียวที่จะได้สิ่งที่เราต้องการคือ ทำให้อีกฝ่าย<strong>ต้องการมันด้วย</strong> แทนที่จะพูดว่าเราต้องการอะไร ให้พูดถึงสิ่งที่<span class="highlight">พวกเขาต้องการ</span>และแสดงให้เห็นว่าสิ่งที่เราเสนอจะช่วยให้พวกเขาได้สิ่งนั้น
+                </p>
+
+                <div class="example">
+                    <div class="example-title">🎣 สถานการณ์: ไปตกปลา</div>
+                    <p>เมื่อคุณไปตกปลา คุณใช้เหยื่ออะไร? <strong>สตรอว์เบอร์รี่ที่คุณชอบ</strong> หรือ <strong>หนอนที่ปลาชอบ</strong>?</p>
+                    <p style="margin-top: 10px;">แน่นอนว่าคุณต้องใช้<span class="highlight">หนอนที่ปลาชอบ</span> ไม่ใช่สิ่งที่คุณชอบ</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--primary);">การโน้มน้าวคนก็เหมือนกัน — พูดในสิ่งที่<strong>พวกเขาต้องการ</strong>ไม่ใช่สิ่งที่<strong>คุณต้องการ</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">💼 ตัวอย่างจริง: การขายแนวคิด</div>
+                    <p><strong>แบบผิด:</strong> "ผมอยากให้คุณมาประชุม เพราะผมต้องการความคิดเห็นของทุกคน"</p>
+                    <p style="margin-top: 10px;"><strong>แบบถูก:</strong> "ในการประชุม เราจะปรึกษาเรื่องที่จะช่วยลด<strong>ภาระงานของทีมคุณ</strong>ลง 30% คุณจะได้แชร์ประสบการณ์ตรงที่คุณเจอ และเราจะหาทางแก้ปัญหาที่<strong>ตอบโจทย์คุณ</strong>โดยตรง"</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--secondary);">สังเกต: เปลี่ยนจาก "ผมต้องการ" เป็น "คุณจะได้"</p>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p><strong>"The only way to influence people is to talk about what they want and show them how to get it."</strong> หยุดคิดว่าคุณต้องการอะไร เริ่มคิดว่า<span class="highlight">อีกฝ่ายต้องการอะไร</span> และแสดงให้เห็นว่าสิ่งที่คุณเสนอจะช่วยให้พวกเขาได้ในสิ่งนั้น</p>
+                </div>
+
+                <div class="teaching-point">
+                    <strong>ข้อความสำหรับสอน:</strong> "คนเราไม่สนใจว่าคุณต้องการอะไร พวกเขาสนใจแค่ว่า<strong>มันจะช่วยพวกเขาได้อย่างไร</strong> ก่อนจะพูดอะไร ถามตัวเองว่า 'คนนี้จะได้อะไร?' และเริ่มต้นจากตรงนั้น นี่คือกุญแจสู่การโน้มน้าวใจที่แท้จริง"
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 2 -->
+        <div class="part-header">
+            <h2>ส่วนที่ 2: Six Ways to Make People Like You</h2>
+            <p>หกวิธีทำให้คนชอบคุณ</p>
+        </div>
+
+        <section id="part2">
+            <div class="card">
+                <h3>แก่นหลัก (Core Concept)</h3>
+                <p style="font-size: 1.15rem; line-height: 2;">
+                    คนชอบคนที่<span class="highlight">ให้ความสนใจพวกเขาอย่างแท้จริง</span> ไม่ใช่คนที่พยายามให้คนอื่นสนใจเรา การสร้างมิตรภาพที่แท้จริงต้องมาจาก<strong>ความสนใจจริง</strong>ในตัวผู้อื่น <strong>การรับฟังอย่างตั้งใจ</strong> และ<strong>การทำให้ผู้อื่นรู้สึกสำคัญ</strong>
+                </p>
+            </div>
+
+            <!-- Principle 4 -->
+            <div class="principle">
+                <div class="principle-number">4</div>
+                <h4>Become genuinely interested in other people</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>สนใจคนอื่นอย่างแท้จริง</strong> คุณจะได้เพื่อนมากขึ้นในสองเดือนด้วยการ<span class="highlight">สนใจคนอื่น</span>มากกว่าที่คุณจะได้ในสองปีด้วยการพยายามให้คนอื่นสนใจคุณ
+                </p>
+
+                <div class="example">
+                    <div class="example-title">🐕 เรื่องจริง: สุนัขที่ทุกคนรัก</div>
+                    <p>คุณเคยสังเกตไหมว่าทำไมสุนัขถึงมีเพื่อนเยอะ? เพราะเขา<strong>แสดงความดีใจที่เห็นคุณอย่างแท้จริง</strong> ทุกครั้ง!</p>
+                    <p style="margin-top: 10px;">สุนัขไม่มีวาระซ่อนเร้น ไม่พยายามขายอะไร เขาแค่<strong>ดีใจอย่างจริงใจ</strong>ที่ได้เห็นคุณ นั่นคือเหตุผลที่คนรักสุนัข</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">💼 ตัวอย่าง: Salesman ที่ยิ่งใหญ่</div>
+                    <p>Theodore Roosevelt เป็นที่รู้จักว่าสามารถคุยกับใครก็ได้ตั้งแต่คนงานไปจนถึงนักวิชาการ ความลับของเขาคืออะไร?</p>
+                    <p style="margin-top: 10px;"><strong>เขาใช้เวลาศึกษาข้อมูลของคนที่เขาจะพบในคืนก่อนหน้า</strong> ถ้าเขาจะพบคนที่สนใจม้า เขาจะอ่านเกี่ยวกับม้า ถ้าจะพบนักเรือ เขาจะศึกษาเรื่องเรือ</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--secondary);">ผลลัพธ์: ทุกคนรู้สึกว่าประธานาธิบดีให้ความสนใจ<strong>พวกเขา</strong>โดยตรง</p>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p>ความสนใจที่แท้จริงไม่สามารถปลอมได้ คนจะรู้สึกได้เมื่อคุณสนใจพวกเขาจริง ๆ และมันจะสร้าง<strong>ความผูกพัน</strong>ที่เทคนิคใด ๆ ก็ไม่สามารถทำได้</p>
+                </div>
+            </div>
+
+            <!-- Principle 5 -->
+            <div class="principle">
+                <div class="principle-number">5</div>
+                <h4>Smile</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>ยิ้ม</strong> รอยยิ้มไม่ได้แค่ทำให้คุณดูดี มันบอกกับคนอื่นว่า <span class="highlight">"ฉันดีใจที่ได้เห็นคุณ คุณทำให้ฉันมีความสุข"</span> และความรู้สึกนี้จะทำให้พวกเขารู้สึกดีและอยากอยู่กับคุณ
+                </p>
+
+                <div class="example">
+                    <div class="example-title">📞 กรณีศึกษา: Telephone Company</div>
+                    <p>บริษัทโทรศัพท์แห่งหนึ่งพบว่าพนักงานที่<strong>ยิ้มในขณะคุยโทรศัพท์</strong> (แม้ลูกค้าจะไม่เห็น) จะทำให้เสียงของพวกเขา<strong>ฟังดูเป็นมิตรและอบอุ่นกว่า</strong></p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--primary);">แม้แต่รอยยิ้มที่ "ไม่มีใครเห็น" ก็ส่งผลต่อน้ำเสียงและอารมณ์ในการสื่อสาร</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">💡 การทดลอง: 7 วันแห่งรอยยิ้ม</div>
+                    <p><strong>วันที่ 1-7:</strong> ลองยิ้มให้กับทุกคนที่คุณเจอ — คนขับรถแท็กซี่ แคชเชียร์ เพื่อนร่วมงาน</p>
+                    <p style="margin-top: 10px;"><strong>ผลลัพธ์ที่รายงาน:</strong> คนที่ทดลองพบว่า</p>
+                    <ul style="margin-left: 30px; margin-top: 10px;">
+                        <li>คนเริ่มยิ้มกลับมากขึ้น</li>
+                        <li>การสนทนาเป็นไปได้ง่ายขึ้น</li>
+                        <li>ตัวเองรู้สึกมีความสุขขึ้นด้วย</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--secondary);">คำพูดจีน: "Man without smiling face must not open shop" (คนที่ไม่ยิ้มไม่ควรเปิดร้าน)</p>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p><strong>"Actions speak louder than words, and a smile says, 'I like you. You make me happy. I am glad to see you.'"</strong> รอยยิ้มทำงานได้ดีกว่าคำพูด มันเป็นภาษาสากลของความเป็นมิตร</p>
+                </div>
+            </div>
+
+            <!-- Principle 6 -->
+            <div class="principle">
+                <div class="principle-number">6</div>
+                <h4>Remember that a person's name is to that person the sweetest sound</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>จำชื่อคน</strong> ชื่อของคนคือ<span class="highlight">เสียงที่ไพเราะที่สุด</span>สำหรับเขา การจำและเรียกชื่อคนอย่างถูกต้องทำให้เขารู้สึก<strong>มีคุณค่าและสำคัญ</strong>
+                </p>
+
+                <div class="example">
+                    <div class="example-title">👑 Jim Farley's Secret</div>
+                    <p>Jim Farley ช่วย Franklin D. Roosevelt ชนะการเลือกตั้ง ความสามารถพิเศษของเขาคืออะไร?</p>
+                    <p style="margin-top: 10px;"><strong>เขาจำชื่อและข้อมูลของคนได้มากถึง 50,000 คน!</strong></p>
+                    <p style="margin-top: 10px;">วิธีของเขา: เมื่อพบคนใหม่ เขาจะถามชื่อ นามสกุล ขนาดครอบครัว งาน ความคิดเห็นทางการเมือง จากนั้น<strong>จำมันให้ได้</strong> ครั้งต่อไปที่พบ แม้จะผ่านไปหลายปี เขาจะเรียกชื่อและถามถึงครอบครัวได้</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--primary);">ผลลัพธ์: คนที่เคยพบเขารู้สึกพิเศษและจำเขาได้ตลอด</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🏢 เทคนิคจำชื่อ</div>
+                    <ol style="margin-left: 30px; margin-top: 15px; line-height: 2;">
+                        <li><strong>ฟังอย่างตั้งใจ</strong>ตอนที่คนแนะนำตัว</li>
+                        <li><strong>ทวนชื่อซ้ำ</strong>ในการสนทนา: "คุณสมชาย ผมเห็นด้วยกับความคิดเห็นของคุณ..."</li>
+                        <li><strong>เชื่อมโยงกับภาพ</strong>หรือลักษณะเด่นของคน</li>
+                        <li><strong>เขียนลงในสมุดบันทึก</strong>หลังจากการพบ</li>
+                        <li><strong>ทบทวน</strong>ก่อนที่จะพบกันครั้งต่อไป</li>
+                    </ol>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p>การจำชื่อคือการลงทุนที่คุ้มค่าที่สุดในการสร้างความสัมพันธ์ มันแสดงว่าคุณ<strong>ให้คุณค่า</strong>กับบุคคลนั้น ไม่ใช่แค่ตัวตนทั่วไป</p>
+                </div>
+
+                <div class="teaching-point">
+                    <strong>ข้อความสำหรับสอน:</strong> "ชื่อของคนคือเสียงที่ไพเราะที่สุดในภาษาใด ๆ สำหรับเขา คนที่จำชื่อได้คือคนที่<strong>ให้ความสำคัญ</strong> คนที่ลืมชื่อคือคนที่ไม่สนใจ จงเป็นคนที่จำ ไม่ใช่คนที่ลืม"
+                </div>
+            </div>
+
+            <!-- Principle 7 -->
+            <div class="principle">
+                <div class="principle-number">7</div>
+                <h4>Be a good listener. Encourage others to talk about themselves</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>เป็นผู้ฟังที่ดี กระตุ้นให้คนอื่นพูดเกี่ยวกับตัวเอง</strong> คนส่วนใหญ่พูดมากกว่าฟัง แต่คนที่<span class="highlight">รู้จักฟังอย่างตั้งใจ</span>จะเป็นที่ชื่นชอบของทุกคน
+                </p>
+
+                <div class="example">
+                    <div class="example-title">🎩 The Most Interesting Conversationalist</div>
+                    <p>ผู้หญิงคนหนึ่งเล่าว่าเธอไปงานเลี้ยงอาหารค่ำและนั่งข้าง ๆ นักพฤษศาสตร์ชื่อดัง</p>
+                    <p style="margin-top: 10px;">เธอ<strong>ฟังเขาพูดเกี่ยวกับพืชอย่างตั้งใจทั้งค่ำ</strong> ถามคำถาม และแสดงความสนใจอย่างแท้จริง</p>
+                    <p style="margin-top: 10px;">หลังงาน เขาบอกเจ้าภาพว่าเธอคือ<strong>"นักพูดที่น่าสนใจที่สุด"</strong>ที่เขาเคยพบ!</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--secondary);">ความจริง: เธอแทบไม่ได้พูดอะไรเลย เธอแค่<strong>ฟังอย่างตั้งใจ</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🔍 การฟังที่ดี vs การฟังที่ไม่ดี</div>
+                    <p><strong>❌ การฟังที่ไม่ดี:</strong></p>
+                    <ul style="margin-left: 30px; margin-top: 10px;">
+                        <li>มองโทรศัพท์ขณะที่คนอื่นพูด</li>
+                        <li>รอให้อีกฝ่ายพูดจบเพื่อจะได้พูดของตัวเอง</li>
+                        <li>ขัดจังหวะก่อนที่อีกฝ่ายจะพูดจบ</li>
+                        <li>เปลี่ยนเรื่องมาที่ตัวเองทันที: "อ๋อ เหมือนตอนที่ผม..."</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>✅ การฟังที่ดี:</strong></p>
+                    <ul style="margin-left: 30px; margin-top: 10px;">
+                        <li>สบตาและแสดงความสนใจ</li>
+                        <li>พยักหน้าและตอบสนองเมื่อเหมาะสม</li>
+                        <li>ถามคำถามเพื่อให้อีกฝ่ายขยายความ</li>
+                        <li>ไม่รีบตัดสินหรือให้คำแนะนำถ้าไม่ถูกขอ</li>
+                    </ul>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p><strong>"To be interesting, be interested."</strong> ถ้าคุณอยากเป็นคนที่น่าสนใจ จงเป็นคนที่<span class="highlight">สนใจผู้อื่น</span> การฟังอย่างตั้งใจคือของขวัญที่มีค่าที่สุดที่คุณจะมอบให้ใคร</p>
+                </div>
+            </div>
+
+            <!-- Principle 8 & 9 Combined -->
+            <div class="principle">
+                <div class="principle-number">8-9</div>
+                <h4>Talk in terms of the other person's interests & Make the other person feel important</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>พูดในเรื่องที่คนอื่นสนใจ และทำให้เขารู้สึกสำคัญ</strong> ค้นหาความสนใจของคนอื่นและพูดในเรื่องนั้น พร้อมทำให้เขารู้สึกว่าเขามีคุณค่า — <span class="highlight">อย่างจริงใจ</span>
+                </p>
+
+                <div class="example">
+                    <div class="example-title">🏠 Theodore Roosevelt's Trick</div>
+                    <p>Roosevelt มีนิสัยพิเศษ: <strong>เมื่อรู้ว่าจะมีแขกมาเยี่ยม เขาจะนอนดึกขึ้นคืนก่อนหน้า</strong>เพื่ออ่านหนังสือเกี่ยวกับหัวข้อที่เขารู้ว่าแขกคนนั้นสนใจ</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--primary);">ทำไม? เพราะเขารู้ว่า <strong>"The royal road to a person's heart is to talk about the things he or she treasures most."</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">💼 กรณีศึกษา: การขายที่ล้มเหลว vs สำเร็จ</div>
+                    <p><strong>ล้มเหลว:</strong> Salesman เข้าไปพบ CEO และพูดถึงผลิตภัณฑ์ของตัวเองตลอด 30 นาที CEO ไม่สนใจและปฏิเสธ</p>
+                    <p style="margin-top: 15px;"><strong>สำเร็จ:</strong> Salesman อีกคนเข้าไปและเห็นถ้วยรางวัลการแข่งเรือบนโต๊ะ</p>
+                    <p style="margin-top: 10px;">เขาถาม: "คุณได้รางวัลนี้มาอย่างไร? คงต้องฝึกหนักมาก"</p>
+                    <p style="margin-top: 10px;">CEO พูดถึงการแข่งเรือด้วยความภูมิใจ 45 นาที สุดท้ายถาม: "แล้วคุณมาติดต่อเรื่องอะไร?"</p>
+                    <p style="margin-top: 10px;">Salesman อธิบายสั้น ๆ และ CEO ซื้อทันที</p>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p>ทุกคนมีเรื่องที่พวกเขา<strong>ภูมิใจ</strong>และ<strong>สนใจ</strong> ถ้าคุณให้เวลากับเรื่องนั้น คุณจะได้<strong>ใจ</strong>ของพวกเขา และเมื่อได้ใจแล้ว สิ่งอื่น ๆ จะง่ายขึ้นเอง</p>
+                </div>
+
+                <div class="teaching-point">
+                    <strong>ข้อความสำหรับสอน:</strong> "คนเราจะจำคนที่ทำให้เขารู้สึกสำคัญ ไม่ใช่คนที่พยายามแสดงว่าตัวเองสำคัญ ให้ความสนใจกับสิ่งที่คนอื่นชื่นชอบ และคุณจะกลายเป็นคนที่พวกเขาชื่นชอบ"
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 3 -->
+        <div class="part-header">
+            <h2>ส่วนที่ 3: How to Win People to Your Way of Thinking</h2>
+            <p>วิธีโน้มน้าวใจคนให้คิดตามเรา</p>
+        </div>
+
+        <section id="part3">
+            <div class="card">
+                <h3>แก่นหลัก (Core Concept)</h3>
+                <p style="font-size: 1.15rem; line-height: 2;">
+                    การโน้มน้าวใจที่แท้จริงไม่ได้มาจากการ<strong>ชนะการโต้เถียง</strong> แต่มาจากการ<span class="highlight">ทำให้อีกฝ่ายเห็นว่าความคิดของเราเป็นประโยชน์ต่อเขา</span> การโต้แย้งไม่มีทางชนะได้จริง เพราะแม้คุณจะชนะด้วยตรรกะ แต่คุณก็<strong>แพ้ด้วยอารมณ์</strong>ของอีกฝ่าย
+                </p>
+            </div>
+
+            <!-- Principle 10 -->
+            <div class="principle">
+                <div class="principle-number">10</div>
+                <h4>Avoid arguments</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>หลีกเลี่ยงการโต้เถียง</strong> วิธีเดียวที่จะ "ชนะ" การโต้เถียงคือ<span class="highlight">การหลีกเลี่ยงมัน</span> เพราะแม้คุณจะชนะด้วยเหตุผล แต่คุณจะแพ้ความรู้สึกของอีกฝ่าย
+                </p>
+
+                <div class="example">
+                    <div class="example-title">🎭 Benjamin Franklin's Wisdom</div>
+                    <p>Benjamin Franklin เคยเป็นคนชอบโต้เถียงตอนหนุ่ม ๆ จนกระทั่งเขาเรียนรู้บทเรียนสำคัญ</p>
+                    <p style="margin-top: 10px;">เขาพูดว่า: <strong>"If you argue and rankle and contradict, you may achieve a victory sometimes; but it will be an empty victory because you will never get your opponent's good will."</strong></p>
+                    <p style="margin-top: 15px;">หลังจากนั้น เขาเปลี่ยนวิธีการ: ไม่โต้แย้งตรง ๆ แต่พูดว่า <strong>"I may be wrong. I frequently am. Let's examine the facts."</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">💼 กรณีศึกษา: Automobile Salesman</div>
+                    <p>พนักงานขายรถคันหนึ่งเคยมีปัญหา ลูกค้าเข้ามาที่โชว์รูมแล้วบ่นเกี่ยวกับรถบางรุ่น</p>
+                    <p style="margin-top: 10px;"><strong>แบบเก่า:</strong> เขาโต้แย้ง "คุณคิดผิดนะครับ รถคันนี้ดีมาก!" → ลูกค้าโกรธและเดินออกไป</p>
+                    <p style="margin-top: 10px;"><strong>แบบใหม่:</strong> "ครับ ผมเข้าใจความกังวลของคุณ หลายคนก็คิดแบบนั้นตอนแรก จนกระทั่งพวกเขาได้ลองจริง ๆ และพบว่า... คุณสนใจลองขับดูไหมครับ?"</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--secondary);">ผลลัพธ์: ยอดขายพุ่งขึ้น 40%</p>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p><strong>"A man convinced against his will is of the same opinion still."</strong> แม้คุณจะบังคับให้เขายอมรับ แต่ในใจเขาก็ยังไม่เปลี่ยนใจ หลีกเลี่ยงการโต้แย้ง หาทางเดินที่ทั้งสองฝ่ายชนะ</p>
+                </div>
+            </div>
+
+            <!-- Principle 11-12 -->
+            <div class="principle">
+                <div class="principle-number">11-12</div>
+                <h4>Show respect & never say "You're wrong"</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>เคารพความคิดเห็นของคนอื่น ไม่บอกว่า "คุณผิด"</strong> การบอกว่าคนอื่นผิดเหมือนกับการ<span class="highlight">ทำลายความภูมิใจ</span>ของเขา และเขาจะไม่ฟังคุณอีก
+                </p>
+
+                <div class="example">
+                    <div class="example-title">🎯 Magic Words</div>
+                    <p>แทนที่จะพูดว่า: <strong>"You're wrong!"</strong></p>
+                    <p style="margin-top: 10px;">ลองพูดว่า:</p>
+                    <ul style="margin-left: 30px; margin-top: 10px;">
+                        <li><strong>"I may be wrong. I frequently am. Let's examine the facts."</strong></li>
+                        <li><strong>"I thought otherwise, but I may be wrong. Let's look at the facts together."</strong></li>
+                        <li><strong>"That's interesting. I had a different impression. Can you help me understand your perspective?"</strong></li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🏛️ Lord Chesterfield's Advice</div>
+                    <p>Lord Chesterfield เขียนถึงลูกชายว่า:</p>
+                    <p style="margin-top: 10px; font-style: italic;">"Be wiser than other people if you can; but do not tell them so."</p>
+                    <p style="margin-top: 10px;">(ฉลาดกว่าคนอื่นก็ได้ แต่<strong>อย่าไปบอกพวกเขา</strong>)</p>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p>การให้เกียรติความคิดเห็นของคนอื่น แม้เราจะไม่เห็นด้วย คือการเปิดประตูสู่การสนทนาที่สร้างสรรค์ ถ้าคุณเริ่มด้วยการปฏิเสธ คุณจะได้แต่กำแพง</p>
+                </div>
+            </div>
+
+            <!-- Principle 13-14 -->
+            <div class="principle">
+                <div class="principle-number">13-14</div>
+                <h4>Admit your mistakes quickly & Let others do the talking</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>ยอมรับผิดทันทีและปล่อยให้คนอื่นพูด</strong> การยอมรับผิดของตัวเองอย่างรวดเร็วจะ<span class="highlight">ทำลายการโจมตี</span>และสร้างความเคารพ
+                </p>
+
+                <div class="example">
+                    <div class="example-title">🐕 Dog Story</div>
+                    <p>Carnegie เล่าเรื่องตัวเองที่พาสุนัขเดินเล่นในสวนสาธารณะโดยไม่ใส่สายจูง (ซึ่งผิดกฎหมาย)</p>
+                    <p style="margin-top: 10px;">เมื่อตำรวจเดินมา แทนที่เขาจะหาข้ออ้าง Carnegie พูดว่า:</p>
+                    <p style="margin-top: 10px; font-style: italic;"><strong>"Officer, you've caught me red-handed. I'm guilty. I have no alibis, no excuses."</strong></p>
+                    <p style="margin-top: 10px;">ตำรวจตอบด้วยน้ำเสียงอ่อนลง: "Well, I know it's tempting to let them run... Just keep him on a leash next time, okay?"</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--secondary);">การยอมรับผิดอย่างตรงไปตรงมาทำให้คนอื่นอ่อนลงและให้อภัย</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">💼 ในที่ทำงาน</div>
+                    <p><strong>สถานการณ์:</strong> คุณส่งรายงานผิดวันกำหนด</p>
+                    <p style="margin-top: 10px;"><strong>❌ แบบผิด:</strong> หาข้อแก้ตัว "เพราะฝ่ายไอทีไม่ให้ข้อมูล" "เพราะผมมีงานเยอะ"</p>
+                    <p style="margin-top: 10px;"><strong>✅ แบบถูก:</strong> "ขอโทษครับ ผมส่งช้า นี่ผิดพลาดของผม ผมจะจัดการให้มันไม่เกิดขึ้นอีก มีอะไรที่ผมจะแก้ไขได้บ้างไหมครับ?"</p>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p><strong>"By fighting you never get enough, but by yielding you get more than you expected."</strong> การยอมรับผิดไม่ได้ทำให้คุณอ่อนแอ แต่ทำให้คุณ<span class="highlight">น่าเคารพ</span>และ<span class="highlight">น่าไว้วางใจ</span></p>
+                </div>
+            </div>
+
+            <!-- Principle 15-17 -->
+            <div class="principle">
+                <div class="principle-number">15-17</div>
+                <h4>Get others saying "yes", sympathize, and appeal to noble motives</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>ทำให้คนอื่นพูดว่า "ใช่" ตั้งแต่ต้น เห็นใจ และขอร้องด้วยแรงจูงใจที่สูงส่ง</strong> เริ่มด้วยคำถามที่คนตอบว่า "ใช่" สร้างโมเมนตัมในทางบวก
+                </p>
+
+                <div class="example">
+                    <div class="example-title">🤝 Socratic Method</div>
+                    <p>Socrates ใช้เทคนิคนี้เมื่อ 2,400 ปีก่อน เรียกว่า "Socratic Method"</p>
+                    <p style="margin-top: 10px;"><strong>วิธีการ:</strong> ถามคำถามที่อีกฝ่ายต้องตอบว่า "ใช่" หลาย ๆ ครั้ง ก่อนที่จะขอสิ่งที่ต้องการ</p>
+                    <p style="margin-top: 15px;"><strong>ตัวอย่าง: ขายประกันชีวิต</strong></p>
+                    <p style="margin-top: 10px;">"คุณเห็นด้วยไหมครับว่าครอบครัวสำคัญที่สุด?" → "ใช่"</p>
+                    <p>"คุณต้องการให้ครอบครัวมีความปลอดภัยทางการเงินใช่ไหม?" → "ใช่"</p>
+                    <p>"ถ้ามีอะไรเกิดขึ้นกับคุณ คุณอยากให้พวกเขาได้รับการดูแลที่ดีที่สุดใช่ไหม?" → "ใช่"</p>
+                    <p style="margin-top: 10px;">"งั้นเรามาดูแผนที่จะช่วยให้พวกเขาได้รับสิ่งนี้กันดีกว่า..."</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">❤️ Appeal to Noble Motives</div>
+                    <p>J.P. Morgan กล่าวว่า: คนมีเหตุผล 2 อย่างในการทำอะไร — <strong>เหตุผลที่ดูดี และเหตุผลที่แท้จริง</strong></p>
+                    <p style="margin-top: 10px;">คนเราชอบคิดว่าตัวเองทำเพื่อเหตุผลที่ดีงาม แม้ความจริงอาจไม่เป็นเช่นนั้น</p>
+                    <p style="margin-top: 15px;"><strong>ตัวอย่าง:</strong> แทนที่จะพูดว่า "จ่ายเงินเถอะ มันก็เวลาต้องจ่ายแล้ว"</p>
+                    <p style="margin-top: 10px;">พูดว่า: "ผมรู้ว่าคุณเป็นคนที่<strong>รักษาคำพูด</strong>และ<strong>ทำตามสัญญา</strong> นั่นคือเหตุผลที่ผมมั่นใจว่าคุณจะจัดการเรื่องนี้ได้"</p>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p>คนเราชอบรู้สึกว่าตัวเองเป็นคนดี มีหลักการ และทำในสิ่งที่ถูกต้อง เมื่อคุณขอร้องโดยเชื่อมโยงกับคุณค่าเหล่านี้ พวกเขามักจะตอบรับ</p>
+                </div>
+
+                <div class="teaching-point">
+                    <strong>ข้อความสำหรับสอน:</strong> "การโน้มน้าวใจที่ดีที่สุดคือการทำให้อีกฝ่ายรู้สึกว่า<strong>พวกเขาเลือกเอง</strong> ไม่ใช่ถูกบังคับ เริ่มด้วยการสร้างความเห็นด้วย (yes momentum) และเชื่อมโยงกับคุณค่าที่พวกเขาภูมิใจ คุณจะได้ความร่วมมือที่แท้จริง"
+                </div>
+            </div>
+
+            <!-- Principle 18-19 -->
+            <div class="principle">
+                <div class="principle-number">18-19</div>
+                <h4>Dramatize your ideas & Throw down a challenge</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>ทำให้ความคิดของคุณดราม่าและท้าทาย</strong> ข้อมูลเปล่า ๆ ไม่พอ คุณต้อง<span class="highlight">ทำให้มันมีชีวิต</span>และ<span class="highlight">น่าตื่นเต้น</span>
+                </p>
+
+                <div class="example">
+                    <div class="example-title">🎬 Dramatization Example</div>
+                    <p><strong>แบบธรรมดา:</strong> "สบู่ของเราช่วยฆ่าเชื้อโรคได้"</p>
+                    <p style="margin-top: 10px;"><strong>แบบดราม่า:</strong> บริษัทสบู่แห่งหนึ่งส่งพนักงานขายไปพบผู้จัดการโรงแรม</p>
+                    <p style="margin-top: 10px;">แทนที่จะพูด เขา<strong>เอาแผ่นกระจกมาถู</strong>บนพื้นที่สกปรก จากนั้น<strong>เอากล้องจุลทรรศน์มา</strong>ให้ดู</p>
+                    <p style="margin-top: 10px;">"นี่คือเชื้อโรคที่อยู่บนพื้นของโรงแรมคุณตอนนี้"</p>
+                    <p style="margin-top: 10px;">จากนั้นเขาใช้สบู่ของเขาทำความสะอาดและให้ดูในกล้องอีกครั้ง — <strong>สะอาดหมดจด!</strong></p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--secondary);">ผลลัพธ์: ได้ออเดอร์ทันที</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🏆 Challenge Example: Charles Schwab</div>
+                    <p>โรงงานแห่งหนึ่งของ Charles Schwab มีปัญหา — <strong>คนงานผลิตได้ไม่ถึงเป้า</strong></p>
+                    <p style="margin-top: 10px;">Schwab ไม่ด่า ไม่ข่มขู่ แต่เขา<strong>เขียนเลข "6"</strong> ด้วยชอล์กบนพื้น (จำนวนที่กะวันผลิตได้)</p>
+                    <p style="margin-top: 10px;">กะกลางคืนเห็นเลข ถามว่าหมายความว่าอะไร ได้คำตอบว่า "กะวันทำได้ 6"</p>
+                    <p style="margin-top: 10px;">พวกเขา<strong>ลบ "6" ออก</strong>และเขียน<strong>"7"</strong> ไว้</p>
+                    <p style="margin-top: 10px;">กะวันกลับมา เห็นเลข 7 → พวกเขา<strong>ลบออก</strong>และเขียน<strong>"10"</strong></p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--primary);">ภายในสัปดาห์เดียว ผลผลิตพุ่งขึ้นมหาศาล — ด้วยแค่<strong>การท้าทาย</strong>ไม่ใช่การบังคับ</p>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p><strong>"The way to get things done is to stimulate competition."</strong> ไม่ใช่การแข่งขันเพื่อเงิน แต่เป็น<span class="highlight">การแข่งขันเพื่อความเป็นเลิศ</span> การท้าทายจะปลุกความปรารถนาที่จะพิสูจน์ตัวเอง</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4 -->
+        <div class="part-header">
+            <h2>ส่วนที่ 4: Be a Leader - How to Change People Without Giving Offense</h2>
+            <p>เป็นผู้นำ: วิธีเปลี่ยนแปลงคนโดยไม่ทำให้เสียใจ</p>
+        </div>
+
+        <section id="part4">
+            <div class="card">
+                <h3>แก่นหลัก (Core Concept)</h3>
+                <p style="font-size: 1.15rem; line-height: 2;">
+                    ผู้นำที่ยิ่งใหญ่ไม่ได้<strong>บังคับ</strong>ให้คนเปลี่ยน แต่<span class="highlight">สร้างแรงบันดาลใจ</span>ให้คนอยากเปลี่ยน พวกเขารู้จักวิธี<strong>วิจารณ์โดยไม่ทำลายกำลังใจ</strong> และ<strong>กระตุ้นให้คนพัฒนา</strong>โดยไม่สร้างความรู้สึกแย่
+                </p>
+            </div>
+
+            <!-- Principle 20 -->
+            <div class="principle">
+                <div class="principle-number">20</div>
+                <h4>Begin with praise and honest appreciation</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>เริ่มด้วยคำชมและความชื่นชมที่จริงใจ</strong> ก่อนที่จะวิจารณ์ ให้<span class="highlight">หาสิ่งดี ๆ ที่จะชมก่อน</span> มันเหมือนยาชาก่อนผ่าตัด — ทำให้คำวิจารณ์เจ็บน้อยลง
+                </p>
+
+                <div class="example">
+                    <div class="example-title">🪒 Barber Example</div>
+                    <p>ช่างโกนหนวดเก่ง ๆ จะ<strong>ให้โลชั่นก่อนโกน</strong> ทำไม? เพื่อ<span class="highlight">ทำให้การโกนเจ็บน้อยลง</span></p>
+                    <p style="margin-top: 10px;">เช่นเดียวกัน ผู้นำที่ดีจะ "ให้โลชั่น" (คำชม) ก่อนที่จะ "โกน" (วิจารณ์)</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">💼 ตัวอย่างในที่ทำงาน</div>
+                    <p><strong>❌ แบบผิด:</strong> "รายงานของคุณผิดเยอะมาก ทำใหม่!"</p>
+                    <p style="margin-top: 10px;"><strong>✅ แบบถูก:</strong> "ผมชอบมุมมองในรายงานของคุณมาก โดยเฉพาะส่วนวิเคราะห์ตลาด ละเอียดและลึกซึ้งมาก อย่างไรก็ตาม มีบางส่วนที่เราอาจต้องปรับปรุงให้ชัดเจนขึ้น เราลองมาดูตรงนี้กันดีกว่า..."</p>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p>เริ่มด้วยคำชม → คนเปิดใจ → คำวิจารณ์ถูกรับฟังได้ง่ายขึ้น การเริ่มด้วยความดีทำให้คำวิจารณ์<strong>สร้างสรรค์</strong>ไม่ใช่<strong>ทำลายล้าง</strong></p>
+                </div>
+            </div>
+
+            <!-- Principle 21 -->
+            <div class="principle">
+                <div class="principle-number">21</div>
+                <h4>Call attention to mistakes indirectly</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>ชี้ความผิดพลาดอย่างอ้อมค้อม</strong> แทนที่จะพูดตรง ๆ ว่า "คุณทำผิด" ให้<span class="highlight">ใช้คำอ้อม ๆ</span>หรือ<span class="highlight">ให้คนค้นพบเอง</span>
+                </p>
+
+                <div class="example">
+                    <div class="example-title">✍️ Charles Schwab's Letter</div>
+                    <p>Charles Schwab ได้รับจดหมายสำคัญที่<strong>มีข้อผิดพลาด</strong>จากเลขานุการ</p>
+                    <p style="margin-top: 10px;"><strong>ไม่ได้ทำ:</strong> เรียกมาด่าว่า "คุณสะกดคำผิด!"</p>
+                    <p style="margin-top: 10px;"><strong>ทำ:</strong> ส่งกลับจดหมายพร้อมบันทึก: <strong>"This is such an important letter that I think it deserves another look for absolute perfection."</strong></p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--secondary);">เลขานุการเห็นข้อผิดเอง แก้ไข และไม่รู้สึกแย่</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🎨 Technique: "AND" not "BUT"</div>
+                    <p><strong>❌ But:</strong> "งานของคุณดีนะ<strong>แต่</strong>มีข้อผิดพลาดตรงนี้"</p>
+                    <p style="margin-top: 10px;">→ คำว่า "แต่" ทำให้คำชมข้างหน้า<strong>ไร้ค่า</strong></p>
+                    <p style="margin-top: 15px;"><strong>✅ And:</strong> "งานของคุณดีมาก<strong>และ</strong>ถ้าเราปรับแก้ตรงนี้ มันจะยิ่งสมบูรณ์แบบขึ้นไปอีก"</p>
+                    <p style="margin-top: 10px;">→ คำว่า "และ" เชื่อมต่อความดี<strong>เข้าด้วยกัน</strong></p>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p><strong>"Calling attention to one's mistakes indirectly works wonders with sensitive people."</strong> การชี้ผิดอ้อม ๆ ช่วยรักษา<span class="highlight">ศักดิ์ศรี</span>และทำให้คน<span class="highlight">เต็มใจแก้ไข</span></p>
+                </div>
+            </div>
+
+            <!-- Principle 22 -->
+            <div class="principle">
+                <div class="principle-number">22</div>
+                <h4>Talk about your own mistakes first</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>พูดถึงความผิดพลาดของตัวเองก่อน</strong> ก่อนจะวิจารณ์คนอื่น ให้<span class="highlight">ยอมรับความผิดของตัวเอง</span>ก่อน มันจะทำให้คำวิจารณ์<strong>ไม่รุนแรง</strong>และ<strong>น่ารับฟัง</strong>
+                </p>
+
+                <div class="example">
+                    <div class="example-title">👨‍👦 Father-Son Story</div>
+                    <p>พ่อคนหนึ่งต้องการบอกลูกชายว่าเรียนไม่ดีพอ</p>
+                    <p style="margin-top: 10px;"><strong>แบบเก่า:</strong> "คะแนนลูกห่วยแตกไปหมด! ลูกต้องตั้งใจเรียนมากกว่านี้!"</p>
+                    <p style="margin-top: 15px;"><strong>แบบใหม่:</strong> "ลูก พ่อต้องขอโทษด้วยนะ ตอนพ่ออายุเท่าลูก พ่อก็ไม่ค่อยตั้งใจเรียน พ่อมัวแต่เล่นฟุตบอลกับเพื่อน ๆ และพ่อเสียใจตอนนี้ว่า<strong>ทำไมไม่ใช้เวลานั้นให้ดีกว่านี้</strong> พ่อไม่อยากให้ลูกเสียใจแบบพ่อ ลูกคิดว่าเราจะทำอย่างไรดีล่ะ?"</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--secondary);">ลูกไม่รู้สึกถูกโจมตี และพร้อมพูดคุยอย่างเปิดใจ</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">💼 Office Example</div>
+                    <p>"ผมต้องบอกนะ ผมเองก็เคยทำผิดพลาดแบบนี้เหมือนกัน ตอนเริ่มทำงานใหม่ ๆ ผมเคยลืม[สิ่งที่พวกเขาทำผิด]บ่อยมาก และมันสร้างปัญหาเยอะ พอผมเรียนรู้ที่จะ[วิธีแก้] ทุกอย่างก็ง่ายขึ้นมาก คุณลองทำแบบนี้ดูไหม?"</p>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p>การยอมรับว่าเราก็เคยผิดพลาดทำให้คำวิจารณ์<strong>มีน้ำใจ</strong>มากขึ้น และทำให้อีกฝ่าย<strong>ไม่รู้สึกโดดเดี่ยว</strong>ในความผิดพลาด</p>
+                </div>
+
+                <div class="teaching-point">
+                    <strong>ข้อความสำหรับสอน:</strong> "ไม่มีใครสมบูรณ์แบบ การยอมรับความผิดของตัวเองก่อนไม่ได้ทำให้คุณอ่อนแอ แต่ทำให้คุณ<strong>เข้าถึงได้</strong>และ<strong>น่าเคารพ</strong> คนจะเปิดใจรับฟังคนที่พวกเขารู้สึกว่าเข้าใจพวกเขา"
+                </div>
+            </div>
+
+            <!-- Principle 23-24 -->
+            <div class="principle">
+                <div class="principle-number">23-24</div>
+                <h4>Ask questions instead of giving orders & Let the other person save face</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>ถามคำถามแทนการสั่ง และให้อีกฝ่ายรักษาหน้า</strong> คำสั่งสร้างการต่อต้าน คำถามสร้าง<span class="highlight">ความร่วมมือ</span> และอย่าทำให้ใครเสียหน้าต่อหน้าคนอื่น
+                </p>
+
+                <div class="example">
+                    <div class="example-title">🏭 General Electric Story</div>
+                    <p>Owen D. Young ประธาน General Electric ไม่เคยสั่งการโดยตรง</p>
+                    <p style="margin-top: 10px;"><strong>ไม่พูดว่า:</strong> "ทำแบบนี้" "ทำแบบนั้น"</p>
+                    <p style="margin-top: 10px;"><strong>แต่ถามว่า:</strong></p>
+                    <ul style="margin-left: 30px; margin-top: 10px;">
+                        <li>"คุณคิดว่านี่จะใช้ได้ไหม?"</li>
+                        <li>"คุณคิดว่าวิธีนี้ดีไหม?"</li>
+                        <li>"คุณคิดว่าเราควรทำอย่างไรดี?"</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--primary);">ผลลัพธ์: ทีมรู้สึกว่าพวกเขา<strong>มีส่วนร่วม</strong>ในการตัดสินใจ และทำงานด้วยความเต็มใจ</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🎯 Saving Face - Critical Principle</div>
+                    <p>ในประเทศจีน <strong>"รักษาหน้า" (Face)</strong>สำคัญมากกว่าชีวิต คนจีนสามารถ<strong>ฆ่าตัวตาย</strong>ถ้าเสียหน้า</p>
+                    <p style="margin-top: 10px;">แม้ในตะวันตก หลักการนี้ก็สำคัญเหมือนกัน — การทำให้ใครเสียหน้าจะ<strong>ทำลายความสัมพันธ์ตลอดกาล</strong></p>
+                    <p style="margin-top: 15px;"><strong>ตัวอย่าง: การไล่พนักงาน</strong></p>
+                    <p style="margin-top: 10px;">❌ <strong>แย่มาก:</strong> ไล่ต่อหน้าเพื่อนร่วมงาน ทำให้เขาเสียหน้า</p>
+                    <p style="margin-top: 10px;">✅ <strong>ดี:</strong> เรียกคุยส่วนตัว อธิบายสถานการณ์ อาจเสนอ "การลาออกเอง" หรือช่วยหางานใหม่ให้</p>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p><strong>"Even if we are right and the other person is definitely wrong, we only destroy ego by causing someone to lose face."</strong> ชัยชนะที่ทำให้คนอื่นเสียหน้าไม่ใช่ชัยชนะที่แท้จริง</p>
+                </div>
+            </div>
+
+            <!-- Principle 25-27 -->
+            <div class="principle">
+                <div class="principle-number">25-27</div>
+                <h4>Praise improvement, give a fine reputation, and make faults easy to correct</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>ชมทุกการพัฒนา ให้ชื่อเสียงที่ดี และทำให้การแก้ไขเป็นเรื่องง่าย</strong> คนจะพัฒนาตัวเองไปในทิศทางที่คุณ<span class="highlight">ชมพวกเขา</span>
+                </p>
+
+                <div class="example">
+                    <div class="example-title">👧 Pamela's Transformation</div>
+                    <p>เด็กสาวชื่อ Pamela เป็นเด็กที่<strong>ขี้อาย เงียบ ๆ ไม่ค่อยพูด</strong></p>
+                    <p style="margin-top: 10px;">ครูคนใหม่มา แทนที่จะบอกว่า "เธอเงียบเกินไป พูดเยอะหน่อย"</p>
+                    <p style="margin-top: 10px;">ครูพูดว่า: "Pamela, <strong>เธอมีเสียงที่ไพเราะมาก</strong> ครูอยากให้เธอช่วยอ่านประกาศหน้าชั้นได้ไหม?"</p>
+                    <p style="margin-top: 15px;">ภายใน 6 เดือน Pamela กลายเป็น<strong>หนึ่งในนักเรียนที่กล้าแสดงออกที่สุดในชั้น</strong></p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--secondary);">ทำไม? เพราะครูให้ <strong>"reputation to live up to"</strong> (ชื่อเสียงให้พวกเขายึดถือ)</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">💡 Make It Easy Technique</div>
+                    <p><strong>สถานการณ์:</strong> ลูกน้องทำงานได้ช้าและมีข้อผิดพลาด</p>
+                    <p style="margin-top: 10px;">❌ <strong>แบบผิด:</strong> "คุณทำได้ช้ามาก งานยังผิดอีก!"</p>
+                    <p style="margin-top: 15px;">✅ <strong>แบบถูก:</strong> "ผมรู้ว่างานนี้ไม่ง่าย มันซับซ้อนกว่าที่คิด แต่ผมเห็นว่า<strong>คุณมีความสามารถ</strong>มาก ครั้งหน้าลองทำ[วิธีที่ง่ายกว่า]ดูไหม? มันจะช่วยให้คุณทำได้<strong>เร็วขึ้นและแม่นยำขึ้น</strong>"</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🌟 Specific Praise Technique</div>
+                    <p>แทนที่จะชมทั่ว ๆ ไป "เก่งมาก" ให้ชมอย่าง<strong>เฉพาะเจาะจง</strong>:</p>
+                    <ul style="margin-left: 30px; margin-top: 10px; line-height: 2;">
+                        <li>"ผมสังเกตว่าคุณ<strong>ใส่ใจรายละเอียด</strong>มากขึ้นในรายงานนี้ โดยเฉพาะตัวเลขที่คุณตรวจสอบซ้ำทุกตัว"</li>
+                        <li>"วันนี้คุณ<strong>มาตรงเวลา</strong>แล้ว 3 วันติดต่อกัน ผมรู้ว่ามันไม่ง่าย เห็นความตั้งใจของคุณมากเลยครับ"</li>
+                        <li>"การที่คุณ<strong>ช่วยเพื่อนร่วมงาน</strong>แม้ตัวเองจะยังมีงานเหลือ แสดงให้เห็นถึงความเป็นทีมเวิร์คที่แท้จริง"</li>
+                    </ul>
+                </div>
+
+                <div class="takeaway">
+                    <h4>Key Takeaway</h4>
+                    <p><strong>"Abilities wither under criticism; they blossom under encouragement."</strong> ความสามารถจะ<span class="highlight">เหี่ยวแห้ง</span>ภายใต้การวิจารณ์ แต่จะ<span class="highlight">เบ่งบาน</span>ภายใต้การให้กำลังใจ</p>
+                </div>
+
+                <div class="teaching-point">
+                    <strong>ข้อความสำหรับสอน:</strong> "ถ้าคุณต้องการให้คนเปลี่ยน อย่าบอกว่าพวกเขา<strong>แย่</strong> บอกพวกเขาว่าพวกเขา<strong>ดี</strong>และสามารถดีขึ้นได้อีก ให้พวกเขา<strong>reputation to live up to</strong> และพวกเขาจะพยายามเต็มที่เพื่อสมกับมัน คนเราจะกลายเป็นในสิ่งที่คุณเชื่อว่าพวกเขาเป็น"
+                </div>
+            </div>
+        </section>
+
+        <!-- Mindset Section -->
+        <section id="mindset">
+            <h2>Mindset และปรัชญาหลัก</h2>
+
+            <div class="card">
+                <h3>แก่นของ Dale Carnegie Philosophy</h3>
+                <p style="font-size: 1.15rem; line-height: 2; margin-bottom: 25px;">
+                    หนังสือเล่มนี้ไม่ได้สอนเทคนิคการ<strong>"จัดการ"</strong>คน แต่สอน<span class="highlight">ปรัชญาการใช้ชีวิตกับคน</span>อย่างแท้จริง เป้าหมายไม่ใช่การ "ชนะ" คนอื่น แต่คือการ<strong>สร้างความสัมพันธ์ที่แท้จริงและยั่งยืน</strong>
+                </p>
+
+                <div class="mindset-grid">
+                    <div class="mindset-card">
+                        <h4>🧠 Human Nature First</h4>
+                        <p>เข้าใจธรรมชาติของมนุษย์ว่าเราทุกคนต้องการ<strong>ความสำคัญ</strong> <strong>การยอมรับ</strong> และ<strong>ความรัก</strong> ทำงานร่วมกับธรรมชาตินี้ ไม่ใช่ต่อสู้กับมัน</p>
+                    </div>
+
+                    <div class="mindset-card">
+                        <h4>❤️ Genuine Interest</h4>
+                        <p>ความสนใจที่แท้จริงไม่สามารถปลอมได้ คุณต้อง<strong>สนใจคนอื่นอย่างจริงใจ</strong> ไม่ใช่เพราะคุณต้องการอะไรจากพวกเขา แต่เพราะพวกเขาเป็นมนุษย์ที่มีคุณค่า</p>
+                    </div>
+
+                    <div class="mindset-card">
+                        <h4>🎯 See Through Their Eyes</h4>
+                        <p>ความสามารถที่สำคัญที่สุดคือการ<strong>มองจากมุมของคนอื่น</strong> เมื่อคุณเข้าใจว่าพวกเขาต้องการอะไร คุณจะรู้วิธีสื่อสารที่ได้ผล</p>
+                    </div>
+
+                    <div class="mindset-card">
+                        <h4>🌱 Long-term Thinking</h4>
+                        <p>อย่าคิดแค่ผลประโยชน์ระยะสั้น คิดถึง<strong>ความสัมพันธ์ระยะยาว</strong> ชัยชนะเล็ก ๆ ที่ทำลายความสัมพันธ์ไม่คุ้มค่า</p>
+                    </div>
+
+                    <div class="mindset-card">
+                        <h4>💎 Sincerity is Key</h4>
+                        <p>ทุกเทคนิคจะไร้ประโยชน์ถ้าขาด<strong>ความจริงใจ</strong> คนรู้สึกได้เมื่อคุณปลอม จงเป็นตัวของตัวเองและให้ความจริงใจกับทุกคน</p>
+                    </div>
+
+                    <div class="mindset-card">
+                        <h4>🔄 Golden Rule</h4>
+                        <p><strong>"ทำกับคนอื่นอย่างที่คุณอยากให้คนอื่นทำกับคุณ"</strong> นี่คือรากฐานของทุกอย่างในหนังสือเล่มนี้</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 40px;">
+                <h3>การเปลี่ยน Mindset ที่สำคัญ</h3>
+                
+                <div class="principle">
+                    <h4 style="color: var(--secondary); margin-bottom: 15px;">จาก "ฉันต้องการ" → "เขาต้องการ"</h4>
+                    <p>หยุดคิดว่าคุณจะได้อะไร เริ่มคิดว่าอีกฝ่ายจะได้อะไร</p>
+                </div>
+
+                <div class="principle">
+                    <h4 style="color: var(--secondary); margin-bottom: 15px;">จาก "ฉันจะพูด" → "ฉันจะฟัง"</h4>
+                    <p>หยุดรอคิวที่จะพูด เริ่มฟังอย่างตั้งใจจริง ๆ</p>
+                </div>
+
+                <div class="principle">
+                    <h4 style="color: var(--secondary); margin-bottom: 15px;">จาก "ฉันถูก เขาผิด" → "มาหาทางออกด้วยกัน"</h4>
+                    <p>หยุดชนะการโต้เถียง เริ่มแก้ปัญหาร่วมกัน</p>
+                </div>
+
+                <div class="principle">
+                    <h4 style="color: var(--secondary); margin-bottom: 15px;">จาก "วิจารณ์" → "เข้าใจ"</h4>
+                    <p>หยุดตัดสิน เริ่มเข้าใจว่าทำไมพวกเขาถึงเป็นอย่างนั้น</p>
+                </div>
+
+                <div class="principle">
+                    <h4 style="color: var(--secondary); margin-bottom: 15px;">จาก "สั่งการ" → "สร้างแรงบันดาลใจ"</h4>
+                    <p>หยุดบังคับ เริ่มให้คนเห็นเหตุผลที่ดีในการทำ</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practical Application -->
+        <section id="practical">
+            <h2>การนำไปปฏิบัติจริง</h2>
+
+            <div class="action-steps">
+                <h3>Action Plan ที่ใช้ได้ทันที</h3>
+
+                <div class="action-step">
+                    <strong>📅 Week 1: Practice Appreciation</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>ชมคน 3 คนทุกวันอย่างจริงใจและเฉพาะเจาะจง</li>
+                        <li>เขียนบันทึกสิ่งดี ๆ ที่คนรอบตัวทำ</li>
+                        <li>ส่งข้อความขอบคุณคนที่ช่วยเหลือคุณ</li>
+                    </ul>
+                </div>
+
+                <div class="action-step">
+                    <strong>📅 Week 2: Master Listening</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>ในทุกการสนทนา พยายามฟังมากกว่าพูด (อัตราส่วน 70:30)</li>
+                        <li>ถามคำถามที่ทำให้อีกฝ่ายพูดต่อ: "แล้วหลังจากนั้น?" "คุณรู้สึกอย่างไร?"</li>
+                        <li>ไม่ขัดจังหวะ รอให้คนพูดจบก่อน</li>
+                    </ul>
+                </div>
+
+                <div class="action-step">
+                    <strong>📅 Week 3: Remember Names</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>เมื่อพบคนใหม่ ทวนชื่อซ้ำ 3 ครั้งในการสนทนา</li>
+                        <li>เขียนชื่อและข้อมูลสำคัญลงสมุด</li>
+                        <li>ทบทวนก่อนพบกันครั้งต่อไป</li>
+                    </ul>
+                </div>
+
+                <div class="action-step">
+                    <strong>📅 Week 4: Smile Experiment</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>ยิ้มให้ทุกคนที่เจอตลอดทั้งวัน</li>
+                        <li>สังเกตการตอบสนอง</li>
+                        <li>จดบันทึกว่าความรู้สึกของคุณเปลี่ยนไปอย่างไร</li>
+                    </ul>
+                </div>
+
+                <div class="action-step">
+                    <strong>📅 Week 5-8: Advanced Practices</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>ฝึกถามคำถามแทนสั่งการในที่ทำงาน</li>
+                        <li>เมื่อต้องวิจารณ์ เริ่มด้วยคำชม และพูดถึงข้อผิดของตัวเองก่อน</li>
+                        <li>หาความสนใจของคนรอบตัว และพูดในเรื่องนั้น</li>
+                        <li>หลีกเลี่ยงการโต้เถียง หาทางออกร่วมกันแทน</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 40px;">
+                <h3>สถานการณ์จริงและการใช้หลักการ</h3>
+
+                <div class="example">
+                    <div class="example-title">💼 Scenario 1: ต้องการให้ทีมทำงานล่วงเวลา</div>
+                    <p><strong>❌ Wrong Way:</strong> "พรุ่งนี้ทุกคนต้องมาทำงานเสาร์นะ มีงานต้องส่งด่วน"</p>
+                    <p style="margin-top: 15px;"><strong>✅ Carnegie Way:</strong></p>
+                    <ol style="margin-left: 30px; margin-top: 10px; line-height: 2;">
+                        <li><strong>เริ่มด้วยการชม:</strong> "ทีมเราทำงานได้ดีมากในสัปดาห์นี้ โดยเฉพาะโปรเจกต์ A"</li>
+                        <li><strong>อธิบายสถานการณ์:</strong> "มีโอกาสพิเศษที่เราจะได้โปรเจกต์ใหญ่ แต่ต้องส่งข้อเสนอภายในจันทร์"</li>
+                        <li><strong>ถามความเห็น:</strong> "ผมคิดว่าถ้าเราทำด้วยกัน เราสามารถทำได้ทัน พวกคุณคิดว่าเราจะจัดการอย่างไรดี?"</li>
+                        <li><strong>แสดงความซาบซึ้ง:</strong> "ผมรู้ว่านี่เป็นการขอความช่วยเหลือพิเศษ และผมซาบซึ้งมากถ้าใครสามารถช่วยได้"</li>
+                    </ol>
+                </div>
+
+                <div class="example" style="margin-top: 30px;">
+                    <div class="example-title">🏠 Scenario 2: ต้องการให้ลูกช่วยงานบ้าน</div>
+                    <p><strong>❌ Wrong Way:</strong> "เก็บของซะ! ห้องยุ่งเหมือนคอกหมู!"</p>
+                    <p style="margin-top: 15px;"><strong>✅ Carnegie Way:</strong></p>
+                    <p>"ลูก เมื่อวานแม่สังเกตเห็นว่าลูกเก็บหนังสือให้เรียบร้อยนะ แม่ชอบมากเลย มันทำให้ห้องดูสวยขึ้นเยอะ" (หลักการที่ 2: ชมอย่างจริงใจ)</p>
+                    <p style="margin-top: 10px;">"แม่อยากให้ห้องลูกดูสวยแบบนั้นตลอดเวลาเลย เพราะมันทำให้ลูกหาของเจอง่าย และรู้สึกสบายใจมากกว่า" (หลักการที่ 3: ปลุกความต้องการ)</p>
+                    <p style="margin-top: 10px;">"ลูกคิดว่าถ้าลูกเก็บของทุกวันสัก 5 นาทีก่อนนอน ห้องจะดูดีไหม? ลองดูสักสัปดาห์ไหม?" (หลักการที่ 23: ถามแทนสั่ง)</p>
+                </div>
+
+                <div class="example" style="margin-top: 30px;">
+                    <div class="example-title">👔 Scenario 3: พนักงานทำงานได้ไม่ดี</div>
+                    <p><strong>❌ Wrong Way:</strong> "ทำไมงานของคุณถึงแย่ขนาดนี้! คุณไม่ใส่ใจเลยใช่ไหม!"</p>
+                    <p style="margin-top: 15px;"><strong>✅ Carnegie Way:</strong></p>
+                    <ol style="margin-left: 30px; margin-top: 10px; line-height: 2;">
+                        <li><strong>เริ่มด้วยชม:</strong> "ผมชอบแนวคิดในส่วนแรกของรายงานนะ วิเคราะห์ได้ลึกซึ้งมาก" (หลักการที่ 20)</li>
+                        <li><strong>พูดถึงผิดตัวเอง:</strong> "ผมเองก็เคยมีปัญหาตรงนี้เหมือนกัน ตอนแรก ๆ ทำงาน ผมมักจะรีบเกินไปและพลาดรายละเอียด" (หลักการที่ 22)</li>
+                        <li><strong>ชี้ผิดอ้อม ๆ:</strong> "ถ้าเราเพิ่มรายละเอียดในส่วนนี้อีกนิด รายงานนี้จะสมบูรณ์แบบเลยนะ" (หลักการที่ 21)</li>
+                        <li><strong>ให้ reputation:</strong> "ผมรู้ว่าคุณเป็นคนที่ใส่ใจรายละเอียด อย่างที่เห็นในโปรเจกต์ที่แล้ว ครั้งนี้คงเผอเหอไปหน่อย" (หลักการที่ 26)</li>
+                        <li><strong>ถามคำถาม:</strong> "คุณคิดว่าคุณต้องการอะไรเพิ่มเติมที่จะช่วยให้คุณทำได้ดีขึ้น?" (หลักการที่ 23)</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Takeaways -->
+        <section id="takeaways">
+            <h2>Key Takeaways ที่สำคัญที่สุด</h2>
+
+            <div class="takeaway" style="font-size: 1.15rem;">
+                <h4>1. คนเราขับเคลื่อนด้วยอารมณ์ ไม่ใช่เหตุผล</h4>
+                <p>ไม่ว่าคุณจะมีเหตุผลที่ถูกต้องแค่ไหน ถ้าคุณทำให้คนรู้สึกแย่ คุณก็แพ้ ทำงานกับอารมณ์ของมนุษย์ ไม่ใช่ต่อสู้กับมัน</p>
+            </div>
+
+            <div class="takeaway" style="font-size: 1.15rem;">
+                <h4>2. การสนใจผู้อื่นคือทักษะที่ทรงพลังที่สุด</h4>
+                <p>คุณจะได้เพื่อนมากกว่าในสองเดือนด้วยการสนใจคนอื่น มากกว่าสองปีที่พยายามให้คนสนใจคุณ หยุดพูด เริ่มฟัง หยุดคิดถึงตัวเอง เริ่มคิดถึงผู้อื่น</p>
+            </div>
+
+            <div class="takeaway" style="font-size: 1.15rem;">
+                <h4>3. การวิจารณ์ไม่มีวันได้ผล</h4>
+                <p>การวิจารณ์เหมือนการปล่อยพิษให้แพร่กระจาย มันทำลายความสัมพันธ์ ทำลายกำลังใจ และไม่ทำให้อะไรดีขึ้น แทนที่จะวิจารณ์ ให้พยายามเข้าใจ</p>
+            </div>
+
+            <div class="takeaway" style="font-size: 1.15rem;">
+                <h4>4. คำชมที่จริงใจคือปุ๋ยของความสำเร็จ</h4>
+                <p>ทุกคนกระหายคำชม แต่ต้องเป็นคำชมที่จริงใจ ไม่ใช่คำเยินยอ คำชมที่ดีมาจากการสังเกตที่แท้จริงและความรู้สึกจริงใจ</p>
+            </div>
+
+            <div class="takeaway" style="font-size: 1.15rem;">
+                <h4>5. ชื่อคือเสียงที่ไพเราะที่สุด</h4>
+                <p>ชื่อของคนคือสิ่งที่สำคัญที่สุดสำหรับเขา การจำและเรียกชื่อคนแสดงว่าคุณให้ความสำคัญกับเขา การลืมชื่อแสดงว่าคุณไม่สนใจ</p>
+            </div>
+
+            <div class="takeaway" style="font-size: 1.15rem;">
+                <h4>6. รอยยิ้มมีพลังมหาศาล</h4>
+                <p>รอยยิ้มบอกว่า "ฉันดีใจที่ได้เห็นคุณ คุณทำให้ฉันมีความสุข" มันไม่มีค่าใช้จ่าย แต่มีค่ามหาศาล ยิ้มและโลกจะยิ้มกลับมาให้คุณ</p>
+            </div>
+
+            <div class="takeaway" style="font-size: 1.15rem;">
+                <h4>7. หลีกเลี่ยงการโต้เถียง</h4>
+                <p>วิธีเดียวที่จะชนะการโต้เถียงคือการหลีกเลี่ยงมัน แม้คุณจะชนะด้วยตรรกะ คุณก็แพ้ด้วยความรู้สึกของอีกฝ่าย หาทางออกร่วมกัน ไม่ใช่ชนะกัน</p>
+            </div>
+
+            <div class="takeaway" style="font-size: 1.15rem;">
+                <h4>8. ไม่มีใครอยากถูกบอกว่าผิด</h4>
+                <p>การบอกว่าคนอื่นผิดเท่ากับการทำลายศักดิ์ศรีของเขา ใช้คำอย่าง "I may be wrong. Let's look at the facts together" แทนคำว่า "You're wrong"</p>
+            </div>
+
+            <div class="takeaway" style="font-size: 1.15rem;">
+                <h4>9. พูดในสิ่งที่พวกเขาต้องการ</h4>
+                <p>คนไม่สนใจว่าคุณต้องการอะไร พวกเขาสนใจแค่ว่ามันจะช่วยพวกเขาได้อย่างไร หยุดคิดว่า "ฉันต้องการ" เริ่มคิดว่า "เขาจะได้อะไร"</p>
+            </div>
+
+            <div class="takeaway" style="font-size: 1.15rem;">
+                <h4>10. ความจริงใจคือรากฐานของทุกอย่าง</h4>
+                <p>เทคนิคทั้งหมดจะไร้ค่าถ้าขาดความจริงใจ คนรู้สึกได้เมื่อคุณปลอม จงเป็นตัวของตัวเองและให้ความจริงใจกับทุกคน สิ่งนี้สำคัญกว่าเทคนิคใด ๆ</p>
+            </div>
+        </section>
+
+        <!-- Teaching Section -->
+        <section>
+            <h2>ข้อความสำหรับสอนต่อ (Teaching Quotes)</h2>
+
+            <div class="quote">
+                You can make more friends in two months by becoming interested in other people than you can in two years by trying to get other people interested in you.
+            </div>
+
+            <div class="quote">
+                Talk to someone about themselves and they'll listen for hours. The only way to influence people is to talk about what they want and show them how to get it.
+            </div>
+
+            <div class="quote">
+                Criticism is futile because it puts a person on the defensive and usually makes them strive to justify themselves. Any fool can criticize, condemn and complain - and most fools do.
+            </div>
+
+            <div class="quote">
+                The deepest principle in human nature is the craving to be appreciated. Give honest and sincere appreciation.
+            </div>
+
+            <div class="quote">
+                A person's name is to that person the sweetest and most important sound in any language. Remember names and call them easily.
+            </div>
+
+            <div class="quote">
+                Actions speak louder than words, and a smile says, "I like you. You make me happy. I am glad to see you."
+            </div>
+
+            <div class="quote">
+                The only way to get the best of an argument is to avoid it. You can't win an argument. You can't because if you lose it, you lose it; and if you win it, you lose it.
+            </div>
+
+            <div class="quote">
+                Show respect for the other person's opinions. Never say "You're wrong." If you are wrong, admit it quickly and emphatically.
+            </div>
+
+            <div class="quote">
+                Let the other person do a great deal of the talking. Be genuinely interested in other people. Try honestly to see things from the other person's point of view.
+            </div>
+
+            <div class="quote">
+                Abilities wither under criticism; they blossom under encouragement. Give the other person a fine reputation to live up to.
+            </div>
+
+            <div class="card" style="margin-top: 50px; background: linear-gradient(135deg, var(--primary), #34495E); color: white;">
+                <h3 style="color: white;">สรุปสุดท้าย: Golden Rule</h3>
+                <p style="font-size: 1.3rem; line-height: 2; font-style: italic;">
+                    หลักการทั้งหมดของ Dale Carnegie สามารถสรุปได้ในประโยคเดียว:
+                </p>
+                <p style="font-size: 1.5rem; margin-top: 20px; text-align: center; font-weight: bold;">
+                    <strong>"ทำกับคนอื่นอย่างที่คุณอยากให้คนอื่นทำกับคุณ"</strong>
+                </p>
+                <p style="font-size: 1.15rem; line-height: 2; margin-top: 25px;">
+                    ถ้าคุณอยากให้คนชื่นชม คุณต้องชื่นชมเขาก่อน<br>
+                    ถ้าคุณอยากให้คนฟัง คุณต้องฟังเขาก่อน<br>
+                    ถ้าคุณอยากให้คนเคารพ คุณต้องเคารพเขาก่อน<br>
+                    ถ้าคุณอยากให้คนรัก คุณต้องรักเขาก่อน
+                </p>
+                <p style="font-size: 1.2rem; line-height: 2; margin-top: 25px; text-align: center; font-weight: 600;">
+                    นี่คือความลับของการสร้างมนุษยสัมพันธ์ที่ยั่งยืน<br>
+                    และเป็นผู้นำที่ยิ่งใหญ่
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <div style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, var(--primary), #34495E); color: white; margin-top: 80px;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px; color: white;">Remember</h2>
+        <p style="font-size: 1.3rem; line-height: 2; max-width: 800px; margin: 0 auto;">
+            "Principles don't work unless you do"<br>
+            หลักการเหล่านี้จะไม่ได้ผลถ้าคุณไม่ลงมือทำ<br>
+            เริ่มต้นวันนี้ เริ่มจากคนคนหนึ่ง<br>
+            <strong>และเปลี่ยนแปลงชีวิตของคุณไปตลอดกาล</strong>
+        </p>
+        <p style="margin-top: 40px; font-size: 1.1rem; opacity: 0.9;">สร้างโดย Tomz</p>
+    </div>
+
+</body>
+</html>

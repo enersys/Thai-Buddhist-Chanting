@@ -3,207 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📚 Enersys Book Learning Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <title>📚 Enersys Book Learning Hub | ห้องสมุดแห่งปัญญา</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1e3a5f;
-            --primary-light: #2d5a87;
-            --accent: #f59e0b;
-            --accent-light: #fbbf24;
-            --success: #10b981;
-            --bg: #f8fafc;
-            --bg-card: #ffffff;
-            --text: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        [data-theme="dark"] {
-            --primary: #3b82f6;
-            --primary-light: #60a5fa;
-            --bg: #0f172a;
-            --bg-card: #1e293b;
-            --text: #f1f5f9;
-            --text-muted: #94a3b8;
-            --border: #334155;
+            --mahogany: #4a2c2a;
+            --mahogany-light: #6b4423;
+            --gold: #c9a227;
+            --gold-pale: #dfc98e;
+            --cream: #faf6f0;
+            --cream-warm: #f5efe5;
+            --parchment: #f8f3e8;
+            --leather: #8b4513;
+            --text: #2c1810;
+            --text-muted: #5d4e37;
+            --border-ornate: #b8860b;
+            --shadow-warm: rgba(74, 44, 42, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
-            font-family: 'IBM Plex Sans Thai', sans-serif;
-            background: var(--bg);
+            font-family: 'IBM Plex Sans Thai', 'Crimson Text', serif;
+            background: var(--cream);
             color: var(--text);
-            line-height: 1.7;
+            line-height: 1.8;
             min-height: 100vh;
         }
 
+        /* Texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header - Library Entrance */
         .header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
+            background: linear-gradient(180deg, var(--mahogany) 0%, var(--mahogany-light) 100%);
+            color: var(--cream);
             padding: 3rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 8px solid var(--gold);
         }
 
         .header::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-            animation: float 8s ease-in-out infinite;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(201, 162, 39, 0.15) 0%, transparent 70%);
+            pointer-events: none;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-5%, 5%); }
+        .header-ornament {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            letter-spacing: 8px;
+            opacity: 0.5;
+            color: var(--gold-pale);
         }
 
         .header-content {
             position: relative;
             z-index: 1;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        .logo { font-size: 3rem; margin-bottom: 1rem; }
+        .library-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
 
         .header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
+            letter-spacing: 4px;
             margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .header p {
-            font-size: 1.1rem;
+        .header-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            font-style: italic;
             opacity: 0.9;
+            color: var(--gold-pale);
         }
 
-        .theme-toggle {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            padding: 0.75rem;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.25rem;
-            transition: all 0.3s;
+        .header-motto {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.7;
         }
 
-        .theme-toggle:hover {
-            background: rgba(255,255,255,0.3);
-            transform: rotate(180deg);
-        }
-
-        .main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-
+        /* Stats as Library Cards */
         .stats {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
-            margin: -1.5rem 0 2rem;
+            margin: -2rem 2rem 2rem;
             position: relative;
             z-index: 10;
         }
 
         .stat-card {
-            background: var(--bg-card);
-            padding: 1.5rem 2rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow-lg);
+            background: var(--parchment);
+            padding: 1.5rem 2.5rem;
+            border-radius: 4px;
+            box-shadow: 0 8px 30px var(--shadow-warm), inset 0 0 0 1px var(--border-ornate);
             text-align: center;
-            border: 1px solid var(--border);
+            border: 2px solid var(--gold);
+            position: relative;
         }
+
+        .stat-card::before, .stat-card::after {
+            content: '❧';
+            position: absolute;
+            color: var(--gold);
+            font-size: 0.8rem;
+        }
+
+        .stat-card::before { top: 5px; left: 8px; }
+        .stat-card::after { bottom: 5px; right: 8px; transform: rotate(180deg); }
 
         .stat-value {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            color: var(--accent);
+            color: var(--mahogany);
         }
 
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
+            font-style: italic;
         }
 
+        /* Main Content */
+        .main {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Title - Like Book Shelf Label */
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.75rem;
-            color: var(--primary);
+            font-size: 1.6rem;
+            color: var(--mahogany);
             margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .book-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .book-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--accent);
-        }
-
-        .book-card-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            padding: 1.25rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(90deg, var(--cream-warm) 0%, transparent 100%);
+            border-left: 4px solid var(--gold);
             display: flex;
             align-items: center;
             gap: 1rem;
+            position: relative;
         }
 
-        .book-icon { font-size: 2rem; }
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        /* Book Cards - Like Book Spines on Shelf */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .book-card {
+            background: var(--parchment);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(184, 134, 11, 0.3);
+            box-shadow: 0 4px 20px var(--shadow-warm);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .book-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--mahogany), var(--leather));
+            opacity: 0.8;
+        }
+
+        .book-card:hover {
+            transform: translateY(-8px) rotate(-0.5deg);
+            box-shadow: 0 20px 50px var(--shadow-warm);
+        }
+
+        .book-card-header {
+            background: linear-gradient(135deg, var(--mahogany) 0%, #5d3a3a 100%);
+            color: var(--cream);
+            padding: 1.5rem 1.5rem 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .book-icon {
+            font-size: 2.2rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
 
         .book-info h3 {
-            font-size: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.3rem;
+            line-height: 1.3;
         }
 
         .book-author {
-            font-size: 0.85rem;
+            font-family: 'Crimson Text', serif;
+            font-size: 0.9rem;
             opacity: 0.85;
+            font-style: italic;
         }
 
         .book-card-body {
-            padding: 1.25rem;
+            padding: 1.5rem 1.5rem 1.5rem 2rem;
             flex: 1;
             display: flex;
             flex-direction: column;
+            background: linear-gradient(180deg, var(--parchment) 0%, var(--cream-warm) 100%);
         }
 
         .book-description {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.7;
             flex: 1;
             margin-bottom: 1rem;
         }
@@ -216,12 +274,12 @@
         }
 
         .tag {
-            padding: 0.25rem 0.75rem;
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 0.3rem 0.8rem;
+            background: rgba(201, 162, 39, 0.15);
+            border: 1px solid var(--gold);
             border-radius: 20px;
             font-size: 0.75rem;
-            color: var(--accent);
+            color: var(--mahogany);
             font-weight: 500;
         }
 
@@ -230,65 +288,104 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: white;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--mahogany) 0%, var(--leather) 100%);
+            color: var(--cream);
             text-decoration: none;
-            border-radius: 10px;
+            border-radius: 6px;
             font-weight: 600;
             font-size: 0.9rem;
             transition: all 0.3s;
+            border: 2px solid transparent;
         }
 
         .book-link:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+            background: var(--gold);
+            color: var(--mahogany);
+            border-color: var(--mahogany);
         }
 
-        .category-section { margin-bottom: 3rem; }
+        .category-section { margin-bottom: 2rem; }
 
+        /* Footer - Library Closing */
         .footer {
-            background: var(--bg-card);
-            border-top: 1px solid var(--border);
-            padding: 2rem;
+            background: var(--mahogany);
+            color: var(--cream);
+            padding: 2.5rem 2rem;
             text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            border-top: 4px solid var(--gold);
+            position: relative;
         }
 
-        @media (max-width: 640px) {
-            .header h1 { font-size: 1.75rem; }
+        .footer::before {
+            content: '— ❦ —';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--mahogany);
+            padding: 0 1.5rem;
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+            opacity: 0.9;
+        }
+
+        .footer-quote {
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--gold-pale);
+            margin-top: 1rem;
+        }
+
+        /* Decorative Elements */
+        .ornament {
+            text-align: center;
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin: 2rem 0;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; letter-spacing: 2px; }
             .books-grid { grid-template-columns: 1fr; }
-            .stats { flex-direction: column; align-items: center; }
+            .stats { flex-direction: column; align-items: center; margin: -1rem 1rem 2rem; }
+            .stat-card { width: 100%; max-width: 280px; }
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <button class="theme-toggle" onclick="toggleTheme()" title="สลับธีม">🌙</button>
+        <div class="header-ornament">✦ ✦ ✦ BIBLIOTHECA ✦ ✦ ✦</div>
         <div class="header-content">
-            <div class="logo">📚</div>
-            <h1>Enersys Book Learning Hub</h1>
-            <p>รวมสรุปหนังสือเพื่อการเรียนรู้และพัฒนาตนเอง</p>
+            <div class="library-icon">📚</div>
+            <h1>ENERSYS LIBRARY</h1>
+            <p class="header-subtitle">"ห้องสมุดแห่งปัญญา — Knowledge is the Light of the Mind"</p>
+            <p class="header-motto">Est. 2025 • A Collection of Wisdom</p>
         </div>
     </header>
 
-    <main class="main">
-        <div class="stats">
-            <div class="stat-card">
-                <div class="stat-value">13+</div>
-                <div class="stat-label">Book Summaries</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">6</div>
-                <div class="stat-label">Categories</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">🇹🇭</div>
-                <div class="stat-label">Thai Language</div>
-            </div>
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-value">14</div>
+            <div class="stat-label">Volumes in Collection</div>
         </div>
+        <div class="stat-card">
+            <div class="stat-value">6</div>
+            <div class="stat-label">Subject Categories</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">TH/EN</div>
+            <div class="stat-label">Bilingual Summaries</div>
+        </div>
+    </div>
 
+    <main class="main">
         <!-- Philosophy & Strategy -->
         <section class="category-section">
             <h2 class="section-title">🧠 Philosophy & Strategy</h2>
@@ -302,13 +399,15 @@
                         </div>
                     </div>
                     <div class="book-card-body">
-                        <p class="book-description">สิ่งที่ได้ประโยชน์จากความไม่แน่นอน วิกฤต และความเครียด แนวคิดที่เหนือกว่า "ความทนทาน" - คือการแข็งแกร่งขึ้นจากแรงกดดัน</p>
+                        <p class="book-description">สิ่งที่ได้ประโยชน์จากความไม่แน่นอน วิกฤต และความเครียด — แนวคิดที่เหนือกว่า "ความทนทาน"</p>
                         <div class="book-tags"><span class="tag">Philosophy</span><span class="tag">Risk</span><span class="tag">Strategy</span></div>
-                        <a href="antifragile-summary.html" class="book-link">📖 อ่านสรุป</a>
+                        <a href="antifragile-summary.html" class="book-link">📖 เปิดอ่าน</a>
                     </div>
                 </article>
             </div>
         </section>
+
+        <div class="ornament">❧ ❧ ❧</div>
 
         <!-- Business & Finance -->
         <section class="category-section">
@@ -325,7 +424,7 @@
                     <div class="book-card-body">
                         <p class="book-description">ระบบบริหารเงินสำหรับผู้ประกอบการ เปลี่ยนสูตร Sales - Expenses = Profit เป็น Sales - Profit = Expenses</p>
                         <div class="book-tags"><span class="tag">Finance</span><span class="tag">Business</span></div>
-                        <a href="profit-first-summary.html" class="book-link">📖 อ่านสรุป</a>
+                        <a href="profit-first-summary.html" class="book-link">📖 เปิดอ่าน</a>
                     </div>
                 </article>
                 <article class="book-card">
@@ -337,9 +436,9 @@
                         </div>
                     </div>
                     <div class="book-card-body">
-                        <p class="book-description">หลักการเงินอมตะจากบาบิโลนโบราณ 7 วิธีรักษากระเป๋าที่ผอมแห้ง และ 5 กฎทองแห่งการเงิน</p>
+                        <p class="book-description">หลักการเงินอมตะจากบาบิโลนโบราณ — 7 วิธีรักษากระเป๋าที่ผอมแห้ง และ 5 กฎทองแห่งการเงิน</p>
                         <div class="book-tags"><span class="tag">Classic</span><span class="tag">Personal Finance</span></div>
-                        <a href="richest-man-in-babylon-summary.html" class="book-link">📖 อ่านสรุป</a>
+                        <a href="richest-man-in-babylon-summary.html" class="book-link">📖 เปิดอ่าน</a>
                     </div>
                 </article>
                 <article class="book-card">
@@ -351,9 +450,9 @@
                         </div>
                     </div>
                     <div class="book-card-body">
-                        <p class="book-description">7 Baby Steps สู่อิสรภาพทางการเงิน หลุดพ้นจากหนี้สินและสร้างความมั่งคั่ง</p>
+                        <p class="book-description">7 Baby Steps สู่อิสรภาพทางการเงิน — หลุดพ้นจากหนี้สินและสร้างความมั่งคั่ง</p>
                         <div class="book-tags"><span class="tag">Debt Free</span><span class="tag">Personal Finance</span></div>
-                        <a href="total-money-makeover-summary.html" class="book-link">📖 อ่านสรุป</a>
+                        <a href="total-money-makeover-summary.html" class="book-link">📖 เปิดอ่าน</a>
                     </div>
                 </article>
                 <article class="book-card">
@@ -367,7 +466,7 @@
                     <div class="book-card-body">
                         <p class="book-description">หาจุดที่ต้องแก้ไขก่อนในธุรกิจ ด้วย Business Hierarchy of Needs</p>
                         <div class="book-tags"><span class="tag">Business Growth</span><span class="tag">Strategy</span></div>
-                        <a href="fix-this-next-deep-summary.html" class="book-link">📖 อ่านสรุป</a>
+                        <a href="fix-this-next-deep-summary.html" class="book-link">📖 เปิดอ่าน</a>
                     </div>
                 </article>
                 <article class="book-card">
@@ -381,16 +480,32 @@
                     <div class="book-card-body">
                         <p class="book-description">สร้างธุรกิจที่ให้อิสระในการใช้ชีวิต ไม่ใช่แค่สร้างรายได้</p>
                         <div class="book-tags"><span class="tag">Entrepreneurship</span><span class="tag">Lifestyle</span></div>
-                        <a href="lifestyle-entrepreneur-summary.html" class="book-link">📖 อ่านสรุป</a>
+                        <a href="lifestyle-entrepreneur-summary.html" class="book-link">📖 เปิดอ่าน</a>
                     </div>
                 </article>
             </div>
         </section>
 
+        <div class="ornament">❧ ❧ ❧</div>
+
         <!-- Communication & Leadership -->
         <section class="category-section">
             <h2 class="section-title">💬 Communication & Leadership</h2>
             <div class="books-grid">
+                <article class="book-card">
+                    <div class="book-card-header">
+                        <span class="book-icon">🤝</span>
+                        <div class="book-info">
+                            <h3>How to Win Friends & Influence People</h3>
+                            <div class="book-author">Dale Carnegie</div>
+                        </div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-description">คลาสสิกแห่งมนุษยสัมพันธ์ — 30 หลักการสร้างความสัมพันธ์และมีอิทธิพลต่อผู้คน ขายกว่า 30 ล้านเล่มทั่วโลก</p>
+                        <div class="book-tags"><span class="tag">Classic</span><span class="tag">Relationships</span><span class="tag">Influence</span></div>
+                        <a href="how-to-win-friends-and-influence-people-summary.html" class="book-link">📖 เปิดอ่าน</a>
+                    </div>
+                </article>
                 <article class="book-card">
                     <div class="book-card-header">
                         <span class="book-icon">📱</span>
@@ -400,9 +515,9 @@
                         </div>
                     </div>
                     <div class="book-card-body">
-                        <p class="book-description">สร้างความไว้วางใจในยุค Remote Work ด้วย 4 Laws: Value Visibly, Communicate Carefully, Collaborate Confidently, Trust Totally</p>
+                        <p class="book-description">สร้างความไว้วางใจในยุค Remote Work ด้วย 4 กฎแห่งการสื่อสารดิจิทัล</p>
                         <div class="book-tags"><span class="tag">Communication</span><span class="tag">Remote Work</span></div>
-                        <a href="digital-body-language-summary.html" class="book-link">📖 อ่านสรุป</a>
+                        <a href="digital-body-language-summary.html" class="book-link">📖 เปิดอ่าน</a>
                     </div>
                 </article>
                 <article class="book-card">
@@ -414,9 +529,9 @@
                         </div>
                     </div>
                     <div class="book-card-body">
-                        <p class="book-description">ศิลปะการสนทนาที่แท้จริง วิธีฟังและพูดอย่างมีประสิทธิภาพ</p>
+                        <p class="book-description">ศิลปะการสนทนาที่แท้จริง — วิธีฟังและพูดอย่างมีประสิทธิภาพ</p>
                         <div class="book-tags"><span class="tag">Communication</span><span class="tag">Conversation</span></div>
-                        <a href="we-need-to-talk-summary.html" class="book-link">📖 อ่านสรุป</a>
+                        <a href="we-need-to-talk-summary.html" class="book-link">📖 เปิดอ่าน</a>
                     </div>
                 </article>
                 <article class="book-card">
@@ -430,7 +545,7 @@
                     <div class="book-card-body">
                         <p class="book-description">รอดและเติบโตในการเมืองออฟฟิศ โดยไม่ต้องเป็นคนเจ้าเล่ห์</p>
                         <div class="book-tags"><span class="tag">Office Politics</span><span class="tag">HBR</span></div>
-                        <a href="hbr-office-politics-interactive.html" class="book-link">📖 อ่านสรุป</a>
+                        <a href="hbr-office-politics-interactive.html" class="book-link">📖 เปิดอ่าน</a>
                     </div>
                 </article>
                 <article class="book-card">
@@ -444,11 +559,13 @@
                     <div class="book-card-body">
                         <p class="book-description">สร้างวัฒนธรรมองค์กรที่ปลอดคนเป็นพิษ และรับมือกับพวกเขาอย่างไร</p>
                         <div class="book-tags"><span class="tag">Workplace</span><span class="tag">Culture</span></div>
-                        <a href="the-no-asshole-rule-summary.html" class="book-link">📖 อ่านสรุป</a>
+                        <a href="the-no-asshole-rule-summary.html" class="book-link">📖 เปิดอ่าน</a>
                     </div>
                 </article>
             </div>
         </section>
+
+        <div class="ornament">❧ ❧ ❧</div>
 
         <!-- Work-Life Balance -->
         <section class="category-section">
@@ -465,7 +582,7 @@
                     <div class="book-card-body">
                         <p class="book-description">20 บทความคัดสรรจาก HBR เรื่องการตั้งขอบเขต จัดลำดับความสำคัญ และสร้างสมดุลชีวิต</p>
                         <div class="book-tags"><span class="tag">HBR</span><span class="tag">Work-Life</span></div>
-                        <a href="hbr-boundaries-priorities-work-life-balance-summary.html" class="book-link">📖 อ่านสรุป</a>
+                        <a href="hbr-boundaries-priorities-work-life-balance-summary.html" class="book-link">📖 เปิดอ่าน</a>
                     </div>
                 </article>
                 <article class="book-card">
@@ -477,13 +594,15 @@
                         </div>
                     </div>
                     <div class="book-card-body">
-                        <p class="book-description">ใช้ทฤษฎีธุรกิจมาวัดความสำเร็จของชีวิต จาก Professor แห่ง Harvard Business School</p>
+                        <p class="book-description">ใช้ทฤษฎีธุรกิจมาวัดความสำเร็จของชีวิต — จาก Professor แห่ง Harvard Business School</p>
                         <div class="book-tags"><span class="tag">Life Strategy</span><span class="tag">Purpose</span></div>
-                        <a href="how-will-you-measure-your-life-interactive-v2.html" class="book-link">📖 อ่านสรุป</a>
+                        <a href="how-will-you-measure-your-life-interactive-v2.html" class="book-link">📖 เปิดอ่าน</a>
                     </div>
                 </article>
             </div>
         </section>
+
+        <div class="ornament">❧ ❧ ❧</div>
 
         <!-- Science & Knowledge -->
         <section class="category-section">
@@ -498,9 +617,9 @@
                         </div>
                     </div>
                     <div class="book-card-body">
-                        <p class="book-description">ประวัติย่อของเวลา จักรวาลวิทยา Big Bang หลุมดำ และทฤษฎีสัมพัทธภาพ</p>
+                        <p class="book-description">ประวัติย่อของเวลา — จักรวาลวิทยา Big Bang หลุมดำ และทฤษฎีสัมพัทธภาพ</p>
                         <div class="book-tags"><span class="tag">Physics</span><span class="tag">Cosmology</span></div>
-                        <a href="brief-history-of-time-summary.html" class="book-link">📖 อ่านสรุป</a>
+                        <a href="brief-history-of-time-summary.html" class="book-link">📖 เปิดอ่าน</a>
                     </div>
                 </article>
             </div>
@@ -508,25 +627,10 @@
     </main>
 
     <footer class="footer">
-        <p>📚 Enersys Book Learning Hub | Updated: Jan 2026</p>
-        <p>สรุปหนังสือเพื่อการเรียนรู้ ไม่ได้มีวัตถุประสงค์เพื่อการค้า</p>
+        <p><strong>📚 ENERSYS LIBRARY</strong></p>
+        <p>ห้องสมุดแห่งปัญญา — รวมสรุปหนังสือเพื่อการเรียนรู้</p>
+        <p class="footer-quote">"A room without books is like a body without a soul" — Cicero</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">Updated: January 2026 • Curated by Tomz</p>
     </footer>
-
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const isDark = body.getAttribute('data-theme') === 'dark';
-            body.setAttribute('data-theme', isDark ? '' : 'dark');
-            document.querySelector('.theme-toggle').textContent = isDark ? '🌙' : '☀️';
-            localStorage.setItem('theme', isDark ? 'light' : 'dark');
-        }
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.body.setAttribute('data-theme', 'dark');
-            document.querySelector('.theme-toggle').textContent = '☀️';
-        }
-    </script>
 </body>
 </html>
