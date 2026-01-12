@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Million-Dollar, One-Person Business - สรุปฉบับสมบูรณ์</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, rgba(255,215,0,0.1) 0%, transparent 100%);
+            border-radius: 30px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '💰';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(255,215,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.5rem;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        
+        .header .author {
+            font-size: 1.2rem;
+            color: #FFD700;
+        }
+        
+        .book-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #FFD700;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Section Styling */
+        .section {
+            margin-bottom: 50px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 25px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255,215,0,0.3);
+        }
+        
+        .section-icon {
+            font-size: 2.5rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FFD700;
+        }
+        
+        /* Core Concept Cards */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .concept-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,215,0,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,215,0,0.5);
+            box-shadow: 0 20px 40px rgba(255,215,0,0.1);
+        }
+        
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #FFD700, #FFA500);
+        }
+        
+        .concept-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(255,215,0,0.2);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .concept-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+        
+        .concept-desc {
+            color: #ddd;
+            font-size: 1rem;
+        }
+        
+        /* 6 Categories */
+        .category-section {
+            margin-top: 30px;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .category-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            border-radius: 25px;
+            padding: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-card.ecommerce { border-left: 5px solid #FF6B6B; }
+        .category-card.manufacturing { border-left: 5px solid #4ECDC4; }
+        .category-card.content { border-left: 5px solid #45B7D1; }
+        .category-card.professional { border-left: 5px solid #96CEB4; }
+        .category-card.personal { border-left: 5px solid #FFEAA7; }
+        .category-card.realestate { border-left: 5px solid #DDA0DD; }
+        
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .category-desc {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+        
+        .category-examples {
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        
+        .category-examples h4 {
+            color: #FFD700;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .category-examples ul {
+            list-style: none;
+        }
+        
+        .category-examples li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-examples li::before {
+            content: '✦';
+            color: #FFD700;
+        }
+        
+        /* Mindset Section */
+        .mindset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .mindset-card {
+            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,165,0,0.05));
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .mindset-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .mindset-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .mindset-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+        
+        .mindset-desc {
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+        
+        /* Case Study Section */
+        .case-study {
+            background: linear-gradient(145deg, rgba(0,100,0,0.2), rgba(0,50,0,0.1));
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px 0;
+            border: 1px solid rgba(0,255,0,0.2);
+        }
+        
+        .case-study-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .case-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .case-info h3 {
+            font-size: 1.5rem;
+            color: #4ECDC4;
+        }
+        
+        .case-info p {
+            color: #aaa;
+        }
+        
+        .case-story {
+            color: #ddd;
+            padding: 20px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .case-lessons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .lesson-item {
+            background: rgba(255,215,0,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .lesson-item::before {
+            content: '✓';
+            color: #4ECDC4;
+            font-weight: bold;
+        }
+        
+        /* Action Steps */
+        .action-timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .action-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #FFD700, #FFA500, #FF6B6B);
+        }
+        
+        .action-step {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+        }
+        
+        .action-step::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            background: #FFD700;
+            border-radius: 50%;
+            border: 4px solid #302b63;
+        }
+        
+        .step-phase {
+            font-size: 0.8rem;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .step-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .action-item {
+            background: rgba(255,215,0,0.1);
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .action-item::before {
+            content: '→';
+            color: #FFD700;
+        }
+        
+        /* Key Takeaways */
+        .takeaway-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .takeaway-card {
+            background: linear-gradient(145deg, rgba(255,107,107,0.1), rgba(255,107,107,0.02));
+            border-radius: 20px;
+            padding: 30px;
+            border-left: 5px solid #FF6B6B;
+        }
+        
+        .takeaway-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #FF6B6B;
+            margin-bottom: 10px;
+        }
+        
+        .takeaway-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .takeaway-desc {
+            color: #bbb;
+        }
+        
+        /* Quotes Section */
+        .quote-section {
+            margin: 40px 0;
+        }
+        
+        .quote-card {
+            background: linear-gradient(145deg, rgba(255,215,0,0.15), rgba(255,215,0,0.05));
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 25px;
+            position: relative;
+            border: 1px solid rgba(255,215,0,0.3);
+        }
+        
+        .quote-card::before {
+            content: '"';
+            font-size: 6rem;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            color: rgba(255,215,0,0.3);
+            font-family: Georgia, serif;
+        }
+        
+        .quote-text {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #fff;
+            margin-bottom: 15px;
+            padding-left: 40px;
+        }
+        
+        .quote-context {
+            color: #aaa;
+            font-size: 0.95rem;
+            padding-left: 40px;
+        }
+        
+        /* Tools Section */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .tool-category {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 25px;
+        }
+        
+        .tool-category h4 {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tool-list {
+            list-style: none;
+        }
+        
+        .tool-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: #ddd;
+        }
+        
+        /* Formula Section */
+        .formula-box {
+            background: linear-gradient(145deg, rgba(78,205,196,0.2), rgba(78,205,196,0.05));
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+            border: 2px solid rgba(78,205,196,0.3);
+        }
+        
+        .formula-title {
+            font-size: 1.5rem;
+            color: #4ECDC4;
+            margin-bottom: 20px;
+        }
+        
+        .formula-equation {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        
+        .formula-breakdown {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .formula-item {
+            text-align: center;
+        }
+        
+        .formula-item span {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #FFD700;
+        }
+        
+        .formula-item p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th {
+            background: rgba(255,215,0,0.2);
+            padding: 20px;
+            text-align: left;
+            color: #FFD700;
+        }
+        
+        .comparison-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.02);
+        }
+        
+        .comparison-table tr:nth-child(even) td {
+            background: rgba(255,255,255,0.05);
+        }
+        
+        /* Warnings */
+        .warning-box {
+            background: linear-gradient(145deg, rgba(255,107,107,0.2), rgba(255,107,107,0.05));
+            border-radius: 20px;
+            padding: 30px;
+            border-left: 5px solid #FF6B6B;
+            margin: 20px 0;
+        }
+        
+        .warning-title {
+            color: #FF6B6B;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Teachable Content */
+        .teachable-section {
+            background: linear-gradient(145deg, rgba(150,206,180,0.2), rgba(150,206,180,0.05));
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px 0;
+        }
+        
+        .teachable-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .teachable-header h3 {
+            color: #96CEB4;
+            font-size: 1.8rem;
+        }
+        
+        .teachable-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .teachable-card {
+            background: rgba(0,0,0,0.2);
+            border-radius: 20px;
+            padding: 25px;
+        }
+        
+        .teachable-tag {
+            font-size: 0.8rem;
+            color: #96CEB4;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .teachable-quote {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .teachable-context {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Checklist */
+        .checklist {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .checklist-box {
+            width: 25px;
+            height: 25px;
+            border: 2px solid #FFD700;
+            border-radius: 5px;
+            flex-shrink: 0;
+        }
+        
+        .checklist-content h4 {
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        
+        .checklist-content p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+        
+        .footer-subtitle {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+        
+        .footer-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+            
+            .book-stats {
+                gap: 20px;
+            }
+            
+            .quote-text {
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>The Million-Dollar, One-Person Business</h1>
+            <p class="subtitle">Make Great Money. Work the Way You Like. Have the Life You Want.</p>
+            <p class="author">📚 โดย Elaine Pofeldt</p>
+            
+            <div class="book-stats">
+                <div class="stat-item">
+                    <div class="stat-number">$1M+</div>
+                    <div class="stat-label">รายได้ต่อปี</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">คน (หรือน้อยมาก)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">ประเภทธุรกิจหลัก</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">35,584</div>
+                    <div class="stat-label">ธุรกิจในสหรัฐฯ ที่ทำได้</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Overview Section -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">📖</span>
+                <h2 class="section-title">ภาพรวมหนังสือ (Overview)</h2>
+            </div>
+            
+            <p style="font-size: 1.1rem; color: #ddd; margin-bottom: 25px;">
+                Elaine Pofeldt ใช้เวลาหลายปีศึกษาผู้ประกอบการที่สามารถสร้างรายได้มากกว่า 1 ล้านดอลลาร์ต่อปี โดยทำงานคนเดียวหรือมีพนักงานน้อยมาก (ไม่เกิน 4 คน) เธอสัมภาษณ์และวิเคราะห์ข้อมูลจากหลายร้อยธุรกิจ เพื่อค้นหา "สูตรลับ" ที่ทำให้สำเร็จ
+            </p>
+            
+            <div class="formula-box">
+                <h3 class="formula-title">🔑 สมการความสำเร็จของ One-Person Business</h3>
+                <div class="formula-equation">
+                    High-Value Offer × Scalable Systems × Automation = $1M Revenue
+                </div>
+                <div class="formula-breakdown">
+                    <div class="formula-item">
+                        <span>💎</span>
+                        <p>ข้อเสนอมูลค่าสูง</p>
+                    </div>
+                    <div class="formula-item">
+                        <span>📈</span>
+                        <p>ระบบที่ขยายได้</p>
+                    </div>
+                    <div class="formula-item">
+                        <span>🤖</span>
+                        <p>การทำงานอัตโนมัติ</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <span class="concept-number">01</span>
+                    <h3 class="concept-title">ไม่ใช่ธุรกิจเล็ก แต่เป็นธุรกิจ "เบา"</h3>
+                    <p class="concept-desc">ธุรกิจเหล่านี้ไม่ได้เล็ก แต่ออกแบบให้ "เบา" ในแง่โครงสร้าง ต้นทุนคงที่ต่ำ แต่ Profit Margin สูงมาก โดยใช้เทคโนโลยีและ Outsourcing อย่างชาญฉลาด</p>
+                </div>
+                <div class="concept-card">
+                    <span class="concept-number">02</span>
+                    <h3 class="concept-title">ไม่ต้องมีพนักงานเยอะ</h3>
+                    <p class="concept-desc">ความเชื่อเดิมว่าต้องมีพนักงานมากถึงจะโตได้นั้นล้าสมัย เทคโนโลยีทำให้คนเดียวจัดการได้เท่ากับทีม 10-20 คนในอดีต</p>
+                </div>
+                <div class="concept-card">
+                    <span class="concept-number">03</span>
+                    <h3 class="concept-title">ทำเงินได้หลายทาง</h3>
+                    <p class="concept-desc">มี 6 ประเภทธุรกิจหลักที่พิสูจน์แล้วว่าทำได้จริง แต่ละประเภทมีโมเดลและความท้าทายต่างกัน</p>
+                </div>
+                <div class="concept-card">
+                    <span class="concept-number">04</span>
+                    <h3 class="concept-title">Freedom First</h3>
+                    <p class="concept-desc">เป้าหมายไม่ใช่แค่เงิน แต่คือ "อิสรภาพ" ในการใช้ชีวิต ทำงานที่ไหนก็ได้ เมื่อไหร่ก็ได้ กับใครก็ได้</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6 Business Categories -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🏢</span>
+                <h2 class="section-title">6 ประเภทธุรกิจที่ทำเงินล้านได้</h2>
+            </div>
+            
+            <div class="category-grid">
+                <!-- E-commerce -->
+                <div class="category-card ecommerce">
+                    <div class="category-icon">🛒</div>
+                    <h3 class="category-title">1. E-commerce</h3>
+                    <p class="category-desc">ขายสินค้าออนไลน์ ไม่ว่าจะเป็นสินค้าที่ผลิตเอง สั่งผลิต หรือ Dropshipping</p>
+                    <div class="category-examples">
+                        <h4>ตัวอย่างจริงจากหนังสือ</h4>
+                        <ul>
+                            <li>ผู้ขายเครื่องประดับ Handmade บน Etsy ทำได้ $2.5M/ปี</li>
+                            <li>ผู้ขายอุปกรณ์กีฬาเฉพาะทางบน Amazon ทำได้ $4M/ปี</li>
+                            <li>ผู้ขายเสื้อผ้า Niche บน Shopify ทำได้ $1.2M/ปี</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Manufacturing -->
+                <div class="category-card manufacturing">
+                    <div class="category-icon">🏭</div>
+                    <h3 class="category-title">2. Manufacturing</h3>
+                    <p class="category-desc">ออกแบบและสร้างผลิตภัณฑ์ของตัวเอง โดยใช้ Contract Manufacturing</p>
+                    <div class="category-examples">
+                        <h4>ตัวอย่างจริงจากหนังสือ</h4>
+                        <ul>
+                            <li>ผู้สร้างแบรนด์อาหารเสริม ใช้โรงงาน OEM ทำได้ $3M/ปี</li>
+                            <li>ผู้ออกแบบของเล่นเด็ก ผลิตในจีน ทำได้ $5M/ปี</li>
+                            <li>ผู้สร้าง Gadget เฉพาะทาง Crowdfunding แล้วผลิต</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Informational Content -->
+                <div class="category-card content">
+                    <div class="category-icon">📚</div>
+                    <h3 class="category-title">3. Informational Content</h3>
+                    <p class="category-desc">สร้างเนื้อหาที่ขายได้ซ้ำๆ เช่น Courses, E-books, Membership</p>
+                    <div class="category-examples">
+                        <h4>ตัวอย่างจริงจากหนังสือ</h4>
+                        <ul>
+                            <li>ผู้สอนการถ่ายภาพออนไลน์ ทำได้ $2M/ปี จาก Courses</li>
+                            <li>ผู้เขียน Blog การเงินส่วนบุคคล ทำได้ $1.5M/ปี</li>
+                            <li>ผู้สร้าง Podcast ธุรกิจ + Sponsorship ทำได้ $1.8M/ปี</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Professional Services -->
+                <div class="category-card professional">
+                    <div class="category-icon">💼</div>
+                    <h3 class="category-title">4. Professional Services</h3>
+                    <p class="category-desc">บริการเฉพาะทางที่ต้องใช้ความเชี่ยวชาญสูง ราคาพรีเมียม</p>
+                    <div class="category-examples">
+                        <h4>ตัวอย่างจริงจากหนังสือ</h4>
+                        <ul>
+                            <li>ที่ปรึกษาด้าน M&A สำหรับ SMEs ทำได้ $3M/ปี</li>
+                            <li>Freelance CFO สำหรับ Startups ทำได้ $1.5M/ปี</li>
+                            <li>ผู้เชี่ยวชาญ SEO สำหรับ Enterprise ทำได้ $2M/ปี</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Personal Services -->
+                <div class="category-card personal">
+                    <div class="category-icon">👤</div>
+                    <h3 class="category-title">5. Personal Services (High-End)</h3>
+                    <p class="category-desc">บริการส่วนตัวระดับพรีเมียม ลูกค้าน้อยแต่จ่ายแพง</p>
+                    <div class="category-examples">
+                        <h4>ตัวอย่างจริงจากหนังสือ</h4>
+                        <ul>
+                            <li>Executive Coach สำหรับ CEO ทำได้ $1.2M/ปี</li>
+                            <li>Personal Trainer สำหรับดารา ทำได้ $800K/ปี</li>
+                            <li>Luxury Travel Planner ทำได้ $1.5M/ปี</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Real Estate -->
+                <div class="category-card realestate">
+                    <div class="category-icon">🏠</div>
+                    <h3 class="category-title">6. Real Estate</h3>
+                    <p class="category-desc">การลงทุนและจัดการอสังหาริมทรัพย์อย่างเป็นระบบ</p>
+                    <div class="category-examples">
+                        <h4>ตัวอย่างจริงจากหนังสือ</h4>
+                        <ul>
+                            <li>นักลงทุน Airbnb จัดการ 15 หลัง ทำได้ $1.8M/ปี</li>
+                            <li>นักลงทุน Fix & Flip ทำได้ $2.5M/ปี</li>
+                            <li>Property Manager ให้บริการ 200+ หลัง</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Principles -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">💡</span>
+                <h2 class="section-title">Core Principles - หลักการสำคัญ</h2>
+            </div>
+            
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <span class="concept-number">A</span>
+                    <h3 class="concept-title">หาเฉพาะกลุ่ม (Find Your Niche)</h3>
+                    <p class="concept-desc">อย่าพยายามขายให้ทุกคน จงหากลุ่มเป้าหมายที่เฉพาะเจาะจง เข้าใจปัญหาของพวกเขาลึกซึ้ง แล้วแก้ปัญหานั้นให้ดีที่สุดในโลก "Riches are in the niches"</p>
+                </div>
+                <div class="concept-card">
+                    <span class="concept-number">B</span>
+                    <h3 class="concept-title">Productize Yourself</h3>
+                    <p class="concept-desc">เปลี่ยนความรู้และทักษะของคุณให้เป็น "สินค้า" ที่ขายได้ซ้ำๆ โดยไม่ต้องแลกเวลา เช่น Courses, Templates, Software, Licensing</p>
+                </div>
+                <div class="concept-card">
+                    <span class="concept-number">C</span>
+                    <h3 class="concept-title">Leverage Technology</h3>
+                    <p class="concept-desc">ใช้เทคโนโลยีทำงานแทนคน Automation ทุกอย่างที่ทำซ้ำได้ ใช้ AI และ Tools เพิ่ม Productivity 10 เท่า</p>
+                </div>
+                <div class="concept-card">
+                    <span class="concept-number">D</span>
+                    <h3 class="concept-title">Outsource Strategically</h3>
+                    <p class="concept-desc">จ้าง Freelancers และ Contractors ทำงานที่ไม่ใช่ Core Competency โฟกัสเฉพาะสิ่งที่คุณทำได้ดีที่สุดและสร้างมูลค่าสูงสุด</p>
+                </div>
+                <div class="concept-card">
+                    <span class="concept-number">E</span>
+                    <h3 class="concept-title">Revenue Diversification</h3>
+                    <p class="concept-desc">อย่าพึ่งพารายได้ทางเดียว สร้าง Multiple Revenue Streams ที่เสริมกัน เช่น Product + Service + Affiliate + Licensing</p>
+                </div>
+                <div class="concept-card">
+                    <span class="concept-number">F</span>
+                    <h3 class="concept-title">Keep It Lean</h3>
+                    <p class="concept-desc">รักษาต้นทุนคงที่ให้ต่ำที่สุด ไม่มีออฟฟิศ ไม่มีพนักงานประจำถ้าไม่จำเป็น Profit Margin สำคัญกว่า Revenue</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mindset Section -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🧠</span>
+                <h2 class="section-title">Mindset ที่จำเป็น</h2>
+            </div>
+            
+            <div class="mindset-grid">
+                <div class="mindset-card">
+                    <div class="mindset-icon">🎯</div>
+                    <h3 class="mindset-title">Goal Clarity</h3>
+                    <p class="mindset-desc">รู้ชัดว่าต้องการอะไรจากธุรกิจ ไม่ใช่แค่เงิน แต่คือ Lifestyle ที่ต้องการ จำนวนชั่วโมงทำงาน ความยืดหยุ่น และอิสรภาพ</p>
+                </div>
+                <div class="mindset-card">
+                    <div class="mindset-icon">🔥</div>
+                    <h3 class="mindset-title">Relentless Focus</h3>
+                    <p class="mindset-desc">ปฏิเสธสิ่งที่ไม่สำคัญอย่างไม่ลังเล ทุก Yes คือการ No อย่างอื่น Focus คือ Superpower ของ Solo Entrepreneur</p>
+                </div>
+                <div class="mindset-card">
+                    <div class="mindset-icon">📊</div>
+                    <h3 class="mindset-title">Numbers Obsession</h3>
+                    <p class="mindset-desc">รู้ตัวเลขธุรกิจอย่างละเอียด CAC, LTV, Margin, Churn Rate วัดผลทุกอย่าง ตัดสินใจด้วยข้อมูล ไม่ใช่ความรู้สึก</p>
+                </div>
+                <div class="mindset-card">
+                    <div class="mindset-icon">🔄</div>
+                    <h3 class="mindset-title">Continuous Learning</h3>
+                    <p class="mindset-desc">ไม่หยุดเรียนรู้ ทั้งทักษะใหม่ เทคโนโลยีใหม่ และวิธีการทำธุรกิจใหม่ๆ ผู้ประกอบการที่ประสบความสำเร็จอ่านหนังสือเฉลี่ย 50+ เล่ม/ปี</p>
+                </div>
+                <div class="mindset-card">
+                    <div class="mindset-icon">💪</div>
+                    <h3 class="mindset-title">Resilience</h3>
+                    <p class="mindset-desc">ทนต่อความล้มเหลว ความโดดเดี่ยว และความไม่แน่นอน Solo Business ไม่มีทีมให้พึ่งพา ต้องเข้มแข็งด้วยตัวเอง</p>
+                </div>
+                <div class="mindset-card">
+                    <div class="mindset-icon">🚀</div>
+                    <h3 class="mindset-title">Action Bias</h3>
+                    <p class="mindset-desc">ลงมือทำก่อน พร้อมจะเปลี่ยนแปลง ไม่ Perfectionism "Done is better than perfect" และ "Ship fast, iterate faster"</p>
+                </div>
+                <div class="mindset-card">
+                    <div class="mindset-icon">🎁</div>
+                    <h3 class="mindset-title">Value Creation First</h3>
+                    <p class="mindset-desc">โฟกัสที่การสร้างคุณค่าให้ลูกค้าก่อน เงินจะตามมา "Give more than you take" สร้าง Trust และ Relationship ระยะยาว</p>
+                </div>
+                <div class="mindset-card">
+                    <div class="mindset-icon">⚖️</div>
+                    <h3 class="mindset-title">Work-Life Integration</h3>
+                    <p class="mindset-desc">ไม่ใช่ Balance แต่คือ Integration ออกแบบธุรกิจให้เข้ากับชีวิต ไม่ใช่ให้ชีวิตต้องปรับตามธุรกิจ</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">📋</span>
+                <h2 class="section-title">Case Studies - กรณีศึกษาจริง</h2>
+            </div>
+            
+            <div class="case-study">
+                <div class="case-study-header">
+                    <div class="case-avatar">👩‍💻</div>
+                    <div class="case-info">
+                        <h3>Sarah Chen - E-commerce Queen</h3>
+                        <p>จาก $0 สู่ $2.5M ในเวลา 4 ปี ด้วยการขายเครื่องประดับ Handmade</p>
+                    </div>
+                </div>
+                <div class="case-story">
+                    <p>Sarah เริ่มต้นจากงานอดิเรกทำเครื่องประดับที่บ้าน เริ่มขายใน Etsy ด้วยเงินทุน $200 เธอค้นพบว่าเครื่องประดับสำหรับงานแต่งงานมี Demand สูงแต่คู่แข่งน้อย จึงโฟกัสเฉพาะ Niche นี้</p>
+                    <p style="margin-top: 15px;">เธอใช้ Virtual Assistants จากฟิลิปปินส์จัดการ Customer Service ใช้ Fulfillment Center ส่งสินค้า และใช้ Freelance Photographers ถ่ายรูปสินค้า ตัวเธอเองโฟกัสแค่การออกแบบและ Marketing</p>
+                </div>
+                <div class="case-lessons">
+                    <div class="lesson-item">เริ่มเล็ก ทดสอบตลาดก่อน</div>
+                    <div class="lesson-item">หา Niche ที่ Demand สูง คู่แข่งน้อย</div>
+                    <div class="lesson-item">Outsource งาน Non-core ทั้งหมด</div>
+                    <div class="lesson-item">โฟกัสที่จุดแข็งของตัวเอง</div>
+                </div>
+            </div>
+            
+            <div class="case-study">
+                <div class="case-study-header">
+                    <div class="case-avatar">👨‍🏫</div>
+                    <div class="case-info">
+                        <h3>Marcus Webb - Info Product Empire</h3>
+                        <p>อดีตช่างภาพที่สอนออนไลน์ทำรายได้ $3.2M/ปี</p>
+                    </div>
+                </div>
+                <div class="case-story">
+                    <p>Marcus เป็นช่างภาพมืออาชีพที่เบื่อการทำงานแลกเวลา เขาเริ่มสร้าง YouTube Channel สอนการถ่ายภาพ เมื่อมี Followers มากพอ เขาสร้าง Online Course ราคา $997</p>
+                    <p style="margin-top: 15px;">เขาใช้ระบบ Evergreen Webinar ขายคอร์สอัตโนมัติ 24/7 ใช้ Email Automation nurture leads และใช้ Affiliate Program ให้คนอื่นช่วยขาย ปัจจุบันเขาทำงานแค่ 20 ชม./สัปดาห์</p>
+                </div>
+                <div class="case-lessons">
+                    <div class="lesson-item">Build Audience ก่อน Monetize</div>
+                    <div class="lesson-item">สร้างสินค้าที่ขายได้ซ้ำๆ</div>
+                    <div class="lesson-item">Automate Sales Process</div>
+                    <div class="lesson-item">ใช้ Affiliate เพิ่ม Reach</div>
+                </div>
+            </div>
+            
+            <div class="case-study">
+                <div class="case-study-header">
+                    <div class="case-avatar">👨‍💼</div>
+                    <div class="case-info">
+                        <h3>David Park - Premium Consultant</h3>
+                        <p>ที่ปรึกษา M&A สำหรับ SMEs รายได้ $4.5M/ปี</p>
+                    </div>
+                </div>
+                <div class="case-story">
+                    <p>David ออกจาก Investment Bank มาเปิดบริษัทที่ปรึกษาคนเดียว เขาเลือกทำ M&A Advisory สำหรับบริษัทขนาดกลางที่ใหญ่เกินไปสำหรับ Business Brokers แต่เล็กเกินไปสำหรับ Big Banks</p>
+                    <p style="margin-top: 15px;">เขาคิดค่าบริการ Success Fee 3-5% ของมูลค่า Deal ทำ 5-8 Deals ต่อปี เฉลี่ย Deal ละ $10-20M เขาใช้ Freelance Analysts ช่วยทำ Due Diligence และ Lawyers สำหรับเอกสาร</p>
+                </div>
+                <div class="case-lessons">
+                    <div class="lesson-item">หาช่องว่างในตลาด (Market Gap)</div>
+                    <div class="lesson-item">คิดราคาตาม Value ไม่ใช่เวลา</div>
+                    <div class="lesson-item">ใช้ Specialists สำหรับงานเฉพาะทาง</div>
+                    <div class="lesson-item">คุณภาพ > ปริมาณ</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Plan -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🚀</span>
+                <h2 class="section-title">Action Plan - แผนปฏิบัติ</h2>
+            </div>
+            
+            <div class="action-timeline">
+                <div class="action-step">
+                    <div class="step-phase">Phase 1 (เดือน 1-3)</div>
+                    <h3 class="step-title">Discovery & Validation</h3>
+                    <p style="color: #aaa; margin-bottom: 15px;">ค้นหาและทดสอบไอเดียธุรกิจ</p>
+                    <div class="step-actions">
+                        <div class="action-item">ระบุทักษะ/ความรู้ที่มีค่า</div>
+                        <div class="action-item">Research ตลาดและคู่แข่ง</div>
+                        <div class="action-item">หา Niche ที่ Profitable</div>
+                        <div class="action-item">สัมภาษณ์ลูกค้าเป้าหมาย 20+ คน</div>
+                        <div class="action-item">ทดสอบ MVP กับลูกค้าจริง</div>
+                        <div class="action-item">วิเคราะห์ Unit Economics</div>
+                    </div>
+                </div>
+                
+                <div class="action-step">
+                    <div class="step-phase">Phase 2 (เดือน 4-6)</div>
+                    <h3 class="step-title">Build Foundation</h3>
+                    <p style="color: #aaa; margin-bottom: 15px;">สร้างพื้นฐานระบบธุรกิจ</p>
+                    <div class="step-actions">
+                        <div class="action-item">สร้าง Offer ที่ชัดเจน</div>
+                        <div class="action-item">ตั้งราคาที่เหมาะสม (คิด Value-based)</div>
+                        <div class="action-item">สร้าง Website / Landing Page</div>
+                        <div class="action-item">Setup ระบบ Payment</div>
+                        <div class="action-item">สร้าง Content Marketing Strategy</div>
+                        <div class="action-item">หา 10 ลูกค้าแรก</div>
+                    </div>
+                </div>
+                
+                <div class="action-step">
+                    <div class="step-phase">Phase 3 (เดือน 7-12)</div>
+                    <h3 class="step-title">Scale & Optimize</h3>
+                    <p style="color: #aaa; margin-bottom: 15px;">ขยายและปรับปรุงระบบ</p>
+                    <div class="step-actions">
+                        <div class="action-item">Automate กระบวนการซ้ำๆ</div>
+                        <div class="action-item">สร้าง SOPs สำหรับทุกอย่าง</div>
+                        <div class="action-item">จ้าง VA/Freelancers</div>
+                        <div class="action-item">สร้าง Recurring Revenue</div>
+                        <div class="action-item">ขยายช่องทางการขาย</div>
+                        <div class="action-item">Optimize Conversion Rate</div>
+                    </div>
+                </div>
+                
+                <div class="action-step">
+                    <div class="step-phase">Phase 4 (ปีที่ 2+)</div>
+                    <h3 class="step-title">Systemize & Freedom</h3>
+                    <p style="color: #aaa; margin-bottom: 15px;">สร้างระบบให้ธุรกิจเดินเองได้</p>
+                    <div class="step-actions">
+                        <div class="action-item">สร้าง Multiple Revenue Streams</div>
+                        <div class="action-item">ลด Dependency บนตัวเอง</div>
+                        <div class="action-item">Build Partnership & JVs</div>
+                        <div class="action-item">Passive Income Systems</div>
+                        <div class="action-item">เตรียม Exit Strategy (ถ้าต้องการ)</div>
+                        <div class="action-item">ใช้ชีวิตที่ต้องการ!</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools & Resources -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🛠️</span>
+                <h2 class="section-title">Tools ที่แนะนำ</h2>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-category">
+                    <h4>📧 Email & Marketing</h4>
+                    <ul class="tool-list">
+                        <li>ConvertKit - Email Marketing</li>
+                        <li>Mailchimp - Email Automation</li>
+                        <li>ActiveCampaign - Advanced CRM</li>
+                        <li>Beehiiv - Newsletter Platform</li>
+                    </ul>
+                </div>
+                <div class="tool-category">
+                    <h4>🛒 E-commerce</h4>
+                    <ul class="tool-list">
+                        <li>Shopify - Online Store</li>
+                        <li>Gumroad - Digital Products</li>
+                        <li>Stripe - Payments</li>
+                        <li>ShipBob - Fulfillment</li>
+                    </ul>
+                </div>
+                <div class="tool-category">
+                    <h4>📚 Online Courses</h4>
+                    <ul class="tool-list">
+                        <li>Teachable - Course Platform</li>
+                        <li>Kajabi - All-in-One</li>
+                        <li>Thinkific - Course Hosting</li>
+                        <li>Podia - Digital Products</li>
+                    </ul>
+                </div>
+                <div class="tool-category">
+                    <h4>⚙️ Automation</h4>
+                    <ul class="tool-list">
+                        <li>Zapier - Connect Apps</li>
+                        <li>Make (Integromat) - Advanced Workflows</li>
+                        <li>n8n - Self-hosted Automation</li>
+                        <li>Calendly - Scheduling</li>
+                    </ul>
+                </div>
+                <div class="tool-category">
+                    <h4>👥 Hiring Freelancers</h4>
+                    <ul class="tool-list">
+                        <li>Upwork - General Freelancers</li>
+                        <li>Fiverr - Quick Tasks</li>
+                        <li>OnlineJobs.ph - Filipino VAs</li>
+                        <li>Toptal - Premium Talent</li>
+                    </ul>
+                </div>
+                <div class="tool-category">
+                    <h4>📊 Analytics & Finance</h4>
+                    <ul class="tool-list">
+                        <li>QuickBooks - Accounting</li>
+                        <li>Wave - Free Accounting</li>
+                        <li>Fathom - Financial Analytics</li>
+                        <li>Google Analytics - Web Analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Takeaways -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🎯</span>
+                <h2 class="section-title">Key Takeaways - สิ่งสำคัญที่ต้องจำ</h2>
+            </div>
+            
+            <div class="takeaway-grid">
+                <div class="takeaway-card">
+                    <div class="takeaway-number">01</div>
+                    <h3 class="takeaway-title">$1M ไม่ได้ไกลอย่างที่คิด</h3>
+                    <p class="takeaway-desc">ถ้าคุณขายสินค้าหรือบริการ $100 ให้ 10,000 คน หรือ $1,000 ให้ 1,000 คน หรือ $10,000 ให้ 100 คน คุณก็ถึง $1M แล้ว การคิดแบบนี้ทำให้เป้าหมายจับต้องได้มากขึ้น</p>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-number">02</div>
+                    <h3 class="takeaway-title">Constraint คือ Advantage</h3>
+                    <p class="takeaway-desc">การไม่มีพนักงานบังคับให้คุณต้อง Automate, Outsource และ Focus ซึ่งสิ่งเหล่านี้ทำให้ธุรกิจมี Profit Margin สูงกว่าบริษัทใหญ่</p>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-number">03</div>
+                    <h3 class="takeaway-title">รายได้ ≠ กำไร</h3>
+                    <p class="takeaway-desc">บริษัทที่มีรายได้ $5M แต่กำไร 5% ($250K) สู้คนเดียวที่ทำ $1M กำไร 70% ($700K) ไม่ได้ เน้น Profit Margin ไม่ใช่ Revenue</p>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-number">04</div>
+                    <h3 class="takeaway-title">ขาย Transformation ไม่ใช่ Information</h3>
+                    <p class="takeaway-desc">ข้อมูลหาฟรีได้ทุกที่ สิ่งที่คนจ่ายเงินคือ "การเปลี่ยนแปลง" ช่วยให้พวกเขาไปจากจุด A ไปจุด B ได้เร็วขึ้น ง่ายขึ้น</p>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-number">05</div>
+                    <h3 class="takeaway-title">เวลาคือทรัพยากรที่จำกัดที่สุด</h3>
+                    <p class="takeaway-desc">คุณมีแค่ 24 ชม./วัน ถ้าขายเวลา คุณไม่มีทาง Scale ต้องหาทาง Decouple รายได้จากเวลา ผ่าน Products, Systems หรือ Leverage</p>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-number">06</div>
+                    <h3 class="takeaway-title">Network = Net Worth</h3>
+                    <p class="takeaway-desc">Solo ไม่ได้แปลว่าโดดเดี่ยว คุณต้องมี Network ของ Mentors, Partners, Contractors และ Customers การสร้าง Relationships สำคัญมาก</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quotes Section -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">💬</span>
+                <h2 class="section-title">Teachable Quotes - ข้อความที่นำไปสอนได้</h2>
+            </div>
+            
+            <div class="teachable-section">
+                <div class="teachable-grid">
+                    <div class="teachable-card">
+                        <div class="teachable-tag">🎯 เกี่ยวกับ Focus</div>
+                        <p class="teachable-quote">"ธุรกิจที่ประสบความสำเร็จที่สุดไม่ได้ทำทุกอย่าง แต่ทำอย่างเดียวให้ดีที่สุดในโลก"</p>
+                        <p class="teachable-context">ใช้สอนเรื่องการเลือก Niche และการโฟกัส</p>
+                    </div>
+                    <div class="teachable-card">
+                        <div class="teachable-tag">💰 เกี่ยวกับ Pricing</div>
+                        <p class="teachable-quote">"ถ้าคุณไม่เคยมีลูกค้าบอกว่าแพงเกินไป แสดงว่าคุณกำลังตั้งราคาต่ำเกินไป"</p>
+                        <p class="teachable-context">ใช้สอนเรื่อง Value-based Pricing</p>
+                    </div>
+                    <div class="teachable-card">
+                        <div class="teachable-tag">⏰ เกี่ยวกับ Time</div>
+                        <p class="teachable-quote">"อย่าขายเวลาของคุณ ขายผลลัพธ์แทน เวลามีจำกัด แต่ผลลัพธ์สามารถ Scale ได้"</p>
+                        <p class="teachable-context">ใช้สอนเรื่อง Productizing Services</p>
+                    </div>
+                    <div class="teachable-card">
+                        <div class="teachable-tag">🚀 เกี่ยวกับ Growth</div>
+                        <p class="teachable-quote">"คุณไม่จำเป็นต้องมีพนักงานมากขึ้นเพื่อโตขึ้น คุณแค่ต้องมีระบบที่ดีขึ้น"</p>
+                        <p class="teachable-context">ใช้สอนเรื่อง Systems Thinking</p>
+                    </div>
+                    <div class="teachable-card">
+                        <div class="teachable-tag">🎁 เกี่ยวกับ Value</div>
+                        <p class="teachable-quote">"ลูกค้าไม่ได้ซื้อสินค้าหรือบริการ พวกเขาซื้อการแก้ปัญหาและความหวังสำหรับอนาคตที่ดีกว่า"</p>
+                        <p class="teachable-context">ใช้สอนเรื่อง Customer-centric Thinking</p>
+                    </div>
+                    <div class="teachable-card">
+                        <div class="teachable-tag">💪 เกี่ยวกับ Resilience</div>
+                        <p class="teachable-quote">"ทุกปัญหาที่คุณแก้ได้ในธุรกิจจะกลายเป็น Moat ที่คู่แข่งต้องเผชิญเหมือนกัน"</p>
+                        <p class="teachable-context">ใช้สอนเรื่อง Competitive Advantage</p>
+                    </div>
+                    <div class="teachable-card">
+                        <div class="teachable-tag">🧠 เกี่ยวกับ Mindset</div>
+                        <p class="teachable-quote">"เสรีภาพไม่ได้หมายความว่าไม่ทำงาน แต่หมายความว่าเลือกได้ว่าจะทำงานอะไร กับใคร และเมื่อไหร่"</p>
+                        <p class="teachable-context">ใช้สอนเรื่อง Lifestyle Design</p>
+                    </div>
+                    <div class="teachable-card">
+                        <div class="teachable-tag">📈 เกี่ยวกับ Scale</div>
+                        <p class="teachable-quote">"ถ้าคุณต้องทำซ้ำมากกว่า 3 ครั้ง จงทำให้มันเป็น System หรือ Automation"</p>
+                        <p class="teachable-context">ใช้สอนเรื่อง Efficiency</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Warnings -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">⚠️</span>
+                <h2 class="section-title">ข้อควรระวัง - Common Mistakes</h2>
+            </div>
+            
+            <div class="warning-box">
+                <h4 class="warning-title">⚠️ อย่าพยายามทำทุกอย่างคนเดียว</h4>
+                <p style="color: #ddd;">แม้จะเป็น "One-Person Business" แต่ไม่ได้หมายความว่าต้องทำทุกอย่างด้วยตัวเอง ผู้ประกอบการที่ประสบความสำเร็จใช้ Freelancers, VAs และ Contractors จำนวนมาก พวกเขาแค่ไม่มี "พนักงานประจำ"</p>
+            </div>
+            
+            <div class="warning-box">
+                <h4 class="warning-title">⚠️ อย่าเริ่มจากผลิตภัณฑ์</h4>
+                <p style="color: #ddd;">ข้อผิดพลาดที่พบบ่อยคือสร้างสินค้าก่อนแล้วค่อยหาลูกค้า ควรเริ่มจากปัญหาและลูกค้าก่อน แล้วค่อยสร้างสินค้าตอบโจทย์</p>
+            </div>
+            
+            <div class="warning-box">
+                <h4 class="warning-title">⚠️ อย่า Undervalue ตัวเอง</h4>
+                <p style="color: #ddd;">หลายคนตั้งราคาต่ำเกินไปเพราะกลัวไม่มีลูกค้า ผลคือต้องทำงานหนักมากเพื่อถึง $1M ราคาที่สูงขึ้นมักมาพร้อมลูกค้าคุณภาพดีกว่า</p>
+            </div>
+            
+            <div class="warning-box">
+                <h4 class="warning-title">⚠️ อย่าละเลยสุขภาพและชีวิตส่วนตัว</h4>
+                <p style="color: #ddd;">เป้าหมายของ One-Person Business คืออิสรภาพ ไม่ใช่การเป็นทาสของธุรกิจตัวเอง ถ้าคุณทำงาน 80+ ชม./สัปดาห์ แสดงว่ามีบางอย่างผิดปกติ</p>
+            </div>
+            
+            <div class="warning-box">
+                <h4 class="warning-title">⚠️ อย่าพึ่งพาแหล่งรายได้เดียว</h4>
+                <p style="color: #ddd;">ถ้ารายได้ 90% มาจากลูกค้าเดียวหรือช่องทางเดียว คุณมีความเสี่ยงสูงมาก สร้าง Multiple Revenue Streams เพื่อความมั่นคง</p>
+            </div>
+        </section>
+
+        <!-- Comparison Table -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">📊</span>
+                <h2 class="section-title">เปรียบเทียบ: ธุรกิจแบบเดิม vs One-Person Business</h2>
+            </div>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th>หัวข้อ</th>
+                    <th>ธุรกิจแบบเดิม</th>
+                    <th>One-Person Business</th>
+                </tr>
+                <tr>
+                    <td>เป้าหมาย</td>
+                    <td>Revenue Growth, Headcount</td>
+                    <td>Profit & Lifestyle Freedom</td>
+                </tr>
+                <tr>
+                    <td>ทีมงาน</td>
+                    <td>พนักงานประจำจำนวนมาก</td>
+                    <td>Freelancers & Contractors</td>
+                </tr>
+                <tr>
+                    <td>ต้นทุนคงที่</td>
+                    <td>สูง (ออฟฟิศ, เงินเดือน, Benefits)</td>
+                    <td>ต่ำมาก (Variable Costs)</td>
+                </tr>
+                <tr>
+                    <td>Profit Margin</td>
+                    <td>5-20%</td>
+                    <td>50-80%</td>
+                </tr>
+                <tr>
+                    <td>ความยืดหยุ่น</td>
+                    <td>ต่ำ (ต้องจ่ายเงินเดือนทุกเดือน)</td>
+                    <td>สูงมาก (Scale Up/Down ได้เร็ว)</td>
+                </tr>
+                <tr>
+                    <td>การตัดสินใจ</td>
+                    <td>ช้า (ต้องผ่านหลายคน)</td>
+                    <td>ทันที (ตัดสินใจคนเดียว)</td>
+                </tr>
+                <tr>
+                    <td>Scalability</td>
+                    <td>ต้องจ้างคนเพิ่ม</td>
+                    <td>ใช้ Technology & Systems</td>
+                </tr>
+                <tr>
+                    <td>Work-Life Balance</td>
+                    <td>ยากที่จะจัดการ</td>
+                    <td>ออกแบบได้ตามต้องการ</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Checklist -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">✅</span>
+                <h2 class="section-title">Checklist - ก่อนเริ่มต้น</h2>
+            </div>
+            
+            <div class="checklist">
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <div class="checklist-content">
+                        <h4>มี Runway อย่างน้อย 6-12 เดือน</h4>
+                        <p>มีเงินเก็บพอใช้จ่ายได้โดยไม่ต้องกังวลเรื่องรายได้</p>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <div class="checklist-content">
+                        <h4>ระบุ Niche และ Target Customer ได้ชัดเจน</h4>
+                        <p>รู้ว่าจะขายให้ใคร และปัญหาอะไรที่จะแก้</p>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <div class="checklist-content">
+                        <h4>มี Skill ที่มีคุณค่าและเป็นที่ต้องการ</h4>
+                        <p>หรือพร้อมที่จะเรียนรู้และพัฒนาทักษะใหม่</p>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <div class="checklist-content">
+                        <h4>เข้าใจ Unit Economics ของธุรกิจ</h4>
+                        <p>รู้ว่าต้องขายกี่ชิ้น/กี่คน ในราคาเท่าไหร่ ถึงจะถึงเป้าหมาย</p>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <div class="checklist-content">
+                        <h4>มี Network เบื้องต้น</h4>
+                        <p>รู้จักคนที่สามารถช่วยเหลือได้ ทั้ง Mentors, Partners หรือ Potential Customers</p>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <div class="checklist-content">
+                        <h4>พร้อมรับมือกับความโดดเดี่ยว</h4>
+                        <p>เข้าใจว่า Solo Business อาจโดดเดี่ยว และมีแผนรับมือ</p>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <div class="checklist-content">
+                        <h4>มีวินัยและ Self-Motivation</h4>
+                        <p>สามารถทำงานได้โดยไม่มีใครกำกับ</p>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <div class="checklist-content">
+                        <h4>พร้อมเรียนรู้ทักษะใหม่ๆ</h4>
+                        <p>ทั้ง Marketing, Sales, Operations, Finance และ Technology</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Formula -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🏆</span>
+                <h2 class="section-title">สรุปสูตรสำเร็จ</h2>
+            </div>
+            
+            <div class="formula-box" style="background: linear-gradient(145deg, rgba(255,215,0,0.2), rgba(255,215,0,0.05)); border-color: rgba(255,215,0,0.5);">
+                <h3 class="formula-title" style="color: #FFD700; font-size: 2rem;">🏆 The Ultimate Million-Dollar Formula</h3>
+                <div style="max-width: 800px; margin: 30px auto; text-align: left;">
+                    <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                        <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 15px; flex: 1; min-width: 280px;">
+                            <h4 style="color: #FFD700; margin-bottom: 10px;">1️⃣ High-Value Niche</h4>
+                            <p style="color: #ddd;">หา Niche ที่มีคนจ่ายเงินมาก และคุณมีความได้เปรียบ</p>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 15px; flex: 1; min-width: 280px;">
+                            <h4 style="color: #FFD700; margin-bottom: 10px;">2️⃣ Scalable Offer</h4>
+                            <p style="color: #ddd;">สร้าง Product/Service ที่ขายได้โดยไม่ต้องแลกเวลา</p>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 15px; flex: 1; min-width: 280px;">
+                            <h4 style="color: #FFD700; margin-bottom: 10px;">3️⃣ Premium Pricing</h4>
+                            <p style="color: #ddd;">ตั้งราคาตาม Value ไม่ใช่ Cost หรือ Competitor</p>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 15px; flex: 1; min-width: 280px;">
+                            <h4 style="color: #FFD700; margin-bottom: 10px;">4️⃣ Automation First</h4>
+                            <p style="color: #ddd;">ใช้ Technology ทำงานแทนคนให้มากที่สุด</p>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 15px; flex: 1; min-width: 280px;">
+                            <h4 style="color: #FFD700; margin-bottom: 10px;">5️⃣ Strategic Outsourcing</h4>
+                            <p style="color: #ddd;">จ้าง Experts ทำงานที่ไม่ใช่ Core Competency</p>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 15px; flex: 1; min-width: 280px;">
+                            <h4 style="color: #FFD700; margin-bottom: 10px;">6️⃣ Multiple Streams</h4>
+                            <p style="color: #ddd;">สร้างหลายช่องทางรายได้ที่เสริมกัน</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 30px; padding: 25px; background: rgba(255,215,0,0.2); border-radius: 15px; display: inline-block;">
+                    <span style="font-size: 2.5rem; font-weight: 800; color: #FFD700;">$1M Revenue ÷ 1 Person = Ultimate Freedom 🚀</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-brand">📚 The Million-Dollar, One-Person Business</div>
+            <p class="footer-subtitle">สรุปฉบับสมบูรณ์ - พร้อมนำไปปฏิบัติจริง</p>
+            <p style="color: #FFD700; font-size: 1.1rem; margin-bottom: 20px;">
+                "Your business doesn't need more people. It needs better systems."
+            </p>
+            <p class="footer-date">สร้างโดย Tomz | มกราคม 2026</p>
+        </footer>
+    </div>
+</body>
+</html>
