@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Great Mental Models Vol 1-4 | สรุปหนังสือฉบับสมบูรณ์</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800;900&family=Sarabun:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Crimson+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-emerald: #059669;
+            --primary-teal: #0D9488;
+            --deep-slate: #0F172A;
+            --slate-800: #1E293B;
+            --slate-700: #334155;
+            --slate-600: #475569;
+            --accent-amber: #F59E0B;
+            --accent-orange: #EA580C;
+            --soft-mint: #ECFDF5;
+            --warm-cream: #FFFBEB;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --vol1-color: #3B82F6;
+            --vol2-color: #10B981;
+            --vol3-color: #8B5CF6;
+            --vol4-color: #F59E0B;
+            --bias-color: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: #FAFAFA;
+            color: var(--text-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--deep-slate) 0%, var(--slate-800) 50%, var(--slate-700) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(5, 150, 105, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
+        }
+
+        /* Grid Pattern */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 2rem;
+            max-width: 1000px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-emerald), var(--primary-teal));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 700;
+            color: white;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--accent-amber), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: rgba(255,255,255,0.85);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-author {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .hero-quote {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            color: var(--accent-amber);
+            font-style: italic;
+            font-weight: 500;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            padding: 1.5rem 2rem;
+            border-left: 4px solid var(--accent-amber);
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 0 12px 12px 0;
+            text-align: left;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .volume-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .volume-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .volume-badge.v1 { background: var(--vol1-color); }
+        .volume-badge.v2 { background: var(--vol2-color); }
+        .volume-badge.v3 { background: var(--vol3-color); }
+        .volume-badge.v4 { background: var(--vol4-color); }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .nav.visible {
+            transform: translateY(0);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-amber);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            font-family: 'Crimson Pro', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: rgba(0,0,0,0.05);
+            margin-bottom: -2.5rem;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--deep-slate);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Core Concept Section */
+        .concept-section {
+            background: white;
+        }
+
+        .concept-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .concept-visual {
+            position: relative;
+        }
+
+        .latticework-diagram {
+            background: linear-gradient(135deg, var(--deep-slate), var(--slate-700));
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .latticework-diagram::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .latticework-center {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .latticework-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--accent-amber), var(--accent-orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 3rem;
+        }
+
+        .latticework-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .latticework-desc {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .concept-text h2 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--deep-slate);
+            margin-bottom: 1.5rem;
+        }
+
+        .concept-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        /* Quote Block */
+        .quote-block {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--primary-emerald);
+        }
+
+        .quote-block::before {
+            content: '"';
+            font-family: 'Crimson Pro', serif;
+            font-size: 5rem;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            color: var(--primary-emerald);
+            opacity: 0.2;
+            line-height: 1;
+        }
+
+        .quote-block p {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--deep-slate);
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quote-block .author {
+            margin-top: 1rem;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-style: normal;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.08), rgba(13, 148, 136, 0.08));
+            border-left: 4px solid var(--primary-emerald);
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-weight: 500;
+            color: var(--deep-slate);
+        }
+
+        /* Key Principle Cards */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .principle-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .principle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--card-color);
+        }
+
+        .principle-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+
+        .principle-card .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            background: var(--icon-bg);
+        }
+
+        .principle-card h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--deep-slate);
+            margin-bottom: 0.5rem;
+        }
+
+        .principle-card .english {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .principle-card p {
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Volume Section */
+        .volume-section {
+            position: relative;
+        }
+
+        .volume-section.vol1 { background: linear-gradient(180deg, #EFF6FF 0%, #DBEAFE 100%); }
+        .volume-section.vol2 { background: linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 100%); }
+        .volume-section.vol3 { background: linear-gradient(180deg, #F5F3FF 0%, #EDE9FE 100%); }
+        .volume-section.vol4 { background: linear-gradient(180deg, #FFFBEB 0%, #FEF3C7 100%); }
+
+        .volume-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .volume-badge-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .vol1 .volume-badge-large { background: linear-gradient(135deg, var(--vol1-color), #2563EB); }
+        .vol2 .volume-badge-large { background: linear-gradient(135deg, var(--vol2-color), #059669); }
+        .vol3 .volume-badge-large { background: linear-gradient(135deg, var(--vol3-color), #7C3AED); }
+        .vol4 .volume-badge-large { background: linear-gradient(135deg, var(--vol4-color), #D97706); }
+
+        .volume-title-group h2 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--deep-slate);
+            margin-bottom: 0.3rem;
+        }
+
+        .volume-title-group .tagline {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .volume-intro {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 3rem;
+            max-width: 900px;
+        }
+
+        /* Model Cards */
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .model-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .model-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .model-card .number {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-family: 'Crimson Pro', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: rgba(0,0,0,0.05);
+        }
+
+        .model-card h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--deep-slate);
+            margin-bottom: 0.3rem;
+        }
+
+        .model-card .english {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .model-card p {
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .model-card .example {
+            background: rgba(0,0,0,0.03);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .model-card .example strong {
+            color: var(--primary-emerald);
+        }
+
+        /* Case Study */
+        .case-study {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--primary-emerald);
+        }
+
+        .case-study-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-study-badge {
+            background: linear-gradient(135deg, var(--primary-emerald), var(--primary-teal));
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .case-study h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--deep-slate);
+        }
+
+        .case-study p {
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        .case-study .lesson {
+            background: rgba(5, 150, 105, 0.08);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .case-study .lesson strong {
+            color: var(--primary-emerald);
+        }
+
+        /* Bias Section */
+        .bias-section {
+            background: linear-gradient(180deg, #FEF2F2 0%, #FECACA 100%);
+        }
+
+        .bias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .bias-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            border-top: 3px solid var(--bias-color);
+            transition: all 0.3s ease;
+        }
+
+        .bias-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .bias-card .number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: var(--bias-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .bias-card h5 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--deep-slate);
+            margin-bottom: 0.5rem;
+        }
+
+        .bias-card p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+        }
+
+        /* Key Takeaway Box */
+        .key-takeaway {
+            background: linear-gradient(135deg, var(--deep-slate), var(--slate-700));
+            color: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .key-takeaway::before {
+            content: '💡';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 6rem;
+            opacity: 0.1;
+        }
+
+        .key-takeaway h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-amber);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .key-takeaway p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        /* Teaching Section */
+        .teaching-section {
+            background: linear-gradient(135deg, var(--deep-slate), var(--slate-800));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .teaching-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 0% 100%, rgba(5, 150, 105, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 100% 0%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+        }
+
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .teaching-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .teaching-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-3px);
+        }
+
+        .teaching-card .number {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-amber), var(--accent-orange));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .teaching-card h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .teaching-card p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Summary Table */
+        .summary-table {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            margin: 3rem 0;
+        }
+
+        .summary-table-header {
+            background: linear-gradient(135deg, var(--deep-slate), var(--slate-700));
+            color: white;
+            padding: 1.5rem 2rem;
+        }
+
+        .summary-table-header h3 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .summary-table-body {
+            padding: 0;
+        }
+
+        .summary-row {
+            display: grid;
+            grid-template-columns: 120px 1fr 2fr;
+            gap: 1.5rem;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            align-items: start;
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-row .vol-tag {
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .summary-row .vol-tag.v1 { background: var(--vol1-color); }
+        .summary-row .vol-tag.v2 { background: var(--vol2-color); }
+        .summary-row .vol-tag.v3 { background: var(--vol3-color); }
+        .summary-row .vol-tag.v4 { background: var(--vol4-color); }
+
+        .summary-row h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--deep-slate);
+        }
+
+        .summary-row p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Final Section */
+        .final-section {
+            background: var(--soft-mint);
+            text-align: center;
+        }
+
+        .final-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .final-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+        }
+
+        .final-content h2 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--deep-slate);
+            margin-bottom: 1.5rem;
+        }
+
+        .final-content p {
+            font-size: 1.15rem;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+        }
+
+        .final-quote {
+            background: linear-gradient(135deg, var(--deep-slate), var(--slate-700));
+            color: white;
+            padding: 3rem;
+            border-radius: 24px;
+            margin-top: 3rem;
+        }
+
+        .final-quote p {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .final-quote .author {
+            font-family: 'Sarabun', sans-serif;
+            font-size: 1rem;
+            color: var(--accent-amber);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--deep-slate);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        .footer .credit {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--accent-amber);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .concept-intro {
+                grid-template-columns: 1fr;
+            }
+            
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .teaching-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .summary-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 3rem 1.5rem;
+            }
+            
+            .volume-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .models-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .volume-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-content">
+            <div class="nav-logo">The Great Mental Models</div>
+            <ul class="nav-links">
+                <li><a href="#concept">แนวคิดหลัก</a></li>
+                <li><a href="#vol1">Vol 1</a></li>
+                <li><a href="#vol2">Vol 2</a></li>
+                <li><a href="#vol3">Vol 3</a></li>
+                <li><a href="#vol4">Vol 4</a></li>
+                <li><a href="#biases">Biases</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">สรุปหนังสือฉบับสมบูรณ์</div>
+            <h1 class="hero-title">
+                The Great <span>Mental Models</span>
+            </h1>
+            <p class="hero-subtitle">Vol 1-4: โครงข่ายแห่งการคิดอย่างเป็นระบบ</p>
+            <p class="hero-author">เขียนโดย Shane Parrish | สรุปโดย Tomz</p>
+            
+            <blockquote class="hero-quote">
+                "You can't really know anything if you just remember isolated facts... You've got to hang experience on a latticework of models in your head."
+                <br><strong>— Charlie Munger</strong>
+            </blockquote>
+            
+            <div class="volume-badges">
+                <span class="volume-badge v1">Vol 1: General Thinking</span>
+                <span class="volume-badge v2">Vol 2: Physics & Biology</span>
+                <span class="volume-badge v3">Vol 3: Systems & Math</span>
+                <span class="volume-badge v4">Vol 4: Economics & Art</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Concept Section -->
+    <section class="section concept-section" id="concept">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">01</div>
+                <h2 class="section-title">Latticework of Mental Models</h2>
+                <p class="section-subtitle">โครงข่ายแห่งแบบจำลองทางความคิด — รากฐานของการคิดอย่างเป็นระบบ</p>
+            </div>
+            
+            <div class="concept-intro">
+                <div class="concept-visual">
+                    <div class="latticework-diagram">
+                        <div class="latticework-center">
+                            <div class="latticework-icon">🧠</div>
+                            <h3 class="latticework-title">Latticework</h3>
+                            <p class="latticework-desc">
+                                การคิดที่ดีไม่ได้เกิดจากการรู้ลึกในสาขาเดียว แต่เกิดจากการเชื่อมโยงแบบจำลองจากหลายศาสตร์เข้าด้วยกัน เพื่อมองเห็นความจริงในหลายมิติพร้อมกัน
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-text">
+                    <h2>คนที่มีจุดบอดน้อยที่สุดจะชนะ</h2>
+                    <p>Shane Parrish เปิดด้วยแนวคิดที่ว่า ความเข้าใจโลกอย่างถูกต้องคือรากฐานของการตัดสินใจที่ดี การคิดแบบไม่เป็นระบบทำให้เราตอบสนองต่อสิ่งรอบตัวอย่างสับสนและขาดทิศทาง</p>
+                    
+                    <p>มนุษย์ไม่สามารถเก็บข้อมูลทั้งหมดของโลกไว้ในสมองได้ เราจึงสร้าง <strong>"แบบจำลองเชิงความคิด" (Mental Models)</strong> เพื่อทำให้ความซับซ้อนเข้าใจได้ง่ายขึ้น</p>
+                    
+                    <div class="highlight-box">
+                        <p>🎯 Mental Models ส่วนใหญ่ทำงานใต้จิตสำนึก มันคือเลนส์ที่เราใช้ตีความสิ่งรอบตัวโดยไม่รู้ตัว ซึ่งเป็นเหตุผลว่าทำไมคนสองคนจึงเห็นเหตุการณ์เดียวกันแต่สรุปต่างกันได้อย่างสิ้นเชิง</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Charlie Munger Quote -->
+            <div class="quote-block">
+                <p>80 or 90 important models will carry about 90 percent of the freight in making you a worldly-wise person.</p>
+                <div class="author">— Charlie Munger</div>
+            </div>
+            
+            <!-- Key Principles -->
+            <h3 style="font-family: 'Prompt', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--deep-slate); margin-bottom: 1.5rem; text-align: center;">
+                หลักการสำคัญ 3 ประการ
+            </h3>
+            
+            <div class="principles-grid">
+                <div class="principle-card" style="--card-color: var(--vol1-color); --icon-bg: rgba(59, 130, 246, 0.1);">
+                    <div class="icon">🎯</div>
+                    <h4>Multidisciplinary Thinking</h4>
+                    <div class="english">การคิดข้ามศาสตร์</div>
+                    <p>ไม่มีสาขาใดเป็นเจ้าของความจริงเพียงผู้เดียว ทุกศาสตร์มีโมเดลที่อธิบายบางมิติของความจริง เมื่อนำมาผสมกัน เราจึงเข้าใจทั้ง "สิ่งที่เกิดขึ้น" และ "เหตุผลที่มันเกิดขึ้น"</p>
+                </div>
+                
+                <div class="principle-card" style="--card-color: var(--vol2-color); --icon-bg: rgba(16, 185, 129, 0.1);">
+                    <div class="icon">🔗</div>
+                    <h4>Connecting Models</h4>
+                    <div class="english">การเชื่อมโยงโมเดล</div>
+                    <p>เป้าหมายไม่ใช่แค่เข้าใจโมเดลแต่ละอัน แต่คือการมองเห็นความสัมพันธ์ระหว่างโมเดล เมื่อคุณรู้ว่าโมเดลจากฟิสิกส์อธิบายเศรษฐศาสตร์ได้ คุณจะเห็นว่าโลกทั้งหมดคือระบบเดียวกัน</p>
+                </div>
+                
+                <div class="principle-card" style="--card-color: var(--vol4-color); --icon-bg: rgba(245, 158, 11, 0.1);">
+                    <div class="icon">⏳</div>
+                    <h4>Timeless Knowledge</h4>
+                    <div class="english">ความรู้ที่ไม่เปลี่ยนแปลง</div>
+                    <p>สะสมความรู้ที่ไม่เปลี่ยนแปลงตามเวลา เช่น กฎแรงโน้มถ่วง กฎอุปสงค์อุปทาน ความรู้เหล่านี้คือฐานที่มั่นคงเมื่อโลกเปลี่ยนแปลงเร็ว</p>
+                </div>
+            </div>
+            
+            <div class="key-takeaway">
+                <h4>🔑 Core Insight</h4>
+                <p><strong>"Better models make better decisions."</strong> — ความเข้าใจเชิงโครงสร้างช่วยให้เรามองเห็นทั้งผลโดยตรงและผลตามมา (second-order effects) ของการกระทำแต่ละครั้ง และทำให้เราสามารถหลีกเลี่ยงความเสียหายตั้งแต่ต้นเหตุ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volume 1 Section -->
+    <section class="section volume-section vol1" id="vol1">
+        <div class="container">
+            <div class="volume-header">
+                <div class="volume-badge-large">Vol 1</div>
+                <div class="volume-title-group">
+                    <h2>General Thinking Concepts</h2>
+                    <div class="tagline">พื้นฐานการคิดอย่างเป็นระบบ</div>
+                </div>
+            </div>
+            
+            <p class="volume-intro">
+                การเข้าใจความจริงผ่านกระบวนการคิดเชิงเหตุผล และการใช้มุมมองจากหลายสาขาเพื่อลด blind spot นี่คือรากฐานที่ทุกคนต้องมีก่อนจะไปสู่โมเดลอื่นๆ
+            </p>
+            
+            <div class="models-grid">
+                <div class="model-card">
+                    <span class="number">01</span>
+                    <h4>The Map Is Not the Territory</h4>
+                    <div class="english">แผนที่ไม่ใช่อาณาเขต</div>
+                    <p>แบบจำลองทางความคิด (map) ของเราไม่ใช่ความจริงที่เป็นอยู่จริง (territory) เราสร้างโมเดลเพื่อลดทอนความซับซ้อน แต่ต้องไม่หลงเชื่อว่ามันคือความจริงทั้งหมด</p>
+                    <div class="example">
+                        <strong>💡 ตัวอย่าง:</strong> เศรษฐศาสตร์สมมติว่ามนุษย์มีเหตุผลสมบูรณ์ แต่ในชีวิตจริงมนุษย์เต็มไปด้วยอารมณ์และอคติ
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">02</span>
+                    <h4>Circle of Competence</h4>
+                    <div class="english">วงกลมแห่งความสามารถ</div>
+                    <p>รู้ขอบเขตของความเข้าใจที่มีจริงๆ จากประสบการณ์ตรง ไม่ใช่ความรู้ผิวเผิน สิ่งสำคัญไม่ใช่ขนาดของวงกลม แต่คือความชัดเจนของเส้นขอบ</p>
+                    <div class="example">
+                        <strong>💡 Warren Buffett:</strong> "I don't invest in what I don't understand." — ไม่ลงทุนในสิ่งที่ไม่เข้าใจแม้จะเห็นคนอื่นทำกำไรมหาศาล
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">03</span>
+                    <h4>First Principles Thinking</h4>
+                    <div class="english">การคิดจากหลักแรก</div>
+                    <p>รื้อสิ่งที่คิดว่ารู้ออกมาวิเคราะห์ใหม่ แยกส่วนที่เป็นข้อเท็จจริงออกจากสมมติฐาน แล้วสร้างคำตอบใหม่จากรากฐาน</p>
+                    <div class="example">
+                        <strong>💡 Elon Musk:</strong> รื้อจรวดออกเป็นองค์ประกอบ พบว่าต้นทุนวัตถุดิบไม่ถึง 2% ของราคาขาย จึงสร้างใหม่จากศูนย์
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">04</span>
+                    <h4>Second-Order Thinking</h4>
+                    <div class="english">มองผลกระทบลำดับสอง</div>
+                    <p>นักคิดทั่วไปถามว่า "ถ้าทำสิ่งนี้ จะเกิดอะไร?" แต่นักคิดขั้นสูงถามต่อว่า "แล้วหลังจากนั้นล่ะ?" ทุกการกระทำมีคลื่นสะท้อนกลับมา</p>
+                    <div class="example">
+                        <strong>💡 ตัวอย่าง:</strong> กฎหมายจำกัดราคา → ผลแรก: ของถูกลง → ผลที่สอง: ของขาดตลาด
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">05</span>
+                    <h4>Probabilistic Thinking</h4>
+                    <div class="english">การคิดเชิงความน่าจะเป็น</div>
+                    <p>มองโลกผ่านมุมมองของโอกาสและความเสี่ยง แทนที่จะเห็นทุกอย่างเป็นขาวหรือดำ ถามว่า "สิ่งนี้อาจเป็นจริงกี่เปอร์เซ็นต์?"</p>
+                    <div class="example">
+                        <strong>💡 Bayesian Reasoning:</strong> ความเชื่อควรอัปเดตเสมอเมื่อมีข้อมูลใหม่ ไม่พูดว่า "แน่ใจว่า" แต่พูดว่า "มีแนวโน้มว่า"
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">06</span>
+                    <h4>Inversion</h4>
+                    <div class="english">การคิดกลับด้าน</div>
+                    <p>แทนที่จะถามว่าจะประสบความสำเร็จอย่างไร ให้ถามว่า "อะไรจะทำให้ล้มเหลวแน่ๆ?" แล้วหลีกเลี่ยงมัน</p>
+                    <div class="example">
+                        <strong>💡 ในธุรกิจ:</strong> แทนที่จะหาวิธีเพิ่มยอดขาย ให้ถามว่า "อะไรจะทำให้ลูกค้าเลิกซื้อเรา?"
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">07</span>
+                    <h4>Occam's Razor</h4>
+                    <div class="english">มีดโกนของออคคัม</div>
+                    <p>อย่าเพิ่มความซับซ้อนโดยไม่มีเหตุจำเป็น ทุกสมมติฐานเพิ่มโอกาสของความผิดพลาดหนึ่งขั้น บ่อยครั้งคำตอบง่ายๆ กลับถูกต้องกว่า</p>
+                    <div class="example">
+                        <strong>💡 Hanlon's Razor:</strong> อย่าคิดว่าความผิดพลาดคือความชั่วร้าย ส่วนใหญ่เกิดจากความไม่รู้หรือความลืม
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">08</span>
+                    <h4>Thought Experiment</h4>
+                    <div class="english">การทดลองในความคิด</div>
+                    <p>ทดสอบความจริงโดยไม่ต้องลงมือจริง ใช้เหตุผลตรรกะอย่างเข้มงวดภายในกรอบที่กำหนด แล้วเปรียบเทียบกับความจริงที่สังเกตได้</p>
+                    <div class="example">
+                        <strong>💡 Einstein:</strong> จินตนาการตัวเองขี่แสง เพื่อสร้างทฤษฎีสัมพัทธภาพ
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Case Study -->
+            <div class="case-study">
+                <div class="case-study-header">
+                    <span class="case-study-badge">กรณีศึกษา</span>
+                    <h4>ทหารหนุ่มในเทือกเขา Alps</h4>
+                </div>
+                <p>ทหารหนุ่มในกองทัพฮังการีหลงทางในเทือกเขา Alps ระหว่างฝึกซ้อม ท่ามกลางหิมะและอุณหภูมิติดลบ พวกเขาสิ้นหวังจนคิดว่าจะตาย แต่หนึ่งในนั้นพบ "แผนที่" ในกระเป๋าเสื้อ และใช้มันนำทางกลับค่ายได้สำเร็จ</p>
+                <p>เมื่อผู้บังคับบัญชาเห็นแผนที่ เขาตกใจ เพราะมันไม่ใช่แผนที่ของเทือกเขา Alps แต่เป็นแผนที่ของ <strong>Pyrenees</strong></p>
+                <div class="lesson">
+                    <strong>📝 บทเรียน:</strong> แผนที่ที่ผิดก็ยังดีกว่าไม่มีแผนที่เลย เพราะมันให้ความมั่นใจและทิศทางในการเริ่มเดิน สิ่งสำคัญคือการ "ลงมือทำ" ไม่ใช่รอความสมบูรณ์แบบ
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volume 2 Section -->
+    <section class="section volume-section vol2" id="vol2">
+        <div class="container">
+            <div class="volume-header">
+                <div class="volume-badge-large">Vol 2</div>
+                <div class="volume-title-group">
+                    <h2>Physics, Chemistry & Biology</h2>
+                    <div class="tagline">กฎธรรมชาติของโลกจริง</div>
+                </div>
+            </div>
+            
+            <p class="volume-intro">
+                ศึกษาหลักการจากธรรมชาติ เช่น พลังงาน ความสมดุล และวิวัฒนาการ เพื่อเข้าใจระบบมนุษย์และองค์กร โลกไม่ได้ทำงานแบบเส้นตรง แต่ทำงานแบบระบบที่เชื่อมโยงกันด้วยแรงและปฏิกิริยา
+            </p>
+            
+            <div class="models-grid">
+                <div class="model-card">
+                    <span class="number">01</span>
+                    <h4>Law of Thermodynamics</h4>
+                    <div class="english">กฎอุณหพลศาสตร์</div>
+                    <p>พลังงานไม่สามารถถูกสร้างหรือทำลายได้ มันเพียงแค่เปลี่ยนรูป ทุกสิ่งที่เราทำต้องมาจากที่ใดที่หนึ่ง ไม่มีสิ่งใดเกิดขึ้น "ฟรี"</p>
+                    <div class="example">
+                        <strong>💡 ในชีวิตจริง:</strong> กำไร ความสุข พลังทางสังคม ทุกอย่างมีราคาที่ต้องจ่ายในรูปของพลังงาน เวลา หรือทรัพยากร
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">02</span>
+                    <h4>Entropy</h4>
+                    <div class="english">ความไม่เป็นระเบียบ</div>
+                    <p>ความไม่เป็นระเบียบในระบบจะเพิ่มขึ้นเสมอ เว้นแต่เราจะใส่พลังงานเข้าไปเพื่อรักษาความเป็นระเบียบ ทุกระบบที่ไม่ได้รับการดูแลย่อมเสื่อมสลายตามเวลา</p>
+                    <div class="example">
+                        <strong>💡 ในองค์กร:</strong> วัฒนธรรมองค์กร ความสัมพันธ์ ระบบงาน ทุกอย่างต้องการพลังงานในการดูแลรักษา ไม่งั้นจะเสื่อมสลาย
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">03</span>
+                    <h4>Equilibrium</h4>
+                    <div class="english">สมดุล</div>
+                    <p>ระบบพยายามหาความสมดุลเสมอ สมดุลไม่ได้หมายถึงความนิ่ง แต่คือการเคลื่อนไหวอย่างพอดีในสองทิศทางที่หักล้างกัน เหมือนการทรงตัวบนจักรยาน</p>
+                    <div class="example">
+                        <strong>💡 ตัวอย่าง:</strong> ในเศรษฐศาสตร์ = อุปสงค์-อุปทาน, ในจิตวิทยา = อารมณ์-เหตุผล, ในชีววิทยา = homeostasis
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">04</span>
+                    <h4>Feedback Loops</h4>
+                    <div class="english">วัฏจักรแห่งการตอบสนอง</div>
+                    <p>ผลลัพธ์ของระบบย้อนกลับไปส่งผลต่อสาเหตุของมัน มี 2 แบบ: Positive (เสริมแรง) และ Negative (ถ่วงดุล)</p>
+                    <div class="example">
+                        <strong>💡 Positive:</strong> ผู้ใช้มากขึ้น → ข้อมูลดีขึ้น → บริการดีขึ้น → ผู้ใช้มากขึ้นอีก<br>
+                        <strong>💡 Negative:</strong> ระบบภูมิคุ้มกันควบคุมอุณหภูมิร่างกาย
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">05</span>
+                    <h4>Evolution & Natural Selection</h4>
+                    <div class="english">วิวัฒนาการและการคัดเลือกโดยธรรมชาติ</div>
+                    <p>ไม่ใช่เพียงกลไกของสิ่งมีชีวิต แต่คือโมเดลสากลที่ใช้ได้กับทุกระบบที่ต้องแข่งขันและเปลี่ยนแปลง: Variation → Selection → Retention</p>
+                    <div class="example">
+                        <strong>💡 ในธุรกิจ:</strong> มีแนวคิดใหม่เกิดขึ้น (Variation) → ตลาดคัดเลือกสิ่งที่ทำงานได้จริง (Selection) → ระบบเก็บสิ่งที่ได้ผลไว้ (Retention)
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">06</span>
+                    <h4>Adaptation</h4>
+                    <div class="english">การปรับตัว</div>
+                    <p>สิ่งที่ปรับตัวได้ดีมีคุณสมบัติ 3 อย่าง: ความยืดหยุ่น (เปลี่ยนได้โดยไม่แตกสลาย), การเรียนรู้ (ปรับจากผลลัพธ์), ความหลากหลาย (มีตัวเลือกเพียงพอ)</p>
+                    <div class="example">
+                        <strong>💡 Niche:</strong> แทนที่จะเป็น "ดีที่สุดในสนามเดิม" ให้หาสนามใหม่ที่เราเป็น "คนแรกที่เข้าใจมัน"
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">07</span>
+                    <h4>Leverage</h4>
+                    <div class="english">คานงัดของพลัง</div>
+                    <p>การใช้พลังน้อยเพื่อสร้างผลมาก คนฉลาดไม่ได้ทำงานหนักกว่าคนอื่น แต่เขาใช้แรงในจุดที่งัดได้มากที่สุด</p>
+                    <div class="example">
+                        <strong>💡 Archimedes:</strong> "Give me a place to stand and a lever long enough, and I shall move the world."
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">08</span>
+                    <h4>Critical Mass</h4>
+                    <div class="english">มวลวิกฤต</div>
+                    <p>จุดที่การเปลี่ยนแปลงเริ่มขยายตัวอย่างรวดเร็ว เหมือนก้อนหิมะที่กลิ้งลงเขา เมื่อถึงจุดหนึ่งมันจะเติบโตเองโดยไม่ต้องใส่พลังเพิ่ม</p>
+                </div>
+            </div>
+            
+            <div class="key-takeaway">
+                <h4>🔑 Key Insight — Volume 2</h4>
+                <p><strong>"Feedback is the heartbeat of systems."</strong> — การเข้าใจว่าเราอยู่ในวงจรแบบไหน ทำให้เราสามารถปรับพลังได้อย่างถูกจุด ไม่ใช่เพียงแก้ปัญหาที่ปลายเหตุ แต่จัดการกับแรงที่อยู่เบื้องหลัง</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volume 3 Section -->
+    <section class="section volume-section vol3" id="vol3">
+        <div class="container">
+            <div class="volume-header">
+                <div class="volume-badge-large">Vol 3</div>
+                <div class="volume-title-group">
+                    <h2>Systems & Mathematics</h2>
+                    <div class="tagline">ระบบซับซ้อนและแบบจำลองเชิงตัวเลข</div>
+                </div>
+            </div>
+            
+            <p class="volume-intro">
+                การใช้คณิตศาสตร์และทฤษฎีระบบเพื่อทำความเข้าใจพลวัตของสิ่งที่ซับซ้อน เช่น เครือข่าย เงื่อนไข และการเติบโต การคิดแบบระบบคือการมองความสัมพันธ์เชื่อมโยงของทุกองค์ประกอบ
+            </p>
+            
+            <div class="models-grid">
+                <div class="model-card">
+                    <span class="number">01</span>
+                    <h4>Complex Adaptive Systems</h4>
+                    <div class="english">ระบบซับซ้อนที่ปรับตัวได้</div>
+                    <p>ระบบที่เรียนรู้และปรับตัวได้เอง ไม่มีการกระทำใดไม่ส่งผลกระทบ เพราะทุกสิ่งสัมพันธ์กันในรูปแบบของโครงข่าย</p>
+                    <div class="example">
+                        <strong>💡 ตัวอย่าง:</strong> ตลาดหุ้น ระบบนิเวศ เศรษฐกิจ สังคมมนุษย์ — ทุกระบบมีชีวิตของตัวเอง
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">02</span>
+                    <h4>Bottlenecks & Constraints</h4>
+                    <div class="english">จุดคอขวดและข้อจำกัด</div>
+                    <p>ทุกระบบมีจุดคอขวด ส่วนที่จำกัดประสิทธิภาพโดยรวม การคิดแบบระบบไม่ใช่ใส่พลังในแต่ละจุด แต่ต้องหาให้เจอว่าจุดคอขวดอยู่ที่ใด</p>
+                    <div class="example">
+                        <strong>💡 Theory of Constraints:</strong> โรงงานถูกจำกัดด้วยเครื่องจักรที่ช้าที่สุด ทีมงานถูกจำกัดด้วยคนที่ช้าที่สุด
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">03</span>
+                    <h4>Power Laws / Pareto Principle</h4>
+                    <div class="english">กฎกำลัง / หลักพาเรโต</div>
+                    <p>ผลลัพธ์ส่วนใหญ่เกิดจากส่วนน้อย (80/20) การจัดสรรทรัพยากรอย่างฉลาดคือการโฟกัสที่ 20% ที่สร้างผลลัพธ์ 80%</p>
+                    <div class="example">
+                        <strong>💡 ในธุรกิจ:</strong> ลูกค้า 20% สร้างรายได้ 80%, ปัญหา 20% สร้างความเสียหาย 80%
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">04</span>
+                    <h4>Network Effects</h4>
+                    <div class="english">อิทธิพลของเครือข่าย</div>
+                    <p>คุณค่าเพิ่มขึ้นเมื่อมีผู้ใช้มากขึ้น ยิ่งมีคนใช้เส้นทางเดิมมากเท่าไร มันก็ยิ่งมีคุณค่ามากขึ้น</p>
+                    <div class="example">
+                        <strong>💡 ตัวอย่าง:</strong> โทรศัพท์, โซเชียลมีเดีย, ภาษา, มาตรฐานเทคโนโลยี
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">05</span>
+                    <h4>Optionality</h4>
+                    <div class="english">ความมีทางเลือก</div>
+                    <p>มีทางเลือกมากกว่าคือมีอำนาจมากกว่า การรักษาทางเลือกไว้มีคุณค่าในตัวเอง แม้จะไม่ได้ใช้ทุกทาง</p>
+                    <div class="example">
+                        <strong>💡 กลยุทธ์:</strong> อย่าปิดประตูทุกบานเร็วเกินไป รักษา optionality ไว้ให้นานที่สุด
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">06</span>
+                    <h4>Nonlinearity</h4>
+                    <div class="english">ความไม่เชิงเส้น</div>
+                    <p>ผลลัพธ์ไม่จำเป็นต้องสัดส่วนกับสาเหตุ การเปลี่ยนเล็กน้อยอาจสร้างผลกระทบมหาศาล (Butterfly Effect) และในทางกลับกัน</p>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">07</span>
+                    <h4>Tragedy of the Commons</h4>
+                    <div class="english">โศกนาฏกรรมของทรัพยากรส่วนรวม</div>
+                    <p>การใช้ทรัพยากรร่วมกันเกินขีดจำกัดจะทำลายระบบเอง เมื่อทุกคนเอาประโยชน์ส่วนตัว ส่วนรวมจะพัง</p>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">08</span>
+                    <h4>Chesterton's Fence</h4>
+                    <div class="english">รั้วของเชสเตอร์ตัน</div>
+                    <p>อย่ารื้อระบบที่ยังไม่เข้าใจเหตุผลการมีอยู่ของมัน ก่อนจะเปลี่ยนอะไร ต้องเข้าใจก่อนว่าทำไมมันถึงถูกสร้างขึ้นมา</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volume 4 Section -->
+    <section class="section volume-section vol4" id="vol4">
+        <div class="container">
+            <div class="volume-header">
+                <div class="volume-badge-large">Vol 4</div>
+                <div class="volume-title-group">
+                    <h2>Economics & Art</h2>
+                    <div class="tagline">เศรษฐศาสตร์และศิลปะ</div>
+                </div>
+            </div>
+            
+            <p class="volume-intro">
+                ศิลปะของการสร้างและใช้ระบบเศรษฐกิจ เข้าใจแรงจูงใจ ความขาดแคลน การแลกเปลี่ยน และการออกแบบความงามในระบบมนุษย์
+            </p>
+            
+            <div class="models-grid">
+                <div class="model-card">
+                    <span class="number">01</span>
+                    <h4>Scarcity & Supply-Demand</h4>
+                    <div class="english">ความขาดแคลนและอุปสงค์-อุปทาน</div>
+                    <p>ความขาดแคลนคือแรงขับของมูลค่า สิ่งที่หายากมีค่า สิ่งที่มีมากมีค่าน้อย นี่คือพื้นฐานของเศรษฐศาสตร์ทั้งหมด</p>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">02</span>
+                    <h4>Opportunity Cost</h4>
+                    <div class="english">ต้นทุนค่าเสียโอกาส</div>
+                    <p>ทุกการเลือกมีต้นทุน — สิ่งที่คุณสูญเสียจากการไม่เลือกทางอื่น การตัดสินใจที่ดีต้องคำนึงถึงสิ่งที่ไม่ได้เลือกด้วย</p>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">03</span>
+                    <h4>Incentives</h4>
+                    <div class="english">แรงจูงใจ</div>
+                    <p>ระบบแรงจูงใจเป็นตัวขับพฤติกรรม คนไม่ได้ทำในสิ่งที่คุณบอก แต่ทำในสิ่งที่ระบบให้รางวัล "Show me the incentives and I'll show you the outcome."</p>
+                    <div class="example">
+                        <strong>💡 Charlie Munger:</strong> "Never, ever think about something else when you should be thinking about the power of incentives."
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">04</span>
+                    <h4>Comparative Advantage</h4>
+                    <div class="english">ความได้เปรียบเชิงเปรียบเทียบ</div>
+                    <p>ใช้จุดแข็งเฉพาะตนเพื่อสร้างประสิทธิภาพรวม แม้คุณจะทำทุกอย่างได้ดี ก็ควรโฟกัสที่สิ่งที่ทำได้ดีที่สุดเมื่อเทียบกับคนอื่น</p>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">05</span>
+                    <h4>Path Dependence</h4>
+                    <div class="english">การพึ่งพาเส้นทาง</div>
+                    <p>อดีตไม่หายไปไหน แต่ฝังอยู่ในโครงสร้างของปัจจุบันและจำกัดอนาคต การเลือกครั้งแรกจะกลายเป็นฐานให้กับการเลือกครั้งถัดไป</p>
+                    <div class="example">
+                        <strong>💡 QWERTY:</strong> การจัดเรียงที่ไม่มีประสิทธิภาพสูงสุด แต่กลายเป็นมาตรฐานโลกเพราะ Lock-in Effect
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">06</span>
+                    <h4>Creative Destruction</h4>
+                    <div class="english">การทำลายอย่างสร้างสรรค์</div>
+                    <p>นวัตกรรมใหม่แทนที่ของเก่า การเติบโตของระบบเศรษฐกิจเกิดจากการทำลายสิ่งเก่าที่ไม่มีประสิทธิภาพ</p>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">07</span>
+                    <h4>Leverage of Character</h4>
+                    <div class="english">คานงัดแห่งคุณธรรม</div>
+                    <p>คุณธรรมคืออำนาจที่ยั่งยืน ชื่อเสียงและความน่าเชื่อถือเป็น leverage ที่สะสมตามเวลาและใช้ได้ตลอดชีวิต</p>
+                </div>
+                
+                <div class="model-card">
+                    <span class="number">08</span>
+                    <h4>Art of Constraints</h4>
+                    <div class="english">ศิลปะของข้อจำกัด</div>
+                    <p>ศิลปะเกิดจากข้อจำกัด ไม่ใช่จากความเสรีไร้ขอบเขต ข้อจำกัดบังคับให้เราสร้างสรรค์ภายในกรอบ</p>
+                </div>
+            </div>
+            
+            <!-- Case Study: Path Dependence -->
+            <div class="case-study">
+                <div class="case-study-header">
+                    <span class="case-study-badge">กรณีศึกษา</span>
+                    <h4>LTCM — เมื่อโมเดลล้มเหลว</h4>
+                </div>
+                <p>Long-Term Capital Management (LTCM) กองทุนเฮดจ์ฟันด์ที่ก่อตั้งโดยนักเศรษฐศาสตร์รางวัลโนเบล ใช้แบบจำลองทางคณิตศาสตร์ซับซ้อนคำนวณความเสี่ยง</p>
+                <p>โมเดลของพวกเขาแม่นยำในภาวะปกติ แต่พังทลายทันทีเมื่อเจอเหตุการณ์ที่อยู่นอกขอบเขตของสมการ เช่น วิกฤตการเงินรัสเซียปี 1998</p>
+                <div class="lesson">
+                    <strong>📝 บทเรียน:</strong> โมเดลที่ถูกสร้างขึ้นในสภาวะหนึ่ง จะล้มเหลวทันทีเมื่ออาณาเขตเปลี่ยนไป — The Map Is Not the Territory
+                </div>
+            </div>
+            
+            <div class="key-takeaway">
+                <h4>🔑 วิธีหลุดจาก Path Dependence</h4>
+                <p><strong>3 เครื่องมือหลุดวงจร:</strong><br>
+                1. <strong>Inversion Thinking:</strong> "ถ้าฉันเริ่มต้นใหม่จากศูนย์ ฉันจะเลือกทางนี้อีกไหม?"<br>
+                2. <strong>Opportunity Cost Model:</strong> ทางใหม่ให้คุณค่ามากกว่าการอยู่ต่อหรือไม่?<br>
+                3. <strong>Reset Loops:</strong> ตั้งจุดทบทวนเป็นระยะ "เส้นทางนี้ยังเหมาะสมไหมในวันนี้?"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cognitive Biases Section -->
+    <section class="section bias-section" id="biases">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">🧠</div>
+                <h2 class="section-title">Cognitive Biases & Mental Traps</h2>
+                <p class="section-subtitle">อคติทางความคิดที่ทำให้เราตัดสินใจผิดพลาด — การรู้ว่ามันมีอยู่คือขั้นแรกของการคิดอย่างมีสติ</p>
+            </div>
+            
+            <div class="bias-grid">
+                <div class="bias-card">
+                    <span class="number">1</span>
+                    <h5>Confirmation Bias</h5>
+                    <p>สมองเลือกเชื่อในสิ่งที่อยากเชื่อ มองเฉพาะข้อมูลที่สอดคล้องกับความเชื่อเดิม</p>
+                </div>
+                
+                <div class="bias-card">
+                    <span class="number">2</span>
+                    <h5>Availability Heuristic</h5>
+                    <p>สิ่งที่จำได้ง่ายไม่ใช่สิ่งที่เกิดบ่อย ตัดสินความน่าจะเป็นจากสิ่งที่นึกถึงได้เร็ว</p>
+                </div>
+                
+                <div class="bias-card">
+                    <span class="number">3</span>
+                    <h5>Hindsight Bias</h5>
+                    <p>ความรู้สึกว่า "รู้อยู่แล้ว" หลังจากเหตุการณ์เกิดขึ้น ทำให้ไม่เรียนรู้จากความผิดพลาด</p>
+                </div>
+                
+                <div class="bias-card">
+                    <span class="number">4</span>
+                    <h5>Anchoring Bias</h5>
+                    <p>สมองยึดกับข้อมูลแรกที่ได้รับ แม้จะไม่เกี่ยวข้องก็ยังมีอิทธิพลต่อการตัดสินใจ</p>
+                </div>
+                
+                <div class="bias-card">
+                    <span class="number">5</span>
+                    <h5>Survivorship Bias</h5>
+                    <p>เราเห็นแต่ผู้รอดชีวิต ไม่เห็นคนที่ล้มเหลว ทำให้ประเมินโอกาสสำเร็จสูงเกินจริง</p>
+                </div>
+                
+                <div class="bias-card">
+                    <span class="number">6</span>
+                    <h5>Narrative Fallacy</h5>
+                    <p>เราชอบเรื่องเล่ามากกว่าความจริง สร้างเรื่องราวสวยงามแทนการมองข้อมูลจริง</p>
+                </div>
+                
+                <div class="bias-card">
+                    <span class="number">7</span>
+                    <h5>Loss Aversion</h5>
+                    <p>ความกลัวการสูญเสียแรงกว่าความสุขจากการได้ ทำให้ไม่กล้าเสี่ยงแม้โอกาสดี</p>
+                </div>
+                
+                <div class="bias-card">
+                    <span class="number">8</span>
+                    <h5>Fundamental Attribution Error</h5>
+                    <p>โทษคนอื่นด้วยนิสัย แต่ให้เหตุผลกับตัวเองด้วยสถานการณ์</p>
+                </div>
+                
+                <div class="bias-card">
+                    <span class="number">9</span>
+                    <h5>Overconfidence Effect</h5>
+                    <p>ความมั่นใจมากเกินไป ประเมินความสามารถตัวเองสูงกว่าความเป็นจริง</p>
+                </div>
+                
+                <div class="bias-card">
+                    <span class="number">10</span>
+                    <h5>Dunning-Kruger Effect</h5>
+                    <p>คนที่รู้น้อยมักมั่นใจมากที่สุด คนที่รู้มากกลับสงสัยตัวเอง</p>
+                </div>
+                
+                <div class="bias-card">
+                    <span class="number">11</span>
+                    <h5>Sunk Cost Fallacy</h5>
+                    <p>ยิ่งลงทุนมาก ยิ่งถอนตัวไม่ได้ แม้จะรู้ว่าควรหยุด</p>
+                </div>
+                
+                <div class="bias-card">
+                    <span class="number">12</span>
+                    <h5>Status Quo Bias</h5>
+                    <p>สมองชอบสิ่งที่คุ้นเคย ต่อต้านการเปลี่ยนแปลงแม้จะดีกว่า</p>
+                </div>
+                
+                <div class="bias-card">
+                    <span class="number">13</span>
+                    <h5>Groupthink</h5>
+                    <p>ความเห็นส่วนรวมบดบังเหตุผลส่วนตัว ไม่กล้าคิดต่างจากกลุ่ม</p>
+                </div>
+                
+                <div class="bias-card">
+                    <span class="number">14</span>
+                    <h5>Optimism Bias</h5>
+                    <p>ความหวังเกินจริง มองข้ามความเสี่ยงและประเมินโอกาสสำเร็จสูงเกินไป</p>
+                </div>
+                
+                <div class="bias-card">
+                    <span class="number">15</span>
+                    <h5>Framing Effect</h5>
+                    <p>ข้อมูลเดียวกัน หากถูกเสนอในกรอบต่างกัน จะให้ผลต่างกันโดยสิ้นเชิง</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching Section -->
+    <section class="section teaching-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: white;">💬 ข้อความที่เอาไปสอนต่อได้</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.7);">Key Messages for Teaching & Sharing</p>
+            </div>
+            
+            <div class="teaching-grid">
+                <div class="teaching-card">
+                    <div class="number">1</div>
+                    <h4>คนที่มีจุดบอดน้อยที่สุดจะชนะ</h4>
+                    <p>ความเข้าใจโลกอย่างถูกต้องคือรากฐานของการตัดสินใจที่ดี การมีหลายโมเดลช่วยลดจุดบอดทางความคิด</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="number">2</div>
+                    <h4>The Map Is Not the Territory</h4>
+                    <p>แบบจำลองของเราไม่ใช่ความจริง — มันเป็นเพียงการลดทอนที่มีประโยชน์ อย่าหลงเชื่อว่าแผนที่คืออาณาเขตจริง</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="number">3</div>
+                    <h4>สิ่งสำคัญไม่ใช่ขนาดของวงกลม</h4>
+                    <p>"It's not how big your circle is that matters. It's knowing where the edge of it lies." — รู้ขอบเขตความสามารถตัวเอง</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="number">4</div>
+                    <h4>การคิดจากหลักแรก ไม่ใช่การเปรียบเทียบ</h4>
+                    <p>รื้อสิ่งที่คิดว่ารู้ แยกข้อเท็จจริงออกจากสมมติฐาน แล้วสร้างคำตอบใหม่จากรากฐาน</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="number">5</div>
+                    <h4>ถามต่อว่า "แล้วหลังจากนั้นล่ะ?"</h4>
+                    <p>Second-Order Thinking — ทุกการกระทำมีคลื่นสะท้อน (Ripple Effects) ที่ย้อนกลับมาหาเราเสมอ</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="number">6</div>
+                    <h4>Inversion: ถามว่าอะไรจะทำให้ล้มเหลว</h4>
+                    <p>แทนที่จะหาวิธีประสบความสำเร็จ ให้ถามว่าอะไรจะทำให้ล้มเหลวแน่ๆ แล้วหลีกเลี่ยงมัน</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="number">7</div>
+                    <h4>Feedback is the heartbeat of systems</h4>
+                    <p>เข้าใจว่าเราอยู่ในวงจรแบบไหน (Reinforcing หรือ Balancing) เพื่อปรับพลังได้อย่างถูกจุด</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="number">8</div>
+                    <h4>Direction beats speed. Always.</h4>
+                    <p>ทิศทางสำคัญกว่าความเร็ว — อย่าขับรถเร็วในทิศทางที่ผิด รู้จักหยุดถามตัวเองว่ายังตรงทางหรือเปล่า</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Table Section -->
+    <section class="section" style="background: white;">
+        <div class="container">
+            <div class="summary-table">
+                <div class="summary-table-header">
+                    <h3>📚 สรุปโมเดลสำคัญทั้ง 4 เล่ม</h3>
+                </div>
+                <div class="summary-table-body">
+                    <div class="summary-row">
+                        <span class="vol-tag v1">Vol 1</span>
+                        <h4>General Thinking</h4>
+                        <p>Map vs Territory, Circle of Competence, First Principles, Second-Order Thinking, Probabilistic Thinking, Inversion, Occam's Razor</p>
+                    </div>
+                    <div class="summary-row">
+                        <span class="vol-tag v2">Vol 2</span>
+                        <h4>Physics & Biology</h4>
+                        <p>Thermodynamics, Entropy, Equilibrium, Feedback Loops, Evolution, Adaptation, Leverage, Critical Mass</p>
+                    </div>
+                    <div class="summary-row">
+                        <span class="vol-tag v3">Vol 3</span>
+                        <h4>Systems & Math</h4>
+                        <p>Complex Systems, Bottlenecks, Power Laws, Network Effects, Optionality, Nonlinearity, Tragedy of the Commons, Chesterton's Fence</p>
+                    </div>
+                    <div class="summary-row">
+                        <span class="vol-tag v4">Vol 4</span>
+                        <h4>Economics & Art</h4>
+                        <p>Scarcity, Opportunity Cost, Incentives, Comparative Advantage, Path Dependence, Creative Destruction, Art of Constraints</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Section -->
+    <section class="section final-section">
+        <div class="container">
+            <div class="final-content">
+                <div class="final-icon">🎯</div>
+                <h2>The Ultimate Mental Model</h2>
+                <p>
+                    การรู้โมเดลอย่างเดียวไม่พอ เราต้อง<strong>ใช้มัน</strong> ทุกการตัดสินใจในชีวิตคือสนามฝึก ใช้โมเดลหนึ่งทดสอบ ถ้ามันไม่เหมาะ ให้ลองอีกแบบ
+                </p>
+                <p>
+                    ความเข้าใจจะค่อยๆ เติบโตจากการใช้งานจริง ไม่ต่างจากกล้ามเนื้อที่แข็งแรงขึ้นด้วยการใช้งานบ่อยๆ
+                </p>
+                <p>
+                    แต่จำไว้ว่า... <strong>บางทีชีวิตที่วิเคราะห์ทุกอย่างจนลืมใช้ชีวิต ก็เหมือนมีแผนที่ของดิสนีย์แลนด์แต่ไม่เคยเข้าไปเล่นเครื่องเล่น</strong>
+                </p>
+                
+                <div class="final-quote">
+                    <p>"Knowing everything but doing nothing — การรู้มากแต่ไม่ลงมือทำ คือโมเดลที่โง่ที่สุดในโลก<br><br>เพราะแผนที่ที่ดีที่สุดในโลกก็ไร้ค่า<br>ถ้าเราไม่เคยออกเดินทาง"</p>
+                    <div class="author">— The Overthinking Paradox</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>สรุปหนังสือ The Great Mental Models Vol 1-4 โดย Shane Parrish</p>
+        <p class="credit">สร้างโดย Tomz | มกราคม 2025</p>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.classList.add('visible');
+            } else {
+                nav.classList.remove('visible');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
