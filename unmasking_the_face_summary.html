@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unmasking the Face - สรุปหนังสือฉบับสมบูรณ์</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e8e8e8;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, rgba(233, 69, 96, 0.2), rgba(79, 172, 254, 0.2));
+            border-radius: 30px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .header h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f093fb, #f5576c, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 1.5em;
+            color: #a8dadc;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .authors {
+            font-size: 1.2em;
+            color: #ffd166;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Section Styles */
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-title {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-title .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+        }
+        
+        /* Color Themes for Sections */
+        .intro .section-title .icon { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .intro .section-title { color: #a8dadc; }
+        
+        .core .section-title .icon { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .core .section-title { color: #f5576c; }
+        
+        .mindset .section-title .icon { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .mindset .section-title { color: #4facfe; }
+        
+        .practice .section-title .icon { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .practice .section-title { color: #43e97b; }
+        
+        .emotions .section-title .icon { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .emotions .section-title { color: #fee140; }
+        
+        .examples .section-title .icon { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+        .examples .section-title { color: #fed6e3; }
+        
+        .takeaways .section-title .icon { background: linear-gradient(135deg, #ff9a9e, #fecfef); }
+        .takeaways .section-title { color: #ff9a9e; }
+        
+        .teach .section-title .icon { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
+        .teach .section-title { color: #fcb69f; }
+        
+        /* Emotion Cards Grid */
+        .emotion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .emotion-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .emotion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .emotion-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .emotion-card .face-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .emotion-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .emotion-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .emotion-card li:last-child {
+            border-bottom: none;
+        }
+        
+        .emotion-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: inherit;
+            opacity: 0.7;
+        }
+        
+        /* Happiness */
+        .happiness { border-left: 4px solid #ffd700; }
+        .happiness h3 { color: #ffd700; }
+        .happiness li::before { color: #ffd700; }
+        
+        /* Sadness */
+        .sadness { border-left: 4px solid #6495ed; }
+        .sadness h3 { color: #6495ed; }
+        .sadness li::before { color: #6495ed; }
+        
+        /* Anger */
+        .anger { border-left: 4px solid #ff4757; }
+        .anger h3 { color: #ff4757; }
+        .anger li::before { color: #ff4757; }
+        
+        /* Fear */
+        .fear { border-left: 4px solid #9b59b6; }
+        .fear h3 { color: #9b59b6; }
+        .fear li::before { color: #9b59b6; }
+        
+        /* Surprise */
+        .surprise { border-left: 4px solid #00d2d3; }
+        .surprise h3 { color: #00d2d3; }
+        .surprise li::before { color: #00d2d3; }
+        
+        /* Disgust */
+        .disgust { border-left: 4px solid #2ed573; }
+        .disgust h3 { color: #2ed573; }
+        .disgust li::before { color: #2ed573; }
+        
+        /* Contempt */
+        .contempt { border-left: 4px solid #ff9f43; }
+        .contempt h3 { color: #ff9f43; }
+        .contempt li::before { color: #ff9f43; }
+        
+        /* Content Boxes */
+        .content-box {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .content-box h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #ffd166;
+        }
+        
+        .content-box p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        /* Key Points */
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .key-point {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid;
+        }
+        
+        .key-point:nth-child(1) { border-color: #f093fb; }
+        .key-point:nth-child(2) { border-color: #4facfe; }
+        .key-point:nth-child(3) { border-color: #43e97b; }
+        .key-point:nth-child(4) { border-color: #ffd166; }
+        .key-point:nth-child(5) { border-color: #ff6b6b; }
+        .key-point:nth-child(6) { border-color: #a8dadc; }
+        
+        .key-point h4 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        /* Example Scenarios */
+        .scenario {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 25px 0;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .scenario-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .scenario-number {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3em;
+        }
+        
+        .scenario h4 {
+            font-size: 1.4em;
+            color: #a8dadc;
+        }
+        
+        .scenario-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .scenario-box {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .scenario-box h5 {
+            color: #ffd166;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        /* Takeaway Cards */
+        .takeaway-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .takeaway-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .takeaway-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+        
+        .takeaway-card:nth-child(1)::before { background: linear-gradient(90deg, #f093fb, #f5576c); }
+        .takeaway-card:nth-child(2)::before { background: linear-gradient(90deg, #4facfe, #00f2fe); }
+        .takeaway-card:nth-child(3)::before { background: linear-gradient(90deg, #43e97b, #38f9d7); }
+        .takeaway-card:nth-child(4)::before { background: linear-gradient(90deg, #ffd166, #ff9f43); }
+        .takeaway-card:nth-child(5)::before { background: linear-gradient(90deg, #ff6b6b, #ee5a24); }
+        .takeaway-card:nth-child(6)::before { background: linear-gradient(90deg, #a8dadc, #457b9d); }
+        .takeaway-card:nth-child(7)::before { background: linear-gradient(90deg, #dfe6e9, #b2bec3); }
+        .takeaway-card:nth-child(8)::before { background: linear-gradient(90deg, #fd79a8, #e84393); }
+        
+        .takeaway-number {
+            font-size: 3em;
+            font-weight: 700;
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .takeaway-card h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        /* Teaching Cards */
+        .teach-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .teach-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        .teach-card:hover {
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        .teach-card .quote {
+            font-size: 1.3em;
+            font-style: italic;
+            color: #ffd166;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #ffd166;
+        }
+        
+        .teach-card .explanation {
+            color: #a8dadc;
+            font-size: 1.05em;
+        }
+        
+        /* Face Zone Diagram */
+        .face-zones {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .zone-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            min-width: 280px;
+            flex: 1;
+            max-width: 350px;
+        }
+        
+        .zone-card h4 {
+            font-size: 1.4em;
+            margin: 15px 0;
+        }
+        
+        .zone-card p {
+            font-size: 1.05em;
+            opacity: 0.9;
+        }
+        
+        .zone-forehead { border-top: 4px solid #9b59b6; }
+        .zone-forehead h4 { color: #9b59b6; }
+        
+        .zone-eyes { border-top: 4px solid #3498db; }
+        .zone-eyes h4 { color: #3498db; }
+        
+        .zone-mouth { border-top: 4px solid #e74c3c; }
+        .zone-mouth h4 { color: #e74c3c; }
+        
+        /* Micro Expression Section */
+        .micro-section {
+            background: linear-gradient(135deg, rgba(155, 89, 182, 0.2), rgba(52, 152, 219, 0.2));
+            border-radius: 20px;
+            padding: 35px;
+            margin: 30px 0;
+        }
+        
+        .micro-section h4 {
+            color: #e056fd;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        
+        .micro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .micro-item {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .micro-item h5 {
+            color: #74b9ff;
+            margin-bottom: 10px;
+        }
+        
+        /* Practice Steps */
+        .practice-steps {
+            counter-reset: step;
+        }
+        
+        .step {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            padding-left: 80px;
+            position: relative;
+        }
+        
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3em;
+            color: #1a1a2e;
+        }
+        
+        .step h4 {
+            color: #43e97b;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+        }
+        
+        .footer p {
+            color: #a8dadc;
+            font-size: 1.1em;
+        }
+        
+        .footer .creator {
+            color: #ffd166;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        
+        /* Highlight Text */
+        .highlight {
+            background: linear-gradient(135deg, rgba(255, 209, 102, 0.3), rgba(255, 107, 107, 0.3));
+            padding: 3px 10px;
+            border-radius: 5px;
+        }
+        
+        /* Quote Block */
+        .quote-block {
+            background: linear-gradient(135deg, rgba(168, 218, 220, 0.1), rgba(69, 123, 157, 0.1));
+            border-left: 4px solid #a8dadc;
+            padding: 25px 30px;
+            margin: 25px 0;
+            border-radius: 0 15px 15px 0;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+        
+        /* SVG Faces */
+        .face-svg {
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+            
+            .section-title {
+                font-size: 1.5em;
+            }
+            
+            .emotion-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>📖 Unmasking the Face</h1>
+            <p class="subtitle">ถอดรหัสใบหน้า: คู่มืออ่านอารมณ์มนุษย์ฉบับสมบูรณ์</p>
+            <p class="authors">โดย Paul Ekman & Wallace Friesen</p>
+        </header>
+
+        <!-- Introduction Section -->
+        <section class="section intro">
+            <h2 class="section-title">
+                <span class="icon">📚</span>
+                บทนำ: เกี่ยวกับหนังสือเล่มนี้
+            </h2>
+            
+            <div class="content-box">
+                <h4>ความเป็นมาและความสำคัญ</h4>
+                <p>"Unmasking the Face" ตีพิมพ์ครั้งแรกในปี 1975 เป็นผลงานบุกเบิกของ <strong>Dr. Paul Ekman</strong> นักจิตวิทยาชื่อดังผู้ได้รับการยกย่องว่าเป็น "ผู้เชี่ยวชาญด้านการอ่านใบหน้าอันดับหนึ่งของโลก" และ <strong>Dr. Wallace Friesen</strong> ผู้ร่วมวิจัย</p>
+                <p>หนังสือเล่มนี้เป็นรากฐานสำคัญของ <span class="highlight">Facial Action Coding System (FACS)</span> ระบบการวิเคราะห์การเคลื่อนไหวของกล้ามเนื้อใบหน้าที่ใช้กันอย่างแพร่หลายในวงการจิตวิทยา, แพทย์, ความมั่นคง, และแม้แต่อุตสาหกรรมแอนิเมชัน</p>
+            </div>
+
+            <div class="quote-block">
+                "ใบหน้าคือหน้าต่างของจิตใจ แต่หน้าต่างบานนี้ถูกบิดเบือนได้ ปิดบังได้ และเปิดเผยได้ ขึ้นอยู่กับว่าเราจะรู้จักอ่านมันหรือไม่"
+            </div>
+
+            <div class="content-box">
+                <h4>วัตถุประสงค์หลักของหนังสือ</h4>
+                <p>1. <strong>สอนให้ผู้อ่านจดจำอารมณ์ 7 ประเภทพื้นฐาน</strong> ที่แสดงออกผ่านใบหน้าอย่างเป็นสากล</p>
+                <p>2. <strong>อธิบายกายวิภาคของการแสดงออกทางสีหน้า</strong> ว่ากล้ามเนื้อส่วนใดเคลื่อนไหวอย่างไรในแต่ละอารมณ์</p>
+                <p>3. <strong>ฝึกทักษะการสังเกตและแยกแยะ</strong> ระหว่างอารมณ์จริงกับอารมณ์ปลอม</p>
+                <p>4. <strong>นำไปประยุกต์ใช้</strong> ในชีวิตประจำวัน การทำงาน และความสัมพันธ์</p>
+            </div>
+        </section>
+
+        <!-- Core Concepts Section -->
+        <section class="section core">
+            <h2 class="section-title">
+                <span class="icon">🎯</span>
+                แก่นสาร (Core Concepts)
+            </h2>
+
+            <div class="key-points">
+                <div class="key-point">
+                    <h4>🌍 1. อารมณ์สากล (Universal Emotions)</h4>
+                    <p>มนุษย์ทุกเชื้อชาติ ทุกวัฒนธรรม แสดงอารมณ์พื้นฐาน 7 ประเภทผ่านใบหน้าในรูปแบบเดียวกัน ไม่ว่าจะเป็นคนในนิวยอร์กหรือชนเผ่าในปาปัวนิวกินี</p>
+                </div>
+                <div class="key-point">
+                    <h4>⏱️ 2. Micro Expressions</h4>
+                    <p>การแสดงออกทางสีหน้าที่เกิดขึ้นเพียง 1/25 - 1/5 วินาที เป็นการแสดงอารมณ์แท้จริงที่ควบคุมไม่ได้ เป็นกุญแจสำคัญในการจับโกหก</p>
+                </div>
+                <div class="key-point">
+                    <h4>🎭 3. Display Rules</h4>
+                    <p>กฎทางสังคมและวัฒนธรรมที่กำหนดว่าเมื่อไหร่ ที่ไหน และกับใครที่เราควรแสดงหรือซ่อนอารมณ์ ทำให้การแสดงออกถูกบิดเบือน</p>
+                </div>
+                <div class="key-point">
+                    <h4>🔬 4. Three Facial Areas</h4>
+                    <p>ใบหน้าแบ่งออกเป็น 3 โซนหลัก: หน้าผาก-คิ้ว, ตา-เปลือกตา, และปาก-คาง แต่ละโซนบอกอารมณ์ที่แตกต่างกัน</p>
+                </div>
+                <div class="key-point">
+                    <h4>💯 5. Genuine vs. False</h4>
+                    <p>การแสดงอารมณ์จริงและปลอมมีความแตกต่างที่สังเกตได้ โดยเฉพาะที่กล้ามเนื้อรอบดวงตาที่ควบคุมได้ยาก</p>
+                </div>
+                <div class="key-point">
+                    <h4>🔄 6. Blended Emotions</h4>
+                    <p>ในชีวิตจริง เรามักแสดงอารมณ์ผสม เช่น ดีใจปนเศร้า หรือโกรธปนกลัว การอ่านต้องวิเคราะห์หลายส่วนประกอบกัน</p>
+                </div>
+            </div>
+
+            <!-- Face Zones Diagram -->
+            <h3 style="color: #ffd166; margin: 40px 0 20px; font-size: 1.5em;">🗺️ แผนที่ใบหน้า: 3 โซนสำคัญ</h3>
+            
+            <div class="face-zones">
+                <div class="zone-card zone-forehead">
+                    <svg width="120" height="80" viewBox="0 0 120 80" class="face-svg">
+                        <!-- Forehead representation -->
+                        <ellipse cx="60" cy="50" rx="50" ry="35" fill="#2d3436" stroke="#9b59b6" stroke-width="3"/>
+                        <!-- Eyebrows -->
+                        <path d="M25 45 Q35 35 50 40" stroke="#9b59b6" stroke-width="4" fill="none" stroke-linecap="round"/>
+                        <path d="M95 45 Q85 35 70 40" stroke="#9b59b6" stroke-width="4" fill="none" stroke-linecap="round"/>
+                        <!-- Forehead lines -->
+                        <path d="M35 25 Q60 20 85 25" stroke="#9b59b6" stroke-width="2" fill="none" opacity="0.5"/>
+                        <path d="M40 32 Q60 28 80 32" stroke="#9b59b6" stroke-width="2" fill="none" opacity="0.5"/>
+                    </svg>
+                    <h4>โซนหน้าผาก & คิ้ว</h4>
+                    <p>บอกอารมณ์: <strong>ประหลาดใจ, กลัว, เศร้า, โกรธ</strong></p>
+                    <p style="font-size: 0.95em; opacity: 0.8;">• คิ้วยก = ประหลาดใจ/กลัว<br>• คิ้วขมวด = โกรธ/สับสน<br>• คิ้วเฉียง = เศร้า/กังวล</p>
+                </div>
+                
+                <div class="zone-card zone-eyes">
+                    <svg width="120" height="80" viewBox="0 0 120 80" class="face-svg">
+                        <!-- Eye area -->
+                        <ellipse cx="35" cy="40" rx="18" ry="12" fill="#2d3436" stroke="#3498db" stroke-width="3"/>
+                        <ellipse cx="85" cy="40" rx="18" ry="12" fill="#2d3436" stroke="#3498db" stroke-width="3"/>
+                        <!-- Pupils -->
+                        <circle cx="35" cy="40" r="6" fill="#3498db"/>
+                        <circle cx="85" cy="40" r="6" fill="#3498db"/>
+                        <!-- Highlight -->
+                        <circle cx="37" cy="38" r="2" fill="white"/>
+                        <circle cx="87" cy="38" r="2" fill="white"/>
+                        <!-- Lower eyelid -->
+                        <path d="M20 48 Q35 55 50 48" stroke="#3498db" stroke-width="2" fill="none"/>
+                        <path d="M70 48 Q85 55 100 48" stroke="#3498db" stroke-width="2" fill="none"/>
+                    </svg>
+                    <h4>โซนดวงตา & เปลือกตา</h4>
+                    <p>บอกอารมณ์: <strong>ทุกอารมณ์ (สำคัญที่สุด)</strong></p>
+                    <p style="font-size: 0.95em; opacity: 0.8;">• ตาเบิกกว้าง = กลัว/ประหลาดใจ<br>• ตาหรี่ = โกรธ/รังเกียจ<br>• Crow's feet = ยิ้มจริง</p>
+                </div>
+                
+                <div class="zone-card zone-mouth">
+                    <svg width="120" height="80" viewBox="0 0 120 80" class="face-svg">
+                        <!-- Mouth area -->
+                        <ellipse cx="60" cy="45" rx="35" ry="20" fill="#2d3436" stroke="#e74c3c" stroke-width="3"/>
+                        <!-- Lips -->
+                        <path d="M30 45 Q45 35 60 40 Q75 35 90 45" stroke="#e74c3c" stroke-width="3" fill="none"/>
+                        <path d="M30 45 Q45 55 60 50 Q75 55 90 45" stroke="#e74c3c" stroke-width="3" fill="none"/>
+                        <!-- Teeth hint -->
+                        <rect x="40" y="42" width="40" height="8" fill="rgba(255,255,255,0.1)" rx="2"/>
+                    </svg>
+                    <h4>โซนปาก & คาง</h4>
+                    <p>บอกอารมณ์: <strong>ความสุข, รังเกียจ, ดูถูก, เศร้า</strong></p>
+                    <p style="font-size: 0.95em; opacity: 0.8;">• มุมปากยก = ความสุข<br>• มุมปากตก = เศร้า<br>• ริมฝีปากบนยก = รังเกียจ</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7 Emotions Section with Face Illustrations -->
+        <section class="section emotions">
+            <h2 class="section-title">
+                <span class="icon">😊</span>
+                7 อารมณ์สากล พร้อมภาพประกอบสีหน้า
+            </h2>
+
+            <div class="emotion-grid">
+                <!-- Happiness -->
+                <div class="emotion-card happiness">
+                    <h3>😊 1. ความสุข (Happiness)</h3>
+                    <div class="face-container">
+                        <svg width="150" height="150" viewBox="0 0 150 150" class="face-svg">
+                            <!-- Face -->
+                            <circle cx="75" cy="75" r="65" fill="#ffeaa7" stroke="#fdcb6e" stroke-width="3"/>
+                            <!-- Eyebrows - relaxed, slightly raised -->
+                            <path d="M35 45 Q50 40 60 45" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <path d="M115 45 Q100 40 90 45" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <!-- Eyes - slightly squinted (genuine smile) -->
+                            <ellipse cx="50" cy="60" rx="12" ry="10" fill="white"/>
+                            <ellipse cx="100" cy="60" rx="12" ry="10" fill="white"/>
+                            <circle cx="50" cy="62" r="5" fill="#2d3436"/>
+                            <circle cx="100" cy="62" r="5" fill="#2d3436"/>
+                            <!-- Crow's feet - sign of genuine smile -->
+                            <path d="M30 55 L25 50" stroke="#e17055" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M28 60 L22 58" stroke="#e17055" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M120 55 L125 50" stroke="#e17055" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M122 60 L128 58" stroke="#e17055" stroke-width="2" stroke-linecap="round"/>
+                            <!-- Lower eyelid pushed up -->
+                            <path d="M40 68 Q50 72 60 68" stroke="#e17055" stroke-width="2" fill="none"/>
+                            <path d="M90 68 Q100 72 110 68" stroke="#e17055" stroke-width="2" fill="none"/>
+                            <!-- Cheeks raised -->
+                            <ellipse cx="40" cy="85" rx="12" ry="8" fill="#fab1a0" opacity="0.6"/>
+                            <ellipse cx="110" cy="85" rx="12" ry="8" fill="#fab1a0" opacity="0.6"/>
+                            <!-- Smile - Duchenne smile -->
+                            <path d="M40 95 Q75 130 110 95" stroke="#2d3436" stroke-width="4" fill="none" stroke-linecap="round"/>
+                            <!-- Teeth -->
+                            <path d="M50 100 Q75 115 100 100" fill="white"/>
+                        </svg>
+                    </div>
+                    <ul>
+                        <li><strong>Duchenne Smile:</strong> รอยยับที่หางตา (Crow's feet) เกิดจากกล้ามเนื้อ Orbicularis Oculi</li>
+                        <li><strong>แก้มยกขึ้น:</strong> ผิวใต้ตาถูกดันขึ้นทำให้ตาดูเล็กลง</li>
+                        <li><strong>มุมปากยกขึ้นสมมาตร:</strong> กล้ามเนื้อ Zygomaticus Major ทำงาน</li>
+                        <li><strong>ตาแวววาว:</strong> แสดงความสุขจากภายใน</li>
+                        <li><strong>ยิ้มปลอม:</strong> ไม่มี Crow's feet, ตาไม่หรี่, มุมปากอาจไม่สมมาตร</li>
+                    </ul>
+                </div>
+
+                <!-- Sadness -->
+                <div class="emotion-card sadness">
+                    <h3>😢 2. ความเศร้า (Sadness)</h3>
+                    <div class="face-container">
+                        <svg width="150" height="150" viewBox="0 0 150 150" class="face-svg">
+                            <!-- Face -->
+                            <circle cx="75" cy="75" r="65" fill="#dfe6e9" stroke="#b2bec3" stroke-width="3"/>
+                            <!-- Eyebrows - inner corners raised -->
+                            <path d="M35 50 Q45 40 60 48" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <path d="M115 50 Q105 40 90 48" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <!-- Forehead wrinkles in center -->
+                            <path d="M65 30 L70 25 L75 30 L80 25 L85 30" stroke="#636e72" stroke-width="1.5" fill="none"/>
+                            <!-- Eyes - droopy upper lids -->
+                            <ellipse cx="50" cy="60" rx="12" ry="9" fill="white"/>
+                            <ellipse cx="100" cy="60" rx="12" ry="9" fill="white"/>
+                            <circle cx="50" cy="62" r="5" fill="#2d3436"/>
+                            <circle cx="100" cy="62" r="5" fill="#2d3436"/>
+                            <!-- Droopy upper eyelids -->
+                            <path d="M38 55 Q50 50 62 55" stroke="#636e72" stroke-width="3" fill="none"/>
+                            <path d="M88 55 Q100 50 112 55" stroke="#636e72" stroke-width="3" fill="none"/>
+                            <!-- Tears -->
+                            <ellipse cx="55" cy="75" rx="4" ry="6" fill="#74b9ff" opacity="0.7"/>
+                            <ellipse cx="95" cy="78" rx="3" ry="5" fill="#74b9ff" opacity="0.7"/>
+                            <!-- Mouth - corners down -->
+                            <path d="M50 105 Q75 95 100 105" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <!-- Lower lip pushed up -->
+                            <path d="M55 110 Q75 115 95 110" stroke="#636e72" stroke-width="2" fill="none"/>
+                            <!-- Chin dimple/tension -->
+                            <ellipse cx="75" cy="120" rx="8" ry="5" fill="#b2bec3" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <ul>
+                        <li><strong>คิ้วหัวคิ้วยกขึ้น:</strong> เฉพาะด้านในของคิ้วยกขึ้น ทำให้รูปคิ้วเป็นรูปสามเหลี่ยมกลับหัว</li>
+                        <li><strong>เปลือกตาบนหย่อน:</strong> ดูเหนื่อยล้า หมดแรง</li>
+                        <li><strong>มุมปากตกลง:</strong> กล้ามเนื้อ Depressor Anguli Oris ดึงลง</li>
+                        <li><strong>ริมฝีปากล่างยื่นออก:</strong> หรือสั่นเล็กน้อย</li>
+                        <li><strong>คางตึง:</strong> มีรอยบุ๋มหรือย่นที่คาง</li>
+                        <li><strong>สายตาเศร้า:</strong> มองลงต่ำ ไม่มีประกาย</li>
+                    </ul>
+                </div>
+
+                <!-- Anger -->
+                <div class="emotion-card anger">
+                    <h3>😠 3. ความโกรธ (Anger)</h3>
+                    <div class="face-container">
+                        <svg width="150" height="150" viewBox="0 0 150 150" class="face-svg">
+                            <!-- Face -->
+                            <circle cx="75" cy="75" r="65" fill="#fab1a0" stroke="#e17055" stroke-width="3"/>
+                            <!-- Eyebrows - lowered and drawn together -->
+                            <path d="M30 55 Q45 45 60 55" stroke="#2d3436" stroke-width="4" fill="none" stroke-linecap="round"/>
+                            <path d="M120 55 Q105 45 90 55" stroke="#2d3436" stroke-width="4" fill="none" stroke-linecap="round"/>
+                            <!-- Vertical wrinkles between eyebrows -->
+                            <line x1="68" y1="45" x2="68" y2="60" stroke="#d63031" stroke-width="2"/>
+                            <line x1="72" y1="43" x2="72" y2="58" stroke="#d63031" stroke-width="2"/>
+                            <line x1="78" y1="43" x2="78" y2="58" stroke="#d63031" stroke-width="2"/>
+                            <line x1="82" y1="45" x2="82" y2="60" stroke="#d63031" stroke-width="2"/>
+                            <!-- Eyes - glaring, tense lower lids -->
+                            <ellipse cx="50" cy="65" rx="13" ry="10" fill="white"/>
+                            <ellipse cx="100" cy="65" rx="13" ry="10" fill="white"/>
+                            <circle cx="50" cy="65" r="6" fill="#2d3436"/>
+                            <circle cx="100" cy="65" r="6" fill="#2d3436"/>
+                            <!-- Narrowed eyes - tense upper lids -->
+                            <path d="M35 58 Q50 52 65 58" stroke="#2d3436" stroke-width="3" fill="none"/>
+                            <path d="M85 58 Q100 52 115 58" stroke="#2d3436" stroke-width="3" fill="none"/>
+                            <!-- Tense lower lids -->
+                            <path d="M38 72 Q50 76 62 72" stroke="#d63031" stroke-width="2" fill="none"/>
+                            <path d="M88 72 Q100 76 112 72" stroke="#d63031" stroke-width="2" fill="none"/>
+                            <!-- Flared nostrils -->
+                            <ellipse cx="68" cy="85" rx="6" ry="5" fill="#d63031" opacity="0.6"/>
+                            <ellipse cx="82" cy="85" rx="6" ry="5" fill="#d63031" opacity="0.6"/>
+                            <!-- Mouth - tense, lips pressed or teeth showing -->
+                            <path d="M45 105 L105 105" stroke="#2d3436" stroke-width="4" stroke-linecap="round"/>
+                            <path d="M50 108 Q75 115 100 108" stroke="#d63031" stroke-width="2" fill="none"/>
+                            <!-- Jaw tension lines -->
+                            <path d="M30 95 L35 100" stroke="#d63031" stroke-width="2"/>
+                            <path d="M120 95 L115 100" stroke="#d63031" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <ul>
+                        <li><strong>คิ้วขมวดและกดลง:</strong> ทำให้เกิดรอยย่นแนวตั้งระหว่างคิ้ว (Glabellar lines)</li>
+                        <li><strong>เปลือกตาตึง:</strong> ทั้งบนและล่าง ตาหรี่แต่จ้องเขม็ง</li>
+                        <li><strong>รูจมูกบาน:</strong> หายใจแรง เตรียมพร้อมสู้</li>
+                        <li><strong>ริมฝีปากเม้มแน่น:</strong> หรือเผยอให้เห็นฟัน</li>
+                        <li><strong>ขากรรไกรเกร็ง:</strong> กล้ามเนื้อ Masseter ตึง</li>
+                        <li><strong>หน้าแดง:</strong> เลือดสูบฉีดขึ้นใบหน้า</li>
+                    </ul>
+                </div>
+
+                <!-- Fear -->
+                <div class="emotion-card fear">
+                    <h3>😨 4. ความกลัว (Fear)</h3>
+                    <div class="face-container">
+                        <svg width="150" height="150" viewBox="0 0 150 150" class="face-svg">
+                            <!-- Face - pale -->
+                            <circle cx="75" cy="75" r="65" fill="#dfe6e9" stroke="#a29bfe" stroke-width="3"/>
+                            <!-- Eyebrows - raised and drawn together -->
+                            <path d="M30 40 Q45 30 60 38" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <path d="M120 40 Q105 30 90 38" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <!-- Horizontal forehead wrinkles -->
+                            <path d="M40 28 Q75 22 110 28" stroke="#636e72" stroke-width="1.5" fill="none"/>
+                            <path d="M45 35 Q75 30 105 35" stroke="#636e72" stroke-width="1.5" fill="none"/>
+                            <!-- Eyes - wide open, whites showing -->
+                            <ellipse cx="50" cy="60" rx="15" ry="14" fill="white" stroke="#636e72" stroke-width="1"/>
+                            <ellipse cx="100" cy="60" rx="15" ry="14" fill="white" stroke="#636e72" stroke-width="1"/>
+                            <circle cx="50" cy="62" r="7" fill="#2d3436"/>
+                            <circle cx="100" cy="62" r="7" fill="#2d3436"/>
+                            <!-- Upper white showing -->
+                            <ellipse cx="50" cy="52" rx="8" ry="4" fill="white"/>
+                            <ellipse cx="100" cy="52" rx="8" ry="4" fill="white"/>
+                            <!-- Tense lower lids -->
+                            <path d="M36 70 Q50 75 64 70" stroke="#a29bfe" stroke-width="2" fill="none"/>
+                            <path d="M86 70 Q100 75 114 70" stroke="#a29bfe" stroke-width="2" fill="none"/>
+                            <!-- Sweat drops -->
+                            <ellipse cx="25" cy="50" rx="3" ry="5" fill="#74b9ff" opacity="0.6"/>
+                            <ellipse cx="125" cy="55" rx="3" ry="5" fill="#74b9ff" opacity="0.6"/>
+                            <!-- Mouth - open, stretched horizontally -->
+                            <ellipse cx="75" cy="105" rx="25" ry="15" fill="#2d3436"/>
+                            <ellipse cx="75" cy="100" rx="20" ry="8" fill="#636e72"/>
+                            <!-- Teeth showing -->
+                            <rect x="55" y="97" width="40" height="8" fill="white" rx="2"/>
+                        </svg>
+                    </div>
+                    <ul>
+                        <li><strong>คิ้วยกขึ้นและชิดกัน:</strong> ต่างจากประหลาดใจที่คิ้วยกแต่ไม่ชิด</li>
+                        <li><strong>ตาเบิกกว้าง:</strong> เห็นตาขาวทั้งด้านบนและด้านล่าง</li>
+                        <li><strong>เปลือกตาล่างตึง:</strong> แสดงความตื่นตัวสูง</li>
+                        <li><strong>ปากเปิด ยืดในแนวนอน:</strong> เตรียมหายใจเร็ว หรือกรีดร้อง</li>
+                        <li><strong>หน้าซีด:</strong> เลือดถูกดึงไปยังอวัยวะสำคัญ</li>
+                        <li><strong>เหงื่อออก:</strong> โดยเฉพาะที่หน้าผากและขมับ</li>
+                    </ul>
+                </div>
+
+                <!-- Surprise -->
+                <div class="emotion-card surprise">
+                    <h3>😲 5. ความประหลาดใจ (Surprise)</h3>
+                    <div class="face-container">
+                        <svg width="150" height="150" viewBox="0 0 150 150" class="face-svg">
+                            <!-- Face -->
+                            <circle cx="75" cy="75" r="65" fill="#ffeaa7" stroke="#fdcb6e" stroke-width="3"/>
+                            <!-- Eyebrows - raised high, curved -->
+                            <path d="M30 38 Q45 25 60 35" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <path d="M120 38 Q105 25 90 35" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <!-- Horizontal forehead wrinkles - prominent -->
+                            <path d="M35 22 Q75 15 115 22" stroke="#e17055" stroke-width="2" fill="none"/>
+                            <path d="M40 30 Q75 24 110 30" stroke="#e17055" stroke-width="2" fill="none"/>
+                            <!-- Eyes - very wide, round -->
+                            <ellipse cx="50" cy="60" rx="16" ry="15" fill="white" stroke="#636e72" stroke-width="1"/>
+                            <ellipse cx="100" cy="60" rx="16" ry="15" fill="white" stroke="#636e72" stroke-width="1"/>
+                            <circle cx="50" cy="60" r="8" fill="#2d3436"/>
+                            <circle cx="100" cy="60" r="8" fill="#2d3436"/>
+                            <!-- Highlight in eyes -->
+                            <circle cx="53" cy="57" r="3" fill="white"/>
+                            <circle cx="103" cy="57" r="3" fill="white"/>
+                            <!-- Mouth - dropped open, oval -->
+                            <ellipse cx="75" cy="108" rx="18" ry="20" fill="#2d3436"/>
+                            <ellipse cx="75" cy="105" rx="14" ry="12" fill="#636e72"/>
+                        </svg>
+                    </div>
+                    <ul>
+                        <li><strong>คิ้วยกสูงโค้ง:</strong> ทำให้เกิดรอยย่นแนวนอนที่หน้าผากชัดเจน</li>
+                        <li><strong>ตาเปิดกว้างมาก:</strong> ทั้งเปลือกตาบนและล่างห่างจากกัน</li>
+                        <li><strong>ปากอ้าเป็นรูปวงรี:</strong> กรามตกลงอย่างผ่อนคลาย</li>
+                        <li><strong>เกิดขึ้นเพียงครู่เดียว:</strong> ประหลาดใจจริงอยู่ไม่เกิน 1-2 วินาที</li>
+                        <li><strong>ไม่มีความตึงเครียด:</strong> ต่างจากความกลัวที่มีความตึง</li>
+                        <li><strong>มักตามด้วยอารมณ์อื่น:</strong> ดีใจ กลัว หรือโกรธ</li>
+                    </ul>
+                </div>
+
+                <!-- Disgust -->
+                <div class="emotion-card disgust">
+                    <h3>🤢 6. ความรังเกียจ (Disgust)</h3>
+                    <div class="face-container">
+                        <svg width="150" height="150" viewBox="0 0 150 150" class="face-svg">
+                            <!-- Face -->
+                            <circle cx="75" cy="75" r="65" fill="#b8e994" stroke="#6ab04c" stroke-width="3"/>
+                            <!-- Eyebrows - lowered, one higher -->
+                            <path d="M35 48 Q45 45 60 50" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <path d="M115 45 Q105 48 90 52" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <!-- Eyes - narrowed, looking down -->
+                            <ellipse cx="50" cy="60" rx="12" ry="8" fill="white"/>
+                            <ellipse cx="100" cy="60" rx="12" ry="8" fill="white"/>
+                            <circle cx="50" cy="62" r="5" fill="#2d3436"/>
+                            <circle cx="100" cy="62" r="5" fill="#2d3436"/>
+                            <!-- Lowered upper lids -->
+                            <path d="M38 55 Q50 50 62 55" stroke="#2d3436" stroke-width="3" fill="none"/>
+                            <path d="M88 55 Q100 50 112 55" stroke="#2d3436" stroke-width="3" fill="none"/>
+                            <!-- Nose wrinkle -->
+                            <path d="M65 75 Q75 70 85 75" stroke="#27ae60" stroke-width="2" fill="none"/>
+                            <path d="M68 80 Q75 77 82 80" stroke="#27ae60" stroke-width="2" fill="none"/>
+                            <!-- Raised upper lip - key sign -->
+                            <path d="M55 90 Q65 82 75 85 Q85 82 95 90" stroke="#2d3436" stroke-width="3" fill="none"/>
+                            <!-- Lower face tension -->
+                            <path d="M50 100 Q75 110 100 100" stroke="#2d3436" stroke-width="3" fill="none"/>
+                            <!-- Nasolabial folds deepened -->
+                            <path d="M55 75 Q50 90 55 100" stroke="#27ae60" stroke-width="2" fill="none"/>
+                            <path d="M95 75 Q100 90 95 100" stroke="#27ae60" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <ul>
+                        <li><strong>ริมฝีปากบนยกขึ้น:</strong> เป็นสัญญาณหลักที่สำคัญที่สุด</li>
+                        <li><strong>จมูกย่น:</strong> สันจมูกมีรอยย่น เหมือนได้กลิ่นเหม็น</li>
+                        <li><strong>ร่องแก้มลึก:</strong> Nasolabial folds ชัดเจนขึ้น</li>
+                        <li><strong>คิ้วกดลงเล็กน้อย:</strong> แต่ไม่ขมวดแน่นเหมือนโกรธ</li>
+                        <li><strong>ตาหรี่:</strong> เหมือนพยายามหลีกเลี่ยงการมอง</li>
+                        <li><strong>หันหน้าหนี:</strong> มักมีการเบือนหน้าไปด้านข้าง</li>
+                    </ul>
+                </div>
+
+                <!-- Contempt -->
+                <div class="emotion-card contempt">
+                    <h3>😏 7. ความดูถูก (Contempt)</h3>
+                    <div class="face-container">
+                        <svg width="150" height="150" viewBox="0 0 150 150" class="face-svg">
+                            <!-- Face -->
+                            <circle cx="75" cy="75" r="65" fill="#ffeaa7" stroke="#fdcb6e" stroke-width="3"/>
+                            <!-- Eyebrows - one raised slightly -->
+                            <path d="M35 48 Q45 45 60 48" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <path d="M115 45 Q105 40 90 45" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <!-- Eyes - slightly narrowed, one more than other -->
+                            <ellipse cx="50" cy="60" rx="12" ry="10" fill="white"/>
+                            <ellipse cx="100" cy="60" rx="11" ry="9" fill="white"/>
+                            <circle cx="50" cy="60" r="5" fill="#2d3436"/>
+                            <circle cx="100" cy="60" r="5" fill="#2d3436"/>
+                            <!-- Slight eye narrowing on one side -->
+                            <path d="M88 55 Q100 52 112 56" stroke="#2d3436" stroke-width="2" fill="none"/>
+                            <!-- Asymmetric smile - key sign -->
+                            <path d="M50 98 Q65 102 80 98" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <path d="M80 98 Q95 90 105 85" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <!-- One corner raised (right) -->
+                            <circle cx="105" cy="85" r="3" fill="#e17055"/>
+                            <!-- Dimple on one side -->
+                            <ellipse cx="108" cy="90" rx="4" ry="3" fill="#e17055" opacity="0.4"/>
+                            <!-- Chin slightly tilted -->
+                            <ellipse cx="78" cy="120" rx="10" ry="6" fill="#fdcb6e" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <ul>
+                        <li><strong>ยิ้มมุมเดียว (Unilateral):</strong> มุมปากข้างเดียวยกขึ้น เป็นอารมณ์เดียวที่ไม่สมมาตร</li>
+                        <li><strong>มีลักยิ้มที่แก้ม:</strong> ข้างที่ยกมุมปาก</li>
+                        <li><strong>ตาอาจหรี่เล็กน้อย:</strong> ข้างเดียวกับมุมปากที่ยก</li>
+                        <li><strong>คางอาจยกเล็กน้อย:</strong> ท่าทางเหยียดหยาม</li>
+                        <li><strong>สายตามองลงหรือเฉียง:</strong> แสดงความรู้สึกเหนือกว่า</li>
+                        <li><strong>แตกต่างจากยิ้มปลอม:</strong> ดูถูกเกิดจากอารมณ์จริง แต่ยิ้มปลอมทั้งสองข้างยกเท่ากัน</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mindset Section -->
+        <section class="section mindset">
+            <h2 class="section-title">
+                <span class="icon">🧠</span>
+                กรอบความคิด (Mindset)
+            </h2>
+
+            <div class="content-box">
+                <h4>หลักการพื้นฐานที่ต้องยึดถือ</h4>
+            </div>
+
+            <div class="key-points">
+                <div class="key-point">
+                    <h4 style="color: #f093fb;">🎯 Observer, Not Judge</h4>
+                    <p>เป็นผู้สังเกต ไม่ใช่ผู้ตัดสิน การอ่านสีหน้าคือการรวบรวมข้อมูล ไม่ใช่การสรุปว่าคนคนนั้นเป็นคนอย่างไร อารมณ์ชั่วขณะไม่ได้กำหนดบุคลิกภาพ</p>
+                </div>
+                <div class="key-point">
+                    <h4 style="color: #4facfe;">🔍 Context is King</h4>
+                    <p>บริบทคือราชา สีหน้าเดียวกันอาจมีความหมายต่างกันในสถานการณ์ต่างกัน ต้องพิจารณาภาษากาย น้ำเสียง สถานการณ์ และความสัมพันธ์ประกอบ</p>
+                </div>
+                <div class="key-point">
+                    <h4 style="color: #43e97b;">📊 Baseline First</h4>
+                    <p>สังเกต Baseline ก่อน ทุกคนมีสีหน้าปกติที่แตกต่างกัน ต้องรู้จักสีหน้าปกติของคนคนนั้นก่อน จึงจะสังเกตความเปลี่ยนแปลงได้</p>
+                </div>
+                <div class="key-point">
+                    <h4 style="color: #ffd166;">🎭 Emotion ≠ Intention</h4>
+                    <p>อารมณ์ไม่เท่ากับเจตนา การที่ใครโกรธไม่ได้หมายความว่าเขาจะทำร้าย การที่ใครกลัวไม่ได้หมายความว่าเขาโกหก</p>
+                </div>
+                <div class="key-point">
+                    <h4 style="color: #ff6b6b;">🧩 Cluster Reading</h4>
+                    <p>อ่านเป็นชุด ไม่ใช่เดี่ยว อย่าสรุปจากสัญญาณเดียว ต้องเห็นหลายสัญญาณที่สอดคล้องกันจึงมั่นใจได้</p>
+                </div>
+                <div class="key-point">
+                    <h4 style="color: #a8dadc;">💭 Question, Don't Assume</h4>
+                    <p>ตั้งคำถาม อย่าคาดเดา เมื่อสังเกตเห็นอารมณ์ ให้ใช้เป็นจุดเริ่มต้นในการสอบถาม ไม่ใช่ข้อสรุปสุดท้าย</p>
+                </div>
+            </div>
+
+            <div class="quote-block">
+                "เราไม่สามารถอ่านใจคนได้ แต่เราสามารถอ่านอารมณ์ที่แสดงออกบนใบหน้าได้ และอารมณ์เหล่านั้นก็บอกเล่าเรื่องราวมากมายที่คำพูดไม่ได้บอก"
+            </div>
+
+            <!-- Micro Expression Detail -->
+            <div class="micro-section">
+                <h4>⚡ Micro Expressions: อาวุธลับในการอ่านคน</h4>
+                <div class="micro-grid">
+                    <div class="micro-item">
+                        <h5>⏱️ ระยะเวลา</h5>
+                        <p>เกิดขึ้นเพียง <strong>1/25 - 1/5 วินาที</strong> (40-200 มิลลิวินาที) เร็วจนตาเปล่ามักมองไม่ทัน แต่ฝึกได้</p>
+                    </div>
+                    <div class="micro-item">
+                        <h5>🎯 ความแม่นยำ</h5>
+                        <p>เป็นการแสดงอารมณ์แท้จริงที่<strong>ควบคุมไม่ได้</strong> เพราะเกิดจากระบบประสาทอัตโนมัติก่อนที่สมองส่วนคิดจะทันควบคุม</p>
+                    </div>
+                    <div class="micro-item">
+                        <h5>🔬 การฝึก</h5>
+                        <p>งานวิจัยพบว่าการฝึก<strong>เพียง 1 ชั่วโมง</strong>สามารถเพิ่มความสามารถในการจับ Micro Expression ได้อย่างมีนัยสำคัญ</p>
+                    </div>
+                    <div class="micro-item">
+                        <h5>🎬 ตัวอย่างการเกิด</h5>
+                        <p>เมื่อถูกถามคำถามที่ทำให้รู้สึกผิด อาจเห็นความกลัวหรือความเศร้าแวบผ่าน<strong>ก่อน</strong>จะตอบด้วยสีหน้าปกติ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Section -->
+        <section class="section practice">
+            <h2 class="section-title">
+                <span class="icon">🏃</span>
+                การนำไปปฏิบัติ (Practice Guide)
+            </h2>
+
+            <div class="practice-steps">
+                <div class="step">
+                    <h4>ฝึกกับตัวเอง (Mirror Training)</h4>
+                    <p>ยืนหน้ากระจกและฝึกแสดงอารมณ์ทั้ง 7 แบบ สังเกตว่ากล้ามเนื้อส่วนไหนเคลื่อนไหว รู้สึกอย่างไร พยายามแสดงเฉพาะส่วน เช่น ยิ้มแต่ปาก ไม่ยิ้มที่ตา เพื่อเข้าใจความแตกต่าง</p>
+                </div>
+                <div class="step">
+                    <h4>ดูวิดีโอแบบปิดเสียง (Silent Viewing)</h4>
+                    <p>ดูภาพยนตร์ ซีรีส์ หรือการสัมภาษณ์แบบปิดเสียง ฝึกอ่านอารมณ์จากสีหน้าเพียงอย่างเดียว แล้วเปิดเสียงเพื่อตรวจสอบว่าอ่านถูกหรือไม่</p>
+                </div>
+                <div class="step">
+                    <h4>เก็บข้อมูล Baseline</h4>
+                    <p>กับคนที่ต้องทำงานหรือใช้ชีวิตด้วยเป็นประจำ ให้สังเกตและจดจำสีหน้าปกติของเขา ไม่ว่าจะเป็นท่าทาง การยิ้ม การขมวดคิ้ว เมื่อมีการเปลี่ยนแปลงจะสังเกตได้ง่าย</p>
+                </div>
+                <div class="step">
+                    <h4>สังเกตทีละโซน</h4>
+                    <p>ในแต่ละวัน ให้โฟกัสสังเกตส่วนใดส่วนหนึ่งของใบหน้าคนรอบข้าง วันจันทร์ดูคิ้ว วันอังคารดูตา วันพุธดูปาก การฝึกทีละส่วนทำให้สังเกตละเอียดขึ้น</p>
+                </div>
+                <div class="step">
+                    <h4>ตั้งคำถามตรวจสอบ</h4>
+                    <p>เมื่อสังเกตเห็นอารมณ์ ให้ลองตั้งคำถามอย่างเป็นมิตรเพื่อยืนยัน เช่น "ดูเหมือนคุณกังวลอะไรนิดหน่อยนะ มีอะไรให้ช่วยไหม?" การทำเช่นนี้ทั้งตรวจสอบการอ่านและสร้างความไว้วางใจ</p>
+                </div>
+                <div class="step">
+                    <h4>ฝึก Micro Expression Training</h4>
+                    <p>ใช้เครื่องมือออนไลน์หรือแอปพลิเคชันที่ออกแบบมาเพื่อฝึกจับ Micro Expression ฝึกเพียงวันละ 10-15 นาที จะพัฒนาได้อย่างมาก</p>
+                </div>
+                <div class="step">
+                    <h4>บันทึกและทบทวน</h4>
+                    <p>จดบันทึกสิ่งที่สังเกตเห็นในแต่ละวัน ทบทวนว่าการอ่านถูกต้องหรือไม่ เรียนรู้จากความผิดพลาด ปรับปรุงอย่างต่อเนื่อง</p>
+                </div>
+            </div>
+
+            <div class="content-box" style="margin-top: 30px;">
+                <h4>🎯 เคล็ดลับสำคัญในการปฏิบัติ</h4>
+                <p><strong>• ฝึกสม่ำเสมอ:</strong> ทักษะนี้ต้องฝึกทุกวัน ไม่ใช่แค่อ่านหนังสือแล้วจบ</p>
+                <p><strong>• อย่าเร่งสรุป:</strong> ให้เวลาในการสังเกตและรวบรวมข้อมูล</p>
+                <p><strong>• รักษาความเป็นธรรมชาติ:</strong> อย่าจ้องมองจนทำให้คนอื่นอึดอัด</p>
+                <p><strong>• ใช้เพื่อเข้าใจ ไม่ใช่ควบคุม:</strong> เป้าหมายคือความเข้าใจและเห็นอกเห็นใจ ไม่ใช่การได้เปรียบ</p>
+            </div>
+        </section>
+
+        <!-- Real-life Examples Section -->
+        <section class="section examples">
+            <h2 class="section-title">
+                <span class="icon">💼</span>
+                สถานการณ์ตัวอย่าง (Real-life Scenarios)
+            </h2>
+
+            <div class="scenario">
+                <div class="scenario-header">
+                    <div class="scenario-number">1</div>
+                    <h4>การประชุมกับลูกค้า</h4>
+                </div>
+                <div class="scenario-content">
+                    <div class="scenario-box">
+                        <h5>📋 สถานการณ์</h5>
+                        <p>คุณกำลังนำเสนอราคาโครงการให้ลูกค้า เมื่อพูดถึงตัวเลข คุณสังเกตเห็นลูกค้าขมวดคิ้วและมุมปากตกลงเล็กน้อยแวบหนึ่ง</p>
+                    </div>
+                    <div class="scenario-box">
+                        <h5>🔍 การวิเคราะห์</h5>
+                        <p>การขมวดคิ้ว + มุมปากตก = อาจเป็นการผสมระหว่างความกังวลและความไม่พอใจ น่าจะเกี่ยวกับราคาที่เกินความคาดหมาย</p>
+                    </div>
+                    <div class="scenario-box">
+                        <h5>✅ การตอบสนอง</h5>
+                        <p>"ผมเห็นว่าคุณอาจมีข้อกังวลเรื่องตัวเลขครับ ผมยินดีอธิบายรายละเอียดของแต่ละรายการ หรือเราอาจพิจารณาปรับ scope ให้ตรงกับงบประมาณได้ครับ"</p>
+                    </div>
+                    <div class="scenario-box">
+                        <h5>💡 ผลลัพธ์</h5>
+                        <p>ลูกค้ารู้สึกว่าคุณใส่ใจและเข้าใจ เปิดโอกาสให้มีการเจรจาที่ตรงประเด็น แทนที่จะปล่อยให้ความไม่พอใจสะสม</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <div class="scenario-header">
+                    <div class="scenario-number">2</div>
+                    <h4>การสัมภาษณ์พนักงานใหม่</h4>
+                </div>
+                <div class="scenario-content">
+                    <div class="scenario-box">
+                        <h5>📋 สถานการณ์</h5>
+                        <p>ผู้สมัครตอบคำถามเกี่ยวกับสาเหตุที่ลาออกจากที่เก่า เขายิ้มและพูดว่า "ไม่มีอะไรครับ แค่อยากหาโอกาสใหม่" แต่คุณเห็นมุมปากข้างหนึ่งยกขึ้นเล็กน้อยก่อนยิ้ม</p>
+                    </div>
+                    <div class="scenario-box">
+                        <h5>🔍 การวิเคราะห์</h5>
+                        <p>มุมปากข้างเดียวยก = Contempt (ดูถูก) อาจมีความขัดแย้งกับที่ทำงานเก่าที่ไม่ได้เล่า ไม่ได้หมายความว่าโกหก แต่มีเรื่องที่ซ่อนอยู่</p>
+                    </div>
+                    <div class="scenario-box">
+                        <h5>✅ การตอบสนอง</h5>
+                        <p>ถามเพิ่มเติมอย่างนุ่มนวล: "เข้าใจครับ การหาโอกาสใหม่เป็นเรื่องปกติ แต่ช่วยเล่าให้ฟังหน่อยได้ไหมว่าบรรยากาศการทำงานที่เก่าเป็นอย่างไรบ้าง?"</p>
+                    </div>
+                    <div class="scenario-box">
+                        <h5>💡 ผลลัพธ์</h5>
+                        <p>ได้ข้อมูลเพิ่มเติมที่อาจช่วยในการตัดสินใจ เช่น ปัญหากับหัวหน้างาน ซึ่งอาจสำคัญในการพิจารณาความเข้ากันได้กับทีม</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <div class="scenario-header">
+                    <div class="scenario-number">3</div>
+                    <h4>การพูดคุยกับลูกในครอบครัว</h4>
+                </div>
+                <div class="scenario-content">
+                    <div class="scenario-box">
+                        <h5>📋 สถานการณ์</h5>
+                        <p>ลูกวัยรุ่นกลับบ้านมาและบอกว่า "ไม่มีอะไร" เมื่อถูกถาม แต่คุณสังเกตเห็นหัวคิ้วยกขึ้น ริมฝีปากล่างยื่นเล็กน้อย และสายตามองลง</p>
+                    </div>
+                    <div class="scenario-box">
+                        <h5>🔍 การวิเคราะห์</h5>
+                        <p>หัวคิ้วยก + ริมฝีปากล่างยื่น + สายตามองลง = สัญญาณของความเศร้าที่พยายามซ่อน อาจมีเรื่องที่โรงเรียนหรือกับเพื่อน</p>
+                    </div>
+                    <div class="scenario-box">
+                        <h5>✅ การตอบสนอง</h5>
+                        <p>ไม่กดดัน แต่แสดงให้เห็นว่าพร้อมรับฟัง: "พ่อ/แม่เห็นว่าลูกดูไม่สบายใจนิดหน่อยนะ ไม่ต้องเล่าตอนนี้ก็ได้ แต่ถ้าอยากคุยพ่อ/แม่พร้อมฟังนะ"</p>
+                    </div>
+                    <div class="scenario-box">
+                        <h5>💡 ผลลัพธ์</h5>
+                        <p>ลูกรู้สึกว่าพ่อแม่สังเกตเห็นและใส่ใจ โดยไม่ถูกบังคับ เปิดโอกาสให้มาเล่าเมื่อพร้อม สร้างความไว้วางใจระยะยาว</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <div class="scenario-header">
+                    <div class="scenario-number">4</div>
+                    <h4>การเจรจาต่อรองทางธุรกิจ</h4>
+                </div>
+                <div class="scenario-content">
+                    <div class="scenario-box">
+                        <h5>📋 สถานการณ์</h5>
+                        <p>ในการเจรจาเรื่องสัญญา คู่ค้าพูดว่า "ราคานี้เป็นราคาสุดท้ายแล้ว" แต่ก่อนพูดคุณเห็นตาเบิกกว้างขึ้นและคิ้วยกขึ้นแวบหนึ่ง</p>
+                    </div>
+                    <div class="scenario-box">
+                        <h5>🔍 การวิเคราะห์</h5>
+                        <p>ตาเบิกกว้าง + คิ้วยก ก่อนพูดประโยคยืนยัน = อาจเป็น Micro Expression ของความกลัวหรือประหลาดใจ บ่งบอกว่าอาจไม่มั่นใจในสิ่งที่พูด</p>
+                    </div>
+                    <div class="scenario-box">
+                        <h5>✅ การตอบสนอง</h5>
+                        <p>ลองเจรจาต่อด้วยความสุภาพ: "ผมเข้าใจครับ แต่ถ้าเราสามารถ commit volume ที่มากขึ้น จะมีโอกาสพิจารณาเงื่อนไขเพิ่มเติมได้ไหมครับ?"</p>
+                    </div>
+                    <div class="scenario-box">
+                        <h5>💡 ผลลัพธ์</h5>
+                        <p>มีโอกาสได้เงื่อนไขที่ดีกว่า เพราะสังเกตเห็นว่าราคานั้นอาจยังไม่ใช่ราคาต่ำสุดจริงๆ</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <div class="scenario-header">
+                    <div class="scenario-number">5</div>
+                    <h4>การบริหารทีมงาน</h4>
+                </div>
+                <div class="scenario-content">
+                    <div class="scenario-box">
+                        <h5>📋 สถานการณ์</h5>
+                        <p>ในการประชุมทีม เมื่อคุณประกาศโปรเจกต์ใหม่ สมาชิกคนหนึ่งพยักหน้าและพูดว่า "ได้ครับ" แต่คุณเห็นว่าเขากดริมฝีปากแน่นและขากรรไกรเกร็ง</p>
+                    </div>
+                    <div class="scenario-box">
+                        <h5>🔍 การวิเคราะห์</h5>
+                        <p>ริมฝีปากเม้ม + ขากรรไกรเกร็ง = สัญญาณของความโกรธหรือความไม่พอใจที่พยายามซ่อน อาจมีปัญหากับ assignment หรือ workload</p>
+                    </div>
+                    <div class="scenario-box">
+                        <h5>✅ การตอบสนอง</h5>
+                        <p>นัดคุยส่วนตัวหลังประชุม: "ผมอยากคุยด้วยเกี่ยวกับโปรเจกต์ใหม่นี้ ผมอยากมั่นใจว่า workload ของคุณ OK และมีอะไรที่ผมช่วยได้"</p>
+                    </div>
+                    <div class="scenario-box">
+                        <h5>💡 ผลลัพธ์</h5>
+                        <p>ป้องกันปัญหา burnout หรือความไม่พอใจที่อาจบานปลาย สร้างความรู้สึกว่าหัวหน้าใส่ใจและเปิดรับ feedback</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Takeaways Section -->
+        <section class="section takeaways">
+            <h2 class="section-title">
+                <span class="icon">⭐</span>
+                Key Takeaways สำคัญ
+            </h2>
+
+            <div class="takeaway-grid">
+                <div class="takeaway-card">
+                    <span class="takeaway-number">01</span>
+                    <h4>อารมณ์พื้นฐานเป็นสากล</h4>
+                    <p>ความสุข เศร้า โกรธ กลัว ประหลาดใจ รังเกียจ และดูถูก แสดงออกเหมือนกันทั่วโลก ไม่ว่าจะเป็นคนชาติใด วัฒนธรรมใด ภาษาใบหน้าเป็นภาษาสากลที่มนุษย์ทุกคนเข้าใจร่วมกัน</p>
+                </div>
+                <div class="takeaway-card">
+                    <span class="takeaway-number">02</span>
+                    <h4>ตาคือหน้าต่างของใจ</h4>
+                    <p>กล้ามเนื้อรอบดวงตา (Orbicularis Oculi) ควบคุมได้ยากที่สุด จึงเป็นตัวบ่งชี้อารมณ์จริงที่ดีที่สุด ยิ้มจริงมี Crow's feet ยิ้มปลอมไม่มี นี่คือกุญแจสำคัญในการแยกแยะ</p>
+                </div>
+                <div class="takeaway-card">
+                    <span class="takeaway-number">03</span>
+                    <h4>Micro Expression บอกความจริง</h4>
+                    <p>การแสดงออกที่เกิดขึ้นเพียงเสี้ยววินาทีคือการแสดงอารมณ์แท้จริงที่ควบคุมไม่ได้ การฝึกสังเกตช่วยให้เห็นสิ่งที่คำพูดไม่ได้บอก</p>
+                </div>
+                <div class="takeaway-card">
+                    <span class="takeaway-number">04</span>
+                    <h4>Baseline คือจุดเริ่มต้น</h4>
+                    <p>ต้องรู้จักสีหน้าปกติของคนแต่ละคนก่อน จึงจะสังเกตความเปลี่ยนแปลงได้แม่นยำ คนแต่ละคนมี "หน้าพัก" ที่แตกต่างกัน อย่าเอาไปเปรียบกับคนอื่น</p>
+                </div>
+                <div class="takeaway-card">
+                    <span class="takeaway-number">05</span>
+                    <h4>บริบทเป็นตัวกำหนดความหมาย</h4>
+                    <p>สีหน้าเดียวกันอาจมีความหมายต่างกันในสถานการณ์ต่างกัน น้ำตาอาจมาจากความดีใจหรือเศร้า ต้องดูบริบทประกอบเสมอ</p>
+                </div>
+                <div class="takeaway-card">
+                    <span class="takeaway-number">06</span>
+                    <h4>อ่านเป็นชุด ไม่ใช่เดี่ยว</h4>
+                    <p>อย่าสรุปจากสัญญาณเดียว ต้องเห็นหลายสัญญาณที่สอดคล้องกัน (Cluster) ทั้งสีหน้า ภาษากาย น้ำเสียง และคำพูด จึงมั่นใจได้</p>
+                </div>
+                <div class="takeaway-card">
+                    <span class="takeaway-number">07</span>
+                    <h4>ดูถูกคืออารมณ์ที่ไม่สมมาตร</h4>
+                    <p>Contempt เป็นอารมณ์เดียวที่แสดงออกข้างเดียว (มุมปากข้างเดียวยก) การเห็นสัญญาณนี้บ่อยๆ ในความสัมพันธ์อาจเป็นสัญญาณเตือนที่สำคัญ</p>
+                </div>
+                <div class="takeaway-card">
+                    <span class="takeaway-number">08</span>
+                    <h4>ใช้เพื่อเข้าใจ ไม่ใช่ตัดสิน</h4>
+                    <p>เป้าหมายของการอ่านสีหน้าคือความเข้าใจและการสื่อสารที่ดีขึ้น ไม่ใช่การจับผิดหรือได้เปรียบ ใช้อย่างมีจริยธรรมและความเคารพ</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teaching Messages Section -->
+        <section class="section teach">
+            <h2 class="section-title">
+                <span class="icon">📢</span>
+                ข้อความที่นำไปสอนต่อได้
+            </h2>
+
+            <div class="teach-grid">
+                <div class="teach-card">
+                    <p class="quote">"ใบหน้าพูดก่อนปาก สังเกตให้ดี แล้วคุณจะได้ยินสิ่งที่คำพูดไม่ได้บอก"</p>
+                    <p class="explanation">ใช้เมื่อต้องการสอนเรื่องความสำคัญของการสังเกตสีหน้าในการสื่อสาร</p>
+                </div>
+                <div class="teach-card">
+                    <p class="quote">"ยิ้มจริงอยู่ที่ตา ยิ้มปลอมอยู่แค่ปาก ดู Crow's feet แล้วคุณจะรู้"</p>
+                    <p class="explanation">ใช้สอนวิธีแยกแยะยิ้มจริงกับยิ้มปลอมอย่างง่าย</p>
+                </div>
+                <div class="teach-card">
+                    <p class="quote">"อารมณ์ที่ซ่อนไว้ดีที่สุดก็หลุดออกมาในเสี้ยววินาที ฝึกสังเกตให้เร็ว แล้วคุณจะเห็นความจริง"</p>
+                    <p class="explanation">ใช้อธิบายเรื่อง Micro Expression และความสำคัญของการสังเกตอย่างตั้งใจ</p>
+                </div>
+                <div class="teach-card">
+                    <p class="quote">"รู้จักหน้าปกติของคนก่อน แล้วค่อยดูความเปลี่ยนแปลง อย่าเอามาตรฐานตัวเองไปวัดคนอื่น"</p>
+                    <p class="explanation">ใช้สอนเรื่อง Baseline และความสำคัญของการรู้จักคนแต่ละคนก่อนตัดสิน</p>
+                </div>
+                <div class="teach-card">
+                    <p class="quote">"อ่านสีหน้าเพื่อเข้าใจ ไม่ใช่เพื่อตัดสิน สิ่งที่เห็นคือประตู ไม่ใช่บทสรุป"</p>
+                    <p class="explanation">ใช้สอนเรื่องจริยธรรมในการใช้ทักษะนี้และการไม่ด่วนสรุป</p>
+                </div>
+                <div class="teach-card">
+                    <p class="quote">"มุมปากข้างเดียวยก ระวังให้ดี นั่นคือสัญญาณของความดูถูก ไม่ใช่ยิ้มเป็นมิตร"</p>
+                    <p class="explanation">ใช้สอนเรื่อง Contempt และการจดจำสัญญาณเตือนในความสัมพันธ์</p>
+                </div>
+                <div class="teach-card">
+                    <p class="quote">"ทุกวัฒนธรรมพูดภาษาสีหน้าเดียวกัน ความสุข ความเศร้า ความโกรธ เหมือนกันทั่วโลก"</p>
+                    <p class="explanation">ใช้สอนเรื่องความเป็นสากลของอารมณ์พื้นฐาน</p>
+                </div>
+                <div class="teach-card">
+                    <p class="quote">"สามโซนของใบหน้า: คิ้ว-หน้าผาก, ตา-เปลือกตา, ปาก-คาง เรียนรู้ทีละโซน แล้วประกอบเป็นภาพรวม"</p>
+                    <p class="explanation">ใช้สอนเรื่องการแบ่งโซนใบหน้าและการสังเกตอย่างเป็นระบบ</p>
+                </div>
+                <div class="teach-card">
+                    <p class="quote">"อารมณ์ที่เห็นคือข้อมูล ไม่ใช่ข้อกล่าวหา ใช้เป็นจุดเริ่มต้นในการถาม ไม่ใช่เพื่อจับผิด"</p>
+                    <p class="explanation">ใช้สอนเรื่องการใช้ข้อมูลที่ได้อย่างสร้างสรรค์</p>
+                </div>
+                <div class="teach-card">
+                    <p class="quote">"ฝึกทุกวัน วันละนิด ดูหนังปิดเสียง ส่องกระจกทำหน้า หนึ่งปีผ่านไป คุณจะอ่านคนได้แม่นยำ"</p>
+                    <p class="explanation">ใช้สอนเรื่องวิธีการฝึกฝนและความสำคัญของการทำอย่างสม่ำเสมอ</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Table -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));">
+            <h2 class="section-title">
+                <span class="icon">📊</span>
+                ตารางสรุปอารมณ์และสัญญาณ
+            </h2>
+
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                    <thead>
+                        <tr style="background: rgba(255,255,255,0.1);">
+                            <th style="padding: 15px; text-align: left; border-bottom: 2px solid rgba(255,255,255,0.2);">อารมณ์</th>
+                            <th style="padding: 15px; text-align: left; border-bottom: 2px solid rgba(255,255,255,0.2);">คิ้ว/หน้าผาก</th>
+                            <th style="padding: 15px; text-align: left; border-bottom: 2px solid rgba(255,255,255,0.2);">ตา</th>
+                            <th style="padding: 15px; text-align: left; border-bottom: 2px solid rgba(255,255,255,0.2);">ปาก</th>
+                            <th style="padding: 15px; text-align: left; border-bottom: 2px solid rgba(255,255,255,0.2);">สัญญาณเฉพาะ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 15px; color: #ffd700;"><strong>😊 ความสุข</strong></td>
+                            <td style="padding: 15px;">ผ่อนคลาย</td>
+                            <td style="padding: 15px;">หรี่ลง, Crow's feet</td>
+                            <td style="padding: 15px;">มุมยกขึ้นสมมาตร</td>
+                            <td style="padding: 15px;">แก้มยกขึ้น</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 15px; color: #6495ed;"><strong>😢 ความเศร้า</strong></td>
+                            <td style="padding: 15px;">หัวคิ้วยกขึ้น</td>
+                            <td style="padding: 15px;">เปลือกตาบนหย่อน</td>
+                            <td style="padding: 15px;">มุมตกลง</td>
+                            <td style="padding: 15px;">ริมฝีปากล่างยื่น, คางตึง</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 15px; color: #ff4757;"><strong>😠 ความโกรธ</strong></td>
+                            <td style="padding: 15px;">ขมวดกดลง</td>
+                            <td style="padding: 15px;">จ้องเขม็ง, ตึง</td>
+                            <td style="padding: 15px;">เม้มแน่นหรือเผยอฟัน</td>
+                            <td style="padding: 15px;">รูจมูกบาน, หน้าแดง</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 15px; color: #9b59b6;"><strong>😨 ความกลัว</strong></td>
+                            <td style="padding: 15px;">ยกขึ้นและชิดกัน</td>
+                            <td style="padding: 15px;">เบิกกว้างมาก</td>
+                            <td style="padding: 15px;">เปิด ยืดแนวนอน</td>
+                            <td style="padding: 15px;">หน้าซีด, เหงื่อออก</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 15px; color: #00d2d3;"><strong>😲 ประหลาดใจ</strong></td>
+                            <td style="padding: 15px;">ยกสูงโค้ง</td>
+                            <td style="padding: 15px;">เปิดกว้างกลม</td>
+                            <td style="padding: 15px;">อ้าเป็นวงรี</td>
+                            <td style="padding: 15px;">เกิดเพียง 1-2 วินาที</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 15px; color: #2ed573;"><strong>🤢 รังเกียจ</strong></td>
+                            <td style="padding: 15px;">กดลงเล็กน้อย</td>
+                            <td style="padding: 15px;">หรี่ลง</td>
+                            <td style="padding: 15px;">ริมฝีปากบนยก</td>
+                            <td style="padding: 15px;">จมูกย่น, ร่องแก้มลึก</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; color: #ff9f43;"><strong>😏 ดูถูก</strong></td>
+                            <td style="padding: 15px;">ปกติหรือยกข้างเดียว</td>
+                            <td style="padding: 15px;">หรี่ข้างเดียว</td>
+                            <td style="padding: 15px;">มุมยกข้างเดียว</td>
+                            <td style="padding: 15px;">อารมณ์เดียวที่ไม่สมมาตร</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>สรุปจากหนังสือ "Unmasking the Face: A Guide to Recognizing Emotions from Facial Expressions"</p>
+            <p>โดย Paul Ekman & Wallace Friesen</p>
+            <p class="creator">สร้างโดย Tomz</p>
+            <p style="margin-top: 20px; font-size: 0.95em; opacity: 0.7;">
+                "ทักษะการอ่านสีหน้าไม่ได้มีไว้เพื่อจับผิดใคร<br>
+                แต่มีไว้เพื่อเข้าใจคนรอบข้างให้ลึกซึ้งกว่าที่คำพูดจะบอกได้"
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

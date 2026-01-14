@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คู่มือการตั้งค่าบัญชีไทย Odoo 19 Enterprise | Complete Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #714B67;
+            --primary-light: #8F5C7A;
+            --primary-dark: #5A3D52;
+            --secondary: #017E84;
+            --secondary-light: #00A09A;
+            --accent: #F39C12;
+            --success: #27AE60;
+            --warning: #E67E22;
+            --danger: #E74C3C;
+            --info: #3498DB;
+            --dark: #2C3E50;
+            --light: #ECF0F1;
+            --white: #FFFFFF;
+            --gray-100: #F8F9FA;
+            --gray-200: #E9ECEF;
+            --gray-300: #DEE2E6;
+            --gray-400: #CED4DA;
+            --gray-500: #ADB5BD;
+            --gray-600: #6C757D;
+            --gray-700: #495057;
+            --gray-800: #343A40;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Sarabun', sans-serif; background: linear-gradient(135deg, #F5F7FA 0%, #E4E8EB 100%); color: var(--dark); line-height: 1.8; font-size: 16px; }
+        
+        .hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, var(--secondary) 100%); color: var(--white); padding: 80px 40px; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: 0.5; }
+        .hero-content { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; }
+        .hero h1 { font-family: 'Prompt', sans-serif; font-size: 3rem; font-weight: 700; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .hero .subtitle { font-size: 1.4rem; opacity: 0.95; margin-bottom: 30px; font-weight: 300; }
+        .hero-badge { display: inline-block; background: var(--accent); color: var(--dark); padding: 10px 30px; border-radius: 50px; font-weight: 600; font-size: 1.1rem; margin-top: 20px; }
+        .hero-stats { display: flex; justify-content: center; gap: 60px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5rem; font-weight: 700; display: block; }
+        .stat-label { font-size: 0.95rem; opacity: 0.9; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
+        
+        .toc { background: var(--white); border-radius: 20px; padding: 40px; margin: -60px auto 40px; position: relative; z-index: 10; box-shadow: var(--shadow-xl); max-width: 1200px; }
+        .toc h2 { font-family: 'Prompt', sans-serif; color: var(--primary); margin-bottom: 30px; font-size: 1.8rem; display: flex; align-items: center; gap: 15px; }
+        .toc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .toc-item { background: linear-gradient(135deg, var(--gray-100), var(--white)); border: 2px solid var(--gray-200); border-radius: 15px; padding: 20px; text-decoration: none; color: var(--dark); transition: all 0.3s ease; display: flex; align-items: center; gap: 15px; }
+        .toc-item:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+        .toc-number { width: 45px; height: 45px; background: var(--primary); color: var(--white); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; flex-shrink: 0; }
+        .toc-text { font-weight: 500; }
+
+        .section { background: var(--white); border-radius: 20px; padding: 50px; margin-bottom: 40px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+        .section::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: linear-gradient(180deg, var(--primary), var(--secondary)); }
+        .section-header { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px solid var(--gray-200); }
+        .section-icon { width: 70px; height: 70px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 18px; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 2rem; flex-shrink: 0; box-shadow: var(--shadow); }
+        .section h2 { font-family: 'Prompt', sans-serif; font-size: 2rem; color: var(--primary); margin: 0; }
+        .section h3 { font-family: 'Prompt', sans-serif; font-size: 1.5rem; color: var(--primary-dark); margin: 35px 0 20px; display: flex; align-items: center; gap: 12px; }
+        .section h3::before { content: ''; width: 4px; height: 28px; background: var(--secondary); border-radius: 2px; }
+        .section h4 { font-family: 'Prompt', sans-serif; font-size: 1.2rem; color: var(--gray-700); margin: 25px 0 15px; }
+
+        .concept-box { background: linear-gradient(135deg, #F8F4F7, #FFF); border-left: 4px solid var(--primary); border-radius: 0 15px 15px 0; padding: 30px; margin: 30px 0; }
+        .concept-box h4 { color: var(--primary); margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        .concept-box p { margin: 0; color: var(--gray-700); }
+
+        .mindset-box { background: linear-gradient(135deg, #E8F6F7, #FFF); border: 2px solid var(--secondary); border-radius: 15px; padding: 30px; margin: 30px 0; position: relative; }
+        .mindset-box::before { content: '💡'; position: absolute; top: -15px; left: 30px; background: var(--white); padding: 5px 15px; border-radius: 20px; font-size: 1.5rem; }
+        .mindset-box h4 { color: var(--secondary); margin-top: 10px; }
+
+        .key-takeaway { background: linear-gradient(135deg, #FEF9E7, #FFF); border: 2px solid var(--accent); border-radius: 15px; padding: 30px; margin: 30px 0; }
+        .key-takeaway h4 { color: var(--warning); margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        .key-takeaway ul { margin: 0; padding-left: 25px; }
+        .key-takeaway li { margin: 10px 0; color: var(--gray-700); }
+
+        .example-box { background: var(--gray-100); border-radius: 15px; padding: 30px; margin: 25px 0; border: 1px solid var(--gray-300); }
+        .example-box h5 { color: var(--info); font-size: 1.1rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .example-box h5::before { content: '📋'; }
+
+        .scenario-box { background: linear-gradient(135deg, #EBF5FB, #FFF); border-left: 4px solid var(--info); border-radius: 0 15px 15px 0; padding: 30px; margin: 30px 0; }
+        .scenario-box h5 { color: var(--info); font-size: 1.2rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .scenario-box h5::before { content: '🎯'; }
+
+        .warning-box { background: linear-gradient(135deg, #FDEDEC, #FFF); border: 2px solid var(--danger); border-radius: 15px; padding: 25px; margin: 25px 0; }
+        .warning-box h5 { color: var(--danger); margin: 0 0 15px; display: flex; align-items: center; gap: 10px; }
+        .warning-box h5::before { content: '⚠️'; }
+
+        .success-box { background: linear-gradient(135deg, #E9F7EF, #FFF); border: 2px solid var(--success); border-radius: 15px; padding: 25px; margin: 25px 0; }
+        .success-box h5 { color: var(--success); margin: 0 0 15px; display: flex; align-items: center; gap: 10px; }
+        .success-box h5::before { content: '✅'; }
+
+        .table-wrapper { overflow-x: auto; margin: 25px 0; border-radius: 15px; box-shadow: var(--shadow); }
+        table { width: 100%; border-collapse: collapse; background: var(--white); font-size: 0.95rem; }
+        thead { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: var(--white); }
+        th { padding: 18px 20px; text-align: left; font-weight: 600; font-size: 0.95rem; }
+        td { padding: 15px 20px; border-bottom: 1px solid var(--gray-200); }
+        tbody tr:hover { background: var(--gray-100); }
+        tbody tr:last-child td { border-bottom: none; }
+
+        .code-block { background: var(--gray-800); color: #E0E0E0; padding: 25px; border-radius: 12px; font-family: 'Courier New', monospace; font-size: 0.9rem; overflow-x: auto; margin: 20px 0; }
+        .code-block .comment { color: #6A9955; }
+        .code-block .keyword { color: #569CD6; }
+        .code-block .string { color: #CE9178; }
+        .code-block .number { color: #B5CEA8; }
+
+        .journal-entry { background: var(--white); border: 2px solid var(--gray-300); border-radius: 15px; overflow: hidden; margin: 25px 0; }
+        .journal-header { background: linear-gradient(135deg, var(--secondary), var(--secondary-light)); color: var(--white); padding: 15px 25px; font-weight: 600; }
+        .journal-body { padding: 0; }
+        .journal-row { display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 12px 25px; border-bottom: 1px solid var(--gray-200); align-items: center; }
+        .journal-row:last-child { border-bottom: none; }
+        .journal-row.header { background: var(--gray-100); font-weight: 600; color: var(--gray-700); }
+        .journal-row .debit { color: var(--success); font-weight: 600; text-align: right; }
+        .journal-row .credit { color: var(--danger); font-weight: 600; text-align: right; }
+
+        .steps-container { display: grid; gap: 25px; margin: 30px 0; }
+        .step-card { display: flex; gap: 25px; background: var(--white); border: 2px solid var(--gray-200); border-radius: 15px; padding: 25px; transition: all 0.3s ease; }
+        .step-card:hover { border-color: var(--primary-light); box-shadow: var(--shadow-lg); }
+        .step-number { width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: var(--white); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; flex-shrink: 0; }
+        .step-content h5 { color: var(--primary); font-size: 1.2rem; margin-bottom: 10px; }
+        .step-content p { color: var(--gray-600); margin: 0; }
+
+        .flow-diagram { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 15px; margin: 30px 0; padding: 30px; background: var(--gray-100); border-radius: 15px; }
+        .flow-item { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: var(--white); padding: 15px 25px; border-radius: 10px; font-weight: 600; text-align: center; min-width: 120px; }
+        .flow-arrow { color: var(--primary); font-size: 2rem; font-weight: bold; }
+
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 30px 0; }
+        .info-card { background: var(--white); border: 2px solid var(--gray-200); border-radius: 15px; padding: 30px; transition: all 0.3s ease; }
+        .info-card:hover { border-color: var(--secondary); transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+        .info-card-icon { width: 60px; height: 60px; background: linear-gradient(135deg, var(--secondary), var(--secondary-light)); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 20px; }
+        .info-card h5 { color: var(--primary); font-size: 1.2rem; margin-bottom: 15px; }
+        .info-card p { color: var(--gray-600); font-size: 0.95rem; margin: 0; }
+
+        .diagram-container { background: var(--gray-100); border-radius: 15px; padding: 30px; margin: 30px 0; text-align: center; }
+        .diagram-container svg { max-width: 100%; height: auto; }
+
+        .badge { display: inline-block; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin: 3px; }
+        .badge-primary { background: var(--primary); color: var(--white); }
+        .badge-secondary { background: var(--secondary); color: var(--white); }
+        .badge-success { background: var(--success); color: var(--white); }
+        .badge-warning { background: var(--accent); color: var(--dark); }
+        .badge-danger { background: var(--danger); color: var(--white); }
+        .badge-info { background: var(--info); color: var(--white); }
+
+        .timeline { position: relative; padding: 20px 0; margin: 30px 0; }
+        .timeline::before { content: ''; position: absolute; left: 30px; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, var(--primary), var(--secondary)); border-radius: 2px; }
+        .timeline-item { position: relative; padding-left: 80px; padding-bottom: 30px; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-marker { position: absolute; left: 15px; width: 34px; height: 34px; background: var(--white); border: 4px solid var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--primary); font-size: 0.9rem; }
+        .timeline-content { background: var(--white); border: 2px solid var(--gray-200); border-radius: 12px; padding: 20px; }
+        .timeline-content h5 { color: var(--primary); margin-bottom: 10px; }
+        .timeline-content p { color: var(--gray-600); margin: 0; font-size: 0.95rem; }
+
+        .quote-box { background: linear-gradient(135deg, var(--gray-100), var(--white)); border-left: 5px solid var(--primary); padding: 25px 30px; margin: 30px 0; font-style: italic; font-size: 1.1rem; color: var(--gray-700); border-radius: 0 15px 15px 0; }
+        .quote-box cite { display: block; margin-top: 15px; font-style: normal; font-weight: 600; color: var(--primary); font-size: 0.95rem; }
+
+        .checklist { list-style: none; padding: 0; margin: 20px 0; }
+        .checklist li { padding: 12px 0 12px 40px; position: relative; border-bottom: 1px solid var(--gray-200); }
+        .checklist li:last-child { border-bottom: none; }
+        .checklist li::before { content: '✓'; position: absolute; left: 0; width: 28px; height: 28px; background: var(--success); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9rem; }
+
+        .comparison-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin: 30px 0; }
+        .comparison-card { border-radius: 15px; padding: 30px; text-align: center; }
+        .comparison-card.do { background: linear-gradient(135deg, #E9F7EF, #FFF); border: 2px solid var(--success); }
+        .comparison-card.dont { background: linear-gradient(135deg, #FDEDEC, #FFF); border: 2px solid var(--danger); }
+        .comparison-card h5 { font-size: 1.3rem; margin-bottom: 20px; }
+        .comparison-card.do h5 { color: var(--success); }
+        .comparison-card.dont h5 { color: var(--danger); }
+        .comparison-card ul { text-align: left; padding-left: 20px; }
+        .comparison-card li { margin: 10px 0; color: var(--gray-700); }
+
+        .footer { background: linear-gradient(135deg, var(--dark), var(--gray-800)); color: var(--white); padding: 60px 40px; text-align: center; margin-top: 40px; }
+        .footer h3 { font-family: 'Prompt', sans-serif; font-size: 1.8rem; margin-bottom: 20px; }
+        .footer p { opacity: 0.8; max-width: 600px; margin: 0 auto 30px; }
+        .footer-credits { margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.95rem; opacity: 0.7; }
+
+        .back-to-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 1.5rem; box-shadow: var(--shadow-lg); transition: all 0.3s ease; z-index: 1000; }
+        .back-to-top:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero .subtitle { font-size: 1.1rem; }
+            .hero-stats { gap: 30px; }
+            .section { padding: 30px 20px; }
+            .section-header { flex-direction: column; text-align: center; }
+            .flow-diagram { flex-direction: column; }
+            .flow-arrow { transform: rotate(90deg); }
+            .step-card { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<header class="hero">
+    <div class="hero-content">
+        <h1>🇹🇭 คู่มือการตั้งค่าบัญชีไทย<br>Odoo 19 Enterprise</h1>
+        <p class="subtitle">Complete Thai Accounting Setup Guide<br>จาก Concept สู่ Implementation แบบครบวงจร</p>
+        <div class="hero-badge">📘 สร้างโดย Tomz | Odoo Silver Partner</div>
+        
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">7%</span>
+                <span class="stat-label">อัตรา VAT มาตรฐาน</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">1-5%</span>
+                <span class="stat-label">ภาษีหัก ณ ที่จ่าย</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">13</span>
+                <span class="stat-label">หลัก Tax ID</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5-7</span>
+                <span class="stat-label">ปีเก็บเอกสาร</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Table of Contents -->
+<nav class="toc container">
+    <h2>📑 สารบัญเนื้อหา</h2>
+    <div class="toc-grid">
+        <a href="#section1" class="toc-item"><span class="toc-number">1</span><span class="toc-text">ภาพรวมและ Mindset</span></a>
+        <a href="#section2" class="toc-item"><span class="toc-number">2</span><span class="toc-text">การติดตั้ง Thai Localization</span></a>
+        <a href="#section3" class="toc-item"><span class="toc-number">3</span><span class="toc-text">ผังบัญชี (Chart of Accounts)</span></a>
+        <a href="#section4" class="toc-item"><span class="toc-number">4</span><span class="toc-text">การตั้งค่า VAT 7%</span></a>
+        <a href="#section5" class="toc-item"><span class="toc-number">5</span><span class="toc-text">ภาษีหัก ณ ที่จ่าย (WHT)</span></a>
+        <a href="#section6" class="toc-item"><span class="toc-number">6</span><span class="toc-text">มาตรฐานบัญชี TFRS</span></a>
+        <a href="#section7" class="toc-item"><span class="toc-number">7</span><span class="toc-text">ตัวอย่างรายการค้าจริง</span></a>
+        <a href="#section8" class="toc-item"><span class="toc-number">8</span><span class="toc-text">การยื่นภาษี & Compliance</span></a>
+    </div>
+</nav>
+
+<main class="container">
+
+    <!-- Section 1 -->
+    <section id="section1" class="section">
+        <div class="section-header">
+            <div class="section-icon">🎯</div>
+            <h2>ภาพรวมและ Mindset การตั้งค่าบัญชี</h2>
+        </div>
+
+        <div class="concept-box">
+            <h4>🔑 Core Concept: ทำไมการตั้งค่าเริ่มต้นถึงสำคัญ?</h4>
+            <p>การตั้งค่าระบบบัญชีเปรียบเสมือนการวางรากฐานบ้าน หากรากฐานไม่แข็งแรง โครงสร้างทั้งหมดจะพังทลาย การตั้งค่าเริ่มต้นที่ถูกต้องจะช่วยให้การทำงานในอนาคตราบรื่น ลดข้อผิดพลาด และปิดบัญชีได้ตรงเวลา</p>
+        </div>
+
+        <h3>วงจรการบันทึกบัญชีใน Odoo</h3>
+        <div class="flow-diagram">
+            <div class="flow-item">📝 รายการค้า</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-item">📊 บันทึกบัญชี</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-item">📒 บัญชีแยกประเภท</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-item">⚖️ งบทดลอง</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-item">📈 งบการเงิน</div>
+        </div>
+
+        <div class="mindset-box">
+            <h4>Mindset ที่ถูกต้องสำหรับการตั้งค่าบัญชี</h4>
+            <ul class="checklist">
+                <li><strong>คิดล่วงหน้า (Think Ahead)</strong> - วางแผนผังบัญชีให้รองรับการเติบโตในอนาคต</li>
+                <li><strong>เข้าใจกฎหมาย (Know the Law)</strong> - ศึกษาข้อกำหนดสรรพากรและมาตรฐานบัญชี</li>
+                <li><strong>ทดสอบก่อนใช้จริง (Test First)</strong> - ทดลองระบบในฐานข้อมูลทดสอบก่อน Go-Live</li>
+                <li><strong>เอกสารครบถ้วน (Document Everything)</strong> - บันทึกขั้นตอนและเหตุผลการตั้งค่า</li>
+            </ul>
+        </div>
+
+        <h3>องค์ประกอบหลักที่ต้องตั้งค่า</h3>
+        <div class="cards-grid">
+            <div class="info-card">
+                <div class="info-card-icon">🏢</div>
+                <h5>ข้อมูลบริษัท</h5>
+                <p>ชื่อบริษัท, เลขประจำตัวผู้เสียภาษี 13 หลัก, รหัสสาขา, ที่อยู่จดทะเบียน, ปีบัญชี</p>
+            </div>
+            <div class="info-card">
+                <div class="info-card-icon">📊</div>
+                <h5>ผังบัญชี</h5>
+                <p>โครงสร้างรหัสบัญชี, ประเภทบัญชี, บัญชีภาษี, บัญชีธนาคาร</p>
+            </div>
+            <div class="info-card">
+                <div class="info-card-icon">💰</div>
+                <h5>ภาษี</h5>
+                <p>VAT 7%, ภาษีหัก ณ ที่จ่าย 1-5%, Fiscal Position</p>
+            </div>
+            <div class="info-card">
+                <div class="info-card-icon">📝</div>
+                <h5>สมุดรายวัน</h5>
+                <p>สมุดขาย, สมุดซื้อ, สมุดรับเงิน, สมุดจ่ายเงิน, สมุดทั่วไป</p>
+            </div>
+        </div>
+
+        <div class="key-takeaway">
+            <h4>🎯 Key Takeaways</h4>
+            <ul>
+                <li><strong>"ตั้งค่าครั้งเดียว ใช้ได้ตลอด"</strong> - ใช้เวลาศึกษาและวางแผนก่อนลงมือตั้งค่า</li>
+                <li><strong>"Garbage In, Garbage Out"</strong> - หากตั้งค่าผิดตั้งแต่แรก ข้อมูลที่ออกมาจะผิดทั้งหมด</li>
+                <li><strong>"เข้าใจ Flow ก่อนตั้งค่า"</strong> - ต้องเข้าใจว่า Odoo บันทึกบัญชีอัตโนมัติอย่างไร</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section id="section2" class="section">
+        <div class="section-header">
+            <div class="section-icon">⚙️</div>
+            <h2>การติดตั้ง Thai Localization</h2>
+        </div>
+
+        <div class="concept-box">
+            <h4>🔑 Core Concept: Thai Localization คืออะไร?</h4>
+            <p>Thai Localization (l10n_th) คือโมดูลที่ปรับแต่ง Odoo ให้สอดคล้องกับกฎหมายและมาตรฐานบัญชีไทย รวมถึงผังบัญชีไทย, ภาษีมูลค่าเพิ่ม 7%, ภาษีหัก ณ ที่จ่าย, และรูปแบบใบกำกับภาษีตามที่สรรพากรกำหนด</p>
+        </div>
+
+        <h3>ขั้นตอนการติดตั้ง</h3>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h5>สร้าง Database ใหม่</h5>
+                    <p>เลือกประเทศ <span class="badge badge-primary">Thailand</span> ระบบจะติดตั้ง l10n_th อัตโนมัติพร้อมกำหนดสกุลเงินเป็น THB</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h5>ตั้งค่าข้อมูลบริษัท</h5>
+                    <p>ไปที่ Settings → Companies กรอกข้อมูล: ชื่อบริษัท, Tax ID 13 หลัก, รหัสสาขา (00000 = สำนักงานใหญ่)</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h5>ตรวจสอบการตั้งค่าบัญชี</h5>
+                    <p>ไปที่ Accounting → Configuration → Settings ตรวจสอบ Fiscal Localization แสดง Thailand</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>โมดูลที่รวมอยู่ใน Thai Localization</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>โมดูล</th>
+                        <th>ฟังก์ชัน</th>
+                        <th>แหล่งที่มา</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Thailand - Accounting (l10n_th)</strong></td>
+                        <td>ผังบัญชีไทย, ภาษีพื้นฐาน</td>
+                        <td><span class="badge badge-primary">Odoo Enterprise</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thai Tax Invoice</strong></td>
+                        <td>ใบกำกับภาษีตามมาตรฐานสรรพากร</td>
+                        <td><span class="badge badge-primary">Odoo Enterprise</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thai VAT and WHT</strong></td>
+                        <td>จัดการ VAT และภาษีหัก ณ ที่จ่าย</td>
+                        <td><span class="badge badge-secondary">OCA</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>WHT Certificate</strong></td>
+                        <td>ออกหนังสือรับรองหัก ณ ที่จ่าย</td>
+                        <td><span class="badge badge-secondary">OCA</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>PromptPay QR</strong></td>
+                        <td>QR Code สำหรับรับชำระเงิน</td>
+                        <td><span class="badge badge-primary">Odoo Enterprise</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="scenario-box">
+            <h5>สถานการณ์: บริษัท ABC Co., Ltd. ต้องการเริ่มใช้ Odoo</h5>
+            <p><strong>ข้อมูลบริษัท:</strong></p>
+            <ul>
+                <li>ชื่อ: บริษัท เอบีซี จำกัด / ABC Co., Ltd.</li>
+                <li>เลขประจำตัวผู้เสียภาษี: <code>0105564123456</code></li>
+                <li>สำนักงานใหญ่: รหัสสาขา <code>00000</code></li>
+                <li>ที่อยู่: 123 ถ.สุขุมวิท แขวงคลองตัน เขตคลองเตย กรุงเทพฯ 10110</li>
+            </ul>
+            <div class="code-block">
+<span class="comment"># Settings → Companies → Edit</span>
+Company Name: ABC Co., Ltd.
+Company Name (Thai): บริษัท เอบีซี จำกัด
+Tax ID: <span class="string">0105564123456</span>
+Branch Number: <span class="string">00000</span>  <span class="comment"># สำนักงานใหญ่</span>
+Currency: <span class="keyword">THB</span>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <h5>ข้อควรระวังในการติดตั้ง</h5>
+            <ul>
+                <li>เลือกประเทศ Thailand <strong>ตั้งแต่สร้าง Database</strong> - เปลี่ยนทีหลังยากมาก</li>
+                <li>Tax ID ต้องครบ 13 หลัก และถูกต้อง</li>
+                <li>OCA โมดูลต้องติดตั้งเพิ่มจาก GitHub: <code>github.com/OCA/l10n-thailand</code></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section id="section3" class="section">
+        <div class="section-header">
+            <div class="section-icon">📊</div>
+            <h2>ผังบัญชี (Chart of Accounts)</h2>
+        </div>
+
+        <div class="concept-box">
+            <h4>🔑 Core Concept: ผังบัญชีคืออะไร?</h4>
+            <p>ผังบัญชี (Chart of Accounts) คือ "แผนที่" ของระบบบัญชี เป็นการจัดหมวดหมู่รายการทางการเงินทั้งหมดของธุรกิจ ประกอบด้วย สินทรัพย์ หนี้สิน ส่วนของเจ้าของ รายได้ และค่าใช้จ่าย</p>
+        </div>
+
+        <h3>โครงสร้างผังบัญชีมาตรฐานไทย (6 หลัก)</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>รหัส</th>
+                        <th>หมวด</th>
+                        <th>ชื่อภาษาไทย</th>
+                        <th>ตัวอย่างบัญชี</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-info">1XXXXX</span></td>
+                        <td>สินทรัพย์</td>
+                        <td>Assets</td>
+                        <td>เงินสด, ลูกหนี้, สินค้าคงเหลือ, ที่ดิน</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-danger">2XXXXX</span></td>
+                        <td>หนี้สิน</td>
+                        <td>Liabilities</td>
+                        <td>เจ้าหนี้, ภาษีค้างจ่าย, เงินกู้</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-primary">3XXXXX</span></td>
+                        <td>ส่วนของเจ้าของ</td>
+                        <td>Equity</td>
+                        <td>ทุนจดทะเบียน, กำไรสะสม</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-success">4XXXXX</span></td>
+                        <td>รายได้</td>
+                        <td>Revenue</td>
+                        <td>รายได้จากขาย, รายได้บริการ</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-warning">5-6XXXXX</span></td>
+                        <td>ต้นทุน/ค่าใช้จ่าย</td>
+                        <td>Cost/Expenses</td>
+                        <td>ต้นทุนขาย, เงินเดือน, ค่าเช่า</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>บัญชีที่สำคัญสำหรับภาษี</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>รหัส</th>
+                        <th>ชื่อบัญชี</th>
+                        <th>ประเภท</th>
+                        <th>การใช้งาน</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>113001</code></td>
+                        <td>ภาษีซื้อ (Input VAT)</td>
+                        <td><span class="badge badge-info">สินทรัพย์</span></td>
+                        <td>บันทึก VAT 7% จากการซื้อ</td>
+                    </tr>
+                    <tr>
+                        <td><code>113002</code></td>
+                        <td>ภาษีซื้อรอตัดบัญชี</td>
+                        <td><span class="badge badge-info">สินทรัพย์</span></td>
+                        <td>VAT ยังไม่จ่ายเงิน (Cash Basis)</td>
+                    </tr>
+                    <tr>
+                        <td><code>211001</code></td>
+                        <td>ภาษีขาย (Output VAT)</td>
+                        <td><span class="badge badge-danger">หนี้สิน</span></td>
+                        <td>บันทึก VAT 7% จากการขาย</td>
+                    </tr>
+                    <tr>
+                        <td><code>212001</code></td>
+                        <td>ภาษีหัก ณ ที่จ่าย 3%</td>
+                        <td><span class="badge badge-danger">หนี้สิน</span></td>
+                        <td>หักค่าบริการ, ที่ปรึกษา</td>
+                    </tr>
+                    <tr>
+                        <td><code>212002</code></td>
+                        <td>ภาษีหัก ณ ที่จ่าย 5%</td>
+                        <td><span class="badge badge-danger">หนี้สิน</span></td>
+                        <td>หักค่าเช่า</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mindset-box">
+            <h4>Mindset: การออกแบบผังบัญชีที่ดี</h4>
+            <p><strong>หลักการ "MECE" (Mutually Exclusive, Collectively Exhaustive)</strong></p>
+            <ul>
+                <li><strong>Mutually Exclusive:</strong> แต่ละบัญชีต้องไม่ซ้ำซ้อนกัน</li>
+                <li><strong>Collectively Exhaustive:</strong> ครอบคลุมทุกรายการที่เป็นไปได้</li>
+                <li><strong>Scalable:</strong> รองรับการเพิ่มบัญชีในอนาคตได้ง่าย</li>
+            </ul>
+        </div>
+
+        <div class="key-takeaway">
+            <h4>🎯 Key Takeaways</h4>
+            <ul>
+                <li><strong>"6 หลักพอ 8 หลักเผื่อ"</strong> - SME ใช้ 6 หลัก, องค์กรใหญ่ใช้ 8 หลัก</li>
+                <li><strong>"บัญชีภาษีต้องแยกชัด"</strong> - แยก Input VAT, Output VAT, WHT แต่ละอัตรา</li>
+                <li><strong>"ชื่อสองภาษา"</strong> - ใส่ชื่อไทยและอังกฤษเสมอ</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Section 4 -->
+    <section id="section4" class="section">
+        <div class="section-header">
+            <div class="section-icon">💰</div>
+            <h2>การตั้งค่าภาษีมูลค่าเพิ่ม (VAT)</h2>
+        </div>
+
+        <div class="concept-box">
+            <h4>🔑 Core Concept: VAT ในประเทศไทย</h4>
+            <p>ภาษีมูลค่าเพิ่ม (VAT) อัตรา <strong>7%</strong> (ลดจาก 10% ขยายถึง ก.ย. 2568) เรียกเก็บจากการขายสินค้าและบริการ ผู้ประกอบการที่จดทะเบียน VAT ต้องออกใบกำกับภาษี เรียกเก็บ VAT จากลูกค้า (Output VAT) และสามารถขอคืน VAT ที่จ่ายไป (Input VAT) ได้</p>
+        </div>
+
+        <h3>วงจร VAT ในธุรกิจ</h3>
+        <div class="flow-diagram">
+            <div class="flow-item" style="background: var(--danger);">Supplier<br>ออกใบกำกับภาษี</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-item" style="background: var(--primary);">บริษัทเรา<br>Input VAT / Output VAT</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-item" style="background: var(--success);">Customer<br>รับใบกำกับภาษี</div>
+        </div>
+
+        <h3>การตั้งค่า VAT ใน Odoo</h3>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h5>ตั้งค่า Output VAT 7% (ภาษีขาย)</h5>
+                    <div class="code-block">
+Tax Name: <span class="string">Output VAT 7%</span>
+Tax Scope: <span class="keyword">Sales</span>
+Amount: <span class="number">7.0</span>
+Tax Account: <span class="string">211001 - ภาษีขาย</span>
+                    </div>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h5>ตั้งค่า Input VAT 7% (ภาษีซื้อ)</h5>
+                    <div class="code-block">
+Tax Name: <span class="string">Input VAT 7%</span>
+Tax Scope: <span class="keyword">Purchases</span>
+Amount: <span class="number">7.0</span>
+Tax Account: <span class="string">113001 - ภาษีซื้อ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>ประเภท VAT พิเศษ</h3>
+        <div class="cards-grid">
+            <div class="info-card">
+                <div class="info-card-icon">🌍</div>
+                <h5>VAT 0% (Zero-Rated)</h5>
+                <p><strong>ใช้สำหรับ:</strong> ส่งออก, ขนส่งระหว่างประเทศ</p>
+                <p><strong>หมายเหตุ:</strong> ยังขอคืน Input VAT ได้</p>
+            </div>
+            <div class="info-card">
+                <div class="info-card-icon">🏥</div>
+                <h5>VAT Exempt (ยกเว้น)</h5>
+                <p><strong>ใช้สำหรับ:</strong> การศึกษา, การรักษาพยาบาล</p>
+                <p><strong>หมายเหตุ:</strong> ไม่สามารถขอคืน Input VAT</p>
+            </div>
+        </div>
+
+        <div class="success-box">
+            <h5>การใช้ Fiscal Position จัดการ VAT อัตโนมัติ</h5>
+            <p><strong>Fiscal Position</strong> ช่วยเปลี่ยนภาษีอัตโนมัติตามประเภทลูกค้า/Supplier</p>
+            <div class="code-block">
+<span class="comment"># ตัวอย่าง: Fiscal Position สำหรับลูกค้าส่งออก</span>
+Name: <span class="string">Export Customer - VAT 0%</span>
+Tax Mapping:
+  - Source Tax: <span class="keyword">Output VAT 7%</span>
+  - Destination Tax: <span class="keyword">Output VAT 0%</span>
+            </div>
+        </div>
+
+        <div class="key-takeaway">
+            <h4>🎯 Key Takeaways</h4>
+            <ul>
+                <li><strong>"VAT 7% ยังมีถึง ก.ย. 2568"</strong> - หลังจากนั้นอาจกลับเป็น 10%</li>
+                <li><strong>"แยก Due vs Undue"</strong> - หากใช้ Cash Basis ต้องแยกบัญชีภาษีรอตัดบัญชี</li>
+                <li><strong>"Fiscal Position = อัตโนมัติ"</strong> - ใช้จัดการภาษีต่างอัตราให้ลูกค้าแต่ละประเภท</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Section 5 -->
+    <section id="section5" class="section">
+        <div class="section-header">
+            <div class="section-icon">📋</div>
+            <h2>ภาษีหัก ณ ที่จ่าย (Withholding Tax)</h2>
+        </div>
+
+        <div class="concept-box">
+            <h4>🔑 Core Concept: ภาษีหัก ณ ที่จ่ายคืออะไร?</h4>
+            <p>ภาษีหัก ณ ที่จ่าย (WHT) คือภาษีที่ผู้จ่ายเงินต้อง <strong>"หัก"</strong> จากเงินที่จะจ่ายให้ผู้รับ แล้วนำส่งกรมสรรพากรแทน อัตราภาษีแตกต่างกันตาม <strong>ประเภทเงินได้</strong> และ <strong>สถานะผู้รับ</strong></p>
+        </div>
+
+        <h3>อัตราภาษีหัก ณ ที่จ่ายที่พบบ่อย</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ประเภทเงินได้</th>
+                        <th>อัตรา</th>
+                        <th>แบบยื่น</th>
+                        <th>ตัวอย่าง</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>🚚 ค่าขนส่ง</td>
+                        <td><span class="badge badge-info">1%</span></td>
+                        <td>ภ.ง.ด.53</td>
+                        <td>ค่าส่งสินค้า, Logistics</td>
+                    </tr>
+                    <tr>
+                        <td>📺 ค่าโฆษณา</td>
+                        <td><span class="badge badge-secondary">2%</span></td>
+                        <td>ภ.ง.ด.53</td>
+                        <td>Facebook Ads, Google Ads</td>
+                    </tr>
+                    <tr>
+                        <td>💼 ค่าบริการ/ที่ปรึกษา</td>
+                        <td><span class="badge badge-primary">3%</span></td>
+                        <td>ภ.ง.ด.3/53</td>
+                        <td>ค่าที่ปรึกษา, ค่า Software</td>
+                    </tr>
+                    <tr>
+                        <td>🏠 ค่าเช่าทรัพย์สิน</td>
+                        <td><span class="badge badge-warning">5%</span></td>
+                        <td>ภ.ง.ด.3/53</td>
+                        <td>ค่าเช่าสำนักงาน, อุปกรณ์</td>
+                    </tr>
+                    <tr>
+                        <td>💰 เงินปันผล</td>
+                        <td><span class="badge badge-danger">10%</span></td>
+                        <td>ภ.ง.ด.3/53</td>
+                        <td>เงินปันผลจากการลงทุน</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="warning-box">
+            <h5>ความแตกต่าง ภ.ง.ด.3 vs ภ.ง.ด.53</h5>
+            <div class="comparison-grid">
+                <div class="comparison-card" style="background: #EBF5FB; border-color: #3498DB;">
+                    <h5 style="color: #3498DB;">📄 ภ.ง.ด.3</h5>
+                    <ul>
+                        <li>หักจาก<strong>บุคคลธรรมดา</strong></li>
+                        <li>ต้องออก<strong>หนังสือรับรอง</strong></li>
+                        <li>ยื่นภายใน 7 วัน (e-filing 15 วัน)</li>
+                    </ul>
+                </div>
+                <div class="comparison-card" style="background: #F4ECF0; border-color: #714B67;">
+                    <h5 style="color: #714B67;">📄 ภ.ง.ด.53</h5>
+                    <ul>
+                        <li>หักจาก<strong>นิติบุคคล</strong></li>
+                        <li>ต้องออก<strong>หนังสือรับรอง</strong></li>
+                        <li>ยื่นภายใน 7 วัน (e-filing 15 วัน)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="scenario-box">
+            <h5>สถานการณ์: จ่ายค่าที่ปรึกษา 50,000 บาท</h5>
+            <div class="example-box">
+                <h5>การคำนวณ</h5>
+                <table style="width: auto; margin: 15px 0;">
+                    <tr><td>ค่าบริการ (Base)</td><td style="text-align: right; padding-left: 30px;">50,000.00 บาท</td></tr>
+                    <tr><td>VAT 7%</td><td style="text-align: right;">3,500.00 บาท</td></tr>
+                    <tr style="border-top: 2px solid var(--gray-300);"><td><strong>ยอดรวมใบแจ้งหนี้</strong></td><td style="text-align: right;"><strong>53,500.00 บาท</strong></td></tr>
+                    <tr><td>หัก WHT 3% (จาก Base)</td><td style="text-align: right; color: var(--danger);">-1,500.00 บาท</td></tr>
+                    <tr style="border-top: 2px solid var(--primary); background: var(--gray-100);"><td><strong>ยอดจ่ายจริง</strong></td><td style="text-align: right;"><strong style="color: var(--success);">52,000.00 บาท</strong></td></tr>
+                </table>
+                <p><strong>หมายเหตุ:</strong> WHT คำนวณจาก Base Amount (50,000) ไม่ใช่ Gross Amount (53,500)</p>
+            </div>
+
+            <div class="journal-entry">
+                <div class="journal-header">📝 Journal Entry - จ่ายชำระพร้อมหัก WHT</div>
+                <div class="journal-body">
+                    <div class="journal-row header"><div>บัญชี</div><div>Debit</div><div>Credit</div></div>
+                    <div class="journal-row"><div>210001 เจ้าหนี้การค้า</div><div class="debit">53,500.00</div><div class="credit">-</div></div>
+                    <div class="journal-row"><div>110001 เงินฝากธนาคาร</div><div class="debit">-</div><div class="credit">52,000.00</div></div>
+                    <div class="journal-row"><div>212001 ภาษีหัก ณ ที่จ่าย 3%</div><div class="debit">-</div><div class="credit">1,500.00</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="key-takeaway">
+            <h4>🎯 Key Takeaways</h4>
+            <ul>
+                <li><strong>"WHT หักจาก Base ไม่ใช่ Gross"</strong> - คำนวณจากยอดก่อน VAT เสมอ</li>
+                <li><strong>"ออกหนังสือรับรองทุกครั้ง"</strong> - ต้องออกให้ผู้รับเงินเพื่อใช้เครดิตภาษี</li>
+                <li><strong>"ยื่นภายใน 7 วัน"</strong> - ของเดือนถัดไป หรือ 15 วันหาก e-filing</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Section 6 -->
+    <section id="section6" class="section">
+        <div class="section-header">
+            <div class="section-icon">📚</div>
+            <h2>มาตรฐานการรายงานทางการเงินไทย (TFRS)</h2>
+        </div>
+
+        <div class="concept-box">
+            <h4>🔑 Core Concept: TFRS คืออะไร?</h4>
+            <p>มาตรฐานการรายงานทางการเงินไทย (Thai Financial Reporting Standards - TFRS) คือการแปลและปรับใช้มาตรฐาน IFRS ให้เหมาะสมกับบริบทไทย กำกับดูแลโดยสภาวิชาชีพบัญชี (TFAC)</p>
+        </div>
+
+        <h3>ประเภทมาตรฐานบัญชีไทย</h3>
+        <div class="comparison-grid">
+            <div class="comparison-card do">
+                <h5>📘 TFRS ฉบับเต็ม</h5>
+                <ul>
+                    <li>บริษัทจดทะเบียนในตลาดหลักทรัพย์</li>
+                    <li>สถาบันการเงิน</li>
+                    <li>บริษัทประกันภัย</li>
+                    <li>บริษัทที่มีความรับผิดต่อสาธารณะ (PAEs)</li>
+                </ul>
+            </div>
+            <div class="comparison-card" style="background: #F4ECF0; border-color: #714B67;">
+                <h5 style="color: #714B67;">📗 TFRS สำหรับ NPAEs</h5>
+                <ul>
+                    <li>บริษัทจำกัด/ห้างหุ้นส่วนทั่วไป</li>
+                    <li>ไม่ได้จดทะเบียนในตลาดหลักทรัพย์</li>
+                    <li>ข้อกำหนดเรียบง่ายกว่า</li>
+                    <li>เหมาะสำหรับ SME ส่วนใหญ่</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>งบการเงินที่ต้องจัดทำ</h3>
+        <div class="cards-grid">
+            <div class="info-card">
+                <div class="info-card-icon">📊</div>
+                <h5>งบแสดงฐานะการเงิน</h5>
+                <p>แสดง สินทรัพย์ หนี้สิน ส่วนของผู้ถือหุ้น ณ วันสิ้นรอบบัญชี</p>
+            </div>
+            <div class="info-card">
+                <div class="info-card-icon">📈</div>
+                <h5>งบกำไรขาดทุน</h5>
+                <p>แสดง รายได้ ค่าใช้จ่าย กำไร/ขาดทุนสุทธิ ในรอบบัญชี</p>
+            </div>
+            <div class="info-card">
+                <div class="info-card-icon">🔄</div>
+                <h5>งบแสดงการเปลี่ยนแปลงส่วนของเจ้าของ</h5>
+                <p>แสดง การเปลี่ยนแปลงทุน กำไรสะสม เงินปันผล</p>
+            </div>
+            <div class="info-card">
+                <div class="info-card-icon">💵</div>
+                <h5>งบกระแสเงินสด</h5>
+                <p>แสดง เงินสดจากกิจกรรมดำเนินงาน ลงทุน จัดหาเงิน</p>
+            </div>
+        </div>
+
+        <h3>กำหนดการยื่นงบการเงิน</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker">1</div>
+                <div class="timeline-content">
+                    <h5>สิ้นสุดรอบบัญชี</h5>
+                    <p>วันที่ 31 ธันวาคม (ส่วนใหญ่)</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker">2</div>
+                <div class="timeline-content">
+                    <h5>ปิดบัญชีและตรวจสอบ</h5>
+                    <p>จัดทำงบการเงิน ส่งผู้สอบบัญชีรับอนุญาต (CPA) ตรวจสอบ</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker">3</div>
+                <div class="timeline-content">
+                    <h5>ประชุมผู้ถือหุ้น (AGM)</h5>
+                    <p>ภายใน <span class="badge badge-warning">4 เดือน</span> หลังสิ้นรอบบัญชี</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker">4</div>
+                <div class="timeline-content">
+                    <h5>ยื่นงบต่อ DBD และ ภ.ง.ด.50</h5>
+                    <p>ภายใน <span class="badge badge-danger">150 วัน</span> หลังสิ้นรอบบัญชี (e-filing +8 วัน)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="key-takeaway">
+            <h4>🎯 Key Takeaways</h4>
+            <ul>
+                <li><strong>"SME ส่วนใหญ่ใช้ TFRS for NPAEs"</strong> - ข้อกำหนดเรียบง่ายกว่า Full TFRS</li>
+                <li><strong>"Accrual Basis เป็นหลัก"</strong> - รับรู้รายได้/ค่าใช้จ่ายเมื่อเกิดสิทธิ์</li>
+                <li><strong>"งบต้องผ่าน CPA"</strong> - งบการเงินต้องได้รับการรับรองจากผู้สอบบัญชีรับอนุญาต</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Section 7 -->
+    <section id="section7" class="section">
+        <div class="section-header">
+            <div class="section-icon">💡</div>
+            <h2>ตัวอย่างรายการค้าจริง</h2>
+        </div>
+
+        <div class="concept-box">
+            <h4>🔑 Core Concept: เรียนรู้จากการปฏิบัติ</h4>
+            <p>การเข้าใจการบันทึกบัญชีที่ดีที่สุดคือการดูตัวอย่างจริง ส่วนนี้จะแสดงธุรกรรมที่พบบ่อยในธุรกิจไทย พร้อม Journal Entry</p>
+        </div>
+
+        <div class="scenario-box">
+            <h5>ตัวอย่างที่ 1: ขายสินค้าพร้อมออกใบกำกับภาษี</h5>
+            <p><strong>สถานการณ์:</strong> บริษัท ABC ขายโน้ตบุ๊ค 10 เครื่อง @ 25,000 บาท = 250,000 บาท + VAT 7%</p>
+            
+            <div class="flow-diagram">
+                <div class="flow-item">สร้าง Quotation</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-item">ยืนยัน SO</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-item">ส่งสินค้า</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-item">ออก Invoice</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-item">รับชำระ</div>
+            </div>
+
+            <div class="journal-entry">
+                <div class="journal-header">📝 Journal Entry - ออกใบแจ้งหนี้</div>
+                <div class="journal-body">
+                    <div class="journal-row header"><div>บัญชี</div><div>Debit</div><div>Credit</div></div>
+                    <div class="journal-row"><div>111001 ลูกหนี้การค้า</div><div class="debit">267,500.00</div><div class="credit">-</div></div>
+                    <div class="journal-row"><div>410001 รายได้จากการขาย</div><div class="debit">-</div><div class="credit">250,000.00</div></div>
+                    <div class="journal-row"><div>211001 ภาษีขาย</div><div class="debit">-</div><div class="credit">17,500.00</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scenario-box">
+            <h5>ตัวอย่างที่ 2: จ่ายค่าเช่าสำนักงาน (หัก WHT 5%)</h5>
+            <p><strong>สถานการณ์:</strong> จ่ายค่าเช่า 100,000 บาท + VAT 7% = 107,000 บาท, หัก WHT 5% = 5,000 บาท</p>
+            
+            <div class="example-box">
+                <h5>การคำนวณ</h5>
+                <table style="width: auto;">
+                    <tr><td>ค่าเช่า:</td><td style="text-align: right;">100,000.00 บาท</td></tr>
+                    <tr><td>VAT 7%:</td><td style="text-align: right;">7,000.00 บาท</td></tr>
+                    <tr><td>ยอดรวม:</td><td style="text-align: right;">107,000.00 บาท</td></tr>
+                    <tr><td style="color: var(--danger);">หัก WHT 5%:</td><td style="text-align: right; color: var(--danger);">-5,000.00 บาท</td></tr>
+                    <tr style="background: var(--gray-100);"><td><strong>ยอดจ่ายจริง:</strong></td><td style="text-align: right;"><strong style="color: var(--success);">102,000.00 บาท</strong></td></tr>
+                </table>
+            </div>
+
+            <div class="journal-entry">
+                <div class="journal-header">📝 Journal Entry - จ่ายชำระพร้อมหัก WHT</div>
+                <div class="journal-body">
+                    <div class="journal-row header"><div>บัญชี</div><div>Debit</div><div>Credit</div></div>
+                    <div class="journal-row"><div>620001 ค่าเช่าสำนักงาน</div><div class="debit">100,000.00</div><div class="credit">-</div></div>
+                    <div class="journal-row"><div>113001 ภาษีซื้อ</div><div class="debit">7,000.00</div><div class="credit">-</div></div>
+                    <div class="journal-row"><div>110001 เงินฝากธนาคาร</div><div class="debit">-</div><div class="credit">102,000.00</div></div>
+                    <div class="journal-row"><div>212002 ภาษีหัก ณ ที่จ่าย 5%</div><div class="debit">-</div><div class="credit">5,000.00</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="key-takeaway">
+            <h4>🎯 Key Takeaways - ตัวอย่างรายการค้า</h4>
+            <ul>
+                <li><strong>"ทุกรายการต้อง Balance"</strong> - Debit = Credit เสมอ</li>
+                <li><strong>"WHT หักตอนจ่ายเงิน"</strong> - ไม่ใช่ตอนบันทึกใบแจ้งหนี้</li>
+                <li><strong>"เอกสารต้องครบ"</strong> - ใบกำกับภาษี, หนังสือรับรอง WHT, ใบเสร็จ</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Section 8 -->
+    <section id="section8" class="section">
+        <div class="section-header">
+            <div class="section-icon">📅</div>
+            <h2>การยื่นภาษีและ Compliance</h2>
+        </div>
+
+        <div class="concept-box">
+            <h4>🔑 Core Concept: ยื่นภาษีตรงเวลา = ไม่มีปัญหา</h4>
+            <p>การยื่นภาษีตรงเวลาและถูกต้องเป็นหน้าที่ของทุกธุรกิจ การทำงานใน Odoo อย่างเป็นระบบจะช่วยให้ออกรายงานภาษีได้ง่าย ลดความเสี่ยงจากค่าปรับและเงินเพิ่ม</p>
+        </div>
+
+        <h3>ปฏิทินการยื่นภาษีรายเดือน</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ประเภทภาษี</th>
+                        <th>แบบฟอร์ม</th>
+                        <th>กำหนดยื่นปกติ</th>
+                        <th>กำหนด e-Filing</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ภาษีมูลค่าเพิ่ม</strong></td>
+                        <td>ภ.พ.30</td>
+                        <td>ภายในวันที่ 15</td>
+                        <td><span class="badge badge-success">ภายในวันที่ 23</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ภาษีหัก ณ ที่จ่าย (บุคคล)</strong></td>
+                        <td>ภ.ง.ด.3</td>
+                        <td>ภายในวันที่ 7</td>
+                        <td><span class="badge badge-success">ภายในวันที่ 15</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ภาษีหัก ณ ที่จ่าย (นิติบุคคล)</strong></td>
+                        <td>ภ.ง.ด.53</td>
+                        <td>ภายในวันที่ 7</td>
+                        <td><span class="badge badge-success">ภายในวันที่ 15</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Workflow การยื่นภาษีรายเดือน</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker">1-3</div>
+                <div class="timeline-content">
+                    <h5>วันที่ 1-3: Reconcile & Review</h5>
+                    <p>กระทบยอดธนาคาร, ตรวจสอบใบแจ้งหนี้ค้าง</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker">4-5</div>
+                <div class="timeline-content">
+                    <h5>วันที่ 4-5: Generate Reports</h5>
+                    <p>ออกรายงาน ภ.พ.30, ภ.ง.ด.3/53 จาก Odoo</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker">7</div>
+                <div class="timeline-content">
+                    <h5>วันที่ 7: Submit WHT</h5>
+                    <p>ยื่น ภ.ง.ด.3/53 (e-filing ยื่นได้ถึงวันที่ 15)</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker">15</div>
+                <div class="timeline-content">
+                    <h5>วันที่ 15-23: Submit VAT</h5>
+                    <p>ยื่น ภ.พ.30 (e-filing ยื่นได้ถึงวันที่ 23)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <h5>บทลงโทษกรณียื่นล่าช้า</h5>
+            <ul>
+                <li><strong>เงินเพิ่ม:</strong> 1.5% ต่อเดือน ของยอดภาษีที่ต้องชำระ</li>
+                <li><strong>ค่าปรับ:</strong> 100-2,000 บาท แล้วแต่ประเภทแบบ</li>
+                <li><strong>ไม่ยื่นเลย:</strong> โทษอาญา ปรับสูงสุด 200,000 บาท หรือจำคุก</li>
+            </ul>
+        </div>
+
+        <div class="success-box">
+            <h5>ตั้งแต่ มกราคม 2568: บังคับยื่น e-Filing</h5>
+            <p>กรมสรรพากรบังคับให้นิติบุคคลยื่นภาษีหัก ณ ที่จ่ายผ่านระบบ e-Filing ผู้ที่ยื่นทางอิเล็กทรอนิกส์จะได้รับการขยายเวลา 8 วัน (ถึงปี 2570)</p>
+        </div>
+
+        <div class="key-takeaway">
+            <h4>🎯 Key Takeaways</h4>
+            <ul>
+                <li><strong>"e-Filing = ขยายเวลา 8 วัน"</strong> - สะดวกและได้เวลาเพิ่ม</li>
+                <li><strong>"WHT ก่อน VAT"</strong> - กำหนดยื่น WHT (วันที่ 7) มาก่อน VAT (วันที่ 15)</li>
+                <li><strong>"เก็บหลักฐาน 5-7 ปี"</strong> - สรรพากรตรวจสอบย้อนหลังได้</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section class="section" style="background: linear-gradient(135deg, #F8F4F7, #FFF);">
+        <div class="section-header">
+            <div class="section-icon">🎯</div>
+            <h2>สรุป Key Takeaways ทั้งหมด</h2>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="4" style="background: linear-gradient(135deg, #714B67, #017E84); text-align: center; font-size: 1.2rem;">
+                            📋 Thai Tax Rates Quick Reference
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: #F4ECF0;"><td colspan="4" style="font-weight: bold; color: #714B67;">🧾 ภาษีมูลค่าเพิ่ม (VAT)</td></tr>
+                    <tr><td>อัตราทั่วไป</td><td><span class="badge badge-primary">7%</span></td><td>ส่งออก</td><td><span class="badge badge-success">0%</span></td></tr>
+                    <tr style="background: #EBF5FB;"><td colspan="4" style="font-weight: bold; color: #3498DB;">💼 ภาษีหัก ณ ที่จ่าย (WHT)</td></tr>
+                    <tr><td>ค่าขนส่ง</td><td><span class="badge badge-info">1%</span></td><td>ค่าโฆษณา</td><td><span class="badge badge-secondary">2%</span></td></tr>
+                    <tr><td>ค่าบริการ/ที่ปรึกษา</td><td><span class="badge badge-primary">3%</span></td><td>ค่าเช่า</td><td><span class="badge badge-warning">5%</span></td></tr>
+                    <tr><td>เงินปันผล</td><td><span class="badge badge-danger">10%</span></td><td>ดอกเบี้ย (นิติบุคคล)</td><td><span class="badge badge-info">1%</span></td></tr>
+                    <tr style="background: #E9F7EF;"><td colspan="4" style="font-weight: bold; color: #27AE60;">🏢 ภาษีเงินได้นิติบุคคล (CIT)</td></tr>
+                    <tr><td>อัตราทั่วไป</td><td><span class="badge badge-danger">20%</span></td><td>SME (กำไร ≤ 3 ล้าน)</td><td><span class="badge badge-success">15%</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>📝 ข้อความสำหรับนำไปสอนต่อ</h3>
+        <div class="quote-box">
+            <p>"การตั้งค่าระบบบัญชีเปรียบเสมือนการวางรากฐานบ้าน หากรากฐานแข็งแรง บ้านจะมั่นคง หากรากฐานไม่ดี ต่อให้ตกแต่งสวยแค่ไหน ก็จะพังในที่สุด"</p>
+            <cite>— หลักการพื้นฐานการ Implement ERP</cite>
+        </div>
+        <div class="quote-box">
+            <p>"Garbage In, Garbage Out - ถ้าข้อมูลเข้าผิด ผลลัพธ์ที่ออกมาก็ผิด ไม่ว่าระบบจะดีแค่ไหน"</p>
+            <cite>— หลักการ Data Quality</cite>
+        </div>
+        <div class="quote-box">
+            <p>"ภาษีไม่รอใคร ยื่นช้าวันเดียว เสียเงินเพิ่มทั้งเดือน"</p>
+            <cite>— ความสำคัญของการยื่นภาษีตรงเวลา</cite>
+        </div>
+
+        <div class="success-box">
+            <h5>🎉 ขอบคุณที่ศึกษาคู่มือนี้!</h5>
+            <p>คุณได้เรียนรู้การตั้งค่าบัญชีไทยใน Odoo 19 Enterprise อย่างครบถ้วน ตั้งแต่:</p>
+            <ul class="checklist">
+                <li>แนวคิดและ Mindset ที่ถูกต้อง</li>
+                <li>การติดตั้ง Thai Localization</li>
+                <li>การออกแบบผังบัญชี</li>
+                <li>การตั้งค่า VAT 7% และ WHT</li>
+                <li>มาตรฐานบัญชี TFRS</li>
+                <li>ตัวอย่างรายการค้าจริง</li>
+                <li>การยื่นภาษีและ Compliance</li>
+            </ul>
+            <p style="margin-top: 20px;"><strong>พร้อมนำไปปฏิบัติและสอนต่อได้เลย!</strong></p>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <h3>📘 คู่มือการตั้งค่าบัญชีไทย Odoo 19 Enterprise</h3>
+    <p>Complete Thai Accounting Setup Guide<br>From Concept to Implementation</p>
+    
+    <div style="margin: 30px 0;">
+        <span class="badge badge-primary" style="font-size: 1rem; padding: 10px 20px;">Version 1.0</span>
+        <span class="badge badge-secondary" style="font-size: 1rem; padding: 10px 20px;">January 2026</span>
+        <span class="badge badge-success" style="font-size: 1rem; padding: 10px 20px;">Odoo 19 Enterprise</span>
+    </div>
+    
+    <div class="footer-credits">
+        <p>📝 สร้างโดย <strong>Tomz</strong> | Odoo Silver Partner</p>
+        <p>เนื้อหานี้สามารถนำไปใช้เพื่อการศึกษาและอบรมได้</p>
+        <p style="margin-top: 15px; opacity: 0.6;">อัปเดตล่าสุด: มกราคม 2568 | ข้อมูลอัตราภาษีอาจเปลี่ยนแปลงได้ตามประกาศกรมสรรพากร</p>
+    </div>
+</footer>
+
+<button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+</body>
+</html>
