@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Be Better at Almost Everything - สรุปหนังสือฉบับสมบูรณ์</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Sarabun:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --gold: #f4c430;
+            --light: #edf2f4;
+            --text: #2b2d42;
+            --gradient-1: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --gradient-2: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+            --gradient-3: linear-gradient(135deg, #f4c430 0%, #ffd700 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-1);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(233, 69, 96, 0.03) 20px,
+                rgba(233, 69, 96, 0.03) 40px
+            );
+            animation: movePattern 20s linear infinite;
+        }
+
+        @keyframes movePattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 40px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .book-badge {
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .core-message {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.2rem;
+            font-style: italic;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .scroll-indicator svg {
+            width: 40px;
+            height: 40px;
+            fill: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+        }
+
+        .nav-items {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-item {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            color: white;
+            background: rgba(233, 69, 96, 0.3);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+            letter-spacing: 3px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Overview Section */
+        #overview {
+            background: white;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .overview-card {
+            background: var(--light);
+            padding: 2.5rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .overview-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .overview-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-2);
+        }
+
+        .overview-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .overview-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Core Philosophy Section */
+        #philosophy {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        #philosophy .section-title {
+            color: white;
+        }
+
+        #philosophy .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .philosophy-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .philosophy-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .philosophy-visual {
+            position: relative;
+        }
+
+        .comparison-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .comparison-box.specialist {
+            border-left: 4px solid var(--accent);
+        }
+
+        .comparison-box.generalist {
+            border-left: 4px solid var(--gold);
+        }
+
+        .comparison-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .comparison-box ul {
+            list-style: none;
+        }
+
+        .comparison-box li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .comparison-box li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        .philosophy-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .philosophy-text p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            line-height: 2;
+        }
+
+        .highlight-quote {
+            background: var(--accent);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 2rem;
+        }
+
+        /* 5 Principles Section */
+        #principles {
+            background: white;
+        }
+
+        .principles-grid {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .principle-card {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 2rem;
+            align-items: start;
+            background: var(--light);
+            padding: 3rem;
+            border-radius: 25px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .principle-card:hover {
+            box-shadow: 0 20px 60px rgba(26, 26, 46, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .principle-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .principle-number {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .principle-number {
+                margin: 0 auto;
+            }
+        }
+
+        .principle-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .principle-content h3 span {
+            color: var(--accent);
+        }
+
+        .principle-content .tagline {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .principle-content p {
+            margin-bottom: 1rem;
+            line-height: 2;
+        }
+
+        .principle-example {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1.5rem;
+            border-left: 4px solid var(--gold);
+        }
+
+        .principle-example h4 {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 80% Rule Visual */
+        .rule-visual {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 1.5rem;
+        }
+
+        .progress-bar-container {
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar-container label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 15px;
+            transition: width 1s ease;
+        }
+
+        .progress-fill.optimal {
+            background: var(--gradient-3);
+            width: 80%;
+        }
+
+        .progress-fill.excessive {
+            background: var(--gradient-2);
+            width: 100%;
+        }
+
+        /* Metaskills Section */
+        #metaskills {
+            background: var(--light);
+        }
+
+        .metaskills-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            font-size: 1.1rem;
+        }
+
+        .metaskills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .metaskill-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .metaskill-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .metaskill-header {
+            padding: 2rem;
+            color: white;
+            position: relative;
+        }
+
+        .metaskill-header.physical {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .metaskill-header.mental {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .metaskill-header.communication {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .metaskill-header.spiritual {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .metaskill-header.business {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .metaskill-header.learning {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: var(--primary);
+        }
+
+        .metaskill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .metaskill-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .metaskill-header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .metaskill-body {
+            padding: 2rem;
+        }
+
+        .metaskill-body h4 {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .metaskill-body ul {
+            list-style: none;
+        }
+
+        .metaskill-body li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .metaskill-body li:last-child {
+            border-bottom: none;
+        }
+
+        .metaskill-body li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #43e97b;
+            font-weight: 700;
+        }
+
+        /* Practice Section */
+        #practice {
+            background: white;
+        }
+
+        .practice-framework {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (max-width: 968px) {
+            .practice-framework {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .practice-step {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--light);
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .practice-step::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        .practice-step:last-child::after {
+            display: none;
+        }
+
+        @media (max-width: 968px) {
+            .practice-step::after {
+                content: '↓';
+                right: 50%;
+                top: auto;
+                bottom: -30px;
+                transform: translateX(50%);
+            }
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .practice-step h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .practice-detail {
+            background: var(--gradient-1);
+            color: white;
+            padding: 4rem;
+            border-radius: 30px;
+        }
+
+        .practice-detail h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .practice-tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .tip-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .tip-card h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tip-card p {
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        /* Situations Section */
+        #situations {
+            background: var(--light);
+        }
+
+        .situation-cards {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .situation-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: 768px) {
+            .situation-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .situation-scenario {
+            padding: 2.5rem;
+            background: var(--primary);
+            color: white;
+        }
+
+        .situation-label {
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .situation-scenario h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .situation-solution {
+            padding: 2.5rem;
+        }
+
+        .solution-label {
+            background: var(--gold);
+            color: var(--primary);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .situation-solution h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .solution-steps {
+            list-style: none;
+            counter-reset: step;
+        }
+
+        .solution-steps li {
+            padding: 0.8rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            counter-increment: step;
+        }
+
+        .solution-steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        /* Key Takeaways Section */
+        #takeaways {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        #takeaways .section-title {
+            color: white;
+        }
+
+        #takeaways .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .takeaways-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .takeaway-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .takeaway-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            color: rgba(244, 196, 48, 0.2);
+            line-height: 1;
+        }
+
+        .takeaway-number {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            color: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .takeaway-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .takeaway-card p {
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        /* Quotes Section */
+        #quotes {
+            background: white;
+        }
+
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .quote-card {
+            background: var(--light);
+            padding: 3rem;
+            border-radius: 25px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .quote-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 60px rgba(26, 26, 46, 0.1);
+        }
+
+        .quote-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .quote-usage {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            font-size: 0.95rem;
+        }
+
+        .quote-usage strong {
+            color: var(--accent);
+        }
+
+        /* Action Plan Section */
+        #action {
+            background: var(--light);
+        }
+
+        .action-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .action-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient-2);
+        }
+
+        @media (max-width: 768px) {
+            .action-timeline::before {
+                left: 25px;
+            }
+        }
+
+        .action-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .action-marker {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            flex-shrink: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .action-marker {
+                width: 50px;
+                height: 50px;
+            }
+            .action-marker span {
+                display: none;
+            }
+        }
+
+        .action-marker .day {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .action-marker span {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .action-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            flex: 1;
+        }
+
+        .action-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .action-tasks {
+            list-style: none;
+        }
+
+        .action-tasks li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .action-tasks li:last-child {
+            border-bottom: none;
+        }
+
+        .action-tasks li::before {
+            content: '□';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--gold);
+        }
+
+        .footer p {
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-credit {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+
+        .footer-credit strong {
+            color: var(--gold);
+        }
+
+        /* Utility Classes */
+        .text-accent { color: var(--accent); }
+        .text-gold { color: var(--gold); }
+        .bg-accent { background: var(--accent); }
+        .bg-gold { background: var(--gold); }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* Print Styles */
+        @media print {
+            .nav-container, .scroll-indicator {
+                display: none;
+            }
+            section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="book-badge">📚 Book Summary | สรุปหนังสือ</div>
+            <h1>How to Be Better at <span>Almost Everything</span></h1>
+            <p class="hero-subtitle">Learn Anything Quickly, Stack Your Skills, Dominate</p>
+            <div class="author-info">
+                <div class="author-avatar">PF</div>
+                <div>
+                    <strong>Pat Flynn</strong><br>
+                    <span style="opacity: 0.7">Bestselling Author, Business Coach, Generalist</span>
+                </div>
+            </div>
+            <div class="core-message">
+                "การเป็นเลิศในหลายๆ สิ่งพร้อมกันดีกว่าการเป็นหนึ่งในสิ่งเดียว<br>
+                ทักษะที่รวมกัน = พลังที่ทวีคูณ"
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-items">
+            <a href="#overview" class="nav-item">ภาพรวม</a>
+            <a href="#philosophy" class="nav-item">ปรัชญาหลัก</a>
+            <a href="#principles" class="nav-item">5 หลักการ</a>
+            <a href="#metaskills" class="nav-item">Metaskills</a>
+            <a href="#practice" class="nav-item">การฝึกฝน</a>
+            <a href="#situations" class="nav-item">สถานการณ์จริง</a>
+            <a href="#takeaways" class="nav-item">Key Takeaways</a>
+            <a href="#quotes" class="nav-item">คำคมสอนต่อ</a>
+            <a href="#action" class="nav-item">Action Plan</a>
+        </div>
+    </nav>
+
+    <!-- Overview Section -->
+    <section id="overview">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">01 / OVERVIEW</span>
+                <h2 class="section-title">ภาพรวมของหนังสือ</h2>
+                <p class="section-subtitle">ทำไม Generalism ถึงเป็นทางสู่ความสำเร็จในยุคปัจจุบัน</p>
+            </div>
+            
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <div class="overview-icon">🎯</div>
+                    <h3>แนวคิดหลัก (Core Concept)</h3>
+                    <p>การเชี่ยวชาญเฉพาะทางใช้ได้ผลเมื่อ 20 ปีก่อน แต่ในยุคเศรษฐกิจโลกาภิวัตน์ปัจจุบัน การเป็นที่หนึ่งในสิ่งเดียวไม่เพียงพออีกต่อไป คุณต้องเป็น "Generalist" ผู้เชี่ยวชาญหลายด้านและรู้จักนำทักษะมา "Stack" รวมกัน</p>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-icon">💡</div>
+                    <h3>ผู้เขียน Pat Flynn</h3>
+                    <p>นักเขียน, ผู้ประกอบการ, นักดนตรี, โค้ชฟิตเนส, สายดำเทควันโด, พ่อของลูก 5 คน ที่สร้างธุรกิจหลายล้านดอลลาร์จากการรวมทักษะหลากหลาย ไม่ใช่จากการเป็นที่สุดในสิ่งใดสิ่งหนึ่ง</p>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-icon">🚀</div>
+                    <h3>เป้าหมายของหนังสือ</h3>
+                    <p>สอนให้คุณ "เก่งในหลายสิ่ง และดีในเกือบทุกสิ่ง" แล้วรวมทักษะเหล่านั้นเพื่อสร้าง competitive advantage ที่ไม่มีใครลอกเลียนได้ ใช้เวลาแค่ 1 ชั่วโมงต่อวัน</p>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-icon">📖</div>
+                    <h3>โครงสร้างหนังสือ</h3>
+                    <p>7 บท + บทสรุป ครอบคลุมตั้งแต่ "ทำไม Skill Stacking ดีกว่า Specialization" ไปจนถึง "Metaskills ที่ต้องมี" และ "ทักษะที่คุณอาจต้องการ (แม้จะไม่สนใจ)"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number" style="color: var(--gold);">02 / CORE PHILOSOPHY</span>
+                <h2 class="section-title">ปรัชญาหลัก: Generalism vs Specialization</h2>
+                <p class="section-subtitle">ทำไม "Jack of All Trades" ถึงชนะในยุคนี้</p>
+            </div>
+            
+            <div class="philosophy-content">
+                <div class="philosophy-visual">
+                    <div class="comparison-box specialist">
+                        <h4>❌ Specialist (ผู้เชี่ยวชาญเฉพาะทาง)</h4>
+                        <ul>
+                            <li>ต้องเปรียบเทียบกับคนอื่นตลอด</li>
+                            <li>ความสำเร็จขึ้นอยู่กับ "การเป็นที่หนึ่ง"</li>
+                            <li>เสี่ยงต่อการถูกแทนที่ด้วยเทคโนโลยี</li>
+                            <li>ถ้าไม่เป็นที่หนึ่ง = ล้มเหลว</li>
+                            <li>Built-in unhappiness ในระบบ</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-box generalist">
+                        <h4>✅ Generalist (นักสะสมทักษะ)</h4>
+                        <ul>
+                            <li>ไม่ต้องเป็นที่หนึ่งในสิ่งใด</li>
+                            <li>รวมทักษะหลายอย่าง = ไม่มีใครเหมือน</li>
+                            <li>ยืดหยุ่น ปรับตัวได้ทุกสถานการณ์</li>
+                            <li>เรียนรู้เพื่อความสุข ไม่ใช่เพื่อชนะ</li>
+                            <li>ทักษะทุกอย่างเชื่อมโยงกัน</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="philosophy-text">
+                    <h3>Mindset ที่ต้องเปลี่ยน</h3>
+                    <p><strong>คนส่วนใหญ่เชื่อว่า:</strong> "ต้องเก่งสุดในสิ่งหนึ่ง" แต่ความจริงคือ เพลย์เยอร์กีตาร์ที่เก่งที่สุดในโลก ส่วนใหญ่จะประทับใจเฉพาะนักกีตาร์คนอื่นเท่านั้น คนทั่วไปไม่ได้สนใจ</p>
+                    
+                    <p><strong>Pat Flynn เรียนรู้ว่า:</strong> หลังจากใช้เวลาหลายพันชั่วโมงกับกีตาร์ เขาก็ยังเป็นแค่ระดับปานกลางเมื่อเทียบกับผู้เชี่ยวชาญ แต่เมื่อเขารวม กีตาร์ + การเขียน + ฟิตเนส + ธุรกิจ + เทควันโด = เขากลายเป็นคนที่ไม่มีใครลอกเลียนได้</p>
+                    
+                    <p><strong>Benjamin Franklin</strong> คือตัวอย่างของ Generalist ที่ยิ่งใหญ่ที่สุด: นักเขียน, นักการเมือง, นักวิทยาศาสตร์, นักการทูต, นักประดิษฐ์ - ไม่ได้เป็นที่หนึ่งในด้านใด แต่การรวมทุกอย่างทำให้เขาเป็นหนึ่งในบุคคลที่ทรงอิทธิพลที่สุดในประวัติศาสตร์</p>
+                    
+                    <div class="highlight-quote">
+                        "ทักษะที่รวมกัน มีพลังมากกว่าทักษะเดี่ยวๆ แม้จะไม่ได้พัฒนาเต็มที่"<br>
+                        — Pat Flynn
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5 Principles Section -->
+    <section id="principles">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">03 / FIVE KEY PRINCIPLES</span>
+                <h2 class="section-title">5 หลักการของ Expert Generalist</h2>
+                <p class="section-subtitle">กรอบความคิดที่จะเปลี่ยนวิธีการเรียนรู้ของคุณตลอดไป</p>
+            </div>
+            
+            <div class="principles-grid">
+                <!-- Principle 1 -->
+                <div class="principle-card">
+                    <div class="principle-number">1</div>
+                    <div class="principle-content">
+                        <h3><span>Skill Stacking</span> > Specialization</h3>
+                        <p class="tagline">การซ้อนทักษะ ดีกว่าการเชี่ยวชาญเฉพาะทาง</p>
+                        <p>แทนที่จะเป็นที่หนึ่งในทักษะเดียว ให้เก่งระดับ "ดีมาก" ในหลายทักษะแล้วรวมกัน สูตรมหัศจรรย์คือ: <strong>ทักษะ A (80%) + ทักษะ B (80%) + ทักษะ C (80%) = ความสามารถที่ไม่มีใครเหมือน</strong></p>
+                        
+                        <div class="principle-example">
+                            <h4>💼 ตัวอย่างในธุรกิจ</h4>
+                            <p>CEO ที่เก่งทั้ง การเงิน + การตลาด + การสื่อสาร + เทคโนโลยี จะมีคุณค่ามากกว่า CFO ที่เก่งแค่การเงินระดับโลก เพราะเขาสามารถตัดสินใจแบบองค์รวมได้</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Principle 2 -->
+                <div class="principle-card">
+                    <div class="principle-number">2</div>
+                    <div class="principle-content">
+                        <h3><span>Short-Term</span> Specialization</h3>
+                        <p class="tagline">เชี่ยวชาญระยะสั้น แล้วเดินหน้าต่อ</p>
+                        <p>Generalist ที่ดีคือ "Specialist ระยะสั้น" โฟกัสที่ทักษะ 1-2 อย่างในแต่ละช่วงเวลา ทุ่มเทจนถึงระดับ 80% แล้วเปลี่ยนไปโฟกัสทักษะถัดไป ขณะที่ยังคง "บำรุงรักษา" ทักษะเดิมไว้</p>
+                        
+                        <div class="principle-example">
+                            <h4>🧘 ตัวอย่าง: Pat กับการทำสมาธิ</h4>
+                            <p>เมื่อเขาประสบปัญหาวิตกกังวล เขาโฟกัสเรียนสมาธิอย่างจริงจัง 3 เดือน จนควบคุมจิตใจได้ แล้วจึงลดความเข้มข้นลง ขณะที่ยังคงทำสมาธิเป็นกิจวัตร</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Principle 3 -->
+                <div class="principle-card">
+                    <div class="principle-number">3</div>
+                    <div class="principle-content">
+                        <h3>The Rule of <span>80 Percent</span></h3>
+                        <p class="tagline">80% คือจุดที่คุ้มค่าที่สุด ไม่ต้องไป 100%</p>
+                        <p>ถ้า 100% คือระดับโลก อย่าพยายามพัฒนาทักษะใดเกิน 80% เพราะ: 80% แรกใช้เวลา 20% ของความพยายามทั้งหมด แต่ 20% สุดท้ายต้องใช้เวลา 80% และอาจไม่คุ้มค่า</p>
+                        
+                        <div class="rule-visual">
+                            <div class="progress-bar-container">
+                                <label>
+                                    <span>✅ กฎ 80% (Optimal)</span>
+                                    <span>คุ้มค่า / ยืดหยุ่น</span>
+                                </label>
+                                <div class="progress-bar">
+                                    <div class="progress-fill optimal"></div>
+                                </div>
+                            </div>
+                            <div class="progress-bar-container">
+                                <label>
+                                    <span>❌ ไล่ 100% (Excessive)</span>
+                                    <span>หมดแรง / ติดกับ</span>
+                                </label>
+                                <div class="progress-bar">
+                                    <div class="progress-fill excessive"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Principle 4 -->
+                <div class="principle-card">
+                    <div class="principle-number">4</div>
+                    <div class="principle-content">
+                        <h3><span>Integration</span> > Isolation</h3>
+                        <p class="tagline">ฝึกในบริบทจริง ไม่ใช่แยกส่วน</p>
+                        <p>"ฝึกเฉพาะสิ่งที่ต้องเก่ง ตามที่เกี่ยวข้องกับงานที่ทำ" อย่าฝึกทักษะแบบแยกส่วนโดดเดี่ยว แต่ให้ฝึกในบริบทที่จะใช้งานจริง ให้ทักษะหลายอย่างทำงานร่วมกัน</p>
+                        
+                        <div class="principle-example">
+                            <h4>🎸 ตัวอย่าง: การฝึกกีตาร์</h4>
+                            <p><strong>Isolation:</strong> ฝึกสเกลแยก 2 ชั่วโมง<br>
+                            <strong>Integration:</strong> ฝึกเล่นเพลงจริง ที่รวมทั้ง สเกล, คอร์ด, จังหวะ, การอ่านโน้ต ไปพร้อมกัน = เรียนรู้เร็วกว่าและใช้ได้จริง</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Principle 5 -->
+                <div class="principle-card">
+                    <div class="principle-number">5</div>
+                    <div class="principle-content">
+                        <h3><span>Repetition</span> and <span>Resistance</span></h3>
+                        <p class="tagline">ทำซ้ำ และเพิ่มความท้าทาย</p>
+                        <p>หลักการสุดท้ายและสำคัญที่สุด: <strong>การทำซ้ำ</strong> สร้างความชำนาญ และ <strong>การเพิ่มความยาก</strong> (Resistance) ทำให้พัฒนาต่อเนื่อง "หาวิธีทำให้มันยากขึ้นสำหรับตัวเอง"</p>
+                        
+                        <div class="principle-example">
+                            <h4>🥋 ตัวอย่าง: Strategic Restriction</h4>
+                            <p>Pat เล่าว่าเขาพัฒนากีตาร์โดยจำกัดการใช้นิ้ว และพัฒนาศิลปะการต่อสู้โดยมัดแขนข้างหนึ่งไว้ <strong>เมื่อคุณจำกัดจุดแข็ง คุณจะถูกบังคับให้พัฒนาส่วนอื่น</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metaskills Section -->
+    <section id="metaskills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">04 / METASKILLS</span>
+                <h2 class="section-title">Metaskills: ทักษะรากฐาน</h2>
+                <p class="section-subtitle">ทักษะที่ช่วยให้เรียนรู้ทักษะอื่นได้ง่ายขึ้น</p>
+            </div>
+            
+            <p class="metaskills-intro">
+                Metaskills คือทักษะพื้นฐานที่เมื่อคุณพัฒนาแล้ว จะทำให้การเรียนรู้ทักษะอื่นๆ ง่ายขึ้นทั้งหมด 
+                Pat Flynn แนะนำให้เริ่มจาก Metaskills เหล่านี้ก่อน เพราะมันจะเป็นพื้นฐานสำหรับทุกสิ่งที่คุณจะเรียนรู้ต่อไป
+            </p>
+            
+            <div class="metaskills-grid">
+                <!-- Physical Preparedness -->
+                <div class="metaskill-card">
+                    <div class="metaskill-header physical">
+                        <div class="metaskill-icon">💪</div>
+                        <h3>Physical Preparedness</h3>
+                        <p>ร่างกายที่แข็งแรง = จิตใจที่แข็งแกร่ง</p>
+                    </div>
+                    <div class="metaskill-body">
+                        <h4>ทำไมสำคัญ:</h4>
+                        <p>สุขภาพกายเป็นพื้นฐานของทุกสิ่ง ถ้าร่างกายไม่ดี พลังงานและสมาธิก็ลดลง</p>
+                        <h4>วิธีพัฒนา:</h4>
+                        <ul>
+                            <li>ออกกำลังกายสม่ำเสมอ (Strength + Cardio)</li>
+                            <li>เน้น "General Fitness" ไม่ใช่ความเก่งเฉพาะทาง</li>
+                            <li>ทำให้เป็นกิจวัตร ไม่ต้องสมบูรณ์แบบ</li>
+                            <li>เป้าหมาย: แข็งแรง, ยืดหยุ่น, อึด</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Mental Clarity -->
+                <div class="metaskill-card">
+                    <div class="metaskill-header mental">
+                        <div class="metaskill-icon">🧠</div>
+                        <h3>Mental Clarity</h3>
+                        <p>ความชัดเจนทางความคิด & การควบคุมจิตใจ</p>
+                    </div>
+                    <div class="metaskill-body">
+                        <h4>ทำไมสำคัญ:</h4>
+                        <p>จิตใจที่สงบและชัดเจนทำให้ตัดสินใจดีขึ้น เรียนรู้เร็วขึ้น และรับมือกับความเครียดได้</p>
+                        <h4>วิธีพัฒนา:</h4>
+                        <ul>
+                            <li>ทำสมาธิทุกวัน (เริ่มจาก 5-10 นาที)</li>
+                            <li>เขียนบันทึกความคิด (Journaling)</li>
+                            <li>ฝึกสติในกิจวัตรประจำวัน</li>
+                            <li>อ่านหนังสือปรัชญาและจิตวิทยา</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Communication -->
+                <div class="metaskill-card">
+                    <div class="metaskill-header communication">
+                        <div class="metaskill-icon">🗣️</div>
+                        <h3>Communication</h3>
+                        <p>การสื่อสารที่ทรงพลัง ทั้งพูดและเขียน</p>
+                    </div>
+                    <div class="metaskill-body">
+                        <h4>ทำไมสำคัญ:</h4>
+                        <p>ไม่ว่าคุณจะเก่งแค่ไหน ถ้าสื่อสารไม่ได้ ก็ไร้ประโยชน์ การสื่อสารเป็น "ตัวคูณ" ของทุกทักษะ</p>
+                        <h4>วิธีพัฒนา:</h4>
+                        <ul>
+                            <li>เขียนทุกวัน (Blog, Journal, Notes)</li>
+                            <li>ฝึกพูดในที่สาธารณะ</li>
+                            <li>เรียนรู้ Persuasion & Storytelling</li>
+                            <li>อ่านหนังสือเกี่ยวกับ Copywriting</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Logic & Reasoning -->
+                <div class="metaskill-card">
+                    <div class="metaskill-header spiritual">
+                        <div class="metaskill-icon">🔍</div>
+                        <h3>Logic & Reasoning</h3>
+                        <p>การคิดวิเคราะห์และเหตุผล</p>
+                    </div>
+                    <div class="metaskill-body">
+                        <h4>ทำไมสำคัญ:</h4>
+                        <p>ช่วยให้คุณแยกแยะความจริงจากความเท็จ ตัดสินใจดี และไม่ถูกหลอก</p>
+                        <h4>วิธีพัฒนา:</h4>
+                        <ul>
+                            <li>เรียน Logic พื้นฐาน</li>
+                            <li>ศึกษา Logical Fallacies</li>
+                            <li>ฝึกการ Debate อย่างสร้างสรรค์</li>
+                            <li>ตั้งคำถามกับทุกสิ่งที่ได้ยิน</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Business/Marketing -->
+                <div class="metaskill-card">
+                    <div class="metaskill-header business">
+                        <div class="metaskill-icon">📈</div>
+                        <h3>Business & Marketing</h3>
+                        <p>การสร้างคุณค่าและนำเสนอ</p>
+                    </div>
+                    <div class="metaskill-body">
+                        <h4>ทำไมสำคัญ:</h4>
+                        <p>ทักษะทุกอย่างจะไร้ค่า ถ้าคุณไม่สามารถนำเสนอและสร้างรายได้จากมันได้</p>
+                        <h4>วิธีพัฒนา:</h4>
+                        <ul>
+                            <li>เข้าใจหลักเศรษฐศาสตร์พื้นฐาน</li>
+                            <li>เรียนรู้ Marketing & Sales</li>
+                            <li>สร้าง Value Proposition ที่ชัดเจน</li>
+                            <li>ฝึกการ Position ตัวเองในตลาด</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Learning How to Learn -->
+                <div class="metaskill-card">
+                    <div class="metaskill-header learning">
+                        <div class="metaskill-icon">📚</div>
+                        <h3>Learning How to Learn</h3>
+                        <p>ทักษะการเรียนรู้อย่างมีประสิทธิภาพ</p>
+                    </div>
+                    <div class="metaskill-body">
+                        <h4>ทำไมสำคัญ:</h4>
+                        <p>นี่คือ "Meta of Meta" - ถ้าคุณเรียนรู้เร็ว คุณจะพัฒนาทุกทักษะได้เร็วขึ้น</p>
+                        <h4>วิธีพัฒนา:</h4>
+                        <ul>
+                            <li>เข้าใจหลักการของ Deliberate Practice</li>
+                            <li>ใช้ Spaced Repetition</li>
+                            <li>สอนคนอื่น (Learn by Teaching)</li>
+                            <li>หา Mentor และศึกษาจากคนเก่ง</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Section -->
+    <section id="practice">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">05 / HOW TO PRACTICE</span>
+                <h2 class="section-title">วิธีฝึกฝนให้ดีขึ้นเร็วขึ้น</h2>
+                <p class="section-subtitle">Framework ที่ใช้เวลาแค่ 1 ชั่วโมงต่อวัน</p>
+            </div>
+            
+            <div class="practice-framework">
+                <div class="practice-step">
+                    <div class="step-number">1</div>
+                    <h3>วิเคราะห์เป้าหมาย</h3>
+                    <p>กำหนดว่าคุณต้องการทักษะอะไรบ้าง และจะนำไปใช้อย่างไร จัดลำดับความสำคัญ</p>
+                </div>
+                
+                <div class="practice-step">
+                    <div class="step-number">2</div>
+                    <h3>Short-Term Focus</h3>
+                    <p>เลือก 1-2 ทักษะมาโฟกัสในช่วงเวลาหนึ่ง ทุ่มเทจนถึง 80% แล้วสลับ</p>
+                </div>
+                
+                <div class="practice-step">
+                    <div class="step-number">3</div>
+                    <h3>Integrate & Maintain</h3>
+                    <p>รวมทักษะใหม่เข้ากับทักษะเดิม และ maintain ทักษะที่มีอยู่</p>
+                </div>
+            </div>
+            
+            <div class="practice-detail">
+                <h3>💡 เคล็ดลับการฝึกที่มีประสิทธิภาพ</h3>
+                <div class="practice-tips">
+                    <div class="tip-card">
+                        <h4>⏰ กฎ 1 ชั่วโมง</h4>
+                        <p>ใช้เวลาแค่ 1 ชั่วโมงต่อวันในการฝึกทักษะใหม่ก็เพียงพอ ความสม่ำเสมอสำคัญกว่าความเข้มข้น</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <h4>🎯 Strategic Overreach</h4>
+                        <p>ท้าทายตัวเองเป็นระยะ จนถึงจุดที่ล้มเหลว เพื่อค้นพบจุดอ่อนและผลักดันขีดจำกัด</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <h4>🔄 Deliberate Practice</h4>
+                        <p>ไม่ใช่แค่ทำซ้ำ แต่ต้องทำซ้ำอย่าง "ตั้งใจ" - รู้ว่าจะพัฒนาอะไร และ feedback ทันที</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <h4>👥 หา Mentor</h4>
+                        <p>ศึกษาจากคนที่มีคุณสมบัติที่คุณต้องการ Copy สิ่งที่ดี ปรับให้เป็นของตัวเอง</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <h4>📝 บันทึกความก้าวหน้า</h4>
+                        <p>จดบันทึกสิ่งที่เรียนรู้ทุกวัน การเขียนช่วยตกตะกอนและจำได้ดีขึ้น</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <h4>🚫 อย่ารอ Perfect</h4>
+                        <p>"Don't let perfect get in your way" - เริ่มทำเลย ปรับปรุงระหว่างทาง</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Situations Section -->
+    <section id="situations">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">06 / REAL SITUATIONS</span>
+                <h2 class="section-title">สถานการณ์จริง & การประยุกต์ใช้</h2>
+                <p class="section-subtitle">ตัวอย่างการนำหลักการ Generalism ไปใช้จริง</p>
+            </div>
+            
+            <div class="situation-cards">
+                <!-- Situation 1 -->
+                <div class="situation-card">
+                    <div class="situation-scenario">
+                        <span class="situation-label">สถานการณ์ที่ 1</span>
+                        <h3>คุณอยากเปลี่ยนสายงาน แต่ไม่มีประสบการณ์ในสายใหม่</h3>
+                        <p>คุณทำงานด้าน IT มา 10 ปี แต่อยากเปลี่ยนไปทำธุรกิจของตัวเอง รู้สึกว่าต้องเริ่มใหม่จากศูนย์</p>
+                    </div>
+                    <div class="situation-solution">
+                        <span class="solution-label">แนวทางแก้ไข</span>
+                        <h4>Stack ทักษะที่มี + เรียนรู้ทักษะใหม่</h4>
+                        <ol class="solution-steps">
+                            <li>ลิสต์ทักษะทั้งหมดที่มี (IT, Problem Solving, Project Management)</li>
+                            <li>ระบุทักษะที่ขาด (Sales, Marketing, Finance พื้นฐาน)</li>
+                            <li>เรียน 1-2 ทักษะใหม่ให้ถึง 80% (เริ่มจาก Marketing)</li>
+                            <li>รวมทักษะทั้งหมดสร้างธุรกิจ Tech Consulting</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <!-- Situation 2 -->
+                <div class="situation-card">
+                    <div class="situation-scenario">
+                        <span class="situation-label">สถานการณ์ที่ 2</span>
+                        <h3>คุณมีงานอดิเรกหลายอย่าง แต่ไม่เก่งสักอย่าง</h3>
+                        <p>คุณชอบเล่นกีตาร์, ถ่ายรูป, เขียนบล็อก, และออกกำลังกาย แต่รู้สึกว่าทำอะไรก็ไม่โดดเด่น</p>
+                    </div>
+                    <div class="situation-solution">
+                        <span class="solution-label">แนวทางแก้ไข</span>
+                        <h4>หยุดเปรียบเทียบ เริ่ม Stack</h4>
+                        <ol class="solution-steps">
+                            <li>เข้าใจว่านี่คือ "จุดแข็ง" ไม่ใช่ "จุดอ่อน"</li>
+                            <li>หาจุดเชื่อมโยง: เขียนบล็อกสอนกีตาร์สำหรับคนออกกำลังกาย?</li>
+                            <li>ใช้ทักษะถ่ายรูปสร้าง Content</li>
+                            <li>สร้าง Personal Brand ที่ไม่มีใครเหมือน</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <!-- Situation 3 -->
+                <div class="situation-card">
+                    <div class="situation-scenario">
+                        <span class="situation-label">สถานการณ์ที่ 3</span>
+                        <h3>CEO ที่ต้องรู้ทุกอย่างแต่ไม่มีเวลา</h3>
+                        <p>คุณเป็นผู้บริหารที่ต้องตัดสินใจเรื่องการเงิน, เทคโนโลยี, HR, การตลาด แต่ไม่ได้เชี่ยวชาญสักด้าน</p>
+                    </div>
+                    <div class="situation-solution">
+                        <span class="solution-label">แนวทางแก้ไข</span>
+                        <h4>ใช้กฎ 80% + Delegation</h4>
+                        <ol class="solution-steps">
+                            <li>เรียนรู้แต่ละด้านให้ถึง 80% (พอตัดสินใจได้)</li>
+                            <li>จ้าง Specialist ในแต่ละด้าน</li>
+                            <li>ใช้ความเข้าใจ 80% ในการ "ถามคำถามถูก" กับผู้เชี่ยวชาญ</li>
+                            <li>โฟกัส: การตัดสินใจแบบองค์รวม + วิสัยทัศน์</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <!-- Situation 4 -->
+                <div class="situation-card">
+                    <div class="situation-scenario">
+                        <span class="situation-label">สถานการณ์ที่ 4</span>
+                        <h3>นักศึกษาจบใหม่ที่ไม่รู้จะทำอาชีพอะไร</h3>
+                        <p>คุณสนใจหลายอย่างมาก แต่พ่อแม่บอกให้เลือกสายเดียวแล้วเชี่ยวชาญ</p>
+                    </div>
+                    <div class="situation-solution">
+                        <span class="solution-label">แนวทางแก้ไข</span>
+                        <h4>สร้างฐาน Metaskills + ลองหลายๆ อย่าง</h4>
+                        <ol class="solution-steps">
+                            <li>พัฒนา Metaskills ก่อน: สื่อสาร, คิดวิเคราะห์, สุขภาพ</li>
+                            <li>ทดลองทำหลายอย่างใน 2-3 ปีแรก</li>
+                            <li>สังเกตว่าชอบอะไร และ "ตลาด" ต้องการอะไร</li>
+                            <li>ค่อยๆ Stack ทักษะสร้างตำแหน่งที่ไม่มีใครเหมือน</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Takeaways Section -->
+    <section id="takeaways">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number" style="color: var(--gold);">07 / KEY TAKEAWAYS</span>
+                <h2 class="section-title">บทเรียนสำคัญที่ต้องจำ</h2>
+                <p class="section-subtitle">สิ่งที่คุณควรจดจำและนำไปใช้ทันที</p>
+            </div>
+            
+            <div class="takeaways-grid">
+                <div class="takeaway-card">
+                    <div class="takeaway-number">1</div>
+                    <h3>หยุดไล่ความเป็นเลิศ</h3>
+                    <p>การพยายามเป็น "ที่หนึ่ง" ในสิ่งเดียวสร้างความทุกข์ในตัวระบบ เพราะคุณต้องเปรียบเทียบตลอดเวลา และความสำเร็จก็รักษาไว้ยาก</p>
+                </div>
+                
+                <div class="takeaway-card">
+                    <div class="takeaway-number">2</div>
+                    <h3>80% คือเป้าหมายที่ดี</h3>
+                    <p>ไม่ต้องเก่งทุกอย่าง 100% แค่เก่งหลายอย่าง 80% แล้วรวมกัน = คุณจะไม่มีคู่แข่ง เพราะไม่มีใครมีชุดทักษะเหมือนคุณ</p>
+                </div>
+                
+                <div class="takeaway-card">
+                    <div class="takeaway-number">3</div>
+                    <h3>ทุกสิ่งเชื่อมโยงกัน</h3>
+                    <p>บทเรียนจากด้านหนึ่งจะนำไปใช้กับอีกด้านได้เสมอ ไม่มีทักษะไหนที่เสียเปล่า "Everything comes into play eventually"</p>
+                </div>
+                
+                <div class="takeaway-card">
+                    <div class="takeaway-number">4</div>
+                    <h3>เริ่มจาก Metaskills</h3>
+                    <p>พัฒนาทักษะรากฐานก่อน: สุขภาพ, สมาธิ, การสื่อสาร, การคิดวิเคราะห์ - เหล่านี้จะเป็น "ตัวคูณ" ให้ทุกทักษะอื่น</p>
+                </div>
+                
+                <div class="takeaway-card">
+                    <div class="takeaway-number">5</div>
+                    <h3>1 ชั่วโมงต่อวันเพียงพอ</h3>
+                    <p>คุณไม่ต้องใช้เวลามากมายในการพัฒนาทักษะใหม่ แค่สม่ำเสมอ 1 ชั่วโมงต่อวันก็ทำให้คุณดีกว่าคนส่วนใหญ่</p>
+                </div>
+                
+                <div class="takeaway-card">
+                    <div class="takeaway-number">6</div>
+                    <h3>จำกัดเพื่อพัฒนา</h3>
+                    <p>บางครั้งการจำกัดจุดแข็งจะบังคับให้คุณพัฒนาส่วนอื่น Strategic restriction คือเครื่องมือทรงพลัง</p>
+                </div>
+                
+                <div class="takeaway-card">
+                    <div class="takeaway-number">7</div>
+                    <h3>คุณค่า > ตำแหน่ง</h3>
+                    <p>อย่าสนใจว่าจะเป็น "อะไร" ให้สนใจว่าจะ "สร้างคุณค่าอะไร" ให้คนอื่น เมื่อคุณมีคุณค่า เงินและความสำเร็จจะตามมา</p>
+                </div>
+                
+                <div class="takeaway-card">
+                    <div class="takeaway-number">8</div>
+                    <h3>มุมมองคือทุกสิ่ง</h3>
+                    <p>"Life is best with a sense of perspective" - อย่าจริงจังกับตัวเองมากเกินไป เรียนรู้, พัฒนา, แต่ก็สนุกกับกระบวนการ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quotes Section -->
+    <section id="quotes">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">08 / TEACHABLE QUOTES</span>
+                <h2 class="section-title">คำคมที่เอาไปสอนต่อได้</h2>
+                <p class="section-subtitle">ข้อความทรงพลังที่คุณสามารถแชร์และใช้สอนคนอื่น</p>
+            </div>
+            
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <div class="quote-icon">💎</div>
+                    <p class="quote-text">"ทักษะที่รวมกัน มีพลังมากกว่าทักษะเดี่ยวๆ แม้จะไม่ได้พัฒนาเต็มที่"</p>
+                    <div class="quote-usage">
+                        <strong>ใช้เมื่อ:</strong> มีคนบอกว่า "ฉันไม่เก่งอะไรสักอย่าง" ให้เขาเห็นว่าการรวมหลายทักษะมีคุณค่า
+                    </div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-icon">🎯</div>
+                    <p class="quote-text">"ไม่ใช่การฆ่าตัวเองเพื่อเป็นที่สุด แต่คือการต่อจิ๊กซอว์ พัฒนาสิ่งที่ต้องพัฒนา และสร้างคุณค่าที่ไม่มีใครเหมือน"</p>
+                    <div class="quote-usage">
+                        <strong>ใช้เมื่อ:</strong> มีคนรู้สึกหมดแรงจากการไล่ความสมบูรณ์แบบ
+                    </div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-icon">🔥</div>
+                    <p class="quote-text">"80% คือจุดที่คุ้มค่าที่สุด 20% สุดท้ายใช้ความพยายาม 80% แต่ให้ผลตอบแทนน้อย"</p>
+                    <div class="quote-usage">
+                        <strong>ใช้เมื่อ:</strong> มีคนติดอยู่กับ Perfectionism หรือใช้เวลานานกับรายละเอียดเล็กๆ
+                    </div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-icon">🌟</div>
+                    <p class="quote-text">"Specialist สร้างความทุกข์ไว้ในระบบ เพราะความสำเร็จขึ้นอยู่กับการเปรียบเทียบกับคนอื่น"</p>
+                    <div class="quote-usage">
+                        <strong>ใช้เมื่อ:</strong> อธิบายว่าทำไม Generalism ดีกว่าสำหรับความสุขระยะยาว
+                    </div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-icon">🧩</div>
+                    <p class="quote-text">"ทุกสิ่งเชื่อมโยงกัน และทุกสิ่งจะถูกนำมาใช้ในที่สุด อย่าทิ้งอะไรไป"</p>
+                    <div class="quote-usage">
+                        <strong>ใช้เมื่อ:</strong> มีคนรู้สึกว่าสิ่งที่เรียนมาไม่มีประโยชน์
+                    </div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-icon">⚡</div>
+                    <p class="quote-text">"Generalist ที่ดีคือ Specialist ระยะสั้น - โฟกัส 1-2 อย่าง จนถึง 80% แล้วเดินหน้าต่อ"</p>
+                    <div class="quote-usage">
+                        <strong>ใช้เมื่อ:</strong> สอนเรื่องการบริหารเวลาและการเรียนรู้อย่างมีประสิทธิภาพ
+                    </div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-icon">🏆</div>
+                    <p class="quote-text">"คุณไม่ต้องเป็นที่หนึ่งในสิ่งใด แค่เป็น 'คนเดียว' ที่มีชุดทักษะแบบนี้"</p>
+                    <div class="quote-usage">
+                        <strong>ใช้เมื่อ:</strong> สร้างแรงบันดาลใจให้คนที่รู้สึกว่าตัวเอง "ธรรมดา"
+                    </div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-icon">🌈</div>
+                    <p class="quote-text">"ชีวิตดีที่สุดเมื่อมีมุมมอง - เรียนรู้ พัฒนา แต่ก็สนุกกับกระบวนการ"</p>
+                    <div class="quote-usage">
+                        <strong>ใช้เมื่อ:</strong> ปิดท้ายการสอน หรือให้กำลังใจคนที่เครียดกับการพัฒนาตัวเอง
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Plan Section -->
+    <section id="action">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">09 / ACTION PLAN</span>
+                <h2 class="section-title">แผนปฏิบัติ 30 วัน</h2>
+                <p class="section-subtitle">เริ่มต้นเส้นทางสู่ Expert Generalist วันนี้</p>
+            </div>
+            
+            <div class="action-timeline">
+                <div class="action-item">
+                    <div class="action-marker">
+                        <span class="day">1-7</span>
+                        <span>วัน</span>
+                    </div>
+                    <div class="action-content">
+                        <h3>สัปดาห์ที่ 1: สำรวจตัวเอง</h3>
+                        <ul class="action-tasks">
+                            <li>ลิสต์ทักษะทั้งหมดที่มี (ไม่ว่าจะเก่งแค่ไหน)</li>
+                            <li>ระบุ Metaskills ที่ต้องพัฒนา</li>
+                            <li>กำหนดเป้าหมาย 6 เดือนข้างหน้า</li>
+                            <li>เลือก 1 ทักษะที่จะโฟกัสก่อน</li>
+                            <li>หา resources และ mentor สำหรับทักษะนั้น</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="action-item">
+                    <div class="action-marker">
+                        <span class="day">8-14</span>
+                        <span>วัน</span>
+                    </div>
+                    <div class="action-content">
+                        <h3>สัปดาห์ที่ 2: สร้างกิจวัตร</h3>
+                        <ul class="action-tasks">
+                            <li>กำหนดเวลา 1 ชั่วโมง/วัน สำหรับการฝึกทักษะ</li>
+                            <li>เริ่มทำสมาธิ 5-10 นาที/วัน</li>
+                            <li>ออกกำลังกายอย่างน้อย 3 ครั้ง/สัปดาห์</li>
+                            <li>เขียน Journal สิ่งที่เรียนรู้ทุกวัน</li>
+                            <li>ฝึก Deliberate Practice ไม่ใช่แค่ทำซ้ำ</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="action-item">
+                    <div class="action-marker">
+                        <span class="day">15-21</span>
+                        <span>วัน</span>
+                    </div>
+                    <div class="action-content">
+                        <h3>สัปดาห์ที่ 3: เพิ่มความท้าทาย</h3>
+                        <ul class="action-tasks">
+                            <li>ใช้ Strategic Restriction - จำกัดบางอย่างเพื่อพัฒนาส่วนอื่น</li>
+                            <li>ลองทำ Strategic Overreach สัปดาห์ละครั้ง</li>
+                            <li>เริ่ม Integrate ทักษะใหม่กับทักษะเดิม</li>
+                            <li>แชร์สิ่งที่เรียนรู้กับคนอื่น (Learn by Teaching)</li>
+                            <li>วัดความก้าวหน้าและปรับแผน</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="action-item">
+                    <div class="action-marker">
+                        <span class="day">22-30</span>
+                        <span>วัน</span>
+                    </div>
+                    <div class="action-content">
+                        <h3>สัปดาห์ที่ 4: ประเมินและวางแผนต่อ</h3>
+                        <ul class="action-tasks">
+                            <li>ประเมินความก้าวหน้า: ถึง 80% ของเป้าหมายแรกหรือยัง?</li>
+                            <li>ถ้าใกล้ 80% - เตรียมเลือกทักษะถัดไป</li>
+                            <li>ถ้ายังไม่ถึง - ปรับแผนและเพิ่มความเข้มข้น</li>
+                            <li>คิดว่าจะ Stack ทักษะอย่างไร</li>
+                            <li>วางแผน 90 วันถัดไป</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">Be Better at <span>Almost Everything</span></div>
+        <p>หนังสือ: How to Be Better at Almost Everything</p>
+        <p>ผู้เขียน: Pat Flynn | สำนักพิมพ์: BenBella Books | ปี: 2019</p>
+        <div class="footer-credit">
+            สรุปและจัดทำโดย <strong>Tomz</strong><br>
+            เพื่อการเรียนรู้และแบ่งปันความรู้
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate progress bars on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 0.6s ease forwards';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.principle-card, .metaskill-card, .takeaway-card, .quote-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Progress bar animation
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const fill = entry.target.querySelector('.progress-fill');
+                    if (fill) {
+                        fill.style.width = fill.classList.contains('optimal') ? '80%' : '100%';
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.progress-bar-container').forEach(el => {
+            progressObserver.observe(el);
+        });
+    </script>
+</body>
+</html>
