@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools of Titans: เครื่องมือของยอดคน - สรุปแบบครบถ้วน</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Profit First Color Scheme */
+            --profit-green: #00A859;
+            --profit-dark: #1A1A1A;
+            --profit-gold: #F7B844;
+            --profit-blue: #2C5F88;
+            --profit-teal: #00B4A8;
+            --profit-orange: #FF6B35;
+            
+            /* Neutral Colors */
+            --white: #FFFFFF;
+            --bg-light: #F8F9FA;
+            --bg-gray: #E9ECEF;
+            --text-primary: #212529;
+            --text-secondary: #495057;
+            --text-muted: #6C757D;
+            --border-color: #DEE2E6;
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.8;
+            color: var(--text-primary);
+            background: #F0F2F5;
+            padding: 0;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--white);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        header {
+            background: var(--profit-green);
+            color: white;
+            padding: 60px 50px;
+            text-align: center;
+            position: relative;
+            border-bottom: 8px solid var(--profit-dark);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--profit-gold);
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.3em;
+            font-weight: 600;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        .author {
+            margin-top: 20px;
+            font-size: 1em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            border-top: 2px solid rgba(255,255,255,0.3);
+            padding-top: 20px;
+            display: inline-block;
+        }
+
+        .nav-pills {
+            background: var(--white);
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-bottom: 4px solid var(--profit-green);
+        }
+
+        .nav-pill {
+            padding: 18px 24px;
+            background: var(--white);
+            border: none;
+            border-bottom: 4px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        .nav-pill:hover {
+            background: var(--bg-light);
+            color: var(--profit-green);
+            border-bottom-color: var(--profit-green);
+        }
+
+        .content {
+            padding: 50px;
+            background: var(--bg-light);
+        }
+
+        .intro-section {
+            background: var(--white);
+            padding: 50px;
+            margin-bottom: 40px;
+            border: 3px solid var(--profit-green);
+            border-left-width: 12px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .intro-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            font-weight: 800;
+            color: var(--profit-green);
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .intro-section p {
+            font-size: 1.1em;
+            line-height: 1.9;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .intro-section p strong {
+            color: var(--profit-green);
+            font-weight: 700;
+        }
+
+        .three-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .pillar-card {
+            background: var(--white);
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 2px solid var(--border-color);
+            border-top: 8px solid;
+            position: relative;
+        }
+
+        .pillar-card:nth-child(1) { 
+            border-top-color: var(--profit-orange);
+        }
+        .pillar-card:nth-child(2) { 
+            border-top-color: var(--profit-gold);
+        }
+        .pillar-card:nth-child(3) { 
+            border-top-color: var(--profit-blue);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--profit-green);
+        }
+
+        .pillar-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: var(--profit-dark);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .pillar-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .pillar-card p strong {
+            color: var(--profit-dark);
+            font-weight: 700;
+        }
+
+        .titan-section {
+            margin: 50px 0;
+            padding: 0;
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            position: relative;
+            border: 2px solid var(--border-color);
+            border-left: 10px solid var(--profit-green);
+        }
+
+        .titan-section:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .titan-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding: 40px;
+            background: var(--bg-light);
+            border-bottom: 3px solid var(--profit-green);
+        }
+
+        .titan-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4em;
+            font-weight: 900;
+            color: var(--profit-green);
+            min-width: 80px;
+            line-height: 1;
+        }
+
+        .titan-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2em;
+            color: var(--profit-dark);
+            margin-bottom: 8px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .titan-subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .quote-box {
+            background: var(--profit-green);
+            color: white;
+            padding: 35px 45px;
+            margin: 30px 40px;
+            font-size: 1.3em;
+            font-style: italic;
+            position: relative;
+            box-shadow: var(--shadow-md);
+            border-left: 6px solid var(--profit-gold);
+            line-height: 1.8;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5em;
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            opacity: 0.2;
+            font-style: normal;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .quote-box small {
+            display: block;
+            margin-top: 15px;
+            font-size: 0.8em;
+            font-style: normal;
+            opacity: 0.95;
+        }
+
+        .section-content {
+            padding: 40px;
+            font-size: 1.05em;
+            line-height: 1.9;
+            color: var(--text-primary);
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+        }
+
+        .section-content strong {
+            font-weight: 700;
+            color: var(--profit-green);
+        }
+
+        .section-content em {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .key-concepts {
+            background: var(--white);
+            padding: 35px 40px;
+            margin: 30px 40px;
+            border: 2px solid var(--profit-gold);
+            border-left-width: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .key-concepts h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--profit-dark);
+            font-size: 1.5em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .key-concepts h3::before {
+            content: "💡";
+            font-size: 1.2em;
+        }
+
+        .concept-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .concept-list li {
+            padding: 18px 18px 18px 50px;
+            margin: 12px 0;
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--profit-gold);
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .concept-list li:hover {
+            border-left-width: 6px;
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .concept-list li::before {
+            content: "▶";
+            position: absolute;
+            left: 20px;
+            color: var(--profit-gold);
+            font-weight: bold;
+            font-size: 0.8em;
+        }
+
+        .concept-list li strong {
+            color: var(--profit-green);
+            font-weight: 700;
+        }
+
+        .example-box {
+            background: var(--white);
+            padding: 35px 40px;
+            margin: 30px 40px;
+            border: 2px solid var(--profit-teal);
+            border-left-width: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .example-box h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--profit-dark);
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .example-box h4::before {
+            content: "📌";
+            font-size: 1.2em;
+        }
+
+        .practice-box {
+            background: var(--white);
+            padding: 35px 40px;
+            margin: 30px 40px;
+            border: 2px solid var(--profit-blue);
+            border-left-width: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .practice-box h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--profit-dark);
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .practice-box h4::before {
+            content: "🎯";
+            font-size: 1.2em;
+        }
+
+        .example-box ol,
+        .practice-box ol,
+        .example-box ul,
+        .practice-box ul {
+            margin-left: 24px;
+            margin-top: 16px;
+        }
+
+        .example-box li,
+        .practice-box li {
+            margin: 12px 0;
+            line-height: 1.8;
+        }
+
+        .takeaway-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 40px;
+        }
+
+        .takeaway-card {
+            background: var(--white);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--border-color);
+            border-top: 6px solid var(--profit-green);
+            transition: all 0.3s ease;
+        }
+
+        .takeaway-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-top-color: var(--profit-gold);
+        }
+
+        .takeaway-card h5 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--profit-green);
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .takeaway-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.95em;
+        }
+
+        .wisdom-quotes {
+            background: var(--profit-dark);
+            padding: 50px;
+            margin: 50px 0;
+            color: white;
+            box-shadow: var(--shadow-lg);
+            border-top: 8px solid var(--profit-green);
+            border-bottom: 8px solid var(--profit-gold);
+        }
+
+        .wisdom-quotes h2 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 45px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .quote-item {
+            background: var(--white);
+            padding: 25px 30px;
+            margin: 20px 0;
+            border: 1px solid var(--border-color);
+            border-left: 6px solid var(--profit-gold);
+            transition: all 0.3s ease;
+        }
+
+        .quote-item:hover {
+            border-left-width: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .quote-item .quote-text {
+            font-size: 1.15em;
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        .quote-item .quote-author {
+            text-align: right;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--profit-green);
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 30px 40px;
+            background: var(--white);
+            border: 2px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .comparison-table th {
+            background: var(--profit-green);
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .comparison-table td {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .comparison-table td strong {
+            color: var(--profit-dark);
+            font-weight: 700;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover {
+            background: var(--bg-light);
+        }
+
+        .mindset-framework {
+            background: var(--white);
+            padding: 40px;
+            margin: 30px 40px;
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--profit-blue);
+            border-top-width: 8px;
+        }
+
+        .mindset-framework h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--profit-dark);
+            font-size: 1.6em;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .framework-steps {
+            counter-reset: step-counter;
+            list-style: none;
+        }
+
+        .framework-steps li {
+            position: relative;
+            padding: 20px 20px 20px 75px;
+            margin: 15px 0;
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--profit-green);
+            counter-increment: step-counter;
+            transition: all 0.2s ease;
+        }
+
+        .framework-steps li:hover {
+            background: var(--white);
+            border-left-width: 6px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .framework-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--profit-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.2em;
+        }
+
+        .framework-steps li strong {
+            color: var(--profit-green);
+            font-weight: 700;
+        }
+
+        .conclusion-section {
+            background: var(--profit-dark);
+            color: white;
+            padding: 60px 50px;
+            margin: 50px 0;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            border-top: 8px solid var(--profit-green);
+            border-bottom: 8px solid var(--profit-gold);
+        }
+
+        .conclusion-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8em;
+            margin-bottom: 35px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .conclusion-section p {
+            font-size: 1.15em;
+            line-height: 1.9;
+            margin: 20px auto;
+            max-width: 900px;
+            opacity: 0.95;
+        }
+
+        footer {
+            background: var(--profit-green);
+            color: white;
+            text-align: center;
+            padding: 35px;
+            font-size: 1em;
+            border-top: 4px solid var(--profit-gold);
+        }
+
+        footer p {
+            margin: 6px 0;
+            font-weight: 600;
+        }
+
+        .leverage-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 40px;
+        }
+
+        .leverage-card {
+            background: var(--white);
+            color: var(--text-primary);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            border: 2px solid var(--border-color);
+            border-top: 6px solid var(--profit-teal);
+            transition: all 0.3s ease;
+        }
+
+        .leverage-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-top-color: var(--profit-green);
+        }
+
+        .leverage-card h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 800;
+            color: var(--profit-green);
+            text-transform: uppercase;
+        }
+
+        .leverage-card p {
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .highlight {
+            background: var(--profit-gold);
+            padding: 3px 10px;
+            font-weight: 700;
+            color: var(--profit-dark);
+            border-bottom: 2px solid var(--profit-dark);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            .subtitle { font-size: 1.1em; }
+            .content { padding: 30px 20px; }
+            .section-content { padding: 25px 20px; }
+            .nav-pills { padding: 0; }
+            .nav-pill { padding: 14px 16px; font-size: 0.75em; }
+            header { padding: 40px 25px; }
+            .titan-number { font-size: 3em; }
+            .titan-title h2 { font-size: 1.6em; }
+            .titan-header { padding: 25px 20px; }
+            .key-concepts, .example-box, .practice-box { margin: 20px; padding: 25px; }
+            .takeaway-grid { margin: 20px; }
+            .comparison-table { margin: 20px; }
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background: var(--profit-green);
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+            font-size: 1.5em;
+            font-weight: bold;
+            border: 2px solid var(--profit-gold);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--profit-dark);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 168, 89, 0.4);
+        }
+
+        ::selection {
+            background: var(--profit-green);
+            color: white;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--profit-green);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--profit-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏆 Tools of Titans</h1>
+            <div class="subtitle">เครื่องมือของยอดคน: บทเรียนจากผู้เชี่ยวชาญกว่า 100 คน</div>
+            <div class="author">โดย Tim Ferriss | สรุปโดย Tomz</div>
+        </header>
+
+        <div class="nav-pills">
+            <a href="#intro" class="nav-pill">เกริ่นนำ</a>
+            <a href="#pillars" class="nav-pill">3 เสาหลัก</a>
+            <a href="#arnold" class="nav-pill">Arnold</a>
+            <a href="#andreessen" class="nav-pill">Andreessen</a>
+            <a href="#robbins" class="nav-pill">Robbins</a>
+            <a href="#jocko" class="nav-pill">Jocko</a>
+            <a href="#sacca" class="nav-pill">Sacca</a>
+            <a href="#thiel" class="nav-pill">Thiel</a>
+            <a href="#hoffman" class="nav-pill">Hoffman</a>
+            <a href="#naval" class="nav-pill">Naval</a>
+            <a href="#harris" class="nav-pill">Harris</a>
+            <a href="#quotes" class="nav-pill">คำคมเด็ด</a>
+            <a href="#conclusion" class="nav-pill">สรุป</a>
+        </div>
+
+        <div class="content">
+            <div id="intro" class="intro-section">
+                <h2>📖 เกี่ยวกับหนังสือเล่มนี้</h2>
+                <p style="font-size: 1.2em; line-height: 1.9;">
+                    <strong>Tools of Titans</strong> คือสมุดรวมเคล็ดลับจาก "Avengers ในชีวิตจริง" ที่ Tim Ferriss รวบรวมบทเรียนจากผู้เชี่ยวชาญกว่า 100 คนในสาขาต่างๆ ตั้งแต่นักลงทุนพันล้าน นักกีฬาโอลิมปิก พระเซน ไปจนถึงผู้ประกอบการที่ประสบความสำเร็จสูงสุด
+                </p>
+                <p style="font-size: 1.1em; margin-top: 20px;">
+                    หนังสือเล่มนี้ไม่ใช่แค่การสรุปบทสัมภาษณ์ แต่เป็น <span class="highlight">คู่มือปฏิบัติการ</span> ที่สกัดเครื่องมือ กลยุทธ์ และปรัชญาที่ใช้ได้จริงในชีวิตประจำวัน ไม่ว่าจะเป็นการสร้างธุรกิจ การพัฒนาตนเอง หรือการหาความสงบทางใจ
+                </p>
+            </div>
+
+            <div id="pillars" class="three-pillars">
+                <div class="pillar-card">
+                    <h3>💪 HEALTHY</h3>
+                    <p><strong>สุขภาพ:</strong> พลังงานและวินัยในร่างกาย</p>
+                    <p>ว่าด้วยการออกกำลังกาย การนอน การกิน และเทคนิค "hack สมอง" เพื่อทำงานอย่างมีไฟโดยหัวไม่ไหม้</p>
+                    <p style="margin-top: 15px; color: #FF6B35;"><strong>ตัวอย่างบุคคล:</strong> Arnold Schwarzenegger, Wim Hof, Jocko Willink</p>
+                </div>
+
+                <div class="pillar-card">
+                    <h3>💰 WEALTHY</h3>
+                    <p><strong>ความมั่งคั่ง:</strong> สนามของนักคิดสายเงิน</p>
+                    <p>ไม่ได้พูดถึงการ "หาเงิน" แต่พูดถึงการออกแบบเวลา เสี่ยงอย่างฉลาด และใช้เลเวอเรจให้ชีวิตทำงานแทนแรง</p>
+                    <p style="margin-top: 15px; color: #F7B844;"><strong>ตัวอย่างบุคคล:</strong> Marc Andreessen, Naval Ravikant, Peter Thiel, Chris Sacca</p>
+                </div>
+
+                <div class="pillar-card">
+                    <h3>🧘 WISE</h3>
+                    <p><strong>ปัญญา:</strong> รางวัลของการอยู่รอดหลังความสำเร็จ</p>
+                    <p>ไม่สอนให้ "ทำมากขึ้น" แต่สอนให้ "เห็นมากขึ้น" ผ่านการเจริญสติ การคิดเชิงลึก และการเข้าใจตนเอง</p>
+                    <p style="margin-top: 15px; color: #2C5F88;"><strong>ตัวอย่างบุคคล:</strong> Sam Harris, Maria Popova, Kevin Kelly, BJ Miller</p>
+                </div>
+            </div>
+
+            <!-- Arnold Schwarzenegger -->
+            <div id="arnold" class="titan-section">
+                <div class="titan-header">
+                    <div class="titan-number">01</div>
+                    <div class="titan-title">
+                        <h2>Arnold Schwarzenegger</h2>
+                        <div class="titan-subtitle">ปรัชญาแห่งความทะเยอทะยานที่มีโครงสร้าง</div>
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    "You can't climb the ladder of success with your hands in your pockets."<br>
+                    <small style="opacity: 0.9;">- คุณไต่บันไดแห่งความสำเร็จไม่ได้ ถ้ายังเอามือใส่กระเป๋าอยู่</small>
+                </div>
+
+                <div class="section-content">
+                    <p>
+                        Arnold Schwarzenegger ไม่เคยเป็นเพียงนักเพาะกาย แต่เป็น <strong>สถาปนิกแห่งความฝัน</strong> ที่ลงมือสร้างมันทีละชั้น เขาเติบโตในหมู่บ้านเล็กๆ ในออสเตรียท่ามกลางยุคหลังสงครามที่เต็มไปด้วยความฝืดเคือง แต่อาร์โนลด์ไม่ได้มองความยากจนเป็นข้อจำกัด เขามองมันเป็น "วัสดุก่อสร้างของความมุ่งมั่น"
+                    </p>
+
+                    <p>
+                        เมื่อเห็นภาพนักเพาะกายในนิตยสารอเมริกันครั้งแรก เขาไม่ได้แค่ "อยากเป็น" แต่กำหนดทันทีว่า <strong>"จะเป็น"</strong> และที่สำคัญ เขาเขียนมันลงบนกระดาษ เขากำหนดตารางฝึกทุกชั่วโมง นับทุกแคลอรีเหมือนวิศวกรนับเหล็กในโครงสร้างอาคาร
+                    </p>
+                </div>
+
+                <div class="key-concepts">
+                    <h3>หลักการสำคัญของ Arnold</h3>
+                    <ul class="concept-list">
+                        <li><strong>Vision Creates Discipline:</strong> เมื่อภาพชัดเจน คุณไม่ต้องพึ่งแรงบันดาลใจ แค่ทำตาม blueprint</li>
+                        <li><strong>Progressive Overload:</strong> เพิ่มภาระทีละน้อยอย่างต่อเนื่อง แต่ไม่เกินขีดจำกัด ใช้ได้ทั้งกับร่างกายและชีวิต</li>
+                        <li><strong>Systems Over Motivation:</strong> สร้างระบบที่ทำให้ความสำเร็จเกิดขึ้นโดยธรรมชาติ ไม่ใช่รอแรงบันดาลใจ</li>
+                        <li><strong>Design Your Drive:</strong> ออกแบบแรงผลักให้กลายเป็นกลไก ไม่ใช่อารมณ์</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>ตัวอย่างการนำไปใช้</h4>
+                    <p><strong>สถานการณ์:</strong> คุณต้องการเปลี่ยนอาชีพหรือสร้างธุรกิจใหม่</p>
+                    <p><strong>วิธีคิดแบบ Arnold:</strong></p>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li>เขียนภาพความสำเร็จให้ชัดเจน (เขาเห็นตัวเองยืนบนเวที Mr. Olympia ก่อนจะถึงอเมริกา)</li>
+                        <li>ทำให้มันเป็นตัวเลขที่วัดได้ (จำนวนเงิน, เวลา, กล้ามเนื้อ, ลูกค้า)</li>
+                        <li>สร้างระบบรายวันที่หลีกเลี่ยงไม่ได้ (ฝึกเวลาเดียวกัน, นอนเวลาเดียวกัน)</li>
+                        <li>ไม่รอให้รู้สึกพร้อม แต่ทำให้การทำกลายเป็นนิสัย</li>
+                    </ol>
+                </div>
+
+                <div class="practice-box">
+                    <h4>แบบฝึกหัดที่นำไปปฏิบัติได้ทันที</h4>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>เขียน Blueprint 90 วัน:</strong> กำหนดเป้าหมาย 1 อย่างที่ชัดเจน แบ่งเป็น milestone รายเดือน และ action รายวัน</li>
+                        <li><strong>สร้างตารางที่เหมือนกันทุกวัน:</strong> ตื่นเวลาเดิม, ทำงานเวลาเดิม, พักเวลาเดิม เพื่อไม่ต้องใช้พลังใจตัดสินใจ</li>
+                        <li><strong>วัดทุกอย่างที่สำคัญ:</strong> เหมือน Arnold นับแคลอรี คุณควรนับตัวเลขที่สำคัญกับเป้าหมาย (เวลาทำงาน, รายได้, ผลงาน)</li>
+                        <li><strong>ถามตัวเองทุกวัน:</strong> "วันนี้ฉันทำอะไรที่ทำให้เป้าหมาย 90 วันหลีกเลี่ยงไม่ได้?"</li>
+                    </ol>
+                </div>
+
+                <div class="takeaway-grid">
+                    <div class="takeaway-card">
+                        <h5>🎯 Key Takeaway #1</h5>
+                        <p>ความฝันจะสำเร็จได้ต่อเมื่อคุณแปลงมันให้เป็น "โปรเจกต์วิศวกรรม" ที่คำนวณได้</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <h5>💪 Key Takeaway #2</h5>
+                        <p>ความสำเร็จไม่ใช่เรื่องของการทำให้ดีที่สุดวันหนึ่ง แต่อยู่ที่การทำได้เหมือนเดิมทุกวัน</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <h5>🏗️ Key Takeaway #3</h5>
+                        <p>เมื่อถึงจุดสูงสุดในสนามหนึ่ง ให้สร้างบันไดใหม่ในสนามอื่น (นักเพาะกาย → นักแสดง → นักการเมือง)</p>
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    "Strength doesn't come from winning. It comes from your struggles. When you go through hardships and decide not to surrender, that is strength."
+                </div>
+            </div>
+
+            <!-- Marc Andreessen -->
+            <div id="andreessen" class="titan-section">
+                <div class="titan-header">
+                    <div class="titan-number">02</div>
+                    <div class="titan-title">
+                        <h2>Marc Andreessen</h2>
+                        <div class="titan-subtitle">ปรัชญาแห่งเลเวอเรจและการทวีพลัง</div>
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    "You don't get rich renting out your time. You get rich by owning something that scales."<br>
+                    <small style="opacity: 0.9;">- คุณรวยไม่ได้ด้วยการขายเวลา แต่ด้วยการเป็นเจ้าของสิ่งที่ขยายตัวได้</small>
+                </div>
+
+                <div class="section-content">
+                    <p>
+                        หาก Arnold คือสัญลักษณ์ของพลังที่สร้างจากกล้ามเนื้อ <strong>Marc Andreessen</strong> คือสัญลักษณ์ของพลังที่สร้างจากสมการ เขาเป็นคนที่ทำให้คำว่า <strong>Leverage</strong> กลายเป็นแก่นกลางของยุคดิจิทัล
+                    </p>
+
+                    <p>
+                        ตั้งแต่เขาสร้างเบราว์เซอร์ Netscape ที่เปลี่ยนอินเทอร์เน็ตให้เข้าถึงได้ทั่วโลก ไปจนถึงการก่อตั้งบริษัทลงทุน Andreessen Horowitz (a16z) ที่กลายเป็นแรงขับหลังบ้านของซิลิคอนวัลเลย์ เขามองโลกผ่านมุมที่ไม่เหมือนใคร
+                    </p>
+
+                    <p>
+                        Andreessen ไม่มองเงินเป็นจุดหมาย แต่เป็น <strong>"เครื่องทดสอบประสิทธิภาพของระบบ"</strong> เขากล่าวว่า "If your system works, wealth is the residue — it's a by-product, not the goal."
+                    </p>
+                </div>
+
+                <div class="key-concepts">
+                    <h3>แนวคิดหลักของ Andreessen</h3>
+                    <ul class="concept-list">
+                        <li><strong>Leverage = แรงคูณ:</strong> พลังใดๆ ที่ทำให้คุณสามารถขยายผลโดยไม่ต้องเพิ่มแรง คือเลเวอเรจ</li>
+                        <li><strong>Compound Learning Advantage:</strong> การเรียนรู้ที่ทบต้นเหมือนดอกเบี้ย ทุกบทเรียนเก่ากลายเป็นพลังคูณให้กับบทเรียนใหม่</li>
+                        <li><strong>Don't Compete, Build Monopoly:</strong> อย่าแข่งขันในสนามคนอื่น สร้างโลกใหม่ที่คุณกำหนดกติกา</li>
+                        <li><strong>Engineering Luck:</strong> สร้างระบบที่ทำให้โอกาสดีมีโอกาสเกิดขึ้นซ้ำได้โดยไม่ต้องพึ่งดวง</li>
+                    </ul>
+                </div>
+
+                <div class="leverage-types">
+                    <div class="leverage-card">
+                        <h5>👥 Leverage of Labor</h5>
+                        <p>คนอื่นทำงานแทนคุณ</p>
+                        <p style="font-size: 0.9em; margin-top: 10px;">ตัวอย่าง: จ้างพนักงาน, ทีม, outsource</p>
+                    </div>
+                    <div class="leverage-card">
+                        <h5>💵 Leverage of Capital</h5>
+                        <p>เงินทำงานแทนคุณ</p>
+                        <p style="font-size: 0.9em; margin-top: 10px;">ตัวอย่าง: ลงทุน, ให้เงินกู้, venture capital</p>
+                    </div>
+                    <div class="leverage-card">
+                        <h5>💻 Leverage of Code & Media</h5>
+                        <p>เครื่องจักรและคอนเทนต์ทำงานแทนคุณ</p>
+                        <p style="font-size: 0.9em; margin-top: 10px;">ตัวอย่าง: ซอฟต์แวร์, YouTube, หนังสือ, podcast</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>ตัวอย่างการคิดแบบเลเวอเรจ</h4>
+                    <p><strong>แบบเดิม (Linear Thinking):</strong></p>
+                    <p>ทำงาน 8 ชั่วโมง → ได้เงิน X บาท<br>
+                    ทำงาน 16 ชั่วโมง → ได้เงิน 2X บาท<br>
+                    <em>ปัญหา: เวลามีจำกัด ไม่สามารถทำงาน 24 ชั่วโมงได้</em></p>
+                    
+                    <p style="margin-top: 20px;"><strong>แบบใหม่ (Leverage Thinking):</strong></p>
+                    <p>สร้างระบบ/ซอฟต์แวร์ครั้งเดียว → ทำงาน 24/7 โดยอัตโนมัติ<br>
+                    เขียนหนังสือครั้งเดียว → ขายได้ตลอด 10 ปี<br>
+                    สร้างทีมที่แข็งแกร่ง → คูณกำลังคนได้ไม่จำกัด</p>
+                </div>
+
+                <div class="practice-box">
+                    <h4>วิธีสร้างเลเวอเรจในชีวิต</h4>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>ถามตัวเองทุกสัปดาห์:</strong> "อะไรที่ฉันทำครั้งเดียวแล้วได้ผลหลายครั้ง?" (เขียนบทความ, สร้างเทมเพลต, ทำ SOP)</li>
+                        <li><strong>เลิกขายเวลา:</strong> แทนที่จะทำงาน freelance รายชั่วโมง ให้สร้างผลิตภัณฑ์หรือบริการที่ขายได้ซ้ำ</li>
+                        <li><strong>สร้างระบบ:</strong> เขียนขั้นตอนการทำงานที่ซ้ำๆ ให้เป็น checklist หรือ automation</li>
+                        <li><strong>เรียนรู้ให้เร็ว:</strong> ใช้เวลา 20% เรียนรู้ใหม่ๆ อย่างต่อเนื่อง เพราะ "ทุกความผิดพลาดคือเงินฝากในบัญชีปัญญา"</li>
+                        <li><strong>สร้างเนื้อหา:</strong> เขียนบล็อก, ทำ YouTube, podcast เพื่อให้ความรู้ของคุณทำงานตลอด 24 ชั่วโมง</li>
+                    </ol>
+                </div>
+
+                <div class="mindset-framework">
+                    <h4>🧠 กรอบความคิดเรื่องเลเวอเรจ</h4>
+                    <ol class="framework-steps">
+                        <li><strong>Identify:</strong> งานไหนที่คุณทำซ้ำๆ บ่อยที่สุด?</li>
+                        <li><strong>Document:</strong> เขียนขั้นตอนให้ละเอียด</li>
+                        <li><strong>Automate or Delegate:</strong> ใช้เทคโนโลยีทำให้อัตโนมัติ หรือมอบให้คนอื่นทำ</li>
+                        <li><strong>Scale:</strong> ทำให้ระบบขยายตัวได้โดยไม่ต้องเพิ่มความพยายาม</li>
+                        <li><strong>Compound:</strong> ใช้ผลลัพธ์เป็นพื้นฐานสร้างเลเวอเรจใหม่</li>
+                    </ol>
+                </div>
+
+                <div class="quote-box">
+                    "Software is eating the world — not because it's magical, but because it scales infinitely at zero marginal cost."<br>
+                    <small style="opacity: 0.9;">- ซอฟต์แวร์กำลังกินโลก ไม่ใช่เพราะมันวิเศษ แต่เพราะมันขยายตัวได้ไม่จำกัดโดยต้นทุนเพิ่มเป็นศูนย์</small>
+                </div>
+
+                <div class="takeaway-grid">
+                    <div class="takeaway-card">
+                        <h5>💡 Key Takeaway #1</h5>
+                        <p>ความมั่งคั่งในศตวรรษที่ 21 = ความสามารถในการ disconnect เวลาออกจากผลลัพธ์</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <h5>📈 Key Takeaway #2</h5>
+                        <p>ความแตกต่างระหว่างคนรวยกับคนจนในยุคดิจิทัล คือ "Leverage Literacy" ความรู้เรื่องเลเวอเรจ</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <h5>🎓 Key Takeaway #3</h5>
+                        <p>คนที่เรียนรู้เร็วจะชนะ เพราะทุกบทเรียนกลายเป็นพลังคูณให้กับบทเรียนถัดไป</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tony Robbins -->
+            <div id="robbins" class="titan-section">
+                <div class="titan-header">
+                    <div class="titan-number">03</div>
+                    <div class="titan-title">
+                        <h2>Tony Robbins</h2>
+                        <div class="titan-subtitle">ปรัชญาแห่งพลังงานและอิสรภาพทางอารมณ์</div>
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    "The quality of your life is the quality of your emotions."<br>
+                    <small style="opacity: 0.9;">- คุณภาพชีวิตคือคุณภาพของอารมณ์</small>
+                </div>
+
+                <div class="section-content">
+                    <p>
+                        Tony Robbins ไม่ใช่เพียงนักพูดสร้างแรงบันดาลใจ แต่คือ <strong>"วิศวกรทางจิตวิทยา"</strong> ผู้เข้าใจระบบปฏิบัติการของมนุษย์อย่างลึกซึ้งที่สุดในโลก
+                    </p>
+
+                    <p>
+                        เขาเติบโตมาในครอบครัวที่ยากจน มีแม่ติดเหล้าและชีวิตที่เต็มไปด้วยความรุนแรง เขาเล่าว่า <em>"ถ้าฉันมีแม่ที่ดี ฉันคงไม่หิวพอจะเปลี่ยนโลก"</em> ประโยคนี้ไม่ใช่การยกย่องความทุกข์ แต่คือการประกาศว่า <strong>พลังชีวิตเกิดจากความขัดแย้งที่เราเลือกจะใช้มันอย่างไร</strong>
+                    </p>
+                </div>
+
+                <div class="key-concepts">
+                    <h3>State Management: การบริหารพลังงานทางอารมณ์</h3>
+                    <p>Robbins บอกว่าชีวิตของคนถูกกำหนดด้วย 3 ปัจจัย:</p>
+                    <ul class="concept-list">
+                        <li><strong>Physiology (สรีระ):</strong> ร่างกายเป็นซอฟต์แวร์ของอารมณ์ เปลี่ยนท่าทาง การหายใจ การเคลื่อนไหว = เปลี่ยนชีวเคมีในทันที</li>
+                        <li><strong>Focus (โฟกัส):</strong> สิ่งที่คุณมองจะขยาย ถามคำถามที่ถูก: "สิ่งนี้กำลังสอนอะไรฉัน" แทน "ทำไมสิ่งนี้เกิดขึ้นกับฉัน"</li>
+                        <li><strong>Meaning (ความหมาย):</strong> อารมณ์เกิดจากความหมายที่เราตีความต่อสิ่งที่เกิดขึ้น ไม่ใช่สิ่งที่เกิดขึ้นจริง</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>ตัวอย่างการใช้ State Management</h4>
+                    <p><strong>สถานการณ์:</strong> คุณรู้สึกกังวลก่อนนำเสนอหน้าลูกค้าสำคัญ</p>
+                    
+                    <p style="margin-top: 15px;"><strong>วิธี Robbins:</strong></p>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>เปลี่ยน Physiology:</strong> ยืนตัวตรง ขยายอก หายใจลึกๆ 10 ครั้ง กระโดดไปมา → เปลี่ยนชีวเคมีจากกังวลเป็นกระปรี้กระเปร่า</li>
+                        <li><strong>เปลี่ยน Focus:</strong> แทนที่จะคิด "ถ้าพรีเซนต์พลาดจะเป็นอะไร" เปลี่ยนเป็น "ฉันจะให้คุณค่าอะไรกับลูกค้าได้บ้าง"</li>
+                        <li><strong>เปลี่ยน Meaning:</strong> มองว่า "ความกังวล = ร่างกายกำลังเตรียมพร้อมให้ฉันทำได้ดีที่สุด" ไม่ใช่ "ฉันกำลังจะพลาด"</li>
+                    </ol>
+                </div>
+
+                <div class="practice-box">
+                    <h4>เทคนิคที่ทำได้ทันที</h4>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Morning Priming (15 นาที):</strong>
+                            <ul style="margin-left: 20px; margin-top: 5px;">
+                                <li>หายใจลึก 30 ครั้ง (exhale แรง)</li>
+                                <li>คิดถึง 3 สิ่งที่ขอบคุณ (รู้สึกจริงๆ ในอก)</li>
+                                <li>จินตนาการเป้าหมายที่ต้องการบรรลุ (เหมือนมันเกิดขึ้นแล้ว)</li>
+                                <li>ส่งพลังดีๆ ให้คนที่รัก (visualize)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Power Move:</strong> เมื่อรู้สึกท้อ ยืนในท่า "Wonder Woman" (มือทาบเอว อกผาย) 2 นาที = เพิ่มฮอร์โมนความมั่นใจ</li>
+                        <li><strong>Change Your Questions:</strong> เปลี่ยนคำถามในหัวจาก "ทำไมฉันถึงโชคร้าย" เป็น "ฉันจะเรียนรู้อะไรจากสถานการณ์นี้"</li>
+                        <li><strong>Emotional Wealth Audit:</strong> ทุกสัปดาห์ถามตัวเอง "ฉันใช้เวลามากกับอารมณ์ไหน?" แล้วปรับ</li>
+                    </ol>
+                </div>
+
+                <div class="mindset-framework">
+                    <h4>🎭 กรอบความคิดเรื่องอารมณ์</h4>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>แนวคิดเดิม (ผิด)</th>
+                                <th>แนวคิดของ Robbins (ถูก)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>อารมณ์เกิดจากสิ่งที่เกิดขึ้น</td>
+                                <td>อารมณ์เกิดจากความหมายที่เราให้กับสิ่งนั้น</td>
+                            </tr>
+                            <tr>
+                                <td>เงินจะทำให้มีความสุข</td>
+                                <td>ความสุขทำให้ได้เงิน (emotional wealth มาก่อน)</td>
+                            </tr>
+                            <tr>
+                                <td>รอให้รู้สึกดีก่อนจะทำ</td>
+                                <td>เคลื่อนไหวให้รู้สึกดี (move → emotion)</td>
+                            </tr>
+                            <tr>
+                                <td>คิดบวกเพื่อความสุข</td>
+                                <td>เปลี่ยนร่างกายและโฟกัสเพื่อเปลี่ยนอารมณ์</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="quote-box">
+                    "You can't control the wind, but you can adjust your sails."<br>
+                    <small style="opacity: 0.9;">- คุณควบคุมลมไม่ได้ แต่ปรับใบเรือได้</small>
+                </div>
+
+                <div class="takeaway-grid">
+                    <div class="takeaway-card">
+                        <h5>⚡ Key Takeaway #1</h5>
+                        <p>Emotional Wealth (ความมั่งคั่งทางอารมณ์) = ความสามารถอยู่ในสภาวะที่ดีไม่ว่าโลกภายนอกจะเป็นอย่างไร</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <h5>🏃 Key Takeaway #2</h5>
+                        <p>You can't think your way into happiness — you MOVE your way into it</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <h5>💎 Key Takeaway #3</h5>
+                        <p>เงินจะไม่แก้ความกลัวหรือความไม่พอของคุณ ถ้าคุณไม่แก้มันตั้งแต่ตอนจน</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jocko Willink -->
+            <div id="jocko" class="titan-section">
+                <div class="titan-header">
+                    <div class="titan-number">04</div>
+                    <div class="titan-title">
+                        <h2>Jocko Willink</h2>
+                        <div class="titan-subtitle">ปรัชญาแห่งวินัยและการควบคุมตนเอง</div>
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    "Discipline equals freedom."<br>
+                    <small style="opacity: 0.9;">- วินัยเท่ากับอิสรภาพ</small>
+                </div>
+
+                <div class="section-content">
+                    <p>
+                        ถ้า Tony Robbins คือครูสอนการใช้พลังชีวิตอย่างสร้างสรรค์ <strong>Jocko Willink</strong> คือทหารที่สอนให้คุณใช้พลังนั้นอย่างมั่นคง
+                    </p>
+
+                    <p>
+                        เขาเป็นอดีต Navy SEAL ผู้บัญชาการหน่วยที่ปฏิบัติการในเมือง Ramadi ประเทศอิรัก หนึ่งในสมรภูมิที่โหดที่สุดในสงครามสมัยใหม่ และต่อมากลายเป็นนักเขียนหนังสือ <strong>Extreme Ownership</strong> ที่ Ferriss ยกให้เป็นคู่มือแห่งวินัยและภาวะผู้นำ
+                    </p>
+
+                    <p>
+                        คำพูด "Discipline equals freedom" ของ Jocko ฟังดูขัดแย้งในตอนแรก แต่ความจริงคือ: <span class="highlight">อิสรภาพต้องถูกสร้างโดยวินัย ไม่มีทางลัด</span>
+                    </p>
+                </div>
+
+                <div class="key-concepts">
+                    <h3>หลักการของ Jocko</h3>
+                    <ul class="concept-list">
+                        <li><strong>Don't Count on Motivation. Count on Discipline:</strong> แรงบันดาลใจเป็นของชั่วคราว ระบบคือของถาวร</li>
+                        <li><strong>Extreme Ownership:</strong> รับผิดชอบทุกอย่างที่เกิดขึ้น แม้ไม่ใช่ความผิดของคุณ เพราะนั่นคือวิธีเดียวที่จะได้พลังกลับมา</li>
+                        <li><strong>Calm is Contagious:</strong> ความสงบของผู้นำคืออาวุธ เพราะมันทำให้คนอื่นมั่นใจว่าเราคุมเกมได้ แม้กลางความโกลาหล</li>
+                        <li><strong>The Path of Discipline:</strong> ทุกครั้งที่เลือกสิ่งยากกว่า คุณกำลังซื้อเสรีภาพในอนาคต</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>ตัวอย่างการใช้ Extreme Ownership</h4>
+                    <p><strong>สถานการณ์:</strong> โปรเจกต์ล่าช้าเพราะทีมงานไม่ส่งงานตามกำหนด</p>
+                    
+                    <p style="margin-top: 15px;"><strong>การตอบสนองแบบปกติ:</strong></p>
+                    <p>"ผมทำทุกอย่างแล้ว แต่ทีมไม่ส่งงาน มันไม่ใช่ความผิดผม"</p>
+                    
+                    <p style="margin-top: 15px;"><strong>การตอบสนองแบบ Extreme Ownership:</strong></p>
+                    <p>"นี่คือความผิดของผม ผมอาจจะ:<br>
+                    - ไม่ได้สื่อสารความสำคัญของงานชัดเจนพอ<br>
+                    - ไม่ได้ติดตามความคืบหน้าบ่อยพอ<br>
+                    - ไม่ได้ให้ทรัพยากรที่เพียงพอ<br>
+                    - ไม่ได้สร้างระบบ follow-up ที่ดี"</p>
+                    
+                    <p style="margin-top: 10px;"><strong>ผลลัพธ์:</strong> เมื่อรับผิดชอบ = ได้พลังกลับมา → สามารถแก้ไขได้</p>
+                </div>
+
+                <div class="practice-box">
+                    <h4>วินัยที่ปฏิบัติได้จริง (Jocko's Routine)</h4>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>ตื่น 4:30 AM ทุกวัน:</strong> ไม่มีข้อแม้ ไม่รอให้รู้สึกพร้อม "Up before the enemy"</li>
+                        <li><strong>ออกกำลังกายก่อนคิด:</strong> ทำก่อนที่สมองจะมีเวลาโต้แย้ง</li>
+                        <li><strong>Simplify Everything:</strong> ชุดเดียวกัน อาหารคล้ายๆ กัน ตารางเหมือนเดิม = ลดการตัดสินใจ</li>
+                        <li><strong>When in doubt, Do:</strong> เมื่อสงสัยว่าควรทำไหม → ทำ (workout, work, discipline)</li>
+                        <li><strong>Extreme Ownership Daily:</strong> ทุกเย็นถามตัวเอง "วันนี้มีอะไรผิดพลาด? ฉันรับผิดชอบส่วนไหนได้บ้าง?"</li>
+                    </ol>
+                </div>
+
+                <div class="mindset-framework">
+                    <h4>⚔️ กรอบความคิดเรื่องวินัย</h4>
+                    <ol class="framework-steps">
+                        <li><strong>วินัยเริ่มจากการตัดสินใจเล็กๆ:</strong> ตื่นตรงเวลา ทำเตียง ออกกำลังกาย = ชัยชนะตั้งแต่เช้า</li>
+                        <li><strong>สร้างกรงทอง:</strong> จำกัดตัวเลือกเพื่อแลกกับอิสรภาพในระยะยาว (กำหนดตารางตายตัว = ไม่ต้องตัดสินใจทุกวัน)</li>
+                        <li><strong>ไม่เชื่อใจตัวเองตอนง่วง:</strong> เชื่อใจระบบที่สร้างไว้ตอนตื่น</li>
+                        <li><strong>Blame = Transfer of Power:</strong> ทุกครั้งที่โทษคนอื่น = ยอมแพ้พลังควบคุม</li>
+                        <li><strong>เลือกสิ่งยากเสมอ:</strong> ฝึก, อ่านหนังสือ, เรียนรู้ → ง่ายขึ้นทุกวัน vs เลือกสิ่งง่าย → ยากขึ้นทุกวัน</li>
+                    </ol>
+                </div>
+
+                <div class="quote-box">
+                    "The temptation to take the easy road is always there. It's as easy as staying in bed in the morning."<br>
+                    <small style="opacity: 0.9;">- การล่อลวงให้เลือกทางง่ายอยู่ตรงหน้าเสมอ มันง่ายพอๆ กับการนอนต่อในเช้าวันนี้</small>
+                </div>
+
+                <div class="takeaway-grid">
+                    <div class="takeaway-card">
+                        <h5>🎯 Key Takeaway #1</h5>
+                        <p>วินัยคือการไม่ปล่อยให้อารมณ์เป็นเจ้านายของการตัดสินใจ มันคือระบบที่ป้องกันชีวิตจากความรู้สึก</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <h5>💪 Key Takeaway #2</h5>
+                        <p>Extreme Ownership = ยิ่งรับผิดชอบมาก ยิ่งมีพลังควบคุมมาก</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <h5>🌅 Key Takeaway #3</h5>
+                        <p>อิสรภาพไม่ได้มาจากการทำตามใจ แต่มาจากวินัยที่สร้างเสรีภาพให้ทำในสิ่งที่ต้องการจริงๆ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- เพิ่มส่วนอื่นๆ ต่อไป... -->
+            <!-- Chris Sacca, Peter Thiel, Reid Hoffman, Naval Ravikant, Sam Harris -->
+
+            <!-- Chris Sacca -->
+            <div id="sacca" class="titan-section">
+                <div class="titan-header">
+                    <div class="titan-number">05</div>
+                    <div class="titan-title">
+                        <h2>Chris Sacca</h2>
+                        <div class="titan-subtitle">ปรัชญาแห่งความเสี่ยงที่ออกแบบได้</div>
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    "It may look lucky, but it's not an accident."
+                </div>
+
+                <div class="section-content">
+                    <p>
+                        Chris Sacca เริ่มต้นชีวิตในหนี้สิน 4 ล้านดอลลาร์ แต่กลายเป็นนักลงทุนที่เลือกลงทุนใน Twitter, Uber, Instagram, Kickstarter ในช่วงที่ยังไม่มีใครเห็นศักยภาพ
+                    </p>
+                    <p>
+                        เขาเชื่อว่า <strong>ความเสี่ยงไม่ใช่สิ่งที่ต้องหลบเลี่ยง แต่มันคือระบบที่สามารถคำนวณได้</strong> เขาใช้แนวคิด <strong>Asymmetric Risk</strong> - เสียเล็กน้อยเพื่อมีโอกาสได้มหาศาล
+                    </p>
+                </div>
+
+                <div class="key-concepts">
+                    <h3>Surface Area of Luck - พื้นที่สัมผัสของโชค</h3>
+                    <ul class="concept-list">
+                        <li><strong>Luck is Motion:</strong> โชคคือการเคลื่อนไหวนานพอที่จะชนกับโอกาส</li>
+                        <li><strong>Asymmetric Risk:</strong> ลงทุนในสิ่งที่ถ้าเสียก็เสียน้อย แต่ถ้าได้จะได้มหาศาล</li>
+                        <li><strong>Invest with Empathy:</strong> ลงทุนกับคนที่กล้าล้มเหลวอย่างซื่อสัตย์ เพราะความเจ็บปวดคือข้อมูล</li>
+                    </ul>
+                </div>
+
+                <div class="practice-box">
+                    <h4>วิธีสร้างพื้นที่สัมผัสของโชค</h4>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>เพิ่มจุดสัมผัส:</strong> พบคนใหม่ 1 คนต่อสัปดาห์, ลองโปรเจกต์เล็กๆ บ่อยๆ</li>
+                        <li><strong>ออกแบบความเสี่ยง:</strong> ถามว่า "ถ้าเสียจะเสียเท่าไหร่? ถ้าได้จะได้เท่าไหร่? สัดส่วนคุ้มไหม?"</li>
+                        <li><strong>เคลื่อนไหวอย่างต่อเนื่อง:</strong> ไม่ต้องเป๊ะ แค่ลงมือก่อน แล้วปรับ</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Peter Thiel -->
+            <div id="thiel" class="titan-section">
+                <div class="titan-header">
+                    <div class="titan-number">06</div>
+                    <div class="titan-title">
+                        <h2>Peter Thiel</h2>
+                        <div class="titan-subtitle">ปรัชญาแห่งความลับและการคิดต่างอย่างเป็นระบบ</div>
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    "What important truth do very few people agree with you on?"
+                </div>
+
+                <div class="section-content">
+                    <p>
+                        Peter Thiel ไม่แสวงหาความมั่งคั่งจากการทำตามตลาด แต่จากการสร้าง <strong>"ความจริงใหม่"</strong> ที่ตลาดยังไม่เข้าใจ
+                    </p>
+                    <p>
+                        เขาผู้ร่วมก่อตั้ง PayPal, Palantir และเป็นนักลงทุนรายแรกของ Facebook มองโลกผ่านแนวคิด <strong>Definite Optimism</strong> - ความเชื่อว่าอนาคตที่ดีต้องถูกออกแบบ ไม่ใช่รอให้เกิด
+                    </p>
+                </div>
+
+                <div class="key-concepts">
+                    <h3>แนวคิดหลัก</h3>
+                    <ul class="concept-list">
+                        <li><strong>Secrets:</strong> ทุกนวัตกรรมเกิดจากความจริงที่คนส่วนใหญ่ยังไม่เห็น</li>
+                        <li><strong>Competition is for Losers:</strong> อย่าแข่งในสนามคนอื่น สร้างโลกใหม่ที่คุณกำหนดกติกา</li>
+                        <li><strong>Think in Decades:</strong> คิดในช่วงเวลา 10 ปี ไม่ใช่ 10 นาที</li>
+                        <li><strong>Monopoly > Competition:</strong> Google ไม่ได้รวยเพราะชนะ Yahoo แต่เพราะเปลี่ยนวิธีคิดของโลก</li>
+                    </ul>
+                </div>
+
+                <div class="quote-box">
+                    "Competition is for losers."
+                </div>
+            </div>
+
+            <!-- Reid Hoffman -->
+            <div id="hoffman" class="titan-section">
+                <div class="titan-header">
+                    <div class="titan-number">07</div>
+                    <div class="titan-title">
+                        <h2>Reid Hoffman</h2>
+                        <div class="titan-subtitle">ปรัชญาแห่งเครือข่ายและการทดลองไม่สิ้นสุด</div>
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    "If you're not embarrassed by your first product, you launched too late."
+                </div>
+
+                <div class="section-content">
+                    <p>
+                        Reid Hoffman ผู้ก่อตั้ง LinkedIn เชื่อใน <strong>Permanent Beta</strong> - อยู่ในสถานะทดสอบตลอดเวลา เหมือนซอฟต์แวร์ที่ไม่เคยหยุดอัปเดต
+                    </p>
+                    <p>
+                        เขามองความสำเร็จเป็น <strong>network game</strong> - เกมของการสร้างความสัมพันธ์ การทดลอง และการเรียนรู้ซ้ำอย่างต่อเนื่อง
+                    </p>
+                </div>
+
+                <div class="key-concepts">
+                    <h3>Network Intelligence</h3>
+                    <ul class="concept-list">
+                        <li><strong>Your Network is Your Education:</strong> ใช้เครือข่ายรอบตัวเป็นสมองเสริม</li>
+                        <li><strong>Intelligent Iteration:</strong> เรียนรู้แบบรวดเร็วที่ต่อยอดจากความล้มเหลว</li>
+                        <li><strong>Plan to Not Have a Plan:</strong> โลกเปลี่ยนเร็วเกินกว่าแผนจะตามทัน แต่สร้างระบบที่ตอบสนองเร็วได้</li>
+                    </ul>
+                </div>
+
+                <div class="quote-box">
+                    "The fastest learner wins — not the first mover, not the smartest, just the one who adapts fastest."
+                </div>
+            </div>
+
+            <!-- Naval Ravikant -->
+            <div id="naval" class="titan-section">
+                <div class="titan-header">
+                    <div class="titan-number">08</div>
+                    <div class="titan-title">
+                        <h2>Naval Ravikant</h2>
+                        <div class="titan-subtitle">ปรัชญาแห่งความมั่งคั่งที่ไม่ต้องแข่งขัน</div>
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    "Seek wealth, not money or status."
+                </div>
+
+                <div class="section-content">
+                    <p>
+                        Naval Ravikant คือ "นักปราชญ์แห่งยุคเทคโนโลยี" ที่เปลี่ยนความมั่งคั่งจากสมการทางเศรษฐกิจเป็นสมการทางจิตวิญญาณ
+                    </p>
+                    <p>
+                        เขาแยก <strong>Wealth, Money, และ Status</strong> ออกจากกันอย่างเฉียบคม:
+                    </p>
+                </div>
+
+                <div class="mindset-framework">
+                    <h4>🎯 ความแตกต่างของ Wealth vs Money vs Status</h4>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>แนวคิด</th>
+                                <th>ความหมาย</th>
+                                <th>ตัวอย่าง</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Wealth</strong></td>
+                                <td>สิ่งที่สร้างมูลค่าแม้คุณไม่อยู่ตรงนั้น</td>
+                                <td>ธุรกิจที่ทำงานอัตโนมัติ, ซอฟต์แวร์, หนังสือ, ทรัพย์สิน</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Money</strong></td>
+                                <td>วิธีการแลกเปลี่ยนมูลค่า</td>
+                                <td>เงินสด, เงินเดือน</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Status</strong></td>
+                                <td>เกมที่คนเล่นเพื่อพิสูจน์ว่าใครอยู่สูงกว่าใคร</td>
+                                <td>ตำแหน่ง, ยศ, ชื่อเสียง - เกมที่ไม่มีวันจบ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="key-concepts">
+                    <h3>หลักการของ Naval</h3>
+                    <ul class="concept-list">
+                        <li><strong>You Will Never Get Rich Renting Out Your Time:</strong> หากต้องขายเวลาเพื่อได้เงิน คุณไม่มีวันรวยจริง</li>
+                        <li><strong>Specific Knowledge:</strong> ความรู้เฉพาะที่ไม่มีใครแทนได้ ทำให้คุณไม่ต้องแข่งขัน</li>
+                        <li><strong>Compound Relationships:</strong> ความสัมพันธ์ที่คูณค่าได้เหมือนดอกเบี้ยทบต้น</li>
+                        <li><strong>Permissionless Leverage:</strong> Code และ Media เป็นเลเวอเรจที่ไม่ต้องขออนุญาตใคร</li>
+                    </ul>
+                </div>
+
+                <div class="quote-box">
+                    "A calm mind, a fit body, and a house full of love — these cannot be bought. They must be earned."
+                </div>
+
+                <div class="takeaway-grid">
+                    <div class="takeaway-card">
+                        <h5>💎 Key Takeaway #1</h5>
+                        <p>ความมั่งคั่งที่แท้ = ความสามารถในการ disconnect เวลาออกจากผลลัพธ์</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <h5>🎯 Key Takeaway #2</h5>
+                        <p>เมื่อคุณหยุดเล่นเกมของคนอื่น คุณชนะโดยอัตโนมัติ</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <h5>🧘 Key Takeaway #3</h5>
+                        <p>ความสงบทำให้คุณไม่ต้องตัดสินใจจากความกลัว</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sam Harris -->
+            <div id="harris" class="titan-section">
+                <div class="titan-header">
+                    <div class="titan-number">09</div>
+                    <div class="titan-title">
+                        <h2>Sam Harris</h2>
+                        <div class="titan-subtitle">ปรัชญาแห่งสติและการเห็นความจริง</div>
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    "Meditation is not about feeling better; it's about seeing better."
+                </div>
+
+                <div class="section-content">
+                    <p>
+                        Sam Harris นักประสาทวิทยาจาก Stanford และผู้เขียน Waking Up บอกว่าการเจริญสติไม่ใช่เรื่องลึกลับ แต่เป็น <strong>"เทคโนโลยีของจิต"</strong> ที่ทำให้เรามองเห็นความจริงโดยไม่บิดเบือน
+                    </p>
+                </div>
+
+                <div class="key-concepts">
+                    <h3>Mindfulness Without Metaphysics</h3>
+                    <ul class="concept-list">
+                        <li><strong>You Are Not Your Thoughts:</strong> คุณไม่ใช่เสียงในหัว คุณคือคนที่สังเกตมัน</li>
+                        <li><strong>The Present Moment is All You Have:</strong> อดีตและอนาคตเป็นแค่ความคิด ปัจจุบันคือความจริงเดียว</li>
+                        <li><strong>Default Mode Network:</strong> ระบบในสมองที่ทำให้เราหลงวนอยู่กับอดีตและอนาคต การฝึกสมาธิคือการปิดมันชั่วคราว</li>
+                    </ul>
+                </div>
+
+                <div class="quote-box">
+                    "You are not the voice in your head. You are the one who notices it."
+                </div>
+
+                <div class="practice-box">
+                    <h4>เทคนิคการฝึกสติแบบ Sam Harris</h4>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>5-นาทีฝึกสมาธิ:</strong> นั่งสบาย สังเกตลมหายใจ เมื่อคิดอะไร สังเกตว่ากำลังคิด แล้วกลับมาที่ลมหายใจ</li>
+                        <li><strong>Label Your Thoughts:</strong> เมื่อคิดถึงอดีต พูดในใจว่า "กำลังคิดถึงอดีต" เมื่อคิดถึงอนาคต พูดว่า "กำลังคิดถึงอนาคต"</li>
+                        <li><strong>Awareness in Daily Life:</strong> ทำอะไรก็ตาม ให้ตั้งใจ 100% ไม่ multitask (กินข้าว, เดิน, ฟังคน)</li>
+                    </ol>
+                </div>
+
+                <div class="takeaway-grid">
+                    <div class="takeaway-card">
+                        <h5>🧘 Key Takeaway</h5>
+                        <p>ความสงบไม่ใช่การหยุดคิด แต่คือการไม่ต้องหนีจากความคิด</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <h5>👁️ Key Takeaway</h5>
+                        <p>เมื่อเห็นความคิดชัดเจน มันจะค่อยๆ สูญเสียพลังอิทธิพลเหนือเรา</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wisdom Quotes Section -->
+            <div id="quotes" class="wisdom-quotes">
+                <h2>💎 คำคมจากยอดคนคนอื่นๆ</h2>
+                
+                <div class="quote-item">
+                    <div class="quote-text">"If you're not uncomfortable in your work, it's almost certain you're not growing."</div>
+                    <div class="quote-author">— Seth Godin</div>
+                </div>
+
+                <div class="quote-item">
+                    <div class="quote-text">"If information was the answer, we'd all be billionaires with perfect abs."</div>
+                    <div class="quote-author">— Derek Sivers</div>
+                </div>
+
+                <div class="quote-item">
+                    <div class="quote-text">"Without a goal, you can't score."</div>
+                    <div class="quote-author">— Casey Neistat</div>
+                </div>
+
+                <div class="quote-item">
+                    <div class="quote-text">"Losers have goals. Winners have systems."</div>
+                    <div class="quote-author">— Scott Adams</div>
+                </div>
+
+                <div class="quote-item">
+                    <div class="quote-text">"When you want something, all the universe conspires in helping you to achieve it."</div>
+                    <div class="quote-author">— Paulo Coelho</div>
+                </div>
+
+                <div class="quote-item">
+                    <div class="quote-text">"The ultimate form of preparation is not planning for a specific scenario, but a mindset that can handle uncertainty."</div>
+                    <div class="quote-author">— Shane Parrish</div>
+                </div>
+
+                <div class="quote-item">
+                    <div class="quote-text">"Hard work is only a prison sentence if it doesn't have meaning."</div>
+                    <div class="quote-author">— Malcolm Gladwell</div>
+                </div>
+
+                <div class="quote-item">
+                    <div class="quote-text">"The moment we believe that success is determined by an ingrained level of ability, we will be brittle in the face of adversity."</div>
+                    <div class="quote-author">— Josh Waitzkin</div>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div id="conclusion" class="conclusion-section">
+                <h2>🎯 The Canvas of Life</h2>
+                <p>
+                    ในช่วงท้ายของหนังสือ Tim Ferriss เขียนบันทึกส่วนตัว เขาเล่าว่าการรวบรวมบทเรียนจากคนเก่งที่สุดในโลกกว่าร้อยคน ไม่ได้ทำให้เขารู้สึกเหมือนเป็นยอดคน แต่กลับทำให้รู้ว่า:
+                </p>
+                <p style="font-size: 1.3em; font-weight: 600; margin: 30px 0;">
+                    "When you hear enough stories of the Titans, you realize that the giants bleed too."
+                </p>
+                <p>
+                    สิ่งที่ทำให้เขากลับมามีสมดุล ไม่ใช่ความสำเร็จ แต่คือการได้กลับมา "อยู่กับตัวเองแบบไม่ต้องทำอะไร"
+                </p>
+                <p style="font-size: 1.4em; font-weight: 600; margin-top: 40px; border-top: 2px solid rgba(255,255,255,0.3); padding-top: 30px;">
+                    "Life is the canvas. You paint, you erase, you paint again — not to make it perfect, but because it's yours."
+                </p>
+                <p style="margin-top: 30px;">
+                    ชีวิตคือผืนผ้าใบ คุณระบาย ลบ แล้วระบายใหม่<br>
+                    ไม่ใช่เพื่อให้มันสมบูรณ์แบบ แต่เพราะมันเป็นของคุณ
+                </p>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>📚 สรุปโดย Tomz</p>
+            <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
+                จาก Tools of Titans โดย Tim Ferriss<br>
+                เครื่องมือของยอดคน: บทเรียนจากผู้เชี่ยวชาญกว่า 100 คน
+            </p>
+        </footer>
+    </div>
+
+    <div class="scroll-to-top" id="scrollTop">↑</div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-pill').forEach(pill => {
+            pill.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.titan-section, .pillar-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
