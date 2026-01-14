@@ -1,0 +1,2152 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feel-Good Productivity | สรุปหนังสือฉบับสมบูรณ์</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800;900&family=Sarabun:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #F5A623;
+            --primary-orange: #FF6B35;
+            --primary-coral: #FF8A5B;
+            --deep-navy: #1A1A2E;
+            --midnight: #16213E;
+            --ocean: #0F3460;
+            --soft-cream: #FFF8F0;
+            --warm-white: #FFFDFB;
+            --text-dark: #2D2D2D;
+            --text-muted: #666666;
+            --energise-color: #FF6B35;
+            --overcome-color: #4ECDC4;
+            --sustain-color: #9B59B6;
+            --play-color: #FFD93D;
+            --power-color: #6BCB77;
+            --people-color: #FF6B6B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: var(--warm-white);
+            color: var(--text-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--midnight) 50%, var(--ocean) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(245, 166, 35, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(78, 205, 196, 0.15) 0%, transparent 60%);
+            animation: heroGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroGlow {
+            0% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-author {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-quote {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.3rem;
+            color: var(--primary-gold);
+            font-style: italic;
+            font-weight: 500;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary-gold);
+            background: rgba(245, 166, 35, 0.1);
+            border-radius: 0 12px 12px 0;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 10px;
+            background: var(--primary-gold);
+            border-radius: 3px;
+            animation: scrollDown 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        @keyframes scrollDown {
+            0% { opacity: 1; top: 8px; }
+            100% { opacity: 0; top: 30px; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .nav.visible {
+            transform: translateY(0);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(0,0,0,0.08);
+            margin-bottom: -2rem;
+        }
+
+        .section-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Story Section */
+        .story-section {
+            background: linear-gradient(180deg, var(--soft-cream) 0%, var(--warm-white) 100%);
+        }
+
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .story-visual {
+            position: relative;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 
+                0 20px 60px rgba(0,0,0,0.1),
+                0 1px 3px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--primary-gold));
+        }
+
+        .story-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .story-card h3 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 1rem;
+        }
+
+        .story-card p {
+            color: var(--text-muted);
+            line-height: 1.9;
+        }
+
+        .story-text h2 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .story-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 2;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(245, 166, 35, 0.1));
+            border-left: 4px solid var(--primary-orange);
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-weight: 500;
+            color: var(--deep-navy);
+        }
+
+        /* Core Concept Section */
+        .concept-section {
+            background: var(--deep-navy);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 107, 53, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(78, 205, 196, 0.15) 0%, transparent 40%);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .concept-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--card-color);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .concept-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+        }
+
+        .concept-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .concept-card.energise { --card-color: var(--energise-color); }
+        .concept-card.overcome { --card-color: var(--overcome-color); }
+        .concept-card.sustain { --card-color: var(--sustain-color); }
+
+        .concept-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .concept-card.energise .concept-icon { background: rgba(255, 107, 53, 0.2); }
+        .concept-card.overcome .concept-icon { background: rgba(78, 205, 196, 0.2); }
+        .concept-card.sustain .concept-icon { background: rgba(155, 89, 182, 0.2); }
+
+        .concept-card h3 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .concept-card .subtitle {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 1rem;
+        }
+
+        .concept-card p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+        }
+
+        .concept-card ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .concept-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .concept-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--card-color);
+        }
+
+        /* Detailed Sections */
+        .detail-section {
+            position: relative;
+        }
+
+        .detail-section.play { background: linear-gradient(180deg, #FFFDF5 0%, #FFF8E7 100%); }
+        .detail-section.power { background: linear-gradient(180deg, #F5FFF8 0%, #E8F8ED 100%); }
+        .detail-section.people { background: linear-gradient(180deg, #FFF5F5 0%, #FFE8E8 100%); }
+        .detail-section.overcome { background: linear-gradient(180deg, #F0FFFD 0%, #E0F8F5 100%); }
+        .detail-section.sustain { background: linear-gradient(180deg, #F8F0FF 0%, #EDE0FF 100%); }
+
+        .detail-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .detail-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+
+        .play .detail-icon { background: linear-gradient(135deg, #FFD93D, #FF9F1C); }
+        .power .detail-icon { background: linear-gradient(135deg, #6BCB77, #4CAF50); }
+        .people .detail-icon { background: linear-gradient(135deg, #FF6B6B, #EE5A5A); }
+        .overcome .detail-icon { background: linear-gradient(135deg, #4ECDC4, #26A69A); }
+        .sustain .detail-icon { background: linear-gradient(135deg, #9B59B6, #8E44AD); }
+
+        .detail-title-group h2 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--deep-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-title-group .tagline {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        .detail-intro {
+            font-size: 1.15rem;
+            line-height: 2;
+            margin-bottom: 3rem;
+            max-width: 900px;
+        }
+
+        /* Case Study Box */
+        .case-study {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--primary-orange);
+        }
+
+        .case-study-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-study-badge {
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange));
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .case-study h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+        }
+
+        .case-study p {
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        .case-study .lesson {
+            background: rgba(255, 107, 53, 0.08);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .case-study .lesson strong {
+            color: var(--primary-orange);
+        }
+
+        /* Experiment Cards */
+        .experiments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .experiment-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experiment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+        }
+
+        .experiment-number {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(0,0,0,0.05);
+        }
+
+        .experiment-card h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .experiment-card .english {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .experiment-card p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .experiment-steps {
+            background: rgba(0,0,0,0.03);
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+
+        .experiment-steps h5 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 0.8rem;
+        }
+
+        .experiment-steps ol {
+            padding-left: 1.2rem;
+        }
+
+        .experiment-steps li {
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+
+        /* Key Takeaway Box */
+        .key-takeaway {
+            background: linear-gradient(135deg, var(--deep-navy), var(--midnight));
+            color: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .key-takeaway::before {
+            content: '💡';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 6rem;
+            opacity: 0.1;
+        }
+
+        .key-takeaway h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .key-takeaway p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        /* Quote Block */
+        .quote-block {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0;
+            position: relative;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+
+        .quote-block::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            color: var(--primary-gold);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .quote-block p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--deep-navy);
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quote-block .author {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-style: normal;
+        }
+
+        /* Hormone Grid */
+        .hormone-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .hormone-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .hormone-card:hover {
+            transform: scale(1.05);
+        }
+
+        .hormone-card .emoji {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .hormone-card h5 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .hormone-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Play Personality Grid */
+        .personality-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .personality-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .personality-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .personality-card .icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #FFD93D, #FF9F1C);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1rem;
+        }
+
+        .personality-card h5 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .personality-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* SDT Theory */
+        .sdt-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .sdt-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sdt-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+        }
+
+        .sdt-card.autonomy::before { background: linear-gradient(90deg, #6BCB77, #4CAF50); }
+        .sdt-card.competence::before { background: linear-gradient(90deg, #4ECDC4, #26A69A); }
+        .sdt-card.connection::before { background: linear-gradient(90deg, #FF6B6B, #EE5A5A); }
+
+        .sdt-card .icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .sdt-card.autonomy .icon { background: rgba(107, 203, 119, 0.15); }
+        .sdt-card.competence .icon { background: rgba(78, 205, 196, 0.15); }
+        .sdt-card.connection .icon { background: rgba(255, 107, 107, 0.15); }
+
+        .sdt-card h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .sdt-card .english {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .sdt-card p {
+            line-height: 1.8;
+        }
+
+        /* People Types */
+        .people-types {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .people-type-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .people-type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--type-color);
+        }
+
+        .people-type-card.cheerleader { --type-color: #FFD93D; }
+        .people-type-card.challenger { --type-color: #4ECDC4; }
+        .people-type-card.companion { --type-color: #FF6B6B; }
+
+        .people-type-card .emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .people-type-card h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 0.3rem;
+        }
+
+        .people-type-card .english {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .people-type-card p {
+            line-height: 1.8;
+        }
+
+        /* Recharge System */
+        .recharge-system {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .recharge-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .recharge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .recharge-card.rest::before { background: linear-gradient(90deg, #6BCB77, #4CAF50); }
+        .recharge-card.reflect::before { background: linear-gradient(90deg, #4ECDC4, #26A69A); }
+        .recharge-card.reconnect::before { background: linear-gradient(90deg, #9B59B6, #8E44AD); }
+
+        .recharge-card .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .recharge-card.rest .step-number { background: linear-gradient(135deg, #6BCB77, #4CAF50); }
+        .recharge-card.reflect .step-number { background: linear-gradient(135deg, #4ECDC4, #26A69A); }
+        .recharge-card.reconnect .step-number { background: linear-gradient(135deg, #9B59B6, #8E44AD); }
+
+        .recharge-card h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 0.3rem;
+        }
+
+        .recharge-card .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .recharge-card p {
+            line-height: 1.8;
+        }
+
+        /* Teaching Points Section */
+        .teaching-section {
+            background: linear-gradient(135deg, var(--deep-navy), var(--ocean));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .teaching-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 0% 100%, rgba(255, 107, 53, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 100% 0%, rgba(245, 166, 35, 0.15) 0%, transparent 50%);
+        }
+
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .teaching-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .teaching-card:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-3px);
+        }
+
+        .teaching-card .number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .teaching-card h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .teaching-card p {
+            color: rgba(255,255,255,0.85);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Final Message */
+        .final-section {
+            background: var(--soft-cream);
+            text-align: center;
+        }
+
+        .final-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .final-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+        }
+
+        .final-content h2 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--deep-navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .final-content p {
+            font-size: 1.2rem;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+        }
+
+        .final-quote {
+            background: linear-gradient(135deg, var(--deep-navy), var(--ocean));
+            color: white;
+            padding: 3rem;
+            border-radius: 24px;
+            margin-top: 3rem;
+        }
+
+        .final-quote p {
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .final-quote .author {
+            font-size: 1rem;
+            color: var(--primary-gold);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--deep-navy);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        .footer .credit {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--primary-gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .concept-grid,
+            .sdt-grid,
+            .people-types,
+            .recharge-system,
+            .teaching-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .story-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hormone-grid,
+            .personality-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .experiments-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .detail-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hormone-grid,
+            .personality-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mb-3 { margin-bottom: 3rem; }
+        .mt-2 { margin-top: 2rem; }
+        .mt-3 { margin-top: 3rem; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-content">
+            <div class="nav-logo">Feel-Good Productivity</div>
+            <ul class="nav-links">
+                <li><a href="#story">เรื่องราว</a></li>
+                <li><a href="#concept">แนวคิดหลัก</a></li>
+                <li><a href="#play">Play</a></li>
+                <li><a href="#power">Power</a></li>
+                <li><a href="#people">People</a></li>
+                <li><a href="#overcome">Overcome</a></li>
+                <li><a href="#sustain">Sustain</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">สรุปหนังสือฉบับสมบูรณ์</div>
+            <h1 class="hero-title">
+                <span>Feel-Good</span><br>
+                Productivity
+            </h1>
+            <p class="hero-subtitle">ประสิทธิภาพที่เกิดจากความรู้สึกดี</p>
+            <p class="hero-author">เขียนโดย Ali Abdaal | สรุปโดย Tomz</p>
+            <blockquote class="hero-quote">
+                "ความสำเร็จไม่จำเป็นต้องมาจากความทุกข์<br>
+                มันมาได้จากสิ่งตรงกันข้าม... มาจากการรู้สึกดี"
+            </blockquote>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="section story-section" id="story">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">01</div>
+                <h2 class="section-title">จุดเริ่มต้นของการเปลี่ยนแปลง</h2>
+                <p class="section-subtitle">เรื่องราวของหมอหนุ่มที่ค้นพบว่า "การทำงานหนัก" อาจไม่ใช่คำตอบ</p>
+            </div>
+            
+            <div class="story-content">
+                <div class="story-visual">
+                    <div class="story-card">
+                        <div class="story-icon">🏥</div>
+                        <h3>วันคริสต์มาสที่เปลี่ยนทุกอย่าง</h3>
+                        <p>Ali Abdaal แพทย์ฝึกหัดหนุ่ม ต้องทำงานคนเดียวทั้งวอร์ดในวันคริสต์มาส เขาทำงานอย่างหนักหน่วง ท่องคำพูดของ Muhammad Ali ว่า "อดทนตอนนี้ แล้วจะเป็นแชมป์ตลอดชีวิต" แต่ยิ่งพยายามก็ยิ่งเหนื่อย จนรู้สึกเหมือนกำลังจมน้ำ</p>
+                        <div class="lesson">
+                            <strong>💡 จุดเปลี่ยน:</strong> "If the treatment isn't working, question the diagnosis." — ถ้าวิธีรักษาไม่ได้ผล บางทีคุณอาจวินิจฉัยผิดตั้งแต่ต้น
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-text">
+                    <h2>การตั้งคำถามที่เปลี่ยนชีวิต</h2>
+                    <p>Ali เริ่มตั้งคำถามกับความเชื่อเดิมๆ ที่สังคมสอนมา: "ทำไมความสำเร็จต้องแลกกับความทุกข์?" และ "ถ้าความเหนื่อยไม่ได้ทำให้เราเก่งขึ้น แต่ทำให้เราหมดไฟ แล้วเราควรทำงานอย่างไร?"</p>
+                    
+                    <div class="highlight-box">
+                        <p>🎯 คำถามสำคัญ: "ทำยังไงให้ทำงานได้ดีขึ้นและมีความสุขไปพร้อมกัน?"</p>
+                    </div>
+                    
+                    <p>เขานึกถึงงานวิจัย "The Candle Problem" ที่พบว่า กลุ่มที่ได้รับขนมก่อนทำโจทย์ คิดหาคำตอบได้ดีกว่ามาก นำไปสู่ข้อค้นพบสำคัญ:</p>
+                    
+                    <div class="quote-block">
+                        <p>ความรู้สึกดี ไม่ได้เป็นแค่ผลลัพธ์ของความสำเร็จ แต่มันคือเชื้อเพลิงของความคิดสร้างสรรค์และประสิทธิภาพ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Science Section -->
+    <section class="section" style="background: white;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">02</div>
+                <h2 class="section-title">วิทยาศาสตร์แห่งความรู้สึกดี</h2>
+                <p class="section-subtitle">ทำไมการรู้สึกดีถึงทำให้เราทำงานได้มากขึ้น</p>
+            </div>
+            
+            <!-- Broaden-and-Build Theory -->
+            <div class="case-study">
+                <div class="case-study-header">
+                    <span class="case-study-badge">ทฤษฎีสำคัญ</span>
+                    <h4>Broaden-and-Build Theory โดย Barbara Fredrickson</h4>
+                </div>
+                <p>ความรู้สึกเชิงบวกมีพลังสองประการ:</p>
+                <p><strong>🔸 Broaden (ขยาย)</strong> — เมื่อเรารู้สึกดี สมองจะเปิดกว้าง มองเห็นทางเลือกหลากหลาย คิดเชื่อมโยงได้กว้าง และกล้าลองสิ่งใหม่</p>
+                <p><strong>🔸 Build (สร้าง)</strong> — ความรู้สึกดีซ้ำๆ จะสะสมเป็นพลังภายใน เช่น ความยืดหยุ่น ความคิดสร้างสรรค์ และสุขภาพที่ดี</p>
+            </div>
+            
+            <!-- Hormones -->
+            <h3 class="text-center mb-2" style="font-family: 'Prompt', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--deep-navy);">
+                ฮอร์โมนแห่งความสุข 4 ตัว
+            </h3>
+            <div class="hormone-grid">
+                <div class="hormone-card">
+                    <div class="emoji">😊</div>
+                    <h5>Endorphins</h5>
+                    <p>รู้สึกเบา ต้านความเจ็บปวด</p>
+                </div>
+                <div class="hormone-card">
+                    <div class="emoji">😌</div>
+                    <h5>Serotonin</h5>
+                    <p>รู้สึกพอใจ และสงบ</p>
+                </div>
+                <div class="hormone-card">
+                    <div class="emoji">🎯</div>
+                    <h5>Dopamine</h5>
+                    <p>ฮอร์โมนรางวัล ผลักให้ทำต่อ</p>
+                </div>
+                <div class="hormone-card">
+                    <div class="emoji">🤝</div>
+                    <h5>Oxytocin</h5>
+                    <p>ความไว้วางใจ และผูกพัน</p>
+                </div>
+            </div>
+            
+            <div class="key-takeaway">
+                <h4>🔑 Key Insight</h4>
+                <p>งานวิจัยกว่า 225 ชิ้น จากคน 275,000 คน ยืนยันว่า: <strong>"ไม่ใช่ความสำเร็จที่ทำให้มีความสุข แต่คือความสุขที่ทำให้ประสบความสำเร็จ"</strong></p>
+            </div>
+            
+            <!-- Positive Cycle -->
+            <div class="text-center mt-3">
+                <h3 style="font-family: 'Prompt', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--deep-navy); margin-bottom: 2rem;">
+                    วงจรพลังบวกของ Productivity
+                </h3>
+                <div style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(245, 166, 35, 0.1)); padding: 2rem; border-radius: 20px; display: inline-block;">
+                    <p style="font-size: 1.3rem; font-weight: 600; color: var(--deep-navy);">
+                        รู้สึกดี → มีพลัง → ทำงานได้ดี → ภูมิใจในผลงาน → รู้สึกดีอีกครั้ง ↻
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Concept Section -->
+    <section class="section concept-section" id="concept">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: white;">โครงสร้าง 3 ส่วนของ Feel-Good Productivity</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.7);">กลไกสร้างพลังงานเชิงบวกในชีวิตประจำวัน</p>
+            </div>
+            
+            <div class="concept-grid">
+                <div class="concept-card energise">
+                    <div class="concept-icon">⚡</div>
+                    <h3>ENERGISE</h3>
+                    <div class="subtitle">สร้างพลัง</div>
+                    <p>วิธีสร้างพลังงานด้วยความรู้สึกดี ผ่านการเล่น ความรู้สึกควบคุม และความสัมพันธ์</p>
+                    <ul>
+                        <li>Play — การเล่น</li>
+                        <li>Power — พลังควบคุม</li>
+                        <li>People — ผู้คน</li>
+                    </ul>
+                </div>
+                
+                <div class="concept-card overcome">
+                    <div class="concept-icon">🛡️</div>
+                    <h3>OVERCOME</h3>
+                    <div class="subtitle">เอาชนะ</div>
+                    <p>เจาะลึกสิ่งที่ทำให้เราหมดไฟ และวิธีต่อรองกับจิตใจเพื่อกลับมามีพลัง</p>
+                    <ul>
+                        <li>Fear Setting — จัดการความกลัว</li>
+                        <li>Perfectionism — ความสมบูรณ์แบบ</li>
+                        <li>Self-Doubt — ความสงสัยในตัวเอง</li>
+                    </ul>
+                </div>
+                
+                <div class="concept-card sustain">
+                    <div class="concept-icon">♾️</div>
+                    <h3>SUSTAIN</h3>
+                    <div class="subtitle">รักษาพลัง</div>
+                    <p>เครื่องมือรักษาพลังให้ยั่งยืน ผ่านการพักผ่อนและการจัดแนวชีวิต</p>
+                    <ul>
+                        <li>Recharge — ฟื้นพลัง</li>
+                        <li>Align — จัดแนวคุณค่า</li>
+                        <li>Enough — ความพอดี</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLAY Section -->
+    <section class="section detail-section play" id="play">
+        <div class="container">
+            <div class="detail-header">
+                <div class="detail-icon">🎮</div>
+                <div class="detail-title-group">
+                    <h2>PLAY — การเล่น</h2>
+                    <div class="tagline">พลังงานแห่งความคิดสร้างสรรค์</div>
+                </div>
+            </div>
+            
+            <p class="detail-intro">
+                การเล่นไม่ใช่เรื่องไร้สาระ แต่คือเชื้อเพลิงทางอารมณ์ที่ขับเคลื่อนความคิดสร้างสรรค์โดยตรง นักจิตวิทยาพบว่าการเล่นทำให้ร่างกายหลั่งโดพามีนและเอนดอร์ฟิน ซึ่งเปิดระบบ "การคิดแบบกว้าง" ให้เรามองเห็นทางเลือกใหม่ๆ
+            </p>
+            
+            <!-- Feynman Story -->
+            <div class="case-study">
+                <div class="case-study-header">
+                    <span class="case-study-badge">กรณีศึกษา</span>
+                    <h4>Richard Feynman — นักฟิสิกส์รางวัลโนเบล</h4>
+                </div>
+                <p>หลังสงครามโลกครั้งที่ 2 Feynman หมดไฟอย่างรุนแรง เขาเขียนว่า "ผมเผาไหม้ตัวเองจนหมดสิ้น" จนวันหนึ่งเห็นนักศึกษาโยนจานหมุนในโรงอาหาร เขาสังเกตว่าจานหมุนกับโลโก้สั่นไม่พร้อมกัน</p>
+                <p>แทนที่จะมองข้าม เขาเริ่ม "เล่น" กับมัน คำนวณ ทดลอง หัวเราะกับสมการที่ไม่มีใครสนใจ เพราะเขา "อยากรู้เฉยๆ" การเล่นนี้นำไปสู่ทฤษฎี Quantum Electrodynamics ที่ทำให้ได้รางวัลโนเบลปี 1965</p>
+                <div class="lesson">
+                    <strong>📝 บทเรียน:</strong> "I was playing, really. And before I knew it, I was working again." — Richard Feynman
+                </div>
+            </div>
+            
+            <!-- Play Personalities -->
+            <h3 class="mb-2" style="font-family: 'Prompt', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--deep-navy);">
+                8 บุคลิกการเล่น (Play Personalities) โดย Dr. Stuart Brown
+            </h3>
+            <p class="mb-2">ค้นหาว่ารูปแบบการเล่นของคุณคืออะไร เพื่อนำมาใช้กับการทำงาน</p>
+            
+            <div class="personality-grid">
+                <div class="personality-card">
+                    <div class="icon">🎒</div>
+                    <h5>The Collector</h5>
+                    <p>สนุกกับการสะสมหรือจัดหมวดหมู่สิ่งต่างๆ</p>
+                </div>
+                <div class="personality-card">
+                    <div class="icon">🏆</div>
+                    <h5>The Competitor</h5>
+                    <p>สนุกกับการแข่งขันและชัยชนะ</p>
+                </div>
+                <div class="personality-card">
+                    <div class="icon">🧭</div>
+                    <h5>The Explorer</h5>
+                    <p>ชอบค้นหาสิ่งใหม่ๆ ลองเส้นทางใหม่</p>
+                </div>
+                <div class="personality-card">
+                    <div class="icon">🎨</div>
+                    <h5>The Creator</h5>
+                    <p>มีความสุขกับการสร้างสิ่งสวยงาม</p>
+                </div>
+                <div class="personality-card">
+                    <div class="icon">📖</div>
+                    <h5>The Storyteller</h5>
+                    <p>ใช้จินตนาการเล่าเรื่อง</p>
+                </div>
+                <div class="personality-card">
+                    <div class="icon">😂</div>
+                    <h5>The Joker</h5>
+                    <p>รักเสียงหัวเราะและทำให้คนยิ้ม</p>
+                </div>
+                <div class="personality-card">
+                    <div class="icon">🎬</div>
+                    <h5>The Director</h5>
+                    <p>ชอบวางแผน ควบคุม จัดการทีม</p>
+                </div>
+                <div class="personality-card">
+                    <div class="icon">🏃</div>
+                    <h5>The Kinesthete</h5>
+                    <p>สนุกเมื่อร่างกายได้เคลื่อนไหว</p>
+                </div>
+            </div>
+            
+            <!-- Experiments -->
+            <h3 class="mt-3 mb-2" style="font-family: 'Prompt', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--deep-navy);">
+                🧪 Experiments — วิธีฝึกฝน
+            </h3>
+            
+            <div class="experiments-grid">
+                <div class="experiment-card">
+                    <span class="experiment-number">01</span>
+                    <h4>Choose Your Character</h4>
+                    <div class="english">เลือกตัวละครในชีวิตจริง</div>
+                    <p>เหมือนเกม RPG ที่เราเลือก "ตัวตน" ได้ ให้หาว่าบุคลิกการเล่นของคุณคืออะไร แล้วนำมาใช้กับงาน</p>
+                    <div class="experiment-steps">
+                        <h5>วิธีทำ:</h5>
+                        <ol>
+                            <li>ระบุว่าคุณสนุกกับอะไรตอนเด็ก</li>
+                            <li>จับคู่กับ 8 บุคลิกการเล่น</li>
+                            <li>หาวิธีนำมาใช้กับงานปัจจุบัน</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <span class="experiment-number">02</span>
+                    <h4>Embrace Your Curiosity</h4>
+                    <div class="english">ยอมให้ความอยากรู้นำทาง</div>
+                    <p>งานวิจัยพบว่าคนที่อยากรู้มากกว่า จำข้อมูลได้แม่นกว่า 30% และสมองหลั่งโดพามีนระหว่างเรียนรู้</p>
+                    <div class="experiment-steps">
+                        <h5>เทคนิค Side Quest Thinking:</h5>
+                        <ol>
+                            <li>มองชีวิตเหมือนเกม RPG</li>
+                            <li>แยก "เควสต์หลัก" (สิ่งที่ต้องทำ) กับ "ภารกิจเสริม" (สิ่งที่น่าสนุก)</li>
+                            <li>อนุญาตให้ตัวเองทำภารกิจเสริมบ้าง</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <span class="experiment-number">03</span>
+                    <h4>The Magic Post-it Note</h4>
+                    <div class="english">คำถามที่เปลี่ยนวิธีทำงาน</div>
+                    <p>แรงบันดาลใจจาก Mary Poppins: "In every job that must be done, there is an element of fun."</p>
+                    <div class="experiment-steps">
+                        <h5>วิธีทำ:</h5>
+                        <ol>
+                            <li>เขียนโพสต์อิทติดหน้าจอว่า:</li>
+                            <li><strong>"What would this look like if it were fun?"</strong></li>
+                            <li>ทุกครั้งที่เบื่องาน ให้มองคำถามนี้แล้วตอบ</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <span class="experiment-number">04</span>
+                    <h4>Enjoy the Process</h4>
+                    <div class="english">สนุกกับกระบวนการ ไม่ใช่ผลลัพธ์</div>
+                    <p>เหมือน Matthew Dicks พนักงาน McDonald's ที่เกลียดงาน แต่เปลี่ยนมันเป็นเกมด้วยการตั้งเป้า "BBQ Sauce Day"</p>
+                    <div class="experiment-steps">
+                        <h5>วิธีทำ:</h5>
+                        <ol>
+                            <li>เลือกงานที่น่าเบื่อ</li>
+                            <li>ตั้ง "เกมเล็กๆ" ให้ตัวเอง</li>
+                            <li>โฟกัสที่การเล่น ไม่ใช่ผลลัพธ์</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <span class="experiment-number">05</span>
+                    <h4>Reframe Your Failure</h4>
+                    <div class="english">มองความล้มเหลวใหม่</div>
+                    <p>วิศวกร NASA Mark Rober ทดลองกับ 50,000 คน พบว่าคนที่ไม่ถูกตัดคะแนน พยายามมากกว่า 2 เท่า</p>
+                    <div class="experiment-steps">
+                        <h5>Mindset ใหม่:</h5>
+                        <ol>
+                            <li>ทุกความล้มเหลวคือ "ข้อมูล" ไม่ใช่ "การตัดสิน"</li>
+                            <li>เรากลัวการเสียคะแนนที่ไม่มีอยู่จริง</li>
+                            <li>เปลี่ยนจาก "ฉันพลาด" เป็น "ฉันได้เรียนรู้"</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <span class="experiment-number">06</span>
+                    <h4>Don't Be Serious. Be Sincere.</h4>
+                    <div class="english">จริงใจ แต่ไม่ต้องจริงจังเกินไป</div>
+                    <p>ปรัชญาจาก Alan Watts: ความจริงจังมากเกินไปคือแรงโน้มถ่วงที่ฉุดใจให้หนัก แต่ความจริงใจคือปีกที่ทำให้เราเล่นกับชีวิตได้อย่างเบาใจ</p>
+                    <div class="experiment-steps">
+                        <h5>วิธีฝึก:</h5>
+                        <ol>
+                            <li>ทำงานด้วยความทุ่มเท แต่ไม่ต้องหนักอก</li>
+                            <li>เหมือนเล่นบอร์ดเกมที่ "เล่นเต็มที่แต่ไม่ซีเรียส"</li>
+                            <li>ปล่อยให้ตัวเองสนุกกับสิ่งที่ทำ</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-takeaway">
+                <h4>🔑 Key Takeaway — PLAY</h4>
+                <p>"ชีวิตที่จริงจังเกินไปคือศัตรูของความคิดสร้างสรรค์ ส่วน 'การเล่น' คือการปลดล็อกความสามารถของสมองในแบบที่วินัยไม่สามารถทำได้"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- POWER Section -->
+    <section class="section detail-section power" id="power">
+        <div class="container">
+            <div class="detail-header">
+                <div class="detail-icon">💪</div>
+                <div class="detail-title-group">
+                    <h2>POWER — พลังควบคุม</h2>
+                    <div class="tagline">ความรู้สึกว่าเรามีอิทธิพลต่อผลลัพธ์</div>
+                </div>
+            </div>
+            
+            <p class="detail-intro">
+                "Power" ไม่ใช่อำนาจเหนือผู้อื่น แต่คืออำนาจในการควบคุมตัวเองและชีวิตของเรา เมื่อเรารู้สึกว่า "สิ่งที่เราทำมีผลต่อสิ่งที่เกิดขึ้น" สมองจะเข้าสู่โหมด Active Control หลั่งโดพามีนมากขึ้น และความสามารถในการตัดสินใจดีขึ้นอย่างเห็นได้ชัด
+            </p>
+            
+            <!-- Learned Helplessness -->
+            <div class="case-study">
+                <div class="case-study-header">
+                    <span class="case-study-badge">งานวิจัยสำคัญ</span>
+                    <h4>Learned Helplessness — Martin Seligman (1965)</h4>
+                </div>
+                <p>Seligman ทดลองกับสุนัขสองกลุ่ม กลุ่มหนึ่งสามารถกดปุ่มหยุดไฟฟ้าได้ อีกกลุ่มทำอะไรไม่ได้เลย เมื่อเปิดกรงทั้งคู่ กลุ่มแรกรีบหนี แต่กลุ่มหลังกลับนั่งนิ่ง ปล่อยให้โดนไฟฟ้า เพราะ "พวกมันเรียนรู้แล้วว่าไม่มีอะไรทำให้ดีขึ้นได้"</p>
+                <div class="lesson">
+                    <strong>📝 บทเรียน:</strong> มนุษย์ก็เป็นแบบนั้น เมื่อรู้สึกว่าชีวิตอยู่นอกการควบคุม ความหมดแรงก็เข้ามาแทนที่อัตโนมัติ นี่คือ "The Illusion of Powerlessness" ภาพลวงตาแห่งความไร้อำนาจ
+                </div>
+            </div>
+            
+            <!-- Self-Determination Theory -->
+            <h3 class="mt-3 mb-2" style="font-family: 'Prompt', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--deep-navy);">
+                Self-Determination Theory (SDT) — แหล่งพลังที่แท้จริง 3 ชั้น
+            </h3>
+            <p class="mb-2">ทฤษฎีโดย Edward Deci และ Richard Ryan อธิบายว่าความสุขและพลังของมนุษย์ขึ้นอยู่กับความต้องการพื้นฐานทางจิตใจ 3 ประการ</p>
+            
+            <div class="sdt-grid">
+                <div class="sdt-card autonomy">
+                    <div class="icon">🎯</div>
+                    <h4>Autonomy</h4>
+                    <div class="english">ความเป็นอิสระ</div>
+                    <p>การรู้สึกว่าเรามีสิทธิ์เลือกและควบคุมชีวิตของตัวเอง ไม่ใช่แค่ทำตามคำสั่ง แต่รู้สึกว่า "นี่คือทางเลือกของฉัน"</p>
+                </div>
+                
+                <div class="sdt-card competence">
+                    <div class="icon">📈</div>
+                    <h4>Competence</h4>
+                    <div class="english">ความสามารถ</div>
+                    <p>การรู้สึกว่าเราทำสิ่งต่างๆ ได้ดีและมีความก้าวหน้า เห็นพัฒนาการของตัวเอง รู้สึกเก่งขึ้นทีละนิด</p>
+                </div>
+                
+                <div class="sdt-card connection">
+                    <div class="icon">❤️</div>
+                    <h4>Connection</h4>
+                    <div class="english">ความเชื่อมโยง</div>
+                    <p>การรู้สึกว่ามีคนเข้าใจเราและเราเป็นส่วนหนึ่งของสิ่งที่ใหญ่กว่า ไม่โดดเดี่ยวในเส้นทาง</p>
+                </div>
+            </div>
+            
+            <div class="quote-block mt-3">
+                <p>ทั้งสามสิ่งนี้คือ "กล้ามเนื้อพลังงาน" ที่ต้องฝึกและดูแลเหมือนกล้ามเนื้อจริงๆ เมื่อมันอ่อนแรง เราจะหมดไฟ แต่เมื่อมันแข็งแรง เราจะรู้สึกว่าทุกอย่างเป็นไปได้</p>
+                <div class="author">— Ali Abdaal</div>
+            </div>
+            
+            <div class="key-takeaway">
+                <h4>🔑 Key Takeaway — POWER</h4>
+                <p>"ถ้าเรารู้สึกว่าสิ่งที่เราทำมีผลต่อสิ่งที่เกิดขึ้น สมองจะเข้าสู่โหมด Active Control ร่างกายหลั่งโดพามีนมากขึ้น และความสามารถในการตัดสินใจดีขึ้นอย่างเห็นได้ชัด"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PEOPLE Section -->
+    <section class="section detail-section people" id="people">
+        <div class="container">
+            <div class="detail-header">
+                <div class="detail-icon">👥</div>
+                <div class="detail-title-group">
+                    <h2>PEOPLE — ผู้คน</h2>
+                    <div class="tagline">พลังของการเชื่อมโยงเชิงบวก</div>
+                </div>
+            </div>
+            
+            <p class="detail-intro">
+                ต่อให้คุณมีระเบียบวินัยแบบเหล็ก มีแรงบันดาลใจระดับนักรบสปาร์ตัน แต่ถ้าคุณรู้สึกโดดเดี่ยว มันก็เหมือนพยายามขุดบ่อน้ำในทะเลทรายที่ไม่มีใครช่วยตักน้ำ การเชื่อมโยงกับผู้คนไม่ใช่เรื่องเสริม แต่คือ "แหล่งพลัง" โดยธรรมชาติของมนุษย์
+            </p>
+            
+            <!-- Harvard Study -->
+            <div class="case-study">
+                <div class="case-study-header">
+                    <span class="case-study-badge">งานวิจัยระดับโลก</span>
+                    <h4>Harvard Study of Adult Development (ตั้งแต่ปี 1938)</h4>
+                </div>
+                <p>การศึกษาที่ยาวนานที่สุดในโลก ติดตามชีวิตของชายกว่า 700 คนตลอดหลายทศวรรษ ผลลัพธ์ที่ได้ไม่ใช่เรื่องเงินหรือชื่อเสียง แต่กลับเรียบง่ายอย่างไม่น่าเชื่อ:</p>
+                <div class="lesson">
+                    <strong>📝 ข้อค้นพบ:</strong> "สิ่งที่ทำนายความสุข สุขภาพ และอายุยืนได้ดีที่สุด ไม่ใช่ฐานะหรือความสำเร็จ แต่คือความสัมพันธ์ที่อบอุ่นกับผู้คนรอบตัว"
+                </div>
+            </div>
+            
+            <!-- 3 Types of People -->
+            <h3 class="mt-3 mb-2" style="font-family: 'Prompt', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--deep-navy);">
+                3 ประเภทคนที่จำเป็นในชีวิต
+            </h3>
+            
+            <div class="people-types">
+                <div class="people-type-card cheerleader">
+                    <div class="emoji">📣</div>
+                    <h4>Cheerleaders</h4>
+                    <div class="english">ผู้เชียร์</div>
+                    <p>คนที่เชื่อในตัวคุณมากกว่าคุณเชื่อในตัวเอง เหมือนแสงแดดยามเช้า อยู่ตรงนั้นเสมอเมื่อคุณเริ่มสงสัยในตัวเอง</p>
+                </div>
+                
+                <div class="people-type-card challenger">
+                    <div class="emoji">🪞</div>
+                    <h4>Challengers</h4>
+                    <div class="english">ผู้ท้าทาย</div>
+                    <p>คนที่กล้าบอกว่า "นายคิดผิด" ด้วยความหวังดี คือกระจกเงาที่ไม่โกหก ช่วยให้คุณเติบโตโดยไม่หลงทาง</p>
+                </div>
+                
+                <div class="people-type-card companion">
+                    <div class="emoji">🚶</div>
+                    <h4>Companions</h4>
+                    <div class="english">ผู้ร่วมทาง</div>
+                    <p>คนที่ไม่ต้องพูดอะไรมาก แค่เดินข้างๆ คุณในวันที่เหนื่อย ทำให้ไม่ลืมว่าชีวิตคือการเดินทางร่วมกัน</p>
+                </div>
+            </div>
+            
+            <!-- Experiments -->
+            <h3 class="mt-3 mb-2" style="font-family: 'Prompt', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--deep-navy);">
+                🧪 Experiments — วิธีฝึกฝน
+            </h3>
+            
+            <div class="experiments-grid">
+                <div class="experiment-card">
+                    <span class="experiment-number">01</span>
+                    <h4>Energy Audit</h4>
+                    <div class="english">ตรวจสุขภาพพลังมนุษย์</div>
+                    <p>ทุกเดือน ให้ประเมินว่าใครในชีวิตเติมพลังหรือดูดพลังคุณ</p>
+                    <div class="experiment-steps">
+                        <h5>วิธีทำ:</h5>
+                        <ol>
+                            <li>เขียนรายชื่อคน 10 คนที่ใช้เวลาด้วยมากที่สุด</li>
+                            <li>ให้คะแนนพลัง: +2 (เติมพลัง) ถึง -2 (ดูดพลัง)</li>
+                            <li>พิจารณาว่าอยากเพิ่มหรือลดเวลากับแต่ละคน</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <span class="experiment-number">02</span>
+                    <h4>The Gratitude Loop</h4>
+                    <div class="english">วงจรแห่งการขอบคุณ</div>
+                    <p>งานวิจัยจาก UC Berkeley พบว่าคนที่เขียนจดหมายขอบคุณสัปดาห์ละฉบับ มีความสุขเพิ่มขึ้นต่อเนื่อง 3 เดือน</p>
+                    <div class="experiment-steps">
+                        <h5>วิธีทำ:</h5>
+                        <ol>
+                            <li>ขอบคุณใครสักคนทุกวัน โดยไม่หวังผลตอบแทน</li>
+                            <li>ลอง "Thankful Friday" ในทีมงาน</li>
+                            <li>แค่ประโยคสั้นๆ ก็เพียงพอ</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <span class="experiment-number">03</span>
+                    <h4>The 5-Minute Favor</h4>
+                    <div class="english">กฎแห่งน้ำใจห้านาที</div>
+                    <p>แนวคิดจาก Adam Grant: คุณสามารถเปลี่ยนชีวิตคนได้ในห้านาที ถ้าทำด้วยเจตนาที่ถูกต้อง</p>
+                    <div class="experiment-steps">
+                        <h5>ตัวอย่าง:</h5>
+                        <ol>
+                            <li>แนะนำคนสองคนที่ควรได้รู้จักกัน</li>
+                            <li>ส่งลิงก์บทความที่อีกฝ่ายน่าจะชอบ</li>
+                            <li>เขียนรีวิวเชิงบวกให้เพื่อนร่วมงาน</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <span class="experiment-number">04</span>
+                    <h4>Be the Source of Light</h4>
+                    <div class="english">จงเป็นแสง ไม่ใช่กระจก</div>
+                    <p>คนเรามักสะท้อนพลังของกันและกันเหมือนกระจก แต่ถ้าอยากเปลี่ยนโลก คุณต้องเป็น "แสง" ที่ปล่อยพลังบวกออกมาก่อน</p>
+                    <div class="experiment-steps">
+                        <h5>วิธีฝึก:</h5>
+                        <ol>
+                            <li>เริ่มวันด้วยรอยยิ้มและคำพูดดีๆ</li>
+                            <li>ไม่ต้องรอให้คนอื่นเริ่มก่อน</li>
+                            <li>พลังบวกส่งต่อได้แบบวงกว้าง</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quote-block mt-3">
+                <p>If you want to do more, start by connecting more. ถ้าคุณอยากทำได้มากขึ้น จงเริ่มจากการเชื่อมโยงกับผู้คนให้มากขึ้น</p>
+                <div class="author">— Ali Abdaal</div>
+            </div>
+            
+            <div class="key-takeaway">
+                <h4>🔑 Key Takeaway — PEOPLE</h4>
+                <p>"Productivity ที่แท้จริงไม่ได้เกิดจากการเก็บตัวอยู่คนเดียว แต่เกิดจากการแลกเปลี่ยนพลังงานทางอารมณ์กับคนที่ทำให้เรารู้สึกมีชีวิตชีวามากกว่าเดิม"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- OVERCOME Section -->
+    <section class="section detail-section overcome" id="overcome">
+        <div class="container">
+            <div class="detail-header">
+                <div class="detail-icon">🛡️</div>
+                <div class="detail-title-group">
+                    <h2>OVERCOME — เอาชนะอุปสรรค</h2>
+                    <div class="tagline">ศัตรูของประสิทธิภาพอยู่ในใจเราเอง</div>
+                </div>
+            </div>
+            
+            <p class="detail-intro">
+                เราอาจคิดว่า productivity ไม่เกิดเพราะขาดเวลา ทรัพยากร หรือสภาพแวดล้อม แต่ Ali ชี้ว่า "ศัตรูตัวจริงไม่ได้อยู่ข้างนอก มันอยู่ในหัวเรา" ความกลัว ความสงสัยในตนเอง ความผัดวันประกันพรุ่ง และความสมบูรณ์แบบเกินเหตุ
+            </p>
+            
+            <div class="quote-block">
+                <p>ความกลัวไม่ได้หายไปเมื่อคุณรอให้พร้อม มันหายไปตอนที่คุณลงมือทำ</p>
+                <div class="author">— Susan Jeffers, Feel the Fear and Do It Anyway</div>
+            </div>
+            
+            <!-- Experiments -->
+            <h3 class="mt-3 mb-2" style="font-family: 'Prompt', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--deep-navy);">
+                🧪 Experiments — วิธีจัดการอุปสรรคภายใน
+            </h3>
+            
+            <div class="experiments-grid">
+                <div class="experiment-card">
+                    <span class="experiment-number">01</span>
+                    <h4>Fear Setting</h4>
+                    <div class="english">เขียนแผนความกลัวให้หมดแรง</div>
+                    <p>แนวคิดจาก Tim Ferriss ที่ Ali ใช้ทุกครั้งก่อนตัดสินใจใหญ่</p>
+                    <div class="experiment-steps">
+                        <h5>4 คำถาม:</h5>
+                        <ol>
+                            <li>"สิ่งที่กลัวที่สุดคืออะไร?"</li>
+                            <li>"ถ้าเกิดขึ้นจริง จะเกิดอะไรขึ้นบ้าง?"</li>
+                            <li>"ถ้าเกิดขึ้นจริง ฉันจะรับมือยังไง?"</li>
+                            <li>"ถ้าไม่ทำสิ่งนี้เลย จะพลาดอะไร?"</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <span class="experiment-number">02</span>
+                    <h4>The 2-Minute Rule</h4>
+                    <div class="english">กฎ 2 นาที</div>
+                    <p>สิ่งยากไม่ใช่ "การทำ" แต่คือ "การเริ่มทำ" สมองจะเปลี่ยนจากความกลัวเป็นแรงเฉื่อยทันทีเมื่อเริ่มขยับ</p>
+                    <div class="experiment-steps">
+                        <h5>วิธีใช้:</h5>
+                        <ol>
+                            <li>ถ้างานใหญ่เกินไป ให้เริ่มด้วยสิ่งใดก็ได้ใน 2 นาที</li>
+                            <li>เช่น เขียนหัวข้อแรก, เปิดไฟล์, วางกระดาษลงโต๊ะ</li>
+                            <li>"Action isn't the result of motivation — it's the source of it."</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <span class="experiment-number">03</span>
+                    <h4>Version 0.1</h4>
+                    <div class="english">ออกเวอร์ชันแรกให้เร็ว</div>
+                    <p>Ali มีนิสัยออกเวอร์ชัน 0.1 เสมอ การแสดง "ความไม่พร้อม" ให้คนอื่นเห็นคือการฆ่าความกลัวในตัวเอง</p>
+                    <div class="experiment-steps">
+                        <h5>Perfect Enough Principle:</h5>
+                        <ol>
+                            <li>Perfectionism คือ "ความกลัวในคราบมาตรฐานสูง"</li>
+                            <li>"If it's 80% good and done, it's 100% better than perfect and unfinished."</li>
+                            <li>ไม่มีงานใดที่สมบูรณ์แบบ มีแต่งานที่สำเร็จแล้วพัฒนาได้ต่อ</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <span class="experiment-number">04</span>
+                    <h4>Evidence Board</h4>
+                    <div class="english">กระดานแห่งหลักฐาน</div>
+                    <p>วิธีจัดการ Self-Doubt ทุกครั้งที่เสียงในหัวบอกว่า "นายไม่ดีพอ"</p>
+                    <div class="experiment-steps">
+                        <h5>วิธีทำ:</h5>
+                        <ol>
+                            <li>เขียน "หลักฐานว่าฉันทำได้ดี" จากเหตุการณ์จริง</li>
+                            <li>เช่น คอมเมนต์ดีๆ, รีวิวที่ชื่นชม, ความสำเร็จเล็กๆ</li>
+                            <li>เปิดดูเมื่อ Self-Doubt เริ่มโจมตี "นี่คือข้อเท็จจริง ไม่ใช่ความรู้สึก"</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <span class="experiment-number">05</span>
+                    <h4>Turn Anxiety into Excitement</h4>
+                    <div class="english">เปลี่ยนความกลัวเป็นความตื่นเต้น</div>
+                    <p>งานวิจัยจาก Harvard Business School พบว่าการพูดว่า "I'm excited!" แทน "I'm nervous." ทำให้ผลงานดีขึ้นอย่างมีนัยสำคัญ</p>
+                    <div class="experiment-steps">
+                        <h5>เทคนิค:</h5>
+                        <ol>
+                            <li>สมองแปลพลังตื่นตัว (arousal) เป็น "ความพร้อม" แทน "ความกลัว"</li>
+                            <li>พูดกับตัวเองว่า "ฉันตื่นเต้นที่จะได้แบ่งปัน" แทน "กลัวว่าจะพลาด"</li>
+                            <li>ลองใช้ก่อนขึ้นเวที พรีเซนต์ หรือสัมภาษณ์</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <span class="experiment-number">06</span>
+                    <h4>The Anti-Goals List</h4>
+                    <div class="english">เขียนสิ่งที่ไม่อยากให้เกิด</div>
+                    <p>นอกจากตั้งเป้าหมาย Ali ยังมี "Anti-Goals" รายการสิ่งที่ไม่อยากให้ชีวิตกลายเป็น</p>
+                    <div class="experiment-steps">
+                        <h5>ตัวอย่าง:</h5>
+                        <ol>
+                            <li>"ไม่อยากทำงานกับคนที่ทำให้รู้สึกแย่"</li>
+                            <li>"ไม่อยากใช้ชีวิตที่ไม่มีเวลาสำหรับครอบครัว"</li>
+                            <li>"ไม่อยากให้สุขภาพแย่เพราะงาน"</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-takeaway">
+                <h4>🔑 Key Takeaway — OVERCOME</h4>
+                <p>"Writing is thinking made visible, and fear loses power when it's visible." — เขียนความกลัวออกมา แล้วมันจะกลายเป็นสิ่งที่จัดการได้</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUSTAIN Section -->
+    <section class="section detail-section sustain" id="sustain">
+        <div class="container">
+            <div class="detail-header">
+                <div class="detail-icon">♾️</div>
+                <div class="detail-title-group">
+                    <h2>SUSTAIN — รักษาพลัง</h2>
+                    <div class="tagline">Recharge & Align — ฟื้นพลัง และจัดชีวิตให้สอดคล้อง</div>
+                </div>
+            </div>
+            
+            <p class="detail-intro">
+                Productivity ที่ "ยั่งยืน" ไม่ใช่เรื่องของการเร่ง แต่คือเรื่องของ "จังหวะ" มนุษย์ไม่ได้เกิดมาเพื่อทำงานตลอดเวลา เราเกิดมาเพื่อสร้าง บ่มเพาะ และพัก เหมือนฤดูกาลที่ต้องมีทั้งฝน แสงแดด และความเงียบของคืนหนาว
+            </p>
+            
+            <div class="quote-block">
+                <p>You can't pour from an empty cup, but you also can't refill it if there's a hole at the bottom.</p>
+                <div class="author">คุณเทน้ำจากแก้วเปล่าไม่ได้ แต่ก็เติมไม่ได้ถ้าแก้วมีรูรั่ว</div>
+            </div>
+            
+            <!-- 3R System -->
+            <h3 class="mt-3 mb-2" style="font-family: 'Prompt', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--deep-navy);">
+                ระบบฟื้นพลัง 3 ชั้น: Rest - Reflect - Reconnect
+            </h3>
+            
+            <div class="recharge-system">
+                <div class="recharge-card rest">
+                    <div class="step-number">1</div>
+                    <h4>Rest</h4>
+                    <div class="subtitle">พักกายที่เหนื่อยล้า</div>
+                    <p>Sleep isn't a luxury; it's maintenance. จัดเวลานอนเหมือนจัดประชุมสำคัญ</p>
+                    <p style="margin-top: 1rem;"><strong>เทคนิค:</strong> มี "ช่วงว่างที่ไม่มีเป้าหมาย" เพียงการนั่งเฉยๆ มองท้องฟ้าโดยไม่แตะมือถือก็ถือเป็นการฟื้นพลังในเชิงลึก</p>
+                </div>
+                
+                <div class="recharge-card reflect">
+                    <div class="step-number">2</div>
+                    <h4>Reflect</h4>
+                    <div class="subtitle">พักใจที่สับสน</div>
+                    <p>มนุษย์มักหมดแรงไม่ใช่เพราะทำมาก แต่เพราะไม่รู้ "ว่าทำไปทำไม"</p>
+                    <p style="margin-top: 1rem;"><strong>คำถามสำคัญ:</strong> "ทำไมฉันถึงเริ่มทำสิ่งนี้ตั้งแต่แรก?"</p>
+                    <p style="margin-top: 0.5rem; font-style: italic;">"Resting isn't just about stopping work. It's about remembering why the work matters."</p>
+                </div>
+                
+                <div class="recharge-card reconnect">
+                    <div class="step-number">3</div>
+                    <h4>Reconnect</h4>
+                    <div class="subtitle">พักจากโลก แต่กลับสู่ชีวิต</div>
+                    <p>การพักที่ดีที่สุดบางครั้งคือการกลับไปอยู่กับคนที่ทำให้เรารู้ว่า "เรายังเป็นมนุษย์"</p>
+                    <p style="margin-top: 1rem;"><strong>เคล็ดลับของ Ali:</strong> กินข้าวเย็นกับครอบครัวโดยไม่มีโทรศัพท์บนโต๊ะ</p>
+                </div>
+            </div>
+            
+            <!-- Active vs Passive Rest -->
+            <div class="case-study mt-3">
+                <div class="case-study-header">
+                    <span class="case-study-badge">แนวคิดสำคัญ</span>
+                    <h4>Passive Rest vs Active Rest</h4>
+                </div>
+                <p><strong>Passive Rest</strong> = ปิดทุกอย่างแล้วพยายามนิ่ง เช่น นอนดูซีรีส์ 8 ชั่วโมง ซึ่งบางครั้งกลับทำให้รู้สึกเฉื่อยกว่าเดิม</p>
+                <p><strong>Active Rest (Flowful Rest)</strong> = การพักแบบมีส่วนร่วม เช่น วาดภาพ ปลูกต้นไม้ ทำอาหาร เดินเล่น — การพักที่ทำให้เรากลับมาอยู่กับปัจจุบันโดยไม่ต้องพยายามหนีจากอะไร</p>
+            </div>
+            
+            <!-- Alignment -->
+            <h3 class="mt-3 mb-2" style="font-family: 'Prompt', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--deep-navy);">
+                Alignment — จัดแนวชีวิตให้สอดคล้องกับคุณค่า
+            </h3>
+            
+            <p class="mb-2">หลังเติมพลังแล้ว คำถามต่อไปคือ "เราจะใช้พลังนี้ไปทางไหน?" เพราะถ้าคุณเติมพลังทุกวัน แต่ขับรถผิดทาง คุณก็ยังหมดน้ำมันอยู่ดี</p>
+            
+            <div class="quote-block">
+                <p>Alignment = "When what you do, matches what you value."</p>
+                <div class="author">เมื่อสิ่งที่ทำ สอดคล้องกับสิ่งที่เราให้คุณค่า</div>
+            </div>
+            
+            <div class="experiment-card" style="max-width: 600px; margin: 2rem auto;">
+                <h4>🔍 แบบฝึกหัดหาคุณค่าหลักของตัวเอง</h4>
+                <div class="experiment-steps">
+                    <ol>
+                        <li>"อะไรคือสิ่งที่ทำให้ฉันภูมิใจที่สุดในชีวิต?"</li>
+                        <li>"อะไรคือสิ่งที่ทำให้ฉันเจ็บปวดที่สุด?" (สิ่งที่ทำเราเจ็บมักคือสิ่งที่เราให้คุณค่า)</li>
+                        <li>"ถ้าฉันมีพลังเปลี่ยนโลกได้หนึ่งอย่าง ฉันอยากเปลี่ยนอะไร?"</li>
+                        <li>สกัดคำตอบออกมาเป็น 3 คำ เช่น "Growth, Kindness, Freedom"</li>
+                        <li>ถามตัวเองก่อนทำทุกอย่าง: "สิ่งนี้สอดคล้องกับเข็มทิศของฉันหรือเปล่า?"</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="key-takeaway">
+                <h4>🔑 Key Takeaway — SUSTAIN</h4>
+                <p><strong>"Direction beats speed. Always."</strong><br>ทิศทางสำคัญกว่าความเร็ว เสมอ — คนส่วนใหญ่ขับรถชีวิตด้วยความเร็วสูง เหยียบคันเร่งจนสุด แต่ไม่เคยเช็กว่ายังตรงทางหรือเปล่า</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching Section -->
+    <section class="section teaching-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: white;">💬 ข้อความที่เอาไปสอนต่อได้</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.7);">Key Messages for Teaching & Sharing</p>
+            </div>
+            
+            <div class="teaching-grid">
+                <div class="teaching-card">
+                    <div class="number">1</div>
+                    <h4>ความสุขนำหน้าความสำเร็จ</h4>
+                    <p>"ไม่ใช่ความสำเร็จที่ทำให้มีความสุข แต่คือความสุขที่ทำให้ประสบความสำเร็จ" — งานวิจัย 225 ชิ้น จากคน 275,000 คน ยืนยัน</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="number">2</div>
+                    <h4>ถ้าวิธีรักษาไม่ได้ผล ให้ตั้งคำถามกับการวินิจฉัย</h4>
+                    <p>"If the treatment isn't working, question the diagnosis." — บางทีปัญหาไม่ใช่ที่คุณไม่ทำงานหนักพอ แต่คุณกำลังใช้วิธีการผิด</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="number">3</div>
+                    <h4>การเล่นไม่ใช่เรื่องไร้สาระ</h4>
+                    <p>การเล่นคือเชื้อเพลิงของความคิดสร้างสรรค์ "ชีวิตที่จริงจังเกินไปคือศัตรูของความคิดสร้างสรรค์"</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="number">4</div>
+                    <h4>What would this look like if it were fun?</h4>
+                    <p>ถ้าคุณไม่อยากทำสิ่งใด ลองถามตัวเองว่า "จะทำให้มันสนุกได้อย่างไร?" — คำถามที่เปลี่ยนวิธีทำงาน</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="number">5</div>
+                    <h4>Action is the source of motivation</h4>
+                    <p>สิ่งยากไม่ใช่ "การทำ" แต่คือ "การเริ่มทำ" — แรงจูงใจไม่ได้มาก่อนการลงมือทำ มันมาจากการลงมือทำ</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="number">6</div>
+                    <h4>80% Done > 100% Perfect & Unfinished</h4>
+                    <p>"If it's 80% good and done, it's 100% better than perfect and unfinished." — Perfectionism คือความกลัวในคราบมาตรฐานสูง</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="number">7</div>
+                    <h4>If you want to do more, start by connecting more</h4>
+                    <p>ถ้าอยากทำได้มากขึ้น จงเริ่มจากการเชื่อมโยงกับผู้คนให้มากขึ้น — ความสัมพันธ์คือแหล่งพลังงานที่แท้จริง</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="number">8</div>
+                    <h4>Direction beats speed. Always.</h4>
+                    <p>ทิศทางสำคัญกว่าความเร็ว — หยุดถามว่า "What should I do next?" แล้วถามว่า "What feels right to do next?"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Section -->
+    <section class="section final-section">
+        <div class="container">
+            <div class="final-content">
+                <div class="final-icon">✨</div>
+                <h2>บทสรุปสุดท้าย</h2>
+                <p>
+                    ชีวิตไม่ได้ง่ายเสมอไป งานไม่ได้สนุกทุกวัน เราไม่ได้มีอิสระเลือกทุกอย่างเสมอ บางครั้งเราต้องทำสิ่งที่ไม่อยากทำ อยู่ในสถานการณ์ที่ไม่ชอบ เดินทางบนเส้นทางที่ไม่ได้วาดฝันไว้
+                </p>
+                <p>
+                    <strong>แต่เรามี "ทางเลือก" เสมอ</strong> — ไม่ใช่ทางเลือกในสถานการณ์ แต่เป็นทางเลือกใน "มุมมอง"
+                </p>
+                <p>
+                    เราไม่จำเป็นต้องรอให้ชีวิตสมบูรณ์แบบถึงจะมีความสุข เราสามารถหาความสุขได้ <em>ตอนนี้</em> ในสิ่งที่มี ในสิ่งที่ทำ
+                </p>
+                
+                <div class="final-quote">
+                    <p>"ความสำเร็จไม่จำเป็นต้องมาจากความทุกข์<br>
+                    ความมีประสิทธิภาพไม่จำเป็นต้องมาจากการบีบบังคับ<br>
+                    ความยิ่งใหญ่ไม่จำเป็นต้องมาจากการเสียสละความสุข<br><br>
+                    มันมาได้จากสิ่งตรงกันข้าม...<br>
+                    <strong>มาจากการรู้สึกดี</strong>"</p>
+                    <div class="author">— Ali Abdaal, Feel-Good Productivity</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>สรุปหนังสือ Feel-Good Productivity โดย Ali Abdaal</p>
+        <p class="credit">สร้างโดย Tomz | มกราคม 2025</p>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.classList.add('visible');
+            } else {
+                nav.classList.remove('visible');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add fade-in class to cards
+        document.querySelectorAll('.experiment-card, .concept-card, .teaching-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
